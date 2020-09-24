@@ -2,11 +2,14 @@ import re
 import requests as req
 from bs4 import BeautifulSoup as bs
 
+# Base url to access all the campuses.
 baseUrl = "https://tours.asu.edu"
+# Url extension to access all the buildings in Tempe campus.
+# Change tempe to polytechnic/Phoenix/Downtown to get corresponding data.
 campusUrl = "/tempe/buildings"
-buildings = []
 
 
+# Scrapes required data from the links to buildings
 def getData(filename, buildings):
     buildingsData = []
     for url in buildings:
@@ -32,13 +35,17 @@ def getData(filename, buildings):
     return buildingsData
 
 
+# Webpage for the campus
 basePage = req.get(baseUrl+campusUrl)
 soup = bs(basePage.content, 'lxml')
 
+buildings = []
+# Scrapes all the buildings links
 for builingLink in soup.find_all("div", class_="field-content"):
     for i in builingLink:
         if i.name == "a":
             buildings.append(i['href'])
 
+# Data is returned as a dictionary
 buildingsData = getData("Building_Data.csv", buildings)
 print(buildingsData)
