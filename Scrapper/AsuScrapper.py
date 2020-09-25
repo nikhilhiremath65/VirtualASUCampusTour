@@ -1,7 +1,7 @@
 import re
 import requests as req
 from bs4 import BeautifulSoup as bs
-
+import json
 # Base url to access all the campuses.
 baseUrl = "https://tours.asu.edu"
 # Url extension to access all the buildings in Tempe campus.
@@ -24,7 +24,6 @@ def getData(filename, buildings):
             coordinates = re.findall('[34]d[-]?\d{0,3}\.\d{,7}', gmapsLink)
         except:
             coordinates = ["0000.0000", "0000.0000"]
-            print(name, code)
         if len(coordinates) > 1:
             buildingObj = {}
             buildingObj['BuildingName'] = name
@@ -48,4 +47,7 @@ for builingLink in soup.find_all("div", class_="field-content"):
 
 # Data is returned as a dictionary
 buildingsData = getData("Building_Data.csv", buildings)
-print(buildingsData)
+
+# Writing collected data to a file in json format
+with open('Data/Tempe Building Data.json', 'w') as file:
+    json.dump(buildingsData, file)
