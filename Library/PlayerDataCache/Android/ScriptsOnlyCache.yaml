@@ -18,6 +18,14 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
+    UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
+    - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Image
+    - UnityEngine.UI.Text
   sceneClasses:
     :
     - Class: 1
@@ -53,7 +61,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 684}
     - Class: 114
+      Script: {instanceID: 11250}
+    - Class: 114
+      Script: {instanceID: 11278}
+    - Class: 114
+      Script: {instanceID: 11612}
+    - Class: 114
+      Script: {instanceID: 11674}
+    - Class: 114
       Script: {instanceID: 11774}
+    - Class: 114
+      Script: {instanceID: 12318}
     - Class: 114
       Script: {instanceID: 12602}
     - Class: 114
@@ -65,7 +83,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13854}
     - Class: 114
+      Script: {instanceID: 13894}
+    - Class: 114
       Script: {instanceID: 13900}
+    - Class: 114
+      Script: {instanceID: 14548}
     - Class: 114
       Script: {instanceID: 16018}
     - Class: 114
@@ -83,6 +105,12 @@ ScriptsOnlyBuild:
     - Class: 196
       Script: {instanceID: 0}
     - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
   - hash:

@@ -22,6 +22,9 @@ public class LocationService : MonoBehaviour
             _isInitialized = true;
         };
 
+        if (!Input.location.isEnabledByUser)
+            yield break;
+
         // Start service before querying location
         Input.location.Start();
 
@@ -72,11 +75,12 @@ public class LocationService : MonoBehaviour
         Input.location.Stop();
     }
 
-    private void Update()
+    void Update()
     {
         // Start service before querying location
         Input.location.Start();
 
+        
         float latitude = Input.location.lastData.latitude;
         float longitude = Input.location.lastData.longitude;
 
@@ -87,13 +91,13 @@ public class LocationService : MonoBehaviour
             locationIndicator.transform.position = position;
         }
 
+
         // Stop service if there is no need to query location updates continuously
         Input.location.Stop();
     }
 
-    private void FocusLocationAndUpdatePointer()
+    void FocusLocationAndUpdatePointer()
     {
-        // Start service before querying location
         Input.location.Start();
 
         float latitude = Input.location.lastData.latitude;
