@@ -2,601 +2,469 @@
   {
     "BuildingName": "\"A\" Mountain",
     "BuildingCode": "AMTN",
-    "Coordinates": { "Latitude": "3.4282515", "Longitude": "111.935851" }
+    "Coordinates": { "Latitude": "33.4282515", "Longitude": "-111.935851" }
   },
   {
     "BuildingName": "A. J. Matthews Center",
     "BuildingCode": "MCENT",
-    "Coordinates": { "Latitude": "3.4199292", "Longitude": "111.935502" }
+    "Coordinates": { "Latitude": "33.4199292", "Longitude": "-111.935502" }
   },
   {
     "BuildingName": "Adelphi Commons",
     "BuildingCode": "ADELA",
-    "Coordinates": { "Latitude": "3.4145124", "Longitude": "111.9277695" }
-  },
-  {
-    "BuildingName": "Adelphi Commons",
-    "BuildingCode": "ADELA",
-    "Coordinates": { "Latitude": "3.4145124", "Longitude": "111.9277695" }
-  },
-  {
-    "BuildingName": "Adelphi Commons",
-    "BuildingCode": "ADELA",
-    "Coordinates": { "Latitude": "3.4145124", "Longitude": "111.9277695" }
-  },
-  {
-    "BuildingName": "Adelphi Commons",
-    "BuildingCode": "ADELA",
-    "Coordinates": { "Latitude": "3.4145124", "Longitude": "111.9277695" }
-  },
-  {
-    "BuildingName": "Adelphi Commons",
-    "BuildingCode": "ADELA",
-    "Coordinates": { "Latitude": "3.4145124", "Longitude": "111.9277695" }
-  },
-  {
-    "BuildingName": "Adelphi Commons",
-    "BuildingCode": "ADELA",
-    "Coordinates": { "Latitude": "3.4145124", "Longitude": "111.9277695" }
-  },
-  {
-    "BuildingName": "Adelphi Commons",
-    "BuildingCode": "ADELA",
-    "Coordinates": { "Latitude": "3.4145124", "Longitude": "111.9277695" }
-  },
-  {
-    "BuildingName": "Adelphi Commons",
-    "BuildingCode": "ADELA",
-    "Coordinates": { "Latitude": "3.4145124", "Longitude": "111.9277695" }
-  },
-  {
-    "BuildingName": "Adelphi Commons",
-    "BuildingCode": "ADELA",
-    "Coordinates": { "Latitude": "3.4145124", "Longitude": "111.9277695" }
+    "Coordinates": { "Latitude": "33.4145124", "Longitude": "-111.9277695" }
   },
   {
     "BuildingName": "Alberta B. Farrington Softball Stadium",
     "BuildingCode": "ALBER",
-    "Coordinates": { "Latitude": "3.4254902", "Longitude": "111.9236519" }
+    "Coordinates": { "Latitude": "33.4254902", "Longitude": "-111.9236519" }
   },
   {
     "BuildingName": "Armstrong Hall",
     "BuildingCode": "ARM",
-    "Coordinates": { "Latitude": "3.4178808", "Longitude": "111.929473" }
+    "Coordinates": { "Latitude": "33.4178808", "Longitude": "-111.929473" }
   },
   {
     "BuildingName": "Art Building",
     "BuildingCode": "ART",
-    "Coordinates": { "Latitude": "3.4205064", "Longitude": "111.9373537" }
+    "Coordinates": { "Latitude": "33.4205064", "Longitude": "-111.9373537" }
   },
   {
     "BuildingName": "Art Warehouse",
     "BuildingCode": "ARWH",
-    "Coordinates": { "Latitude": "3.4209474", "Longitude": "111.9379487" }
+    "Coordinates": { "Latitude": "33.4209474", "Longitude": "-111.9379487" }
   },
   {
     "BuildingName": "Artisan Court at the Brickyard",
     "BuildingCode": "BYAC",
-    "Coordinates": { "Latitude": "3.4234996", "Longitude": "111.9390249" }
+    "Coordinates": { "Latitude": "33.4234996", "Longitude": "-111.9390249" }
   },
   {
     "BuildingName": "ASU Art Museum Brickyard",
     "BuildingCode": "CRCNTR",
-    "Coordinates": { "Latitude": "3.4236243", "Longitude": "111.9396125" }
+    "Coordinates": { "Latitude": "33.4236243", "Longitude": "-111.9396125" }
   },
   {
     "BuildingName": "ASU Gammage",
     "BuildingCode": "GGMA",
-    "Coordinates": { "Latitude": "3.4162697", "Longitude": "111.9380721" }
+    "Coordinates": { "Latitude": "33.4162697", "Longitude": "-111.9380721" }
   },
   {
     "BuildingName": "ASU Performing and Media Arts",
     "BuildingCode": "APMA",
-    "Coordinates": { "Latitude": "3.4234935", "Longitude": "111.9242529" }
+    "Coordinates": { "Latitude": "33.4234935", "Longitude": "-111.9242529" }
   },
   {
     "BuildingName": "ASU Police Department",
     "BuildingCode": "ASUPD",
-    "Coordinates": { "Latitude": "3.4143327", "Longitude": "111.9344567" }
+    "Coordinates": { "Latitude": "33.4143327", "Longitude": "-111.9344567" }
   },
   {
     "BuildingName": "Bateman Physical Sciences Center",
     "BuildingCode": "PSB",
-    "Coordinates": { "Latitude": "3.4208495", "Longitude": "111.9321245" }
-  },
-  {
-    "BuildingName": "Bateman Physical Sciences Center",
-    "BuildingCode": "PSB",
-    "Coordinates": { "Latitude": "3.4208495", "Longitude": "111.9321245" }
-  },
-  {
-    "BuildingName": "Bateman Physical Sciences Center",
-    "BuildingCode": "PSB",
-    "Coordinates": { "Latitude": "3.4208495", "Longitude": "111.9321245" }
-  },
-  {
-    "BuildingName": "Bateman Physical Sciences Center",
-    "BuildingCode": "PSB",
-    "Coordinates": { "Latitude": "3.4208495", "Longitude": "111.9321245" }
-  },
-  {
-    "BuildingName": "Bateman Physical Sciences Center",
-    "BuildingCode": "PSB",
-    "Coordinates": { "Latitude": "3.4208495", "Longitude": "111.9321245" }
-  },
-  {
-    "BuildingName": "Bateman Physical Sciences Center",
-    "BuildingCode": "PSB",
-    "Coordinates": { "Latitude": "3.4208495", "Longitude": "111.9321245" }
-  },
-  {
-    "BuildingName": "Bateman Physical Sciences Center",
-    "BuildingCode": "PSB",
-    "Coordinates": { "Latitude": "3.4208495", "Longitude": "111.9321245" }
+    "Coordinates": { "Latitude": "33.4208495", "Longitude": "-111.9321245" }
   },
   {
     "BuildingName": "Best Hall",
     "BuildingCode": "MB",
-    "Coordinates": { "Latitude": "3.4158373", "Longitude": "111.936492" }
+    "Coordinates": { "Latitude": "33.4158373", "Longitude": "-111.936492" }
   },
   {
     "BuildingName": "Bulldog Hall",
     "BuildingCode": "BDH",
-    "Coordinates": { "Latitude": "3.418414", "Longitude": "111.9308182" }
+    "Coordinates": { "Latitude": "33.418414", "Longitude": "-111.9308182" }
   },
   {
     "BuildingName": "Business Administration",
     "BuildingCode": "BA",
-    "Coordinates": { "Latitude": "3.4165566", "Longitude": "111.9344819" }
+    "Coordinates": { "Latitude": "33.4165566", "Longitude": "-111.9344819" }
   },
   {
     "BuildingName": "Business Administration C-Wing",
     "BuildingCode": "BAC",
-    "Coordinates": { "Latitude": "3.4166015", "Longitude": "111.9338556" }
+    "Coordinates": { "Latitude": "33.4166015", "Longitude": "-111.9338556" }
   },
   {
     "BuildingName": "Campus Children's Center",
     "BuildingCode": "CHILD",
-    "Coordinates": { "Latitude": "3.4198435", "Longitude": "111.9247221" }
+    "Coordinates": { "Latitude": "33.4198435", "Longitude": "-111.9247221" }
   },
   {
     "BuildingName": "Center for Family Studies",
     "BuildingCode": "CFS",
-    "Coordinates": { "Latitude": "3.4209768", "Longitude": "111.9362488" }
+    "Coordinates": { "Latitude": "33.4209768", "Longitude": "-111.9362488" }
   },
   {
     "BuildingName": "Centerpoint",
     "BuildingCode": "CTRPT",
-    "Coordinates": { "Latitude": "3.423821", "Longitude": "111.9410695" }
+    "Coordinates": { "Latitude": "33.423821", "Longitude": "-111.9410695" }
   },
   {
     "BuildingName": "Ceramics Research Center and Brickyard Gallery",
     "BuildingCode": "CRCNTR",
-    "Coordinates": { "Latitude": "3.4236243", "Longitude": "111.9396125" }
+    "Coordinates": { "Latitude": "33.4236243", "Longitude": "-111.9396125" }
   },
   {
     "BuildingName": "Charles Wexler Hall",
     "BuildingCode": "WXLR",
-    "Coordinates": { "Latitude": "3.420627", "Longitude": "111.9321809" }
+    "Coordinates": { "Latitude": "33.420627", "Longitude": "-111.9321809" }
   },
   {
     "BuildingName": "College Avenue Marketplace",
     "BuildingCode": "CAM",
-    "Coordinates": { "Latitude": "3.4227968", "Longitude": "111.9345668" }
+    "Coordinates": { "Latitude": "33.4227968", "Longitude": "-111.9345668" }
   },
   {
     "BuildingName": "Community Services Building",
     "BuildingCode": "CSB",
-    "Coordinates": { "Latitude": "3.440682", "Longitude": "111.9405849" }
+    "Coordinates": { "Latitude": "33.440682", "Longitude": "-111.9405849" }
   },
   {
     "BuildingName": "Cowden Family Resources",
     "BuildingCode": "COWDN",
-    "Coordinates": { "Latitude": "3.4210967", "Longitude": "111.9355431" }
+    "Coordinates": { "Latitude": "33.4210967", "Longitude": "-111.9355431" }
   },
   {
     "BuildingName": "Creativity Commons",
     "BuildingCode": "CRTVC",
-    "Coordinates": { "Latitude": "3.4181439", "Longitude": "111.9323895" }
+    "Coordinates": { "Latitude": "33.4181439", "Longitude": "-111.9323895" }
   },
   {
     "BuildingName": "Danforth Chapel",
     "BuildingCode": "CHAPL",
-    "Coordinates": { "Latitude": "3.4181933", "Longitude": "111.9350976" }
+    "Coordinates": { "Latitude": "33.4181933", "Longitude": "-111.9350976" }
   },
   {
     "BuildingName": "Daniel E. Noble Science and Engineering Library",
     "BuildingCode": "NOBLE",
-    "Coordinates": { "Latitude": "3.4203272", "Longitude": "111.931007" }
+    "Coordinates": { "Latitude": "33.4203272", "Longitude": "-111.931007" }
   },
   {
     "BuildingName": "Desert Arboretum Park",
     "BuildingCode": "DAP",
-    "Coordinates": { "Latitude": "3.4297105", "Longitude": "111.9293032" }
+    "Coordinates": { "Latitude": "33.4297105", "Longitude": "-111.9293032" }
   },
   {
     "BuildingName": "Desert Financial Arena",
     "BuildingCode": "DFA",
-    "Coordinates": { "Latitude": "3.4245048", "Longitude": "111.9310057" }
+    "Coordinates": { "Latitude": "33.4245048", "Longitude": "-111.9310057" }
   },
   {
     "BuildingName": "Design Buildings ",
     "BuildingCode": "CDN",
-    "Coordinates": { "Latitude": "3.4215572", "Longitude": "111.9370626" }
-  },
-  {
-    "BuildingName": "Design Buildings ",
-    "BuildingCode": "CDN",
-    "Coordinates": { "Latitude": "3.4215572", "Longitude": "111.9370626" }
+    "Coordinates": { "Latitude": "33.4215572", "Longitude": "-111.9370626" }
   },
   {
     "BuildingName": "Discovery Hall",
     "BuildingCode": "DISCVRY",
-    "Coordinates": { "Latitude": "3.4164657", "Longitude": "111.935563" }
+    "Coordinates": { "Latitude": "33.4164657", "Longitude": "-111.935563" }
   },
   {
     "BuildingName": "Dixie Gammage Hall",
     "BuildingCode": "GHALL",
-    "Coordinates": { "Latitude": "3.4191163", "Longitude": "111.9363023" }
+    "Coordinates": { "Latitude": "33.4191163", "Longitude": "-111.9363023" }
   },
   {
     "BuildingName": "Ed and Nadine Carson Student-Athlete Center",
     "BuildingCode": "CSAC",
-    "Coordinates": { "Latitude": "3.4263639", "Longitude": "111.9325849" }
+    "Coordinates": { "Latitude": "33.4263639", "Longitude": "-111.9325849" }
   },
   {
     "BuildingName": "Education Lecture Hall",
     "BuildingCode": "EDC",
-    "Coordinates": { "Latitude": "3.4179169", "Longitude": "111.9378426" }
+    "Coordinates": { "Latitude": "33.4179169", "Longitude": "-111.9378426" }
   },
   {
     "BuildingName": "Engineering Center",
     "BuildingCode": "ECA",
-    "Coordinates": { "Latitude": "3.4188878", "Longitude": "111.9327128" }
-  },
-  {
-    "BuildingName": "Engineering Center",
-    "BuildingCode": "ECA",
-    "Coordinates": { "Latitude": "3.4188878", "Longitude": "111.9327128" }
-  },
-  {
-    "BuildingName": "Engineering Center",
-    "BuildingCode": "ECA",
-    "Coordinates": { "Latitude": "3.4188878", "Longitude": "111.9327128" }
-  },
-  {
-    "BuildingName": "Engineering Center",
-    "BuildingCode": "ECA",
-    "Coordinates": { "Latitude": "3.4188878", "Longitude": "111.9327128" }
-  },
-  {
-    "BuildingName": "Engineering Center",
-    "BuildingCode": "ECA",
-    "Coordinates": { "Latitude": "3.4188878", "Longitude": "111.9327128" }
-  },
-  {
-    "BuildingName": "Engineering Center",
-    "BuildingCode": "ECA",
-    "Coordinates": { "Latitude": "3.4188878", "Longitude": "111.9327128" }
-  },
-  {
-    "BuildingName": "Engineering Center",
-    "BuildingCode": "ECA",
-    "Coordinates": { "Latitude": "3.4188878", "Longitude": "111.9327128" }
+    "Coordinates": { "Latitude": "33.4188878", "Longitude": "-111.9327128" }
   },
   {
     "BuildingName": "Engineering Research Center",
     "BuildingCode": "ENGRC",
-    "Coordinates": { "Latitude": "3.4203244", "Longitude": "111.9313552" }
+    "Coordinates": { "Latitude": "33.4203244", "Longitude": "-111.9313552" }
   },
   {
     "BuildingName": "Fulton Center",
     "BuildingCode": "FULTN",
-    "Coordinates": { "Latitude": "3.4222974", "Longitude": "111.9344383" }
+    "Coordinates": { "Latitude": "33.4222974", "Longitude": "-111.9344383" }
   },
   {
     "BuildingName": "Future Sun Devil Welcome Center and College Ave. Commons",
     "BuildingCode": "CAVC",
-    "Coordinates": { "Latitude": "3.4234089", "Longitude": "111.9352264" }
+    "Coordinates": { "Latitude": "33.4234089", "Longitude": "-111.9352264" }
   },
   {
     "BuildingName": "G. Homer Durham Hall",
     "BuildingCode": "DH",
-    "Coordinates": { "Latitude": "3.4208917", "Longitude": "111.934581" }
+    "Coordinates": { "Latitude": "33.4208917", "Longitude": "-111.934581" }
   },
   {
     "BuildingName": "Goldwater Center",
     "BuildingCode": "GWC",
-    "Coordinates": { "Latitude": "3.4207916", "Longitude": "111.9303122" }
+    "Coordinates": { "Latitude": "33.4207916", "Longitude": "-111.9303122" }
   },
   {
     "BuildingName": "H.B. Farmer Education Building",
     "BuildingCode": "ED",
-    "Coordinates": { "Latitude": "3.4180342", "Longitude": "111.9373076" }
+    "Coordinates": { "Latitude": "33.4180342", "Longitude": "-111.9373076" }
   },
   {
     "BuildingName": "Hayden Hall",
     "BuildingCode": "HAYDN",
-    "Coordinates": { "Latitude": "3.4156796", "Longitude": "111.9338506" }
+    "Coordinates": { "Latitude": "33.4156796", "Longitude": "-111.9338506" }
   },
   {
     "BuildingName": "Hayden Library",
     "BuildingCode": "LIB",
-    "Coordinates": { "Latitude": "3.4190755", "Longitude": "111.9346142" }
+    "Coordinates": { "Latitude": "33.4190755", "Longitude": "-111.9346142" }
   },
   {
     "BuildingName": "Health Service Building",
     "BuildingCode": "HSB",
-    "Coordinates": { "Latitude": "3.4213463", "Longitude": "111.93304" }
+    "Coordinates": { "Latitude": "33.4213463", "Longitude": "-111.93304" }
   },
   {
     "BuildingName": "Inclusivity at ASU",
     "BuildingCode": "MU",
-    "Coordinates": { "Latitude": "3.4177323", "Longitude": "111.9344185" }
+    "Coordinates": { "Latitude": "33.4177323", "Longitude": "-111.9344185" }
   },
   {
     "BuildingName": "Interdisciplinary A & B",
     "BuildingCode": "INTDS",
-    "Coordinates": { "Latitude": "3.4175905", "Longitude": "111.9354917" }
+    "Coordinates": { "Latitude": "33.4175905", "Longitude": "-111.9354917" }
   },
   {
     "BuildingName": "Interdisciplinary Science and Technology I",
     "BuildingCode": "ISTB1",
-    "Coordinates": { "Latitude": "3.4189185", "Longitude": "111.9315224" }
+    "Coordinates": { "Latitude": "33.4189185", "Longitude": "-111.9315224" }
   },
   {
     "BuildingName": "Interdisciplinary Science and Technology II",
     "BuildingCode": "ISTB2",
-    "Coordinates": { "Latitude": "3.421064", "Longitude": "111.9296127" }
+    "Coordinates": { "Latitude": "33.421064", "Longitude": "-111.9296127" }
   },
   {
     "BuildingName": "Interdisciplinary Science and Technology II",
     "BuildingCode": "ISTB2",
-    "Coordinates": { "Latitude": "3.421064", "Longitude": "111.9296127" }
+    "Coordinates": { "Latitude": "33.421064", "Longitude": "-111.9296127" }
   },
   {
     "BuildingName": "Interdisciplinary Science and Technology IV",
     "BuildingCode": "ISTB4",
-    "Coordinates": { "Latitude": "3.417921", "Longitude": "111.9283551" }
+    "Coordinates": { "Latitude": "33.417921", "Longitude": "-111.9283551" }
   },
   {
     "BuildingName": "Interdisciplinary Science and Technology IV",
     "BuildingCode": "ISTB4",
-    "Coordinates": { "Latitude": "3.417921", "Longitude": "111.9283551" }
+    "Coordinates": { "Latitude": "33.417921", "Longitude": "-111.9283551" }
   },
   {
     "BuildingName": "Interdisciplinary Science and Technology V",
     "BuildingCode": "ISTB5",
-    "Coordinates": { "Latitude": "3.4206707", "Longitude": "111.9310112" }
+    "Coordinates": { "Latitude": "33.4206707", "Longitude": "-111.9310112" }
   },
   {
     "BuildingName": "Ira D. Payne Educational Hall",
     "BuildingCode": "EDB",
-    "Coordinates": { "Latitude": "3.4188896", "Longitude": "111.9372772" }
+    "Coordinates": { "Latitude": "33.4188896", "Longitude": "-111.9372772" }
   },
   {
     "BuildingName": "Irish Hall",
     "BuildingCode": "IRISH",
-    "Coordinates": { "Latitude": "3.4146351", "Longitude": "111.9349331" }
+    "Coordinates": { "Latitude": "33.4146351", "Longitude": "-111.9349331" }
   },
   {
     "BuildingName": "J. Russell and Bonita Nelson Fine Arts Center | ASU Art Museum",
     "BuildingCode": "FAC",
-    "Coordinates": { "Latitude": "3.4188446", "Longitude": "111.9386525" }
+    "Coordinates": { "Latitude": "33.4188446", "Longitude": "-111.9386525" }
   },
   {
     "BuildingName": "John W. Schwada Building",
     "BuildingCode": "SCOB",
-    "Coordinates": { "Latitude": "3.4187806", "Longitude": "111.9306788" }
+    "Coordinates": { "Latitude": "33.4187806", "Longitude": "-111.9306788" }
   },
   {
     "BuildingName": "L. S. Neeb Hall",
     "BuildingCode": "NEEB",
-    "Coordinates": { "Latitude": "3.4203413", "Longitude": "111.9368889" }
+    "Coordinates": { "Latitude": "33.4203413", "Longitude": "-111.9368889" }
   },
   {
     "BuildingName": "Lattie F. Coor Hall",
     "BuildingCode": "COOR",
-    "Coordinates": { "Latitude": "3.4194551", "Longitude": "111.9374957" }
+    "Coordinates": { "Latitude": "33.4194551", "Longitude": "-111.9374957" }
   },
   {
     "BuildingName": "Life Sciences Center",
     "BuildingCode": "LSA",
-    "Coordinates": { "Latitude": "3.4203103", "Longitude": "111.9329497" }
-  },
-  {
-    "BuildingName": "Life Sciences Center",
-    "BuildingCode": "LSA",
-    "Coordinates": { "Latitude": "3.4203103", "Longitude": "111.9329497" }
-  },
-  {
-    "BuildingName": "Life Sciences Center",
-    "BuildingCode": "LSA",
-    "Coordinates": { "Latitude": "3.4203103", "Longitude": "111.9329497" }
-  },
-  {
-    "BuildingName": "Life Sciences Center",
-    "BuildingCode": "LSA",
-    "Coordinates": { "Latitude": "3.4203103", "Longitude": "111.9329497" }
-  },
-  {
-    "BuildingName": "Life Sciences Center",
-    "BuildingCode": "LSA",
-    "Coordinates": { "Latitude": "3.4203103", "Longitude": "111.9329497" }
+    "Coordinates": { "Latitude": "33.4203103", "Longitude": "-111.9329497" }
   },
   {
     "BuildingName": "Lyceum Theatre",
     "BuildingCode": "LYC",
-    "Coordinates": { "Latitude": "3.4205213", "Longitude": "111.9363888" }
+    "Coordinates": { "Latitude": "33.4205213", "Longitude": "-111.9363888" }
   },
   {
     "BuildingName": "Manzanita Hall",
     "BuildingCode": "MANZH",
-    "Coordinates": { "Latitude": "3.4226259", "Longitude": "111.9303734" }
+    "Coordinates": { "Latitude": "33.4226259", "Longitude": "-111.9303734" }
   },
   {
     "BuildingName": "Matthews Hall",
     "BuildingCode": "MHALL",
-    "Coordinates": { "Latitude": "3.4201485", "Longitude": "111.9361268" }
+    "Coordinates": { "Latitude": "33.4201485", "Longitude": "-111.9361268" }
   },
   {
     "BuildingName": "McClintock Hall",
     "BuildingCode": "MCL",
-    "Coordinates": { "Latitude": "3.4197042", "Longitude": "111.9358208" }
+    "Coordinates": { "Latitude": "33.4197042", "Longitude": "-111.9358208" }
   },
   {
     "BuildingName": "McCord Hall",
     "BuildingCode": "MCRD",
-    "Coordinates": { "Latitude": "3.416202", "Longitude": "111.9333874" }
+    "Coordinates": { "Latitude": "33.416202", "Longitude": "-111.9333874" }
   },
   {
     "BuildingName": "Memorial Union",
     "BuildingCode": "MU",
-    "Coordinates": { "Latitude": "3.4177323", "Longitude": "111.9344185" }
+    "Coordinates": { "Latitude": "33.4177323", "Longitude": "-111.9344185" }
   },
   {
     "BuildingName": "Moeur Building",
     "BuildingCode": "MOEUR",
-    "Coordinates": { "Latitude": "3.4179176", "Longitude": "111.9361855" }
+    "Coordinates": { "Latitude": "33.4179176", "Longitude": "-111.9361855" }
   },
   {
     "BuildingName": "Mona Plummer Aquatic Complex",
     "BuildingCode": "AQUAT",
-    "Coordinates": { "Latitude": "3.4241151", "Longitude": "111.9341413" }
+    "Coordinates": { "Latitude": "33.4241151", "Longitude": "-111.9341413" }
   },
   {
     "BuildingName": "Murdock Hall",
     "BuildingCode": "MUR",
-    "Coordinates": { "Latitude": "3.4185928", "Longitude": "111.9330399" }
+    "Coordinates": { "Latitude": "33.4185928", "Longitude": "-111.9330399" }
   },
   {
     "BuildingName": "Music Building",
     "BuildingCode": "MUSIC",
-    "Coordinates": { "Latitude": "3.4176261", "Longitude": "111.9387296" }
+    "Coordinates": { "Latitude": "33.4176261", "Longitude": "-111.9387296" }
   },
   {
     "BuildingName": "Old Main",
     "BuildingCode": "MAIN",
-    "Coordinates": { "Latitude": "3.4205873", "Longitude": "111.9340001" }
+    "Coordinates": { "Latitude": "33.4205873", "Longitude": "-111.9340001" }
   },
   {
     "BuildingName": "Orange Mall Green Infrastructure Project",
     "BuildingCode": "OMALL",
-    "Coordinates": { "Latitude": "3.4183328", "Longitude": "111.935237" }
+    "Coordinates": { "Latitude": "33.4183328", "Longitude": "-111.935237" }
   },
   {
     "BuildingName": "Orchid House at the Brickyard",
     "BuildingCode": "BYOH",
-    "Coordinates": { "Latitude": "3.4240718", "Longitude": "111.9387687" }
+    "Coordinates": { "Latitude": "33.4240718", "Longitude": "-111.9387687" }
   },
   {
     "BuildingName": "Packard Baseball Stadium",
     "BuildingCode": "PBS",
-    "Coordinates": { "Latitude": "3.4276807", "Longitude": "111.9279877" }
+    "Coordinates": { "Latitude": "33.4276807", "Longitude": "-111.9279877" }
   },
   {
     "BuildingName": "Palo Verde East",
     "BuildingCode": "PVE",
-    "Coordinates": { "Latitude": "3.4224163", "Longitude": "111.9320081" }
+    "Coordinates": { "Latitude": "33.4224163", "Longitude": "-111.9320081" }
   },
   {
     "BuildingName": "Palo Verde West",
     "BuildingCode": "PVW",
-    "Coordinates": { "Latitude": "3.4219811", "Longitude": "111.9330749" }
+    "Coordinates": { "Latitude": "33.4219811", "Longitude": "-111.9330749" }
   },
   {
     "BuildingName": "Psychology Building",
     "BuildingCode": "PSY",
-    "Coordinates": { "Latitude": "3.4198736", "Longitude": "111.9295509" }
+    "Coordinates": { "Latitude": "33.4198736", "Longitude": "-111.9295509" }
   },
   {
     "BuildingName": "Psychology North",
     "BuildingCode": "PSYN",
-    "Coordinates": { "Latitude": "3.4206512", "Longitude": "111.9295819" }
+    "Coordinates": { "Latitude": "33.4206512", "Longitude": "-111.9295819" }
   },
   {
     "BuildingName": "Riches Wrestling Complex",
     "BuildingCode": "WTF",
-    "Coordinates": { "Latitude": "3.426494", "Longitude": "111.9236934" }
+    "Coordinates": { "Latitude": "33.426494", "Longitude": "-111.9236934" }
   },
   {
     "BuildingName": "Robson Family Player Facility",
     "BuildingCode": "RFPF",
-    "Coordinates": { "Latitude": "3.4248477", "Longitude": "111.9276643" }
+    "Coordinates": { "Latitude": "33.4248477", "Longitude": "-111.9276643" }
   },
   {
     "BuildingName": "Ross-Blakley Hall ",
     "BuildingCode": "RBHL",
-    "Coordinates": { "Latitude": "3.4170941", "Longitude": "111.9297199" }
+    "Coordinates": { "Latitude": "33.4170941", "Longitude": "-111.9297199" }
   },
   {
     "BuildingName": "Social Sciences Building ",
     "BuildingCode": "SS",
-    "Coordinates": { "Latitude": "0.0000", "Longitude": "0.0000" }
-  },
-  {
-    "BuildingName": "Social Sciences Building",
-    "BuildingCode": "SS",
-    "Coordinates": { "Latitude": "0.0000", "Longitude": "0.0000" }
-  },
-  {
-    "BuildingName": "Student Pavilion",
-    "BuildingCode": "STPV",
-    "Coordinates": { "Latitude": "3.4185816", "Longitude": "111.9337101" }
+    "Coordinates": {
+      "Latitude": "33.41978",
+      "Longitude": "-111.9345321"
+    }
   },
   {
     "BuildingName": "Student Pavilion",
     "BuildingCode": "STPV",
-    "Coordinates": { "Latitude": "0.0000", "Longitude": "0.0000" }
+    "Coordinates": { "Latitude": "33.4185542", "Longitude": "-111.9337034" }
   },
   {
     "BuildingName": "Sun Angel Stadium /Joe Selleh Track",
     "BuildingCode": "TRACK",
-    "Coordinates": { "Latitude": "0.0000", "Longitude": "0.0000" }
+    "Coordinates": { "Latitude": "33.42646", "Longitude": "-111.927703" }
   },
   {
     "BuildingName": "Sun Devil Fitness Complex Tempe",
     "BuildingCode": "SDFCT",
-    "Coordinates": { "Latitude": "3.414788", "Longitude": "111.9307346" }
+    "Coordinates": { "Latitude": "33.414788", "Longitude": "-111.9307346" }
   },
   {
     "BuildingName": "Sun Devil Hall",
     "BuildingCode": "SDH",
-    "Coordinates": { "Latitude": "3.41834", "Longitude": "111.9330553" }
+    "Coordinates": { "Latitude": "33.41834", "Longitude": "-111.9330553" }
   },
   {
     "BuildingName": "Sun Devil Stadium",
     "BuildingCode": "STAD",
-    "Coordinates": { "Latitude": "3.4263639", "Longitude": "111.9325849" }
+    "Coordinates": { "Latitude": "33.4263639", "Longitude": "-111.9325849" }
   },
   {
     "BuildingName": "Sustainability Point of Pride: ASU Police Department",
     "BuildingCode": "ASUPD",
-    "Coordinates": { "Latitude": "0.0000", "Longitude": "0.0000" }
+    "Coordinates": { "Latitude": "33.4143327", "Longitude": "-111.9344567" }
   },
   {
     "BuildingName": "The Biodesign Institute - Bldg A",
     "BuildingCode": "BDA",
-    "Coordinates": { "Latitude": "0.0000", "Longitude": "0.0000" }
+    "Coordinates": { "Latitude": "33.4193847", "Longitude": "-111.9282621" }
   },
   {
     "BuildingName": "The Biodesign Institute - Bldg B",
     "BuildingCode": "BDB",
-    "Coordinates": { "Latitude": "0.0000", "Longitude": "0.0000" }
+    "Coordinates": { "Latitude": "33.4195371", "Longitude": "-111.928552" }
   },
   {
     "BuildingName": "Tower Center",
     "BuildingCode": "TOWER",
-    "Coordinates": { "Latitude": "0.0000", "Longitude": "0.0000" }
+    "Coordinates": { "Latitude": "33.4215655", "Longitude": "-111.93748420" }
   },
   {
     "BuildingName": "Weatherup Center",
     "BuildingCode": "WUC",
-    "Coordinates": { "Latitude": "0.0000", "Longitude": "0.0000" }
+    "Coordinates": { "Latitude": "33.4248193", "Longitude": "-111.923403" }
   },
   {
     "BuildingName": "Wrigley Hall",
     "BuildingCode": "WGHL",
-    "Coordinates": { "Latitude": "0.0000", "Longitude": "0.0000" }
+    "Coordinates": { "Latitude": "33.4214838", "Longitude": "-111.9353372" }
   }
 ]

@@ -24,12 +24,13 @@ def getData(filename, buildings):
             coordinates = re.findall('[34]d[-]?\d{0,3}\.\d{,7}', gmapsLink)
         except:
             coordinates = ["0000.0000", "0000.0000"]
+            print(code)
         if len(coordinates) > 1:
             buildingObj = {}
             buildingObj['BuildingName'] = name
             buildingObj['BuildingCode'] = code
             buildingObj['Coordinates'] = {
-                'Latitude': coordinates[0][3:], 'Longitude': coordinates[1][3:]}
+                'Latitude': coordinates[0][2:], 'Longitude': coordinates[1][2:]}
             buildingsData.append(buildingObj)
     return buildingsData
 
@@ -40,14 +41,13 @@ soup = bs(basePage.content, 'lxml')
 
 buildings = []
 # Scrapes all the buildings links
-for builingLink in soup.find_all("div", class_="field-content"):
-    for i in builingLink:
-        if i.name == "a":
-            buildings.append(i['href'])
+for buildingLink in soup.find_all("div", class_="field-content"):
+    if len(buildingLink.contents) > 0:
+        buildings.append(buildingLink.contents[0]['href'])
 
 # Data is returned as a dictionary
 buildingsData = getData("Building_Data.csv", buildings)
 
-# Writing collected data to a file in json format
+# # Writing collected data to a file in json format
 with open('Data/Tempe Building Data.json', 'w') as file:
     json.dump(buildingsData, file)
