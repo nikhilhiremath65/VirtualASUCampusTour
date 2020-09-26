@@ -474,6 +474,7 @@
     <Compile Include="Assets\MapboxAR\Unity\Ar\SimpleAutomaticSynchronizationContextBehaviour.cs" />
     <Compile Include="Assets\MapboxAR\Unity\Ar\SnapAlignmentStrategy.cs" />
     <Compile Include="Assets\MapboxAR\Unity\Ar\Utilities\PlotRoute.cs" />
+    <Compile Include="Assets\Scripts\LocationService.cs" />
     <Compile Include="Assets\Scripts\QuadTreeCameraMovement.cs" />
     <Compile Include="Assets\UnityARInterface\ARRemote\Scripts\ARRemoteDevice.cs" />
     <Compile Include="Assets\UnityARInterface\ARRemote\Scripts\ARRemoteEditor.cs" />
