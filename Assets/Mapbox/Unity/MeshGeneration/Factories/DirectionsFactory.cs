@@ -50,6 +50,8 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 
 		public void Start()
 		{
+
+			transform.position = _map.transform.position + new Vector3(0,300,0);
 			_cachedWaypoints = new List<Vector3>(_waypoints.Length);
 			foreach (var item in _waypoints)
 			{
@@ -73,13 +75,15 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 
 		void Query()
 		{
-			var count = _waypoints.Length;
+			var count = 2;
 			var wp = new Vector2d[count];
-			for (int i = 0; i < count; i++)
-			{
-				wp[i] = _waypoints[i].GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
-			}
-			var _directionResource = new DirectionResource(wp, RoutingProfile.Driving);
+            wp[0] = new Vector2d(33.306964, -111.677283);
+            wp[1] = new Vector2d(33.308059, -111.677431);
+            //for (int i = 0; i < count; i++)
+            //{
+            //    wp[i] = _waypoints[i].GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
+            //}
+            var _directionResource = new DirectionResource(wp, RoutingProfile.Driving);
 			_directionResource.Steps = true;
 			_directions.Query(_directionResource, HandleDirectionsResponse);
 		}

@@ -12,7 +12,7 @@ namespace Mapbox.Unity.Map
 	using Mapbox.Unity.Utilities;
 	using Utils;
 	using UnityEngine;
-	using Mapbox.Map;
+	using Mapbox.Map; 
 	using Mapbox.Unity.MeshGeneration.Factories;
 	using Mapbox.Unity.MeshGeneration.Data;
 	using System.Globalization;

@@ -2,10 +2,22 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - LocationService
+    - Mapbox.Examples.CameraBillboard
+    - Mapbox.Examples.DragableDirectionWaypoint
+    - Mapbox.Examples.FeatureUiMarker
+    - Mapbox.Examples.LabelTextSetter
+    - Mapbox.Examples.MakiHelper
+    - Mapbox.Examples.PoiLabelTextSetter
+    - Mapbox.Examples.PoiMarkerHelper
     - Mapbox.Examples.QuadTreeCameraMovement
+    - Mapbox.Examples.TextMeshOutline
     - Mapbox.Unity.Map.AbstractMap
     - Mapbox.Unity.Map.MapVisualizer
     - Mapbox.Unity.MeshGeneration.Data.AtlasInfo
+    - Mapbox.Unity.MeshGeneration.Factories.DirectionsFactory
+    - Mapbox.Unity.MeshGeneration.Modifiers.LoftModifier
+    - Mapbox.Unity.MeshGeneration.Modifiers.ModifierStack
+    - Mapbox.Unity.MeshGeneration.Modifiers.PrefabModifier
     - Mapbox.Unity.MeshGeneration.Modifiers.ReplaceFeatureCollectionModifier
     - Mapbox.Unity.Utilities.DebugTools.SceneData
     - Mapbox.Unity.Utilities.DebugTools.ScenesList
@@ -14,6 +26,11 @@ ScriptsOnlyBuild:
     - UnityARKitPluginSettings
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -23,9 +40,14 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
+    - UnityEngine.UI.LayoutElement
+    - UnityEngine.UI.Mask
     - UnityEngine.UI.Text
+    - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
     Assets/Scenes/MapNavigation.unity:
     - Class: 1
@@ -48,50 +70,98 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 95
       Script: {instanceID: 0}
+    - Class: 102
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 684}
+      Script: {instanceID: 736}
     - Class: 114
-      Script: {instanceID: 11250}
+      Script: {instanceID: 11304}
     - Class: 114
-      Script: {instanceID: 11278}
+      Script: {instanceID: 11308}
     - Class: 114
-      Script: {instanceID: 11612}
+      Script: {instanceID: 11310}
     - Class: 114
-      Script: {instanceID: 11674}
+      Script: {instanceID: 11312}
     - Class: 114
-      Script: {instanceID: 11774}
+      Script: {instanceID: 11730}
     - Class: 114
-      Script: {instanceID: 12282}
+      Script: {instanceID: 11748}
     - Class: 114
-      Script: {instanceID: 12322}
+      Script: {instanceID: 11852}
     - Class: 114
-      Script: {instanceID: 12606}
+      Script: {instanceID: 11916}
     - Class: 114
-      Script: {instanceID: 12778}
+      Script: {instanceID: 11946}
     - Class: 114
-      Script: {instanceID: 13190}
+      Script: {instanceID: 12112}
     - Class: 114
-      Script: {instanceID: 13578}
+      Script: {instanceID: 12244}
     - Class: 114
-      Script: {instanceID: 13858}
+      Script: {instanceID: 12256}
     - Class: 114
-      Script: {instanceID: 13898}
+      Script: {instanceID: 12258}
     - Class: 114
-      Script: {instanceID: 13904}
+      Script: {instanceID: 12416}
     - Class: 114
-      Script: {instanceID: 14552}
+      Script: {instanceID: 12422}
     - Class: 114
-      Script: {instanceID: 16408}
+      Script: {instanceID: 12482}
+    - Class: 114
+      Script: {instanceID: 12496}
+    - Class: 114
+      Script: {instanceID: 12616}
+    - Class: 114
+      Script: {instanceID: 12720}
+    - Class: 114
+      Script: {instanceID: 12906}
+    - Class: 114
+      Script: {instanceID: 12964}
+    - Class: 114
+      Script: {instanceID: 13332}
+    - Class: 114
+      Script: {instanceID: 13386}
+    - Class: 114
+      Script: {instanceID: 13590}
+    - Class: 114
+      Script: {instanceID: 13608}
+    - Class: 114
+      Script: {instanceID: 13702}
+    - Class: 114
+      Script: {instanceID: 13728}
+    - Class: 114
+      Script: {instanceID: 14012}
+    - Class: 114
+      Script: {instanceID: 14054}
+    - Class: 114
+      Script: {instanceID: 14060}
+    - Class: 114
+      Script: {instanceID: 14124}
+    - Class: 114
+      Script: {instanceID: 14150}
+    - Class: 114
+      Script: {instanceID: 14284}
+    - Class: 114
+      Script: {instanceID: 14350}
+    - Class: 114
+      Script: {instanceID: 14558}
+    - Class: 114
+      Script: {instanceID: 14736}
+    - Class: 114
+      Script: {instanceID: 14866}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -104,6 +174,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
     - Class: 222
@@ -112,7 +184,27 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
+    - Class: 225
+      Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: 7072231382eb3c4871b3dd75ad0227e1
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Slider
+  - hash:
+      serializedVersion: 2
+      Hash: 5ad4aa237d47ac2bab17bacb672edf7a
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: HorizontalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: d251bf88db6c95a6b1aa0b69298da9ef
+    assemblyName: UnityEngine.SpatialTracking.dll
+    namespaceName: UnityEngine.SpatialTracking
+    className: TrackedPoseDriver
   - hash:
       serializedVersion: 2
       Hash: 5f1752ed2092162f016c19510c28a8b9
@@ -121,16 +213,28 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: TerrainDataFetcher
-  - hash:
-      serializedVersion: 2
       Hash: 4bc4346a71a8df53a6b106f68ef3a190
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: CanvasScaler
+  - hash:
+      serializedVersion: 2
+      Hash: aeb62f729c52c814dec86c47dcac1471
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Text
+  - hash:
+      serializedVersion: 2
+      Hash: 783f593b9380cf72d0f7ebfd4a0d4bcd
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: InputField
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TerrainDataFetcher
   - hash:
       serializedVersion: 2
       Hash: b9751259642f2166c56b27bb39f65c26
@@ -139,10 +243,22 @@ ScriptsOnlyBuild:
     className: VertexDebugger
   - hash:
       serializedVersion: 2
+      Hash: d3b90d831a41af763ef4b2516702a650
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlaceMapOnARPlane
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: UnityEngine.XR.iOS
     className: UnityARKitControl
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: HighlightFeature
   - hash:
       serializedVersion: 2
       Hash: c42672c997f8be6b1aa86a927ebea785
@@ -179,6 +295,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: GoogleARCore
     className: Anchor
+  - hash:
+      serializedVersion: 2
+      Hash: f41f6a3fe85a461098a1c450827b9a66
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Unity.Map
+    className: UpdateMapWithLocationProvider
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: ReverseGeocodeUserInput
   - hash:
       serializedVersion: 2
       Hash: 882cf6c339f4c054931094616d66766f
@@ -223,6 +351,12 @@ ScriptsOnlyBuild:
     className: SnapAlignmentStrategy
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: AstronautDirections
+  - hash:
+      serializedVersion: 2
       Hash: c3a3572e43af691ece9d1180e73b89c4
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.Location
@@ -259,16 +393,22 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
-      Hash: aeb62f729c52c814dec86c47dcac1471
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Text
-  - hash:
-      serializedVersion: 2
       Hash: 499fd23433e68e265d153aa6b95d0047
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Scrollbar
+  - hash:
+      serializedVersion: 2
+      Hash: ce9de2d2cf899735f51215dae2cd32d7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: UnityARInterface
+    className: MatchingScalePicker
+  - hash:
+      serializedVersion: 2
+      Hash: b6978e66c5e3e2cb9b5b4f047f01fac3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: POIPlacementScriptExample
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -343,6 +483,18 @@ ScriptsOnlyBuild:
     className: GameObjectModifier
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ARPrerequisiteInfo
+  - hash:
+      serializedVersion: 2
+      Hash: 491cd70efce9a274a4fe2d66ffeb2751
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: GoogleARCore.TextureReader
+    className: ComputerVisionController
+  - hash:
+      serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -385,6 +537,12 @@ ScriptsOnlyBuild:
     className: ColliderModifier
   - hash:
       serializedVersion: 2
+      Hash: 4bd17a331b5e671b3d5edfcff0e2dc58
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: SpawnOnMap
+  - hash:
+      serializedVersion: 2
       Hash: 0dbc3be398b4869a5c8d0d8481ee402c
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -401,6 +559,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UnityARCameraManager
+  - hash:
+      serializedVersion: 2
+      Hash: 1e9c409e29cdc019c5521daf5eb17010
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: GoogleARCore.TextureReader
+    className: TextureReader
   - hash:
       serializedVersion: 2
       Hash: 06cc659aa32d52ea2ba49a67856d80ad
@@ -439,6 +603,12 @@ ScriptsOnlyBuild:
     className: AspectRatioFitter
   - hash:
       serializedVersion: 2
+      Hash: 8116e8a4b7b643c32959cb890be677da
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: LoadingPanelController
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -449,6 +619,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: UnityARInterface
     className: ARRemoteDevice
+  - hash:
+      serializedVersion: 2
+      Hash: 5debf3836d294e93a6b62a7063feae6e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: DragableDirectionWaypoint
   - hash:
       serializedVersion: 2
       Hash: 1103fb0758976355cdf9b7d5ce9cb7e0
@@ -481,16 +657,58 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: acb17b58bb23bfd76443f5c1427fab0d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples.Voxels
+    className: VoxelFetcher
+  - hash:
+      serializedVersion: 2
+      Hash: c0d6dba40258316de0dfa3c302ef0303
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ObjectShooter
+  - hash:
+      serializedVersion: 2
+      Hash: 5d7116858f9806f59b48fe68a51270b6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples.Playground
+    className: RasterTileExample
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: ForwardGeocodeUserInput
+  - hash:
+      serializedVersion: 2
       Hash: aba7b2852ef61d175dd9602e7723d5e5
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: d251bf88db6c95a6b1aa0b69298da9ef
-    assemblyName: UnityEngine.SpatialTracking.dll
-    namespaceName: UnityEngine.SpatialTracking
-    className: TrackedPoseDriver
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: FeatureSelectionDetector
+  - hash:
+      serializedVersion: 2
+      Hash: 42b2fdf293c62c25afaabcfdfd18a742
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: LabelTextSetter
+  - hash:
+      serializedVersion: 2
+      Hash: d615c4b83526c7b0b29334a6ade91fac
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LocationService
+  - hash:
+      serializedVersion: 2
+      Hash: 87ae9a8689365e68333d2b1d17234708
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DemoGUI
   - hash:
       serializedVersion: 2
       Hash: caa533b001ae39b864ba8425019e2268
@@ -503,6 +721,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: GoogleARCore
     className: EnvironmentalLight
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: UnityARInterface
+    className: ARPlaneHandler
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -523,16 +747,16 @@ ScriptsOnlyBuild:
     className: ARPlane
   - hash:
       serializedVersion: 2
-      Hash: ba3c5c9d9991d3649573748881615403
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: Mapbox.Examples
-    className: QuadTreeCameraMovement
-  - hash:
-      serializedVersion: 2
       Hash: 8c362ed1d3d229b03c8cd704cd15ca04
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.MeshGeneration.Modifiers
     className: MergedModifierStack
+  - hash:
+      serializedVersion: 2
+      Hash: a025e202161d2d86b8191a064c3c4c33
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: FeatureUiMarker
   - hash:
       serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
@@ -571,6 +795,12 @@ ScriptsOnlyBuild:
     className: ARRemoteEditor
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: PoiMarkerHelper
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -605,6 +835,24 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Examples
     className: PlayerSizeFromLocationAccuracy
+  - hash:
+      serializedVersion: 2
+      Hash: 3e8942e5b6faa01416f57e656c942729
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SetCameraHeight
+  - hash:
+      serializedVersion: 2
+      Hash: 863f91942c23590486b09189feeee216
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: ARTableTopCameraMovement
+  - hash:
+      serializedVersion: 2
+      Hash: 2f8ad0b4ce95d6f815c31de43e47a6a8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RemoveRigidbody
   - hash:
       serializedVersion: 2
       Hash: 4db78b5d23bd2de1843c33dedf6ca0d7
@@ -649,6 +897,12 @@ ScriptsOnlyBuild:
     className: DontDestroyOnLoad
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BlinkLight
+  - hash:
+      serializedVersion: 2
       Hash: b818207c0b8a805931f7a7989870283e
     assemblyName: Assembly-CSharp.dll
     namespaceName: GoogleARCore
@@ -673,16 +927,46 @@ ScriptsOnlyBuild:
     className: ARPlaneMeshVisualizer
   - hash:
       serializedVersion: 2
+      Hash: c3ca68359ba3cdfb2598642816e97c83
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: CameraMovement
+  - hash:
+      serializedVersion: 2
+      Hash: 45fed25dcd639380740b6ea2df90c75f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: OptionsGUI
+  - hash:
+      serializedVersion: 2
+      Hash: ebd9bd7e13193ed93c8e8b18df2d1f9c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples.Playground
+    className: ReverseGeocoderExample
+  - hash:
+      serializedVersion: 2
       Hash: b85846f48e1ece0b134e0e1251b6301d
     assemblyName: Assembly-CSharp.dll
     namespaceName: UnityEngine.XR.iOS
     className: UnityRemoteVideo
   - hash:
       serializedVersion: 2
+      Hash: 8ceae6ad91724c039ef87e247b249564
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Unity.MeshGeneration.Factories
+    className: PathGeneration
+  - hash:
+      serializedVersion: 2
       Hash: d4020bafcd3ccbb5601a6e6c8ac78be0
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: e65928076a0097edacbeecbcaabd5cc0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: HeroBuildingSelectionUserInput
   - hash:
       serializedVersion: 2
       Hash: 2cd35ebae3db4154d9fd79871066abfa
@@ -695,6 +979,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.MeshGeneration.Modifiers
     className: SpawnInsideModifier
+  - hash:
+      serializedVersion: 2
+      Hash: 432fd4837de5044e10ec81354014b522
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples.Scripts
+    className: LogLocationProviderData
   - hash:
       serializedVersion: 2
       Hash: 0486b2d53a38dd980e5d3062b4e30fa4
@@ -793,10 +1083,22 @@ ScriptsOnlyBuild:
     className: EditorHitTest
   - hash:
       serializedVersion: 2
+      Hash: fea2d676bca3c708f6b399119fa3ca3f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UnityARUserAnchorExample
+  - hash:
+      serializedVersion: 2
       Hash: 290afc8da8e459e0b8dc7444bfaf5e35
     assemblyName: Unity.XR.ARFoundation.dll
     namespaceName: UnityEngine.XR.ARFoundation
     className: ARPointCloud
+  - hash:
+      serializedVersion: 2
+      Hash: 563660a00e6e81cb62dbadd1cbc099dc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: AstronautMouseController
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -805,16 +1107,40 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
+      Hash: 57218997c1c8facfc9c494649a7995ac
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: ChangeShadowDistance
+  - hash:
+      serializedVersion: 2
       Hash: 0909bc52453e138a9962458847ac1eb1
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.Utilities
     className: OpenUrlOnButtonClick
   - hash:
       serializedVersion: 2
+      Hash: 2cd60af2ffd610f0a82eb527c76cb935
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlaceOnPlane
+  - hash:
+      serializedVersion: 2
+      Hash: a7c91ead796087612ab9b5731410c7c5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: LocationStatus
+  - hash:
+      serializedVersion: 2
       Hash: ba6ef9e2082e09d9399eaef28d94d812
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.MeshGeneration.Modifiers
     className: UvModifier
+  - hash:
+      serializedVersion: 2
+      Hash: 2651b1956cb518e1f451b1aa7c38e941
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: ReloadMap
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -833,6 +1159,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.MeshGeneration
     className: KdTreeCollection
+  - hash:
+      serializedVersion: 2
+      Hash: 344c74b3abf2e69061c6763dbfbabcea
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: UnityARInterface
+    className: ARFocusSquare
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -863,6 +1195,18 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: a70b4188742ecd386b56974e4594090a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: PositionWithLocationProvider
+  - hash:
+      serializedVersion: 2
+      Hash: e70f106593e61be751f017ac8554df2c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples.Scripts.Utilities
+    className: DragRotate
   - hash:
       serializedVersion: 2
       Hash: f510af494e55e5a51301ab2e13f74370
@@ -901,10 +1245,10 @@ ScriptsOnlyBuild:
     className: AngleSmoothingNoOp
   - hash:
       serializedVersion: 2
-      Hash: 783f593b9380cf72d0f7ebfd4a0d4bcd
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: InputField
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UpdateShaderCoordinatesByARPlane
   - hash:
       serializedVersion: 2
       Hash: c9a8b80298a116835b51ba1cf9284367
@@ -919,10 +1263,10 @@ ScriptsOnlyBuild:
     className: ARSession
   - hash:
       serializedVersion: 2
-      Hash: 5ad4aa237d47ac2bab17bacb672edf7a
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: HorizontalLayoutGroup
+      Hash: 1ca32ecd08c306d31036ac06d96d0f70
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: SpawnOnGlobeExample
   - hash:
       serializedVersion: 2
       Hash: 344a8c2e106a0a4e098e91a52e0af063
@@ -961,10 +1305,22 @@ ScriptsOnlyBuild:
     className: ReplaceFeatureModifier
   - hash:
       serializedVersion: 2
+      Hash: df2ac1e01a196c636fe3dbc9b6ef1fe0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples.Playground
+    className: VectorTileExample
+  - hash:
+      serializedVersion: 2
       Hash: 0c75fb72ff9a06eca9a0253ccdc656b2
     assemblyName: Assembly-CSharp.dll
     namespaceName: UnityEngine.XR.iOS
     className: ARKitRemoteConnection
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: MakiHelper
   - hash:
       serializedVersion: 2
       Hash: c1933cc0a2f4ff6eb13333347497beb3
@@ -1039,6 +1395,12 @@ ScriptsOnlyBuild:
     className: ARCameraManager
   - hash:
       serializedVersion: 2
+      Hash: 344c74b3abf2e69061c6763dbfbabcea
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FocusSquare
+  - hash:
+      serializedVersion: 2
       Hash: 24c74cc0d527a06113f2b967042769f0
     assemblyName: UnityEngine.XR.LegacyInputHelpers.dll
     namespaceName: UnityEditor.XR.LegacyInputHelpers
@@ -1067,6 +1429,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.MeshGeneration.Modifiers
     className: DisableMeshRendererModifier
+  - hash:
+      serializedVersion: 2
+      Hash: 33e70513b201278e69a542b04cd2861a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: RotateWithLocationProvider
   - hash:
       serializedVersion: 2
       Hash: 16dacd04869a876ea4bea0d1d2e77e34
@@ -1099,6 +1467,12 @@ ScriptsOnlyBuild:
     className: PolygonMeshModifier
   - hash:
       serializedVersion: 2
+      Hash: 5a4ed49079e8fe15a4c99c97c05ea34d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples.Playground
+    className: DirectionsExample
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: UnityEngine.XR.iOS
@@ -1117,6 +1491,12 @@ ScriptsOnlyBuild:
     className: SceneData
   - hash:
       serializedVersion: 2
+      Hash: df2ac1e01a196c636fe3dbc9b6ef1fe0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples.Playground
+    className: ForwardGeocoderExample
+  - hash:
+      serializedVersion: 2
       Hash: e1c35cdce946e9da77fe80a39c261608
     assemblyName: Unity.XR.ARFoundation.dll
     namespaceName: UnityEngine.XR.ARFoundation
@@ -1129,10 +1509,28 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
+      Hash: 82e649217a87767778e4985365512671
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: CameraBillboard
+  - hash:
+      serializedVersion: 2
       Hash: bc7a3bc009c85e181593123fb447df57
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.Ar
     className: LerpAlignmentStrategy
+  - hash:
+      serializedVersion: 2
+      Hash: e90fe270b7729c2a22fa784bcd529d61
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: HighlightBuildings
+  - hash:
+      serializedVersion: 2
+      Hash: bd8ad5a23d6a5b9a5d5b8c3bae014ffd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: TextMeshOutline
   - hash:
       serializedVersion: 2
       Hash: 5555944b4b93f7c8fc871501aaef1399
@@ -1187,6 +1585,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.MeshGeneration.Data
     className: UnityTile
+  - hash:
+      serializedVersion: 2
+      Hash: ea34d08e7f97e87a4da43fb433578303
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: CharacterMovement
+  - hash:
+      serializedVersion: 2
+      Hash: d4954bb7e3dcb8c453804d4ecb3d31c1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: PoiLabelTextSetter
   - hash:
       serializedVersion: 2
       Hash: 893dbdbfe611d62e230a686ea89f1efd
@@ -1255,6 +1665,18 @@ ScriptsOnlyBuild:
     className: DeviceLocationProvider
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: ImmediatePositionWithLocationProvider
+  - hash:
+      serializedVersion: 2
+      Hash: 8637155a25d05174e68cb68766c21dad
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SnapMapToTargetTransform
+  - hash:
+      serializedVersion: 2
       Hash: 67f2073ab00a2413a89dbb5e06ed6272
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.MeshGeneration.Modifiers
@@ -1285,6 +1707,12 @@ ScriptsOnlyBuild:
     className: MapboxStylesColorModifier
   - hash:
       serializedVersion: 2
+      Hash: ba3c5c9d9991d3649573748881615403
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: QuadTreeCameraMovement
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: UnityARInterface
@@ -1309,6 +1737,12 @@ ScriptsOnlyBuild:
     className: ARBase
   - hash:
       serializedVersion: 2
+      Hash: fc934a38e7a1eae57e2e54018b1d1f20
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples.Voxels
+    className: VoxelTile
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -1319,6 +1753,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Examples
     className: RelocateMapByGPS
+  - hash:
+      serializedVersion: 2
+      Hash: ba6ef9e2082e09d9399eaef28d94d812
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: ObjectInspectorModifier
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DragableObject
   - hash:
       serializedVersion: 2
       Hash: caa533b001ae39b864ba8425019e2268
@@ -1355,6 +1801,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SubMesh
+  - hash:
+      serializedVersion: 2
+      Hash: 8da8b086bf4bbb1cab1fb81e2b11aaf3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: TrafficUvAnimator
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1403,12 +1855,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalEmitter
-  - hash:
-      serializedVersion: 2
-      Hash: 7072231382eb3c4871b3dd75ad0227e1
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Slider
   - hash:
       serializedVersion: 2
       Hash: ba6ef9e2082e09d9399eaef28d94d812
@@ -1463,13 +1909,7 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Mapbox.Unity.MeshGeneration.Modifiers
     className: ModifierStack
-  - hash:
-      serializedVersion: 2
-      Hash: d615c4b83526c7b0b29334a6ade91fac
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: LocationService
   platform: 13
   scenePathNames:
   - Assets/Scenes/MapNavigation.unity
-  playerPath: /Users/somesh/Documents/GitHub/VirtualASUCampusTour/Builds/Version_1.0.apk
+  playerPath: /Users/somesh/Desktop/APK/version1.apk
