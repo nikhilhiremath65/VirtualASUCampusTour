@@ -11,16 +11,16 @@ public class LocationService : MonoBehaviour
 
     public GameObject locationIndicator;
 
-    private bool _isInitialized = false;
+    private bool _isInitialized = true;
 
     IEnumerator Start()
     {
 
         // Initialize map object to update position of location pointer.
-        _mapManager.OnInitialized += () =>
-        {
-            _isInitialized = true;
-        };
+        //_mapManager.OnInitialized += () =>
+        //{
+        //    _isInitialized = true;
+        //};
 
         if (!Input.location.isEnabledByUser)
             yield break;
@@ -68,7 +68,7 @@ public class LocationService : MonoBehaviour
                 Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
                 locationIndicator.transform.position = position;
             }
-            
+
         }
 
         // Stop service if there is no need to query location updates continuously
@@ -80,7 +80,7 @@ public class LocationService : MonoBehaviour
         // Start service before querying location
         Input.location.Start();
 
-        
+
         float latitude = Input.location.lastData.latitude;
         float longitude = Input.location.lastData.longitude;
 
@@ -90,13 +90,20 @@ public class LocationService : MonoBehaviour
             Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
             locationIndicator.transform.position = position;
         }
+        else
+        {
+            _mapManager.OnInitialized += () =>
+            {
+                _isInitialized = true;
+            };
+        }
 
 
         // Stop service if there is no need to query location updates continuously
         Input.location.Stop();
     }
 
-    void FocusLocationAndUpdatePointer()
+    public void FocusLocationAndUpdatePointer()
     {
         Input.location.Start();
 

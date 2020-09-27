@@ -27,7 +27,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
   sceneClasses:
-    :
+    Assets/Scenes/MapNavigation.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -71,27 +71,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11774}
     - Class: 114
-      Script: {instanceID: 12318}
+      Script: {instanceID: 12282}
     - Class: 114
-      Script: {instanceID: 12602}
+      Script: {instanceID: 12322}
     - Class: 114
-      Script: {instanceID: 12774}
+      Script: {instanceID: 12606}
     - Class: 114
-      Script: {instanceID: 13186}
+      Script: {instanceID: 12778}
     - Class: 114
-      Script: {instanceID: 13574}
+      Script: {instanceID: 13190}
     - Class: 114
-      Script: {instanceID: 13854}
+      Script: {instanceID: 13578}
     - Class: 114
-      Script: {instanceID: 13894}
+      Script: {instanceID: 13858}
     - Class: 114
-      Script: {instanceID: 13900}
+      Script: {instanceID: 13898}
     - Class: 114
-      Script: {instanceID: 14548}
+      Script: {instanceID: 13904}
     - Class: 114
-      Script: {instanceID: 16018}
+      Script: {instanceID: 14552}
     - Class: 114
-      Script: {instanceID: 16062}
+      Script: {instanceID: 16408}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -521,6 +521,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.XR.ARFoundation.dll
     namespaceName: UnityEngine.XR.ARFoundation
     className: ARPlane
+  - hash:
+      serializedVersion: 2
+      Hash: ba3c5c9d9991d3649573748881615403
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Mapbox.Examples
+    className: QuadTreeCameraMovement
   - hash:
       serializedVersion: 2
       Hash: 8c362ed1d3d229b03c8cd704cd15ca04
@@ -1459,17 +1465,11 @@ ScriptsOnlyBuild:
     className: ModifierStack
   - hash:
       serializedVersion: 2
-      Hash: ba3c5c9d9991d3649573748881615403
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: Mapbox.Examples
-    className: QuadTreeCameraMovement
-  - hash:
-      serializedVersion: 2
       Hash: d615c4b83526c7b0b29334a6ade91fac
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LocationService
   platform: 13
   scenePathNames:
-  - 
+  - Assets/Scenes/MapNavigation.unity
   playerPath: /Users/somesh/Documents/GitHub/VirtualASUCampusTour/Builds/Version_1.0.apk
