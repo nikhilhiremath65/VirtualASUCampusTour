@@ -1,5 +1,6 @@
 Temp/
 Logs/
+Library/
 *.csproj
 .vscode/
 *.apk
