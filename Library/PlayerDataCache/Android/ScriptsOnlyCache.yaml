@@ -16,12 +16,14 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.Mask
     - UnityEngine.UI.ScrollRect
-    - UnityEngine.UI.Scrollbar
+    - UnityEngine.UI.Text
     - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
     Assets/Scenes/ToursScene.unity:
@@ -56,13 +58,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 686}
     - Class: 114
+      Script: {instanceID: 11334}
+    - Class: 114
       Script: {instanceID: 11362}
     - Class: 114
-      Script: {instanceID: 11702}
+      Script: {instanceID: 11696}
     - Class: 114
       Script: {instanceID: 11758}
     - Class: 114
       Script: {instanceID: 11858}
+    - Class: 114
+      Script: {instanceID: 11922}
     - Class: 114
       Script: {instanceID: 12234}
     - Class: 114
