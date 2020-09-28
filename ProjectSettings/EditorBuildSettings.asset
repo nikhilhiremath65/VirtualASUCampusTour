@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/ToursScene.unity
+    guid: 0d8c644fb3b6a58e9bf51cf819d87ad2
   m_configObjects: {}
