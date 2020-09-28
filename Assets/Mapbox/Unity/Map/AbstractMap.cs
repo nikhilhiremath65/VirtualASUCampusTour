@@ -25,9 +25,17 @@ namespace Mapbox.Unity.Map
 	[ExecuteInEditMode]
 	public class AbstractMap : MonoBehaviour, IMap
 	{
-		#region Private Fields
+        #region Public Fields
+		public bool updatePath;
 
-		[SerializeField] private MapOptions _options = new MapOptions();
+		public bool generatePath;
+		public Vector2d startLocation;
+		public Vector2d EndLocation;
+        #endregion
+
+        #region Private Fields
+
+        [SerializeField] private MapOptions _options = new MapOptions();
 		[SerializeField] private bool _initializeOnStart = true;
 		[SerializeField] protected ImageryLayer _imagery = new ImageryLayer();
 		[SerializeField] protected TerrainLayer _terrain = new TerrainLayer();
