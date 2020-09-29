@@ -68,7 +68,6 @@ public class LocationService : MonoBehaviour
                 Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
                 locationIndicator.transform.position = position;
 
-                _mapManager.startLocation = new Vector2d(latitude, longitude);
             }
 
         }
@@ -92,7 +91,6 @@ public class LocationService : MonoBehaviour
             Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
             locationIndicator.transform.position = position;
 
-            _mapManager.startLocation = new Vector2d(latitude, longitude);
         }
         else
         {
@@ -124,7 +122,6 @@ public class LocationService : MonoBehaviour
             Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
             locationIndicator.transform.position = position;
 
-            _mapManager.startLocation = new Vector2d(latitude, longitude);
         }
 
         // Stop service if there is no need to query location updates continuously
