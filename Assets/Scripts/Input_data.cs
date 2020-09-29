@@ -19,18 +19,35 @@ public class Input_data : MonoBehaviour
 
     //User user = new User();
     //end region
-   
+
+    
     public void OnSubmit()
     {
         location = locationText.text;
         time = timeText.text;
         userName = userNameText.text;
+        //prints the data onto console
         Debug.Log("location = " + location);
         Debug.Log("time = " + time);
         Debug.Log("username = " + userName);
 
+        //testing
+        //forTests();
+
+        //posts the data onto the database
         PostToDatabase();
     }
+
+    /*public void forTests()
+    {
+        location = "Hayden";
+        time = "14:00";
+        userName = "pzar97";
+        //prints the data onto console
+        Debug.Log("location = " + location);
+        Debug.Log("time = " + time);
+        Debug.Log("username = " + userName);
+    }*/
 
     private void PostToDatabase()
     {
@@ -46,6 +63,8 @@ public class Input_data : MonoBehaviour
         {
 
         }*/
+
+        //connects to the firebase
         RestClient.Put("https://virtualasucampustour.firebaseio.com/" + userName + ".json", location_jobj.ToString());
     }
 
