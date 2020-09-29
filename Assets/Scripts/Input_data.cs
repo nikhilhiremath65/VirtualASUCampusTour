@@ -42,19 +42,10 @@ public class Input_data : MonoBehaviour
         print(location_jobj.ToString());
 
 
-
-        /*JObject n1 = new JObject{
-            {
-                    playerLocation,new JObject{
-                    {
-                        "Time",playerTime
-                    }}
-            }};*/
-
-        if(RestClient.Get("https://fir-f7893.firebaseio.com/" + nameText.text + ".json"))
+        /*if(RestClient.Get("https://fir-f7893.firebaseio.com/" + userName  + ".json"))
         {
 
-        }
+        }*/
         RestClient.Put("https://virtualasucampustour.firebaseio.com/" + userName + ".json", location_jobj.ToString());
     }
 
