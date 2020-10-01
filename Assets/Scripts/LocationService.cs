@@ -16,12 +16,6 @@ public class LocationService : MonoBehaviour
     IEnumerator Start()
     {
 
-        // Initialize map object to update position of location pointer.
-        //_mapManager.OnInitialized += () =>
-        //{
-        //    _isInitialized = true;
-        //};
-
         if (!Input.location.isEnabledByUser)
             yield break;
 
@@ -67,6 +61,7 @@ public class LocationService : MonoBehaviour
                 // Update position of location object wrt map.
                 Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
                 locationIndicator.transform.position = position;
+
             }
 
         }
@@ -89,6 +84,7 @@ public class LocationService : MonoBehaviour
             // Update position of location object wrt map.
             Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
             locationIndicator.transform.position = position;
+
         }
         else
         {
@@ -119,6 +115,7 @@ public class LocationService : MonoBehaviour
             // Update position of location object wrt map.
             Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
             locationIndicator.transform.position = position;
+
         }
 
         // Stop service if there is no need to query location updates continuously

@@ -14,9 +14,6 @@
 		public float _panSpeed = 1.0f;
 
 		[SerializeField]
-		float _zoomSpeed = 0.25f;
-
-		[SerializeField]
 		public Camera _referenceCamera;
 
 		[SerializeField]
@@ -51,11 +48,13 @@
 			if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject())
 			{
 				_dragStartedOnUI = true;
+				_mapManager.updatePath = true;
 			}
 
 			if (Input.GetMouseButtonUp(0))
 			{
 				_dragStartedOnUI = false;
+				_mapManager.updatePath = true;
 			}
 		}
 
@@ -79,12 +78,6 @@
 
 		void HandleMouseAndKeyBoard()
 		{
-			// zoom
-			float scrollDelta = 0.0f;
-			scrollDelta = Input.GetAxis("Mouse ScrollWheel");
-			ZoomMapUsingTouchOrMouse(scrollDelta);
-
-
 			//pan keyboard
 			float xMove = Input.GetAxis("Horizontal");
 			float zMove = Input.GetAxis("Vertical");
@@ -98,7 +91,6 @@
 
 		void HandleTouch()
 		{
-			float zoomFactor = 0.0f;
 			//pinch to zoom.
 			switch (Input.touchCount)
 			{
@@ -107,38 +99,11 @@
 						PanMapUsingTouchOrMouse();
 					}
 					break;
-				case 2:
-					{
-						// Store both touches.
-						Touch touchZero = Input.GetTouch(0);
-						Touch touchOne = Input.GetTouch(1);
-
-						// Find the position in the previous frame of each touch.
-						Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-						Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
-
-						// Find the magnitude of the vector (the distance) between the touches in each frame.
-						float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-						float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
-
-						// Find the difference in the distances between each frame.
-						zoomFactor = 0.01f * (touchDeltaMag - prevTouchDeltaMag);
-					}
-					ZoomMapUsingTouchOrMouse(zoomFactor);
-					break;
 				default:
 					break;
 			}
 		}
 
-		void ZoomMapUsingTouchOrMouse(float zoomFactor)
-		{
-			var zoom = Mathf.Max(0.0f, Mathf.Min(_mapManager.Zoom + zoomFactor * _zoomSpeed, 21.0f));
-			if (Math.Abs(zoom - _mapManager.Zoom) > 0.0f)
-			{
-				_mapManager.UpdateMap(_mapManager.CenterLatitudeLongitude, zoom);
-			}
-		}
 
 		void PanMapUsingKeyBoard(float xMove, float zMove)
 		{
