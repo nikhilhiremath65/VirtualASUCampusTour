@@ -16,12 +16,6 @@ public class LocationService : MonoBehaviour
     IEnumerator Start()
     {
 
-        // Initialize map object to update position of location pointer.
-        //_mapManager.OnInitialized += () =>
-        //{
-        //    _isInitialized = true;
-        //};
-
         if (!Input.location.isEnabledByUser)
             yield break;
 

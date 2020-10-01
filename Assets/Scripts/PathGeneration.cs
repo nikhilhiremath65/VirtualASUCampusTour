@@ -176,6 +176,7 @@
                 {
                     Coordinates startCoordinates = res;
                     start = new Vector2d(float.Parse(startCoordinates.Latitude), float.Parse(startCoordinates.Longitude));
+                    _map.UpdateMap(start, _map.Zoom);
                     generatePath(start, end);
                 });
                }
