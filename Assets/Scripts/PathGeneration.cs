@@ -10,6 +10,7 @@
     using Mapbox.Utils;
     using Mapbox.Unity.Utilities;
     using System.Collections;
+    using UnityEditor;
     using UnityEngine.UI;
     using Proyecto26;
     using Models;
@@ -27,6 +28,7 @@
         public GameObject StartWayPoint;
         public GameObject EndWayPoint;
         public InputField DestinationField;
+        public InputField StartField;
         private Directions _directions;
         private int _counter;
 
@@ -155,53 +157,127 @@
 
         public void Search()
         {
+            string apiBaseUrl = "https://asu-ar-app.firebaseio.com/";
             Input.location.Start();
-
-
             float latitude = Input.location.lastData.latitude;
             float longitude = Input.location.lastData.longitude;
-            string buildingName = DestinationField.text;
-            string tmp = "";
-            for (int i = 0; i < buildingName.Length; i++)
-            {
-                if (buildingName[i] == ' ')
+            Input.location.Stop();
+
+            string destinationBuilding = ParseSpaces(DestinationField.text);
+            string startBuilding = ParseSpaces(StartField.text);
+            RestClient.Get<Coordinates>(apiBaseUrl + destinationBuilding + "/Coordinates.json").Then(response =>
+           {
+               Coordinates endCoordinates = response;
+               end = new Vector2d(float.Parse(endCoordinates.Latitude), float.Parse(endCoordinates.Longitude));
+               if (startBuilding != "")
+               {
+
+                   RestClient.Get<Coordinates>(apiBaseUrl + startBuilding + "/Coordinates.json").Then(res =>
                 {
-                    tmp += "%20";
+                    Coordinates startCoordinates = res;
+                    start = new Vector2d(float.Parse(startCoordinates.Latitude), float.Parse(startCoordinates.Longitude));
+                    generatePath(start, end);
+                });
+               }
+
+               else
+               {
+
+                   start = new Vector2d(latitude, longitude);
+                   generatePath(start, end);
+               }
+           }).Catch(error =>
+           {
+               Debug.Log("ERROR:" + error.Message);
+           });
+
+
+        }
+        public string ParseSpaces(string text)
+        {
+            string parsedText = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == ' ')
+                {
+                    parsedText += "%20";
                 }
                 else
                 {
-                    tmp += buildingName[i];
+                    parsedText += text[i];
                 }
             }
-            buildingName = tmp;
-            RestClient.Get<Coordinates>("https://asu-ar-app.firebaseio.com/" + buildingName + "/Coordinates.json").Then(response =>
-            {
-                coordinates = response;
-                Debug.Log("works");
-                end = new Vector2d(float.Parse(coordinates.Latitude), float.Parse(coordinates.Longitude));
-                start = new Vector2d(latitude, longitude);
-                generatePath(start, end);
-            }).Catch(error =>
-            {
-                Debug.Log(error);
-            });
-
-            Input.location.Stop();
-
+            return parsedText.ToLower();
         }
 
-        //public void test()
-        //{
-        //    //Input.location.Start();
-        //    //start = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
-        //    //Input.location.Start();
+        // Tests
 
-        //    start = new Vector2d(33.409089, -111.924104);
-        //    end = new Vector2d(33.4209125, -111.9331915);
+        // public void SearchTest( string startBuilding, string destinationBuilding)
+        // {
+        //     string apiBaseUrl = "https://asu-ar-app.firebaseio.com/";
+        //     Input.location.Start();
+        //     float latitude = Input.location.lastData.latitude;
+        //     float longitude = Input.location.lastData.longitude;
+        //     Debug.Log("Live location: " + latitude + ", " + longitude);
+        //     Input.location.Stop();
 
 
-        //    generatePath(start, end);
-        //}
+        //     RestClient.Get<Coordinates>(apiBaseUrl + destinationBuilding + "/Coordinates.json").Then(response =>
+        //    {
+        //        if (startBuilding != "")
+        //        {
+
+        //            RestClient.Get<Coordinates>("https://asu-ar-app.firebaseio.com/" + destinationBuilding + "/Coordinates.json").Then(response =>
+        //         {
+        //             Coordinates startCoordinates = response;
+
+        //             Debug.Log("Latitude:" + startCoordinates.Latitude + "Longitude: " + startCoordinates.Longitude);
+        //         });
+        //        }
+
+        //        else
+        //        {
+
+        //            Coordinates endCoordinates = response;
+
+        //            Debug.Log("Latitude:" + endCoordinates.Latitude + "Longitude: " + endCoordinates.Longitude);
+
+        //        }
+        //    }).Catch(error =>
+        //    {
+        //        Debug.Log(error);
+        //    });
+        // public string ParseSpacesTest(string text)
+        // {
+        //     string parsedText = "";
+        //     for (int i = 0; i < text.Length; i++)
+        //     {
+        //         if (text[i] == ' ')
+        //         {
+        //             parsedText += "%20";
+        //         }
+        //         else
+        //         {
+        //             parsedText += text[i];
+        //         }
+        //     }
+        //  Debug.Log(parsedText);
+        // }
+
+        // }
+        //     public void test()
+        //     {
+        //         ParseSpacesTest("");
+        //         ParseSpacesTest("abcdef");
+        //         ParseSpacesTest("ab cd ef");
+        //         ParseSpacesTest("   ab kjdjwkdks   jdwjdk  ");
+        //         ParseSpacesTest("         ");
+
+        //         SearchTest("", "");
+        //         SearchTest("Hayden Library", "");
+        //         SearchTest("", "Hayden Library");
+        //         SearchTest("Centerpoint", "Hayden Library");
+        //     }
     }
 
 }
