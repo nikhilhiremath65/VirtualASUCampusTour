@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
-// <copyright file="ApiAvailability.cs" company="Google">
+// <copyright file="ApiAvailability.cs" company="Google LLC">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,11 +20,7 @@
 
 namespace GoogleARCoreInternal
 {
-    using System.Diagnostics.CodeAnalysis;
-
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-    Justification = "Internal")]
-    public enum ApiAvailability
+    internal enum ApiAvailability
     {
         UnknownError = 0,
         UnknownChecking = 1,

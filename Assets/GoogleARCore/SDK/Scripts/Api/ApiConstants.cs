@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
-// <copyright file="ApiConstants.cs" company="Google">
+// <copyright file="ApiConstants.cs" company="Google LLC">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,24 +22,61 @@ namespace GoogleARCoreInternal
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
     using GoogleARCore;
     using UnityEngine;
 
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-    Justification = "Internal")]
-    public static class ApiConstants
+    internal static class ApiConstants
     {
-#if !UNITY_EDITOR
-        public const string ARCoreNativeApi = "arcore_sdk";
-        public const string ARCoreShimApi = "arcore_unity_api";
-#else
+#if UNITY_EDITOR
         public const string ARCoreNativeApi = InstantPreviewManager.InstantPreviewNativeApi;
+        public const string ARCoreARKitIntegrationApi = "NOT_AVAILABLE";
         public const string ARCoreShimApi = InstantPreviewManager.InstantPreviewNativeApi;
+        public const string ARPrestoApi = InstantPreviewManager.InstantPreviewNativeApi;
+        public const string MediaNdk = InstantPreviewManager.InstantPreviewNativeApi;
+        public const string ARRenderingUtilsApi = "NOT_AVAILABLE";
+        public const string NdkCameraApi = "NOT_AVAILABLE";
+        public const string GLESApi = "NOT_AVAILABLE";
+#elif UNITY_ANDROID
+        public const string ARCoreNativeApi = "arcore_sdk_c";
+        public const string ARCoreARKitIntegrationApi = "NOT_AVAILABLE";
+        public const string ARCoreShimApi = "arcore_unity_api";
+        public const string ARPrestoApi = "arpresto_api";
+        public const string ARRenderingUtilsApi = "arcore_rendering_utils_api";
+        public const string MediaNdk = "mediandk";
+        public const string NdkCameraApi = "camera2ndk";
+        public const string GLESApi = "GLESv3";
+#elif UNITY_IOS
+#if ARCORE_IOS_SUPPORT
+        public const string ARCoreNativeApi = "__Internal";
+        public const string ARCoreARKitIntegrationApi = "__Internal";
+#else
+        public const string ARCoreNativeApi = "NOT_AVAILABLE";
+        public const string ARCoreARKitIntegrationApi = "NOT_AVAILABLE";
+#endif // ARCORE_IOS_SUPPORT
+        public const string ARCoreShimApi = "NOT_AVAILABLE";
+        public const string ARPrestoApi = "NOT_AVAILABLE";
+        public const string ARRenderingUtilsApi = "NOT_AVAILABLE";
+        public const string MediaNdk = "NOT_AVAILABLE";
+        public const string NdkCameraApi = "NOT_AVAILABLE";
+        public const string GLESApi = "NOT_AVAILABLE";
+#else
+        public const string ARCoreNativeApi = "NOT_AVAILABLE";
+        public const string ARCoreARKitIntegrationApi = "NOT_AVAILABLE";
+        public const string ARCoreShimApi = "NOT_AVAILABLE";
+        public const string ARPrestoApi = "NOT_AVAILABLE";
+        public const string ARRenderingUtilsApi = "NOT_AVAILABLE";
+        public const string MediaNdk = "NOT_AVAILABLE";
+        public const string NdkCameraApi = "NOT_AVAILABLE";
+        public const string GLESApi = "NOT_AVAILABLE";
 #endif
 
-        // NDK camera API is a system API after Android 24.
-        public const string NdkCameraApi = "camera2ndk";
+#if UNITY_EDITOR_OSX
+        public const string AugmentedImageCliBinaryName = "augmented_image_cli_osx";
+#elif UNITY_EDITOR_WIN
+        public const string AugmentedImageCliBinaryName = "augmented_image_cli_win";
+#elif UNITY_EDITOR_LINUX
+        public const string AugmentedImageCliBinaryName = "augmented_image_cli_linux";
+#endif
     }
 }

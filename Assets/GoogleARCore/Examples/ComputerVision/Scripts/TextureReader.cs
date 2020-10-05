@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
-// <copyright file="TextureReader.cs" company="Google">
+// <copyright file="TextureReader.cs" company="Google LLC">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,13 +17,11 @@
 //
 // </copyright>
 //-----------------------------------------------------------------------
-namespace GoogleARCore.TextureReader
+namespace GoogleARCore.Examples.ComputerVision
 {
     using System;
-    using System.Collections.Generic;
     using GoogleARCore;
     using UnityEngine;
-    using UnityEngine.Rendering;
 
     /// <summary>
     /// Component that provides CPU access to ArCore GPU texture.
@@ -33,13 +31,13 @@ namespace GoogleARCore.TextureReader
         /// <summary>
         /// Output image width, in pixels.
         /// </summary>
-        public int ImageWidth = k_ARCoreTextureWidth;
+        public int ImageWidth = _arCoreTextureWidth;
 
         /// <summary>
         /// Output image height, in pixels.
         /// </summary>
-        public int ImageHeight = k_ARCoreTextureHeight;
-        
+        public int ImageHeight = _arCoreTextureHeight;
+
         /// <summary>
         /// Output image sampling option.
         /// </summary>
@@ -48,16 +46,17 @@ namespace GoogleARCore.TextureReader
         /// <summary>
         /// Output image format.
         /// </summary>
-        public TextureReaderApi.ImageFormatType ImageFormat = TextureReaderApi.ImageFormatType.ImageFormatGrayscale;
+        public TextureReaderApi.ImageFormatType ImageFormat =
+            TextureReaderApi.ImageFormatType.ImageFormatGrayscale;
 
-        private const int k_ARCoreTextureWidth = 1920;
-        private const int k_ARCoreTextureHeight = 1080;
+        private const int _arCoreTextureWidth = 1920;
+        private const int _arCoreTextureHeight = 1080;
 
-        private TextureReaderApi m_TextureReaderApi = null;
+        private TextureReaderApi _textureReaderApi = null;
 
-        private CommandType m_Command = CommandType.None;
+        private CommandType _command = CommandType.None;
 
-        private int m_ImageBufferIndex = -1;
+        private int _imageBufferIndex = -1;
 
         /// <summary>
         /// Callback function type for receiving the output images.
@@ -67,12 +66,14 @@ namespace GoogleARCore.TextureReader
         /// <param name="height">The height of the image, in pixels.</param>
         /// <param name="pixelBuffer">The pointer to the raw buffer of the image pixels.</param>
         /// <param name="bufferSize">The size of the image buffer, in bytes.</param>
-        public delegate void OnImageAvailableCallbackFunc(TextureReaderApi.ImageFormatType format, int width, int height, IntPtr pixelBuffer, int bufferSize);
+        public delegate void OnImageAvailableCallbackFunc(
+            TextureReaderApi.ImageFormatType format, int width, int height, IntPtr pixelBuffer,
+            int bufferSize);
 
         /// <summary>
         /// Callback function handle for receiving the output images.
         /// </summary>
-        public event OnImageAvailableCallbackFunc OnImageAvailableCallback = null;   
+        public event OnImageAvailableCallbackFunc OnImageAvailableCallback = null;
 
         /// <summary>
         /// Options to sample the output image.
@@ -85,7 +86,8 @@ namespace GoogleARCore.TextureReader
             KeepAspectRatio,
 
             /// <summary>
-            /// Samples the entire texture and does not crop. The aspect ratio may be different from the texture aspect ratio.
+            /// Samples the entire texture and does not crop. The aspect ratio may be different from
+            /// the texture aspect ratio.
             /// </summary>
             CoverFullViewport
         }
@@ -105,11 +107,11 @@ namespace GoogleARCore.TextureReader
         /// </summary>
         public void Start()
         {
-            if (m_TextureReaderApi == null)
+            if (_textureReaderApi == null)
             {
-                m_TextureReaderApi = new TextureReaderApi();
-                m_Command = CommandType.Create;
-                m_ImageBufferIndex = -1;
+                _textureReaderApi = new TextureReaderApi();
+                _command = CommandType.Create;
+                _imageBufferIndex = -1;
             }
         }
 
@@ -118,7 +120,7 @@ namespace GoogleARCore.TextureReader
         /// </summary>
         public void Apply()
         {
-            m_Command = CommandType.Reset;
+            _command = CommandType.Reset;
         }
 
         /// <summary>
@@ -132,46 +134,52 @@ namespace GoogleARCore.TextureReader
             }
 
             // Process command.
-            switch (m_Command)
+            switch (_command)
             {
             case CommandType.Create:
             {
-                m_TextureReaderApi.Create(ImageFormat, ImageWidth, ImageHeight, ImageSampleMode == SampleMode.KeepAspectRatio);
+                _textureReaderApi.Create(
+                    ImageFormat, ImageWidth, ImageHeight,
+                    ImageSampleMode == SampleMode.KeepAspectRatio);
                 break;
             }
 
             case CommandType.Reset:
             {
-                m_TextureReaderApi.ReleaseFrame(m_ImageBufferIndex);
-                m_TextureReaderApi.Destroy();
-                m_TextureReaderApi.Create(ImageFormat, ImageWidth, ImageHeight, ImageSampleMode == SampleMode.KeepAspectRatio);
-                m_ImageBufferIndex = -1;
+                _textureReaderApi.ReleaseFrame(_imageBufferIndex);
+                _textureReaderApi.Destroy();
+                _textureReaderApi.Create(
+                    ImageFormat, ImageWidth, ImageHeight,
+                    ImageSampleMode == SampleMode.KeepAspectRatio);
+                _imageBufferIndex = -1;
                 break;
             }
 
             case CommandType.ReleasePreviousBuffer:
             {
                 // Clear previously used buffer, and submits a new request.
-                m_TextureReaderApi.ReleaseFrame(m_ImageBufferIndex);
-                m_ImageBufferIndex = -1;
+                _textureReaderApi.ReleaseFrame(_imageBufferIndex);
+                _imageBufferIndex = -1;
                 break;
             }
 
             case CommandType.ProcessNextFrame:
             {
-                if (m_ImageBufferIndex >= 0)
+                if (_imageBufferIndex >= 0)
                 {
                     // Get image pixels from previously submitted request.
                     int bufferSize = 0;
-                    IntPtr pixelBuffer = m_TextureReaderApi.AcquireFrame(m_ImageBufferIndex, ref bufferSize);
+                    IntPtr pixelBuffer =
+                        _textureReaderApi.AcquireFrame(_imageBufferIndex, ref bufferSize);
 
                     if (pixelBuffer != IntPtr.Zero && OnImageAvailableCallback != null)
                     {
-                        OnImageAvailableCallback(ImageFormat, ImageWidth, ImageHeight, pixelBuffer, bufferSize);
+                        OnImageAvailableCallback(
+                            ImageFormat, ImageWidth, ImageHeight, pixelBuffer, bufferSize);
                     }
 
                     // Release the texture reader internal buffer.
-                    m_TextureReaderApi.ReleaseFrame(m_ImageBufferIndex);
+                    _textureReaderApi.ReleaseFrame(_imageBufferIndex);
                 }
 
                 break;
@@ -183,11 +191,15 @@ namespace GoogleARCore.TextureReader
             }
 
             // Submit reading request for the next frame.
-            int textureId = Frame.CameraImage.Texture.GetNativeTexturePtr().ToInt32();
-            m_ImageBufferIndex = m_TextureReaderApi.SubmitFrame(textureId, k_ARCoreTextureWidth, k_ARCoreTextureHeight);
+            if (Frame.CameraImage.Texture != null)
+            {
+                int textureId = Frame.CameraImage.Texture.GetNativeTexturePtr().ToInt32();
+                _imageBufferIndex = _textureReaderApi.SubmitFrame(
+                    textureId, _arCoreTextureWidth, _arCoreTextureHeight);
+            }
 
             // Set next command.
-            m_Command = CommandType.ProcessNextFrame;
+            _command = CommandType.ProcessNextFrame;
         }
 
         /// <summary>
@@ -195,20 +207,20 @@ namespace GoogleARCore.TextureReader
         /// </summary>
         private void OnDestroy()
         {
-            if (m_TextureReaderApi != null)
+            if (_textureReaderApi != null)
             {
-                m_TextureReaderApi.Destroy();
-                m_TextureReaderApi = null;
+                _textureReaderApi.Destroy();
+                _textureReaderApi = null;
             }
         }
-        
+
         /// <summary>
         /// This function is called when the behaviour becomes disabled or inactive.
         /// </summary>
         private void OnDisable()
         {
             // Force to release previously used buffer.
-            m_Command = CommandType.ReleasePreviousBuffer;
+            _command = CommandType.ReleasePreviousBuffer;
         }
     }
 }

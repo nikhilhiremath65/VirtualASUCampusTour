@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
-// <copyright file="AsyncTask.cs" company="Google">
+// <copyright file="AsyncTask.cs" company="Google LLC">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,48 +35,48 @@ namespace GoogleARCore
         /// <summary>
         /// A collection of actons to perform on the main Unity thread after the task is complete.
         /// </summary>
-        private List<Action<T>> m_ActionsUponTaskCompletion;
+        private List<Action<T>> _actionsUponTaskCompletion;
 
-        /// @cond EXCLUDE_FROM_DOXYGEN
         /// <summary>
         /// Constructor for AsyncTask.
         /// </summary>
         /// <param name="asyncOperationComplete">A callback that, when invoked, changes the status of the task to
         /// complete and sets the result based on the argument supplied.</param>
-        public AsyncTask(out Action<T> asyncOperationComplete)
+        internal AsyncTask(out Action<T> asyncOperationComplete)
         {
+            // Register for early update event.
+            if (!AsyncTask.IsInitialized)
+            {
+                AsyncTask.InitAsyncTask();
+            }
+
             IsComplete = false;
             asyncOperationComplete = delegate(T result)
             {
                 this.Result = result;
                 IsComplete = true;
-                if (m_ActionsUponTaskCompletion != null)
+                if (_actionsUponTaskCompletion != null)
                 {
                     AsyncTask.PerformActionInUpdate(() =>
                     {
-                        for (int i = 0; i < m_ActionsUponTaskCompletion.Count; i++)
+                        for (int i = 0; i < _actionsUponTaskCompletion.Count; i++)
                         {
-                            m_ActionsUponTaskCompletion[i](result);
+                            _actionsUponTaskCompletion[i](result);
                         }
                     });
                 }
             };
         }
 
-        /// @endcond
-
-        /// @cond EXCLUDE_FROM_DOXYGEN
         /// <summary>
         /// Constructor for AsyncTask that creates a completed task.
         /// </summary>
         /// <param name="result">The result of the completed task.</param>
-        public AsyncTask(T result)
+        internal AsyncTask(T result)
         {
             Result = result;
             IsComplete = true;
         }
-
-        /// @endcond
 
         /// <summary>
         /// Gets a value indicating whether the task is complete.
@@ -94,6 +94,7 @@ namespace GoogleARCore
         /// Returns a yield instruction that monitors this task for completion within a coroutine.
         /// </summary>
         /// <returns>A yield instruction that monitors this task for completion.</returns>
+        [SuppressMemoryAllocationError(Reason = "Creates a new CustomYieldInstruction")]
         public CustomYieldInstruction WaitForCompletion()
         {
             return new WaitForTaskCompletionYieldInstruction<T>(this);
@@ -105,6 +106,7 @@ namespace GoogleARCore
         /// <param name="doAfterTaskComplete">The action to invoke when task is complete.  The result of the task will
         /// be passed as an argument to the action.</param>
         /// <returns>The invoking asynchronous task.</returns>
+        [SuppressMemoryAllocationError(Reason = "Could allocate new List")]
         public AsyncTask<T> ThenAction(Action<T> doAfterTaskComplete)
         {
             // Perform action now if task is already complete.
@@ -115,24 +117,25 @@ namespace GoogleARCore
             }
 
             // Allocate list if needed (avoids allocation if then is not used).
-            if (m_ActionsUponTaskCompletion == null)
+            if (_actionsUponTaskCompletion == null)
             {
-                m_ActionsUponTaskCompletion = new List<Action<T>>();
+                _actionsUponTaskCompletion = new List<Action<T>>();
             }
 
-            m_ActionsUponTaskCompletion.Add(doAfterTaskComplete);
+            _actionsUponTaskCompletion.Add(doAfterTaskComplete);
             return this;
         }
     }
 
-    /// @cond EXCLUDE_FROM_DOXYGEN
     /// <summary>
     /// Helper methods for dealing with asynchronous tasks.
     /// </summary>
-    public class AsyncTask
+    internal class AsyncTask
     {
-        private static Queue<Action> s_UpdateActionQueue = new Queue<Action>();
-        private static object s_LockObject = new object();
+        private static Queue<Action> _updateActionQueue = new Queue<Action>();
+        private static object _lockObject = new object();
+
+        public static bool IsInitialized { get; private set; }
 
         /// <summary>
         /// Queues an action to be performed on Unity thread in Update().  This method can be called by any thread.
@@ -140,9 +143,9 @@ namespace GoogleARCore
         /// <param name="action">The action to perform.</param>
         public static void PerformActionInUpdate(Action action)
         {
-            lock (s_LockObject)
+            lock (_lockObject)
             {
-                s_UpdateActionQueue.Enqueue(action);
+                _updateActionQueue.Enqueue(action);
             }
         }
 
@@ -151,16 +154,37 @@ namespace GoogleARCore
         /// </summary>
         public static void OnUpdate()
         {
-            lock (s_LockObject)
+            lock (_lockObject)
             {
-                while (s_UpdateActionQueue.Count > 0)
+                while (_updateActionQueue.Count > 0)
                 {
-                    Action action = s_UpdateActionQueue.Dequeue();
+                    Action action = _updateActionQueue.Dequeue();
                     action();
                 }
             }
         }
-    }
 
-    /// @endcond
+        public static void InitAsyncTask()
+        {
+            if (IsInitialized)
+            {
+                return;
+            }
+
+            LifecycleManager.Instance.EarlyUpdate += OnUpdate;
+            LifecycleManager.Instance.OnResetInstance += ResetAsyncTask;
+            IsInitialized = true;
+        }
+
+        public static void ResetAsyncTask()
+        {
+            if (!IsInitialized)
+            {
+                return;
+            }
+
+            LifecycleManager.Instance.EarlyUpdate -= OnUpdate;
+            IsInitialized = false;
+        }
+    }
 }

@@ -1,7 +1,7 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="InstantPreviewInput.cs" company="Google">
+//-----------------------------------------------------------------------
+// <copyright file="InstantPreviewInput.cs" company="Google LLC">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 namespace GoogleARCore
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
     using GoogleARCoreInternal;
@@ -32,19 +33,34 @@ namespace GoogleARCore
     /// </summary>
     public static class InstantPreviewInput
     {
-        private static Touch[] s_Touches = new Touch[0];
+        private static Touch[] _touches = new Touch[0];
+        private static List<Touch> _touchList = new List<Touch>();
+
+        /// <summary>
+        /// Gets the inputString from Instant Preview since the last update.
+        /// </summary>
+        [SuppressMessage("UnityRules.UnityStyleRules",
+         "US1109:PublicPropertiesMustBeUpperCamelCase", Justification = "Overridden field.")]
+        public static string inputString
+        {
+            get
+            {
+                return Input.inputString;
+            }
+        }
 
         /// <summary>
         /// Gets the available touch inputs from Instant Preview since the last
         /// update.
         /// </summary>
-        [SuppressMessage("UnityRules.UnityStyleRules", "US1000:FieldsMustBeUpperCamelCase",
-         Justification = "Overridden field.")]
+        [SuppressMessage("UnityRules.UnityStyleRules",
+         "US1109:PublicPropertiesMustBeUpperCamelCase", Justification = "Overridden field.")]
         public static Touch[] touches
         {
             get
             {
-                return s_Touches;
+                NativeApi.UnityGotTouches();
+                return _touches;
             }
         }
 
@@ -52,8 +68,8 @@ namespace GoogleARCore
         /// Gets the number of touches available from Instant preview since the
         /// last update.
         /// </summary>
-        [SuppressMessage("UnityRules.UnityStyleRules", "US1000:FieldsMustBeUpperCamelCase",
-         Justification = "Overridden field.")]
+        [SuppressMessage("UnityRules.UnityStyleRules",
+         "US1109:PublicPropertiesMustBeUpperCamelCase", Justification = "Overridden field.")]
         public static int touchCount
         {
             get
@@ -65,8 +81,8 @@ namespace GoogleARCore
         /// <summary>
         /// Gets return value of Input.mousePosition.
         /// </summary>
-        [SuppressMessage("UnityRules.UnityStyleRules", "US1000:FieldsMustBeUpperCamelCase",
-         Justification = "Overridden field.")]
+        [SuppressMessage("UnityRules.UnityStyleRules",
+         "US1109:PublicPropertiesMustBeUpperCamelCase", Justification = "Overridden field.")]
         public static Vector3 mousePosition
         {
             get
@@ -78,8 +94,8 @@ namespace GoogleARCore
         /// <summary>
         /// Gets a value indicating whether a mouse device is detected.
         /// </summary>
-        [SuppressMessage("UnityRules.UnityStyleRules", "US1000:FieldsMustBeUpperCamelCase",
-         Justification = "Overridden field.")]
+        [SuppressMessage("UnityRules.UnityStyleRules",
+         "US1109:PublicPropertiesMustBeUpperCamelCase", Justification = "Overridden field.")]
         public static bool mousePresent
         {
             get
@@ -144,43 +160,88 @@ namespace GoogleARCore
         /// </summary>
         public static void Update()
         {
-            if (!Application.isEditor)
+            if (!InstantPreviewManager.IsProvidingPlatform)
             {
                 return;
             }
 
+            // Removes ended touches, and converts moves to stationary.
+            for (int i = 0; i < _touchList.Count; ++i)
+            {
+                if (_touchList[i].phase == TouchPhase.Ended)
+                {
+                    _touchList.RemoveAt(i);
+                    --i;
+                    continue;
+                }
+
+                var curTouch = _touchList[i];
+                curTouch.phase = TouchPhase.Stationary;
+                curTouch.deltaPosition = Vector2.zero;
+                _touchList[i] = curTouch;
+            }
+
+            // Updates touches.
             IntPtr nativeTouchesPtr;
             int nativeTouchCount;
             NativeApi.GetTouches(out nativeTouchesPtr, out nativeTouchCount);
 
             var structSize = Marshal.SizeOf(typeof(NativeTouch));
-            s_Touches = new Touch[nativeTouchCount];
             for (var i = 0; i < nativeTouchCount; ++i)
             {
                 var source = new IntPtr(nativeTouchesPtr.ToInt64() + (i * structSize));
-                var nativeTouch = (NativeTouch)Marshal.PtrToStructure(source, typeof(NativeTouch));
+                NativeTouch nativeTouch =
+                    (NativeTouch)Marshal.PtrToStructure(source, typeof(NativeTouch));
 
-                s_Touches[i] = new Touch()
+                var newTouch = new Touch()
                 {
+                    fingerId = nativeTouch.Id,
                     phase = nativeTouch.Phase,
+                    pressure = nativeTouch.Pressure,
 
+                    // NativeTouch values are normalized and must be converted to screen
+                    // coordinates.
                     // Note that the Unity's screen coordinate (0, 0) starts from bottom left.
-                    position = new Vector2(nativeTouch.X, Screen.height - nativeTouch.Y),
+                    position = new Vector2(
+                        Screen.width * nativeTouch.X, Screen.height * (1f - nativeTouch.Y)),
                 };
+
+                var index = _touchList.FindIndex(touch => touch.fingerId == newTouch.fingerId);
+
+                // Adds touch if not found, otherwise updates it.
+                if (index < 0)
+                {
+                    _touchList.Add(newTouch);
+                }
+                else
+                {
+                    var prevTouch = _touchList[index];
+                    newTouch.deltaPosition += newTouch.position - prevTouch.position;
+                    _touchList[index] = newTouch;
+                }
             }
+
+            _touches = _touchList.ToArray();
         }
 
         private struct NativeTouch
         {
+#pragma warning disable 649
             public TouchPhase Phase;
             public float X;
             public float Y;
+            public float Pressure;
+            public int Id;
+#pragma warning restore 649
         }
 
         private struct NativeApi
         {
             [DllImport(InstantPreviewManager.InstantPreviewNativeApi)]
             public static extern void GetTouches(out IntPtr touches, out int count);
+
+            [DllImport(InstantPreviewManager.InstantPreviewNativeApi)]
+            public static extern void UnityGotTouches();
         }
     }
 }

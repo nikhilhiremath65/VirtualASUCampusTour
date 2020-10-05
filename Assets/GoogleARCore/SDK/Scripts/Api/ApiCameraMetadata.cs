@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
-// <copyright file="ApiCameraMetadata.cs" company="Google">
+// <copyright file="ApiCameraMetadata.cs" company="Google LLC">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,9 +28,7 @@ namespace GoogleARCoreInternal
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-    Justification = "Internal")]
-    public enum NdkCameraMetadataType
+    internal enum NdkCameraMetadataType
     {
         Byte = 0,
         Int32 = 1,
@@ -41,9 +39,7 @@ namespace GoogleARCoreInternal
         NumTypes,
     }
 
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-    Justification = "Internal")]
-    public enum NdkCameraStatus
+    internal enum NdkCameraStatus
     {
         Ok = 0,
         ErrorBase = -10000,
@@ -52,10 +48,8 @@ namespace GoogleARCoreInternal
         ErrorMetadataNotFound = ErrorBase - 4,
     }
 
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-    Justification = "Internal")]
     [StructLayout(LayoutKind.Explicit)]
-    public struct NdkCameraMetadata
+    internal struct NdkCameraMetadata
     {
         [FieldOffset(0)]
         [MarshalAs(UnmanagedType.I4)]

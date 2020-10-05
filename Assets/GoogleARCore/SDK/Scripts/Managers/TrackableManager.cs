@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
-// <copyright file="TrackableManager.cs" company="Google">
+// <copyright file="TrackableManager.cs" company="Google LLC">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,40 +22,39 @@ namespace GoogleARCoreInternal
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using GoogleARCore;
     using UnityEngine;
 
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-     Justification = "Internal")]
-    public class TrackableManager
+    internal class TrackableManager
     {
-        private Dictionary<IntPtr, Trackable> m_TrackableDict =
+        private Dictionary<IntPtr, Trackable> _trackableDict =
             new Dictionary<IntPtr, Trackable>(new IntPtrEqualityComparer());
 
-        private NativeSession m_NativeSession;
+        private NativeSession _nativeSession;
 
-        private int m_LastUpdateFrame = -1;
+        private int _lastUpdateFrame = -1;
 
-        private List<Trackable> m_NewTrackables = new List<Trackable>();
+        private List<Trackable> _newTrackables = new List<Trackable>();
 
-        private List<Trackable> m_AllTrackables  = new List<Trackable>();
+        private List<Trackable> _allTrackables = new List<Trackable>();
 
-        private List<Trackable> m_UpdatedTrackables  = new List<Trackable>();
+        private List<Trackable> _updatedTrackables = new List<Trackable>();
 
-        private HashSet<Trackable> m_OldTrackables  = new HashSet<Trackable>();
+        private HashSet<Trackable> _oldTrackables = new HashSet<Trackable>();
 
         public TrackableManager(NativeSession nativeSession)
         {
-            m_NativeSession = nativeSession;
+            _nativeSession = nativeSession;
+            LifecycleManager.Instance.OnResetInstance += ClearCachedTrackables;
         }
 
         /// <summary>
-        /// Factory method for creating and reusing TrackedPlane references from native handles.
+        /// Factory method for creating and reusing Trackable references from native handles.
         /// </summary>
-        /// <param name="nativeHandle">A native handle to a plane that has been acquired.  RELEASE WILL BE HANDLED BY
-        /// THIS METHOD.</param>
-        /// <returns>A reference to a tracked plane. </returns>
+        /// <param name="nativeHandle">A native handle to a plane that has been acquired.  RELEASE
+        /// WILL BE HANDLED BY THIS METHOD.</param>
+        /// <returns>A reference to the Trackable. May return <c>null</c> on error or if Trackable
+        /// is not handled.</returns>
         public Trackable TrackableFactory(IntPtr nativeHandle)
         {
             if (nativeHandle == IntPtr.Zero)
@@ -64,88 +63,123 @@ namespace GoogleARCoreInternal
             }
 
             Trackable result;
-            if (m_TrackableDict.TryGetValue(nativeHandle, out result))
+            if (_trackableDict.TryGetValue(nativeHandle, out result))
             {
                 // Release aquired handle and return cached result.
-                m_NativeSession.TrackableApi.Release(nativeHandle);
+                _nativeSession.TrackableApi.Release(nativeHandle);
                 return result;
             }
 
-            ApiTrackableType trackableType = m_NativeSession.TrackableApi.GetType(nativeHandle);
+            // This block needs to construct classes marked Obsolete since those versions are always
+            // the most derived type.
+#pragma warning disable 618 // Obsolete warning
+            ApiTrackableType trackableType = _nativeSession.TrackableApi.GetType(nativeHandle);
             if (trackableType == ApiTrackableType.Plane)
             {
-                result = new TrackedPlane(nativeHandle, m_NativeSession);
+                result = new TrackedPlane(nativeHandle, _nativeSession);
             }
             else if (trackableType == ApiTrackableType.Point)
             {
-                result = new TrackedPoint(nativeHandle, m_NativeSession);
+                result = new TrackedPoint(nativeHandle, _nativeSession);
+            }
+            else if (trackableType == ApiTrackableType.InstantPlacementPoint)
+            {
+                result = new InstantPlacementPoint(nativeHandle, _nativeSession);
+            }
+            else if (trackableType == ApiTrackableType.AugmentedImage)
+            {
+                result = new AugmentedImage(nativeHandle, _nativeSession);
+            }
+            else if (trackableType == ApiTrackableType.AugmentedFace)
+            {
+                result = new AugmentedFace(nativeHandle, _nativeSession);
+            }
+            else if (ExperimentManager.Instance.IsManagingTrackableType((int)trackableType))
+            {
+                result =
+                    ExperimentManager.Instance.TrackableFactory((int)trackableType, nativeHandle);
             }
             else
             {
-                UnityEngine.Debug.LogFormat("Cant find {0}", trackableType);
-                throw new NotImplementedException("TrackableFactory:: No constructor for requested trackable type.");
+                Debug.LogWarning(
+                    "TrackableFactory::No constructor for requested trackable type.");
+            }
+#pragma warning restore 618
+
+            if (result != null)
+            {
+                _trackableDict.Add(nativeHandle, result);
             }
 
-            m_TrackableDict.Add(nativeHandle, result);
             return result;
         }
 
-        public void GetTrackables<T>(List<T> trackables, TrackableQueryFilter filter) where T : Trackable
+        public void GetTrackables<T>(
+            List<T> trackables, TrackableQueryFilter filter) where T : Trackable
         {
-            if (m_LastUpdateFrame < Time.frameCount)
+            if (_lastUpdateFrame < Time.frameCount)
             {
                 // Get trackables updated this frame.
-                m_NativeSession.FrameApi.GetUpdatedTrackables(m_UpdatedTrackables);
+                _nativeSession.FrameApi.GetUpdatedTrackables(_updatedTrackables);
 
                 // Get all the trackables in the session.
-                m_NativeSession.SessionApi.GetAllTrackables(m_AllTrackables);
+                _nativeSession.SessionApi.GetAllTrackables(_allTrackables);
 
                 // Find trackables that are not in the hashset (new).
-                m_NewTrackables.Clear();
-                for (int i = 0; i < m_AllTrackables.Count; i++)
+                _newTrackables.Clear();
+                for (int i = 0; i < _allTrackables.Count; i++)
                 {
-                    Trackable trackable = m_AllTrackables[i];
-                    if (!m_OldTrackables.Contains(trackable))
+                    Trackable trackable = _allTrackables[i];
+                    if (!_oldTrackables.Contains(trackable))
                     {
-                        m_NewTrackables.Add(trackable);
-                        m_OldTrackables.Add(trackable);
+                        _newTrackables.Add(trackable);
+                        _oldTrackables.Add(trackable);
                     }
                 }
 
-                m_LastUpdateFrame = Time.frameCount;
+                _lastUpdateFrame = Time.frameCount;
             }
 
             trackables.Clear();
 
             if (filter == TrackableQueryFilter.All)
             {
-                for (int i = 0; i < m_AllTrackables.Count; i++)
+                for (int i = 0; i < _allTrackables.Count; i++)
                 {
-                    _SafeAdd<T>(m_AllTrackables[i], trackables);
+                    SafeAdd<T>(_allTrackables[i], trackables);
                 }
             }
             else if (filter == TrackableQueryFilter.New)
             {
-                for (int i = 0; i < m_NewTrackables.Count; i++)
+                for (int i = 0; i < _newTrackables.Count; i++)
                 {
-                    _SafeAdd<T>(m_NewTrackables[i], trackables);
+                    SafeAdd<T>(_newTrackables[i], trackables);
                 }
             }
             else if (filter == TrackableQueryFilter.Updated)
             {
-                for (int i = 0; i < m_NewTrackables.Count; i++)
+                for (int i = 0; i < _updatedTrackables.Count; i++)
                 {
-                    _SafeAdd<T>(m_UpdatedTrackables[i], trackables);
+                    SafeAdd<T>(_updatedTrackables[i], trackables);
                 }
             }
         }
 
-        private void _SafeAdd<T>(Trackable trackable, List<T> trackables) where T : Trackable
+        private void SafeAdd<T>(Trackable trackable, List<T> trackables) where T : Trackable
         {
             if (trackable is T)
             {
                 trackables.Add(trackable as T);
             }
+        }
+
+        private void ClearCachedTrackables()
+        {
+            _trackableDict.Clear();
+            _newTrackables.Clear();
+            _allTrackables.Clear();
+            _updatedTrackables.Clear();
+            _oldTrackables.Clear();
         }
     }
 }
