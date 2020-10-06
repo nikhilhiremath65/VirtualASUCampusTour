@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/ToursScene.unity
     guid: 0d8c644fb3b6a58e9bf51cf819d87ad2
   - enabled: 1
     path: Assets/Scenes/MapNavigation.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Schedule_scene.unity
+    guid: 61d379b2eaf1948f19819dfa8572473b
+  - enabled: 1
+    path: Assets/Scenes/SchedulesScene.unity
+    guid: be5cdec001c7c4ad6ac3c89c4f5d60d6
   m_configObjects: {}
