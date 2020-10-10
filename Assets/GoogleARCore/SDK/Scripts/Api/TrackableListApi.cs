@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
-// <copyright file="TrackableListApi.cs" company="Google LLC">
+// <copyright file="TrackableListApi.cs" company="Google">
 //
-// Copyright 2017 Google LLC. All Rights Reserved.
+// Copyright 2017 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,30 +22,26 @@ namespace GoogleARCoreInternal
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.InteropServices;
     using GoogleARCore;
     using UnityEngine;
 
-#if UNITY_IOS && !UNITY_EDITOR
-    using AndroidImport = GoogleARCoreInternal.DllImportNoop;
-    using IOSImport = System.Runtime.InteropServices.DllImportAttribute;
-#else
-    using AndroidImport = System.Runtime.InteropServices.DllImportAttribute;
-    using IOSImport = GoogleARCoreInternal.DllImportNoop;
-#endif
-
-    internal class TrackableListApi
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
+     Justification = "Internal")]
+    public class TrackableListApi
     {
-        private NativeSession _nativeSession;
+        private NativeSession m_NativeSession;
 
         public TrackableListApi(NativeSession nativeSession)
         {
-            _nativeSession = nativeSession;
+            m_NativeSession = nativeSession;
         }
 
         public IntPtr Create()
         {
             IntPtr handle = IntPtr.Zero;
-            ExternApi.ArTrackableList_create(_nativeSession.SessionHandle, ref handle);
+            ExternApi.ArTrackableList_create(m_NativeSession.SessionHandle, ref handle);
             return handle;
         }
 
@@ -57,37 +53,33 @@ namespace GoogleARCoreInternal
         public int GetCount(IntPtr listHandle)
         {
             int count = 0;
-            ExternApi.ArTrackableList_getSize(_nativeSession.SessionHandle, listHandle, ref count);
+            ExternApi.ArTrackableList_getSize(m_NativeSession.SessionHandle, listHandle, ref count);
             return count;
         }
 
         public IntPtr AcquireItem(IntPtr listHandle, int index)
         {
             IntPtr trackableHandle = IntPtr.Zero;
-            ExternApi.ArTrackableList_acquireItem(
-                _nativeSession.SessionHandle, listHandle, index, ref trackableHandle);
+            ExternApi.ArTrackableList_acquireItem(m_NativeSession.SessionHandle, listHandle, index,
+                ref trackableHandle);
             return trackableHandle;
         }
 
         private struct ExternApi
         {
-#pragma warning disable 626
-            [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArTrackableList_create(
-                IntPtr sessionHandle, ref IntPtr trackableListHandle);
+            [DllImport(ApiConstants.ARCoreNativeApi)]
+            public static extern void ArTrackableList_create(IntPtr sessionHandle, ref IntPtr trackableListHandle);
 
-            [AndroidImport(ApiConstants.ARCoreNativeApi)]
+            [DllImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArTrackableList_destroy(IntPtr trackableListHandle);
 
-            [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArTrackableList_getSize(
-                IntPtr sessionHandle, IntPtr trackableListHandle, ref int outSize);
+            [DllImport(ApiConstants.ARCoreNativeApi)]
+            public static extern void ArTrackableList_getSize(IntPtr sessionHandle, IntPtr trackableListHandle,
+                ref int outSize);
 
-            [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArTrackableList_acquireItem(
-                IntPtr sessionHandle, IntPtr trackableListHandle, int index,
-                ref IntPtr outTrackable);
-#pragma warning restore 626
+            [DllImport(ApiConstants.ARCoreNativeApi)]
+            public static extern void ArTrackableList_acquireItem(IntPtr sessionHandle, IntPtr trackableListHandle,
+                int index, ref IntPtr outTrackable);
         }
     }
 }

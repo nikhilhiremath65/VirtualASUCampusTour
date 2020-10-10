@@ -1,7 +1,7 @@
-//-----------------------------------------------------------------------
-// <copyright file="ApiPlaneFindingMode.cs" company="Google LLC">
+﻿//-----------------------------------------------------------------------
+// <copyright file="ApiPlaneFindingMode.cs" company="Google">
 //
-// Copyright 2017 Google LLC. All Rights Reserved.
+// Copyright 2017 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,11 +20,13 @@
 
 namespace GoogleARCoreInternal
 {
-    internal enum ApiPlaneFindingMode
+    using System.Diagnostics.CodeAnalysis;
+
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
+    Justification = "Internal")]
+    public enum ApiPlaneFindingMode
     {
         Disabled = 0,
         Horizontal = 1,
-        Vertical = 2,
-        HorizontalAndVertical = 3,
     }
 }

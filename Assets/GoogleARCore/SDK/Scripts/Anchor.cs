@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
-// <copyright file="Anchor.cs" company="Google LLC">
+// <copyright file="Anchor.cs" company="Google">
 //
-// Copyright 2017 Google LLC. All Rights Reserved.
+// Copyright 2017 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,19 +27,18 @@ namespace GoogleARCore
     using UnityEngine;
 
     /// <summary>
-    /// Attaches a GameObject to an ARCore <see cref="Trackable"/>.  The transform of the GameObject will
-    /// be updated to maintain the semantics of the attachment relationship, which varies between
-    /// sub-types of Trackable.
+    /// Attaches a GameObject to an ARCore {@link Trackable}.  The transform of the GameObject will be updated to
+    /// maintain the semantics of the attachment relationship, which varies between sub-types of Trackable.
     /// </summary>
-    [HelpURL("https://developers.google.com/ar/reference/unity/class/GoogleARCore/Anchor")]
     public class Anchor : MonoBehaviour
     {
-        private static Dictionary<IntPtr, Anchor> _anchorDict =
-            new Dictionary<IntPtr, Anchor>(new IntPtrEqualityComparer());
+        private static Dictionary<IntPtr, Anchor> s_AnchorDict = new Dictionary<IntPtr, Anchor>();
 
-        private TrackingState _lastFrameTrackingState = TrackingState.Stopped;
+        private IntPtr m_AnchorNativeHandle = IntPtr.Zero;
 
-        private bool _isSessionDestroyed = false;
+        private NativeSession m_NativeSession;
+
+        private TrackingState m_LastFrameTrackingState = TrackingState.Stopped;
 
         /// <summary>
         /// Gets the tracking state of the anchor.
@@ -48,22 +47,29 @@ namespace GoogleARCore
         {
             get
             {
-                if (IsSessionDestroyed())
+                // TODO (b/73256094): Remove isTracking when fixed.
+                var nativeSession = LifecycleManager.Instance.NativeSession;
+                var isTracking = LifecycleManager.Instance.SessionStatus == SessionStatus.Tracking;
+                if (nativeSession != m_NativeSession)
                 {
                     // Anchors from another session are considered stopped.
                     return TrackingState.Stopped;
                 }
+                else if (!isTracking)
+                {
+                    // If there are no new frames coming in we must manually return paused.
+                    return TrackingState.Paused;
+                }
 
-                return _nativeSession.AnchorApi.GetTrackingState(_nativeHandle);
+                return m_NativeSession.AnchorApi.GetTrackingState(m_AnchorNativeHandle);
             }
         }
 
-        internal NativeSession _nativeSession { get; private set; }
+        //// @cond EXCLUDE_FROM_DOXYGEN
 
-        internal IntPtr _nativeHandle { get; private set; }
-
-        internal static Anchor Factory(NativeSession nativeApi, IntPtr anchorNativeHandle,
-            bool isCreate = true)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
+        Justification = "Internal")]
+        public static Anchor AnchorFactory(IntPtr anchorNativeHandle, NativeSession nativeApi, bool isCreate = true)
         {
             if (anchorNativeHandle == IntPtr.Zero)
             {
@@ -71,10 +77,10 @@ namespace GoogleARCore
             }
 
             Anchor result;
-            if (_anchorDict.TryGetValue(anchorNativeHandle, out result))
+            if (s_AnchorDict.TryGetValue(anchorNativeHandle, out result))
             {
                 // Release acquired handle and return cached result
-                AnchorApi.Release(anchorNativeHandle);
+                result.m_NativeSession.AnchorApi.Release(anchorNativeHandle);
                 return result;
             }
 
@@ -82,41 +88,34 @@ namespace GoogleARCore
             {
                Anchor anchor = (new GameObject()).AddComponent<Anchor>();
                anchor.gameObject.name = "Anchor";
-               anchor._nativeHandle = anchorNativeHandle;
-               anchor._nativeSession = nativeApi;
+               anchor.m_AnchorNativeHandle = anchorNativeHandle;
+               anchor.m_NativeSession = nativeApi;
                anchor.Update();
 
-               _anchorDict.Add(anchorNativeHandle, anchor);
+               s_AnchorDict.Add(anchorNativeHandle, anchor);
                return anchor;
             }
 
             return null;
         }
 
-        /// <summary>
-        /// Unity Update.
-        /// </summary>
-        internal void Update()
+        //// @endcond
+
+        private void Update()
         {
-            if (_nativeHandle == IntPtr.Zero)
+            if (m_AnchorNativeHandle == IntPtr.Zero)
             {
-                Debug.LogError(
-                    "Anchor components instantiated outside of ARCore are not supported. " +
+                Debug.LogError("Anchor components instantiated outside of ARCore are not supported. " +
                     "Please use a 'Create' method within ARCore to instantiate anchors.");
                 return;
             }
 
-            if (IsSessionDestroyed())
-            {
-                return;
-            }
-
-            var pose = _nativeSession.AnchorApi.GetPose(_nativeHandle);
+            var pose = m_NativeSession.AnchorApi.GetPose(m_AnchorNativeHandle);
             transform.position = pose.position;
             transform.rotation = pose.rotation;
 
             TrackingState currentFrameTrackingState = TrackingState;
-            if (_lastFrameTrackingState != currentFrameTrackingState)
+            if (m_LastFrameTrackingState != currentFrameTrackingState)
             {
                 bool isAnchorTracking = currentFrameTrackingState == TrackingState.Tracking;
                 foreach (Transform child in transform)
@@ -124,42 +123,19 @@ namespace GoogleARCore
                     child.gameObject.SetActive(isAnchorTracking);
                 }
 
-                _lastFrameTrackingState = currentFrameTrackingState;
+                m_LastFrameTrackingState = currentFrameTrackingState;
             }
         }
 
         private void OnDestroy()
         {
-            if (_nativeHandle == IntPtr.Zero)
+            if (m_AnchorNativeHandle == IntPtr.Zero)
             {
                 return;
             }
 
-            if (_nativeSession != null && !_nativeSession.IsDestroyed)
-            {
-                _nativeSession.AnchorApi.Detach(_nativeHandle);
-            }
-
-            _anchorDict.Remove(_nativeHandle);
-            AnchorApi.Release(_nativeHandle);
-        }
-
-        private bool IsSessionDestroyed()
-        {
-            if (!_isSessionDestroyed)
-            {
-                var nativeSession = LifecycleManager.Instance.NativeSession;
-                if (nativeSession != _nativeSession)
-                {
-                    Debug.LogErrorFormat(
-                        "The session which created this anchor has been destroyed. " +
-                        "The anchor on GameObject {0} can no longer update.",
-                        this.gameObject != null ? this.gameObject.name : "Unknown");
-                    _isSessionDestroyed = true;
-                }
-            }
-
-            return _isSessionDestroyed;
+            s_AnchorDict.Remove(m_AnchorNativeHandle);
+            m_NativeSession.AnchorApi.Release(m_AnchorNativeHandle);
         }
     }
 }

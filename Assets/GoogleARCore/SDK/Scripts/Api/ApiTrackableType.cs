@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
-// <copyright file="ApiTrackableType.cs" company="Google LLC">
+// <copyright file="ApiTrackableType.cs" company="Google">
 //
-// Copyright 2017 Google LLC. All Rights Reserved.
+// Copyright 2017 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,14 +20,15 @@
 
 namespace GoogleARCoreInternal
 {
-    internal enum ApiTrackableType
+    using System.Diagnostics.CodeAnalysis;
+
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
+    Justification = "Internal")]
+    public enum ApiTrackableType
     {
         Invalid = 0,
         BaseTrackable = 0x41520100,
         Plane = 0x41520101,
         Point = 0x41520102,
-        AugmentedImage = 0x41520104,
-        AugmentedFace = 0x41520105,
-        InstantPlacementPoint = 0x41520112,
     }
 }

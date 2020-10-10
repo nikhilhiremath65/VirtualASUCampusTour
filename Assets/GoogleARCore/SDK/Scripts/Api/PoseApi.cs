@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
-// <copyright file="PoseApi.cs" company="Google LLC">
+// <copyright file="PoseApi.cs" company="Google">
 //
-// Copyright 2017 Google LLC. All Rights Reserved.
+// Copyright 2017 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,16 +21,21 @@
 namespace GoogleARCoreInternal
 {
     using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
+    using GoogleARCore;
     using UnityEngine;
 
-    internal class PoseApi
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
+    Justification = "Internal")]
+    public class PoseApi
     {
-        private NativeSession _nativeSession;
+        private NativeSession m_NativeSession;
 
         public PoseApi(NativeSession nativeSession)
         {
-            _nativeSession = nativeSession;
+            m_NativeSession = nativeSession;
         }
 
         public IntPtr Create()
@@ -43,7 +48,7 @@ namespace GoogleARCoreInternal
             ApiPoseData rawPose = new ApiPoseData(pose);
 
             IntPtr poseHandle = IntPtr.Zero;
-            ExternApi.ArPose_create(_nativeSession.SessionHandle, ref rawPose, ref poseHandle);
+            ExternApi.ArPose_create(m_NativeSession.SessionHandle, ref rawPose, ref poseHandle);
             return poseHandle;
         }
 
@@ -55,22 +60,21 @@ namespace GoogleARCoreInternal
         public Pose ExtractPoseValue(IntPtr poseHandle)
         {
             ApiPoseData poseValue = new ApiPoseData(Pose.identity);
-            ExternApi.ArPose_getPoseRaw(_nativeSession.SessionHandle, poseHandle, ref poseValue);
+            ExternApi.ArPose_getPoseRaw(m_NativeSession.SessionHandle, poseHandle, ref poseValue);
             return poseValue.ToUnityPose();
         }
 
         private struct ExternApi
         {
             [DllImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArPose_create(
-                IntPtr session, ref ApiPoseData rawPose, ref IntPtr poseHandle);
+            public static extern void ArPose_create(IntPtr session, ref ApiPoseData rawPose, ref IntPtr poseHandle);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArPose_destroy(IntPtr poseHandle);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArPose_getPoseRaw(
-                IntPtr sessionHandle, IntPtr poseHandle, ref ApiPoseData rawPose);
+            public static extern void ArPose_getPoseRaw(IntPtr sessionHandle, IntPtr poseHandle,
+                ref ApiPoseData rawPose);
         }
     }
 }

@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
-// <copyright file="PointCloudPoint.cs" company="Google LLC">
+// <copyright file="PointCloudPoint.cs" company="Google">
 //
-// Copyright 2017 Google LLC. All Rights Reserved.
+// Copyright 2017 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@
 
 namespace GoogleARCore
 {
-    using GoogleARCoreInternal;
     using UnityEngine;
 
     /// <summary>
@@ -29,69 +28,56 @@ namespace GoogleARCore
     public struct PointCloudPoint
     {
         /// <summary>
-        /// A number that represents an invalid point id.
+        /// The x-position of the point.
         /// </summary>
-        public const int InvalidPointId = -1;
+        public float X;
 
-        private int _id;
+        /// <summary>
+        /// The y-position of the point.
+        /// </summary>
+        public float Y;
+
+        /// <summary>
+        /// The z-position of the point.
+        /// </summary>
+        public float Z;
+
+        /// <summary>
+        /// A normalized confidence value for the point.
+        /// </summary>
+        public float Confidence;
 
         /// <summary>
         /// Constructs a new PointCloudPoint.
         /// </summary>
-        /// <param name="id">The id of the point within the session.</param>
-        /// <param name="position">The position of the point in world space.</param>
-        /// <param name="confidence">The normalized confidence of the point.</param>
-        public PointCloudPoint(int id, Vector3 position, float confidence) : this()
+        /// <param name="x">The x-position of the point.</param>
+        /// <param name="y">The y-position of the point.</param>
+        /// <param name="z">The z-position of the point.</param>
+        /// <param name="confidence">The confidence of the point.</param>
+        public PointCloudPoint(float x, float y, float z, float confidence)
         {
-            this.Id = id;
-            this.Position = position;
+            this.X = x;
+            this.Y = y;
+            this.Z = z;
             this.Confidence = confidence;
         }
 
         /// <summary>
-        /// Gets or sets a number that identifies the point within a point cloud and ARCore session.
-        ///
-        /// This value is guarenteed to be unique if the ARCore session has been running for less
-        /// than 24 hours.
+        /// Implicitly converts a PointCloudPoint to a Vector4.
         /// </summary>
-        /// <value>A number that identifies the point within a point cloud and ARCore
-        /// session.</value>
-        public int Id
+        /// <param name="point">The point to convert.</param>
+        public static implicit operator Vector4(PointCloudPoint point)
         {
-            get
-            {
-                if (InstantPreviewManager.IsProvidingPlatform)
-                {
-                    InstantPreviewManager.LogLimitedSupportMessage("access Point Cloud IDs");
-                    return 0;
-                }
-
-                return _id;
-            }
-
-            set
-            {
-                _id = value;
-            }
+            return new Vector4(point.X, point.Y, point.Z, point.Confidence);
         }
 
         /// <summary>
-        /// Gets the position of the point in world space.
+        /// Implicitly converts a Vector4 to a PointCloudPoint.
         /// </summary>
-        public Vector3 Position { get; private set; }
-
-        /// <summary>
-        /// Gets a normalized confidence value for the point.
-        /// </summary>
-        public float Confidence { get; private set; }
-
-        /// <summary>
-        /// Implicitly converts a PointCloudPoint to a Vector3 that represents its position.
-        /// </summary>
-        /// <param name="point">The point to convert.</param>
-        public static implicit operator Vector3(PointCloudPoint point)
+        /// <param name="vectorPoint">The Vector3 to convert.</param>
+        public static implicit operator PointCloudPoint(Vector4 vectorPoint)
         {
-            return point.Position;
+            return new PointCloudPoint(vectorPoint.x, vectorPoint.y, vectorPoint.z, vectorPoint.w);
         }
     }
 }

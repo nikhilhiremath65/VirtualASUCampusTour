@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
-// <copyright file="SessionStatusExtensions.cs" company="Google LLC">
+// <copyright file="SessionStatusExtensions.cs" company="Google">
 //
-// Copyright 2017 Google LLC. All Rights Reserved.
+// Copyright 2017 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,19 +28,18 @@ namespace GoogleARCore
     /// </summary>
     public static class SessionStatusExtensions
     {
-        private const int _notInitializedGroupStart = 0;
-        private const int _validSessionGroupStart = 100;
-        private const int _errorGroupStart = 200;
+        private const int k_NotInitializedGroupStart = 0;
+        private const int k_ValidSessionGroupStart = 100;
+        private const int k_ErrorGroupStart = 200;
 
         /// <summary>
         /// Gets whether a SessionStatus is not yet initialized.
         /// </summary>
         /// <param name="status">The SessionStatus to check.</param>
-        /// <returns><c>true</c> if the SessionStatus is not initialized, otherwise
-        /// <c>false</c>.</returns>
+        /// <returns><c>true</c> if the SessionStatus is not initialized, otherwise <c>false</c>.</returns>
         public static bool IsNotInitialized(this SessionStatus status)
         {
-            int normalizedValue = (int)status - _notInitializedGroupStart;
+            int normalizedValue = (int)status - k_NotInitializedGroupStart;
             return normalizedValue >= 0 && normalizedValue < 100;
         }
 
@@ -52,7 +51,7 @@ namespace GoogleARCore
         /// otherwise <c>false</c>.</returns>
         public static bool IsValid(this SessionStatus status)
         {
-            int normalizedValue = (int)status - _validSessionGroupStart;
+            int normalizedValue = (int)status - k_ValidSessionGroupStart;
             return normalizedValue >= 0 && normalizedValue < 100;
         }
 
@@ -64,7 +63,7 @@ namespace GoogleARCore
         /// otherwise <c>false</c>.</returns>
         public static bool IsError(this SessionStatus status)
         {
-            int normalizedValue = (int)status - _errorGroupStart;
+            int normalizedValue = (int)status - k_ErrorGroupStart;
             return normalizedValue >= 0 && normalizedValue < 100;
         }
     }
