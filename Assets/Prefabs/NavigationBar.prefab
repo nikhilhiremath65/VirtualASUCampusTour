@@ -602,6 +602,7 @@ GameObject:
   - component: {fileID: 6823210641504764395}
   - component: {fileID: 6823210641504764393}
   - component: {fileID: 6823210641504764394}
+  - component: {fileID: 8362449818939876888}
   m_Layer: 5
   m_Name: NavigationBar
   m_TagString: Untagged
@@ -668,3 +669,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8362449818939876888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6823210641504764388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d0e38e42796494b9f23a3a93b50a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
