@@ -13,6 +13,7 @@ public class ListItemController : MonoBehaviour
     {
         CrudOperations crud = new CrudOperations();
         crud.deleteSchedule("scheduleDataBase", "nhiremat", "MondaySchedule");
+        Destroy(gameObject);
     }
 
     public void Edit()
