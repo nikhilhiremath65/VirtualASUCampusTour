@@ -13,6 +13,18 @@
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
+# ignore firebase SDK
+/[Aa]ssets/Firebase/
+/[Aa]ssets/Editor\ Default\ Resources/
+/[Aa]ssets/ExternalDependencyManager/
+/[Aa]ssets/Plugins/Android/
+/[Aa]ssets/Plugins/iOS/
+/[Aa]ssets/Editor Default Resources.meta
+/[Aa]ssets/ExternalDependencyManager.meta
+/[Aa]ssets/Firebase.meta
+/[Aa]ssets/Plugins/Android.meta
+/[Aa]ssets/Plugins/iOS.meta
+
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
