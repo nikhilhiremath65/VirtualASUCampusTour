@@ -24,19 +24,19 @@ namespace Crud
 
         public void deleteSchedule(string database, string user, string schedule)
         {
-            // rootReference.Child(database).Child(user).Child(schedule).RemoveValueAsync().ContinueWith(task =>
-            // {
-            //     if (task.IsFaulted)
-            //     {
+            rootReference.Child(database).Child(user).Child(schedule).RemoveValueAsync().ContinueWith(task =>
+            {
+                if (task.IsFaulted)
+                {
 
-            //         Debug.Log("ERROR: when accessing Data from Database");
+                    Debug.Log("ERROR: when accessing Data from Database");
 
-            //     }
-            //     else if (task.IsCompleted)
-            //     {
-            //         Debug.Log("SUCCESS: DATA Deleted IN DATABASE");
-            //     }
-            // });
+                }
+                else if (task.IsCompleted)
+                {
+                    Debug.Log("SUCCESS: DATA Deleted IN DATABASE");
+                }
+            });
         }
 
 
