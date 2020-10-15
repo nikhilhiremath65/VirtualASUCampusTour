@@ -14,7 +14,7 @@ public class DisplayLocations : MonoBehaviour
 
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
-    public Text TourNameText;
+    public InputField TourNameText;
     public string TourName;
     DB_Details dbDetails;
     DatabaseReference reference;
@@ -37,8 +37,8 @@ public class DisplayLocations : MonoBehaviour
 
         getTourData();
         toursDisplayed = false;
-        Debug.Log("hello");
-        TourNameText.text = TourName;
+       
+        // TourNameText.text = TourName;
 
     }
 
