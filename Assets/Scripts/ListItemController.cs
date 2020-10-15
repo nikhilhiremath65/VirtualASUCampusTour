@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Crud;
 
 public class ListItemController : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class ListItemController : MonoBehaviour
 
     public void delete()
     {
-        // write delete logic here
+        CrudOperations crud = new CrudOperations();
+        crud.deleteSchedule("scheduleDataBase", "nhiremat", "MondaySchedule");
     }
 
     public void Edit()
