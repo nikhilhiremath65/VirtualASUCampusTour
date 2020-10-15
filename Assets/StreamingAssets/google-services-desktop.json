@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "138144032451",
+    "firebase_url": "https://asu-ar-app.firebaseio.com",
+    "project_id": "asu-ar-app",
+    "storage_bucket": "asu-ar-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138144032451:android:26fdf5fa012666d9342476",
+        "android_client_info": {
+          "package_name": "com.NarmadasArmada.VirtualASUCampusTour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "138144032451-a3oiahhhm70lq5cu4t7o7ib1fdht7fpc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlmD40g7sIwbtEbTnu5ntJWuuue0LdQD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "138144032451-a3oiahhhm70lq5cu4t7o7ib1fdht7fpc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
