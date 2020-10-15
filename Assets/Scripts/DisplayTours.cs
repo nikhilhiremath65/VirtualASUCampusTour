@@ -6,8 +6,6 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System.Threading;
-
 
 public class DisplayTours : MonoBehaviour
 {
@@ -72,12 +70,12 @@ public class DisplayTours : MonoBehaviour
 
     void createTourList()
     {
-        //Debug.Log(tours.Count);
         foreach (Tour s in tours)
         {
+            ListItemPrefab.SetActive(true);
             GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
 
-            ListItemController controller = newSchedule.GetComponent<ListItemController>();
+            TourListItem controller = newSchedule.GetComponent<TourListItem>();
             controller.Name.text = s.Name;
 
             newSchedule.transform.parent = ContentPanel.transform;
@@ -85,5 +83,4 @@ public class DisplayTours : MonoBehaviour
         }
         toursDisplayed = true;
     }
-
 }
