@@ -8,6 +8,7 @@
   "client": [
     {
       "client_info": {
+
         "mobilesdk_app_id": "1:138144032451:android:26fdf5fa012666d9342476",
         "android_client_info": {
           "package_name": "com.NarmadasArmada.VirtualASUCampusTour"

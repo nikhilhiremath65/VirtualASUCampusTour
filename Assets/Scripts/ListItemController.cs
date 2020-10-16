@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Crud;
 
 public class ListItemController : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class ListItemController : MonoBehaviour
 
     public void delete()
     {
-        // write delete logic here
+
     }
 
     public void Edit()
