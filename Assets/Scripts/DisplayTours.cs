@@ -6,24 +6,32 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DisplayTours : MonoBehaviour
 {
+    ArrayList tours;
+    bool toursDisplayed;
 
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
+    public GameObject ErrorPanel;
+
+    public Text ErrorMessage;
+
+    private DateTime startTime;
 
     DB_Details dbDetails;
     DatabaseReference reference;
-
-    ArrayList tours;
-    bool toursDisplayed;
 
     // Start is called before the first frame update
     void Start()
     {
         tours = new ArrayList();
         dbDetails = new DB_Details();
+        Debug.Log(tours.Count);
 
         // Set up the Editor before calling into the realtime database.
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
@@ -32,8 +40,10 @@ public class DisplayTours : MonoBehaviour
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
         getTourData();
+
         toursDisplayed = false;
 
+        startTime = DateTime.Now;
     }
 
     // Update is called once per frame
@@ -43,29 +53,50 @@ public class DisplayTours : MonoBehaviour
         {
             createTourList();
         }
+
+        if (!toursDisplayed)
+        {
+            if ((DateTime.Now - startTime).Seconds > 2)
+            {
+                SceneManager.LoadScene("ManagerTourView");
+            }
+        }
     }
 
     void getTourData()
     {
-
-        reference.GetValueAsync().ContinueWith(task => {
-            if (task.IsFaulted)
-            {
-                // Handle the error...
-                Debug.Log("error fetching data");
-            }
-            else if (task.IsCompleted)
-            {
-                DataSnapshot snapshot = task.Result.Child(dbDetails.getTourDBName());
-
-                Dictionary<string, object> tourData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
-                
-                foreach (string tour in tourData.Keys)
+        try
+        {
+            reference.GetValueAsync().ContinueWith(task => {
+                if (task.IsFaulted)
                 {
-                    this.tours.Add(new Tour(tour));
+                    throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
                 }
-            }
-        });
+                else if (task.IsCompleted)
+                {
+                    DataSnapshot snapshot = task.Result.Child(dbDetails.getTourDBName());
+
+                    Dictionary<string, object> tourData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
+
+                    foreach (string tour in tourData.Keys)
+                    {
+                        this.tours.Add(new Tour(tour));
+                    }
+                }
+            });
+        }
+        catch (InvalidCastException e)
+        {
+            // Perform some action here, and then throw a new exception.
+            ErrorMessage.text = e.Message;
+            ErrorPanel.SetActive(true);
+        }
+        catch (Exception e)
+        {
+            // Perform some action here, and then throw a new exception.
+            ErrorMessage.text = e.Message;
+            ErrorPanel.SetActive(true);
+        }
     }
 
     void createTourList()
