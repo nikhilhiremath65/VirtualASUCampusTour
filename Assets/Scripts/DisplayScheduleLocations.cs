@@ -7,21 +7,21 @@ using Firebase.Unity.Editor;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
-public class ListController : MonoBehaviour
+public class DisplayScheduleLocations : MonoBehaviour
 {
-
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
 
+
     DB_Details dbDetails;
     DatabaseReference reference;
-    bool schedulesDisplayed;
+    bool locationsDisplayed;
 
-    ArrayList schedules;
+    ArrayList locations;
     // Start is called before the first frame update
     void Start()
     {
-        schedules = new ArrayList();
+        locations = new ArrayList();
 
         dbDetails = new DB_Details();
 
@@ -31,21 +31,23 @@ public class ListController : MonoBehaviour
         // Get the root reference location of the database.
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-        getScheduleData();
-        schedulesDisplayed = false;
+        getLocationData();
+        locationsDisplayed = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!schedulesDisplayed && schedules.Count > 0)
+        if (!locationsDisplayed && locations.Count > 0)
         {
-            createScheduleList();
+            createLocationsList();
         }
     }
 
-    void getScheduleData()
+    void getLocationData()
     {
+        ScheduleNameTransfer s = ScheduleNameTransfer.Instance;
+        string scheduleName = s.getScheduleName();
 
         reference.GetValueAsync().ContinueWith(task => {
             if (task.IsFaulted)
@@ -56,21 +58,21 @@ public class ListController : MonoBehaviour
             else if (task.IsCompleted)
             {
                 // getting schedules for a particular user.
-                DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child("nhiremat");
+                DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child("nhiremat").Child(scheduleName);
 
                 Dictionary<string, object> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
 
                 foreach (string schedule in scheduleData.Keys)
                 {
-                    this.schedules.Add(new Schedule(schedule));
+                    this.locations.Add(new ScheduleLocation(schedule));
                 }
             }
         });
     }
 
-    void createScheduleList()
+    void createLocationsList()
     {
-        foreach (Schedule s in schedules)
+        foreach (ScheduleLocation s in locations)
         {
             ListItemPrefab.SetActive(true);
             GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
@@ -81,6 +83,6 @@ public class ListController : MonoBehaviour
             newSchedule.transform.parent = ContentPanel.transform;
             newSchedule.transform.localScale = Vector3.one;
         }
-        schedulesDisplayed = true;
+        locationsDisplayed = true;
     }
 }
