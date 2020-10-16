@@ -30,27 +30,6 @@ public class ListController : MonoBehaviour
 
         // Get the root reference location of the database.
         reference = FirebaseDatabase.DefaultInstance.RootReference;
-        /*
-
-                for (int i = 0; i < 20; i++)
-                {
-                    schedules.Add(new Schedule("schedule" + i));
-                }
-
-
-                foreach (Schedule s in schedules)
-                {
-                    GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
-
-                        ListItemController controller = newSchedule.GetComponent<ListItemController>();
-                        controller.Name.text = s.Name;
-
-                    newSchedule.transform.parent = ContentPanel.transform;
-                    newSchedule.transform.localScale = Vector3.one;
-
-
-                }
-        */
 
         getScheduleData();
         schedulesDisplayed = false;
@@ -76,6 +55,7 @@ public class ListController : MonoBehaviour
             }
             else if (task.IsCompleted)
             {
+                // getting schedules for a particular user.
                 DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child("nhiremat");
 
                 Dictionary<string, object> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
