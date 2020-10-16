@@ -8,26 +8,31 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Threading;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System;
 
 public class DisplayLocations : MonoBehaviour
 {
-
+    string TourName;
+    ArrayList tours;
+    bool toursDisplayed;
+    DB_Details dbDetails;
+    DatabaseReference reference;
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
     public InputField TourNameText;
-    public string TourName;
-    DB_Details dbDetails;
-    DatabaseReference reference;
+    public InputField AddLocationText;
 
-    ArrayList tours;
-    bool toursDisplayed;
 
-    // Start is called before the first frame update
+    
+
+    
     void Start()
     {
         tours = new ArrayList();
         dbDetails = new DB_Details();
         TourName = "PolyCampusTour";
+        TourNameText.text = TourName;
 
         // Set up the Editor before calling into the realtime database.
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
@@ -37,9 +42,7 @@ public class DisplayLocations : MonoBehaviour
 
         getTourData();
         toursDisplayed = false;
-       
-        // TourNameText.text = TourName;
-
+  
     }
 
     // Update is called once per frame
@@ -68,28 +71,103 @@ public class DisplayLocations : MonoBehaviour
 
                 foreach (string tour in tourData.Keys)
                 {
-                    this.tours.Add(new Tour(tour));
+                    this.tours.Add(tour);
                 }
                 Debug.Log(tours.Count);
             }
         });
-        Debug.Log(tours);
+        Debug.Log("tours="+tours);
     }
 
     void createTourList()
     {
-        // Debug.Log(tours.Count);
-        foreach (Tour s in tours)
+
+        
+        foreach (string s in tours)
         {
             GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
 
             LocationListItem controller = newSchedule.GetComponent<LocationListItem>();
-            controller.Name.text = s.Name;
+            controller.Name.text = s;
 
             newSchedule.transform.parent = ContentPanel.transform;
             newSchedule.transform.localScale = Vector3.one;
         }
         toursDisplayed = true;
     }
+
+    void updateTourListOnAdd(string name)
+    {
+
+        GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
+        LocationListItem controller = newSchedule.GetComponent<LocationListItem>();
+        controller.Name.text = name;
+        newSchedule.transform.parent = ContentPanel.transform;
+        newSchedule.transform.localScale = Vector3.one;
+
+    }
+
+
+    public void onAddLocation()
+    {
+      
+        print("Location" + AddLocationText.text + "added.");
+
+
+        this.tours.Add(AddLocationText.text);
+        updateTourListOnAdd(AddLocationText.text);
+        AddLocationText.text = null;
+        
+    }
+
+
+    public void onSave()
+    {
+
+        
+        string dummyString = "dummy";
+        //Creating JSON 
+        JObject locations = new JObject();
+        foreach (string s in tours)
+        {   
+            locations[s] = dummyString;
+        }
+        string jsonData = locations.ToString();
+
+
+        //Append Values to database
+        print("Writing to database values : " + jsonData);
+
+        try
+        {
+            reference.Child(dbDetails.getTourDBName()).Child(TourNameText.text).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    print("ERROR: when accessing Data from Database");
+
+                }
+                else if (task.IsCompleted)
+                {
+                    print("SUCCESS: DATA ADDED TO DATABASE");
+                }
+            });
+
+        }
+        catch (InvalidCastException e)
+        {
+            // Perform some action here, and then throw a new exception.
+            throw new Exception("EXCEPTION: ERROR while appending values to database  ", e);
+        }
+        catch (Exception e)
+        {
+            // Perform some action here, and then throw a new exception.
+            throw new Exception("EXCEPTION: ERROR while appending values to database  ", e);
+        }
+        SceneManager.LoadScene("ManagerTourView");
+    }
+
+
+
 
 }
