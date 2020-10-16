@@ -10,24 +10,34 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
-public class CreateTour : MonoBehaviour
+public class CreateSchedule : MonoBehaviour
 {
 
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
     public InputField TourNameText;
     public InputField AddLocationText;
+    public Dropdown TiMe_hours;
+    public Dropdown TiMe_mins;
     DB_Details dbDetails;
     DatabaseReference reference;
 
     ArrayList tours;
     bool toursDisplayed;
 
+    public static string time;
+    public static string time_h;
+    public static string time_m;
+
+    List<string> time_hours = new List<string>() { "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18" };
+    List<string> time_mins = new List<string>() { "00", "15", "30", "45" };
+
     // Start is called before the first frame update
     void Start()
     {
         tours = new ArrayList();
         dbDetails = new DB_Details();
+        PopulateList();
 
         // Set up the Editor before calling into the realtime database.
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
@@ -39,6 +49,28 @@ public class CreateTour : MonoBehaviour
         toursDisplayed = false;
 
     }
+
+    void PopulateList()
+    {
+        TiMe_hours.AddOptions(time_hours);
+        TiMe_mins.AddOptions(time_mins);
+    }
+
+    public void Dropdown_IndexChanged_hours(int index)
+    {
+        time_h = time_hours[index];
+
+    }
+
+    //dropdown index change function for minutes
+    public void Dropdown_IndexChanged_mins(int index)
+    {
+        time_m = time_mins[index];
+        //concatenate both the results
+        time = time_h + time_m;
+        //time = Selectedname.text;
+    }
+
    
     public void onAddLocation()
     {
