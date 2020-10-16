@@ -75,7 +75,6 @@ public class LocationService : MonoBehaviour
         // Start service before querying location
         Input.location.Start();
 
-
         float latitude = Input.location.lastData.latitude;
         float longitude = Input.location.lastData.longitude;
 
