@@ -11,7 +11,9 @@ public class ListItemController : MonoBehaviour
 
     public void delete()
     {
-
+        CrudOperations crud = new CrudOperations();
+        crud.deleteSchedule("scheduleDataBase", "nhiremat", Name.text);
+        Destroy(gameObject);
     }
 
     public void Edit()
