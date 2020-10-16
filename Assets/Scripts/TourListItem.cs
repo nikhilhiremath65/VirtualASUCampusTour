@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
+using UnityEngine.SceneManagement;
 
 public class TourListItem : MonoBehaviour
 {
@@ -12,6 +13,13 @@ public class TourListItem : MonoBehaviour
     public Text Name;
     public GameObject item;
     public GameObject deletePanel;
+
+    Singleton singleton;
+
+    private void Start()
+    {
+        singleton = Singleton.Instance();
+    }
 
     public void confirmDelete()
     {
@@ -50,13 +58,17 @@ public class TourListItem : MonoBehaviour
         deletePanel.SetActive(false);
     }
 
-    public void Edit()
+    public void Edit(string scenename)
     {
         // write edit logic here
+        singleton.setTourName(Name.text);
+        SceneManager.LoadScene(scenename);
     }
 
-    public void nextScene()
+    public void nextScene(string scenename)
     {
         // write next scene logic here
+        singleton.setTourName(Name.text);
+        SceneManager.LoadScene(scenename);
     }
 }
