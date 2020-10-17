@@ -33,12 +33,13 @@ public class CreateSchedule : MonoBehaviour
     public static string time_h;
     public static string time_m;
     public string username;
+    string jsonData;
 
 
     //end region
 
-    List<string> time_hours = new List<string>() { "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18" };
-    List<string> time_mins = new List<string>() { "00", "15", "30", "45" };
+    List<string> time_hours = new List<string>() { " ","08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18" };
+    List<string> time_mins = new List<string>() { " ", "00", "15", "30", "45" };
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +65,8 @@ public class CreateSchedule : MonoBehaviour
     //dropdown index change function for hours
     public void Dropdown_IndexChanged_hours(int index)
     {
+        print(index);
+        print("hello");
         time_h = time_hours[index];
 
     }
@@ -73,11 +76,12 @@ public class CreateSchedule : MonoBehaviour
     {
         time_m = time_mins[index];
         //concatenate both the results
-        for (int i = 0; i < tours.Count; i++)
-        {
-            time = time_h + time_m;
-            Timearr[i] = time;
-        }
+        //for (int i = 0; i < tours.Count; i++)
+        //
+            time = time_h+":"+time_m;
+       // print(time);
+            
+        //}
     }
 
     void PopulateList()
@@ -92,18 +96,20 @@ public class CreateSchedule : MonoBehaviour
         print("Location" + AddLocationText.text + "added.");
         this.tours.Add(AddLocationText.text);
         this.Timearr.Add(time);
-        updateTourListOnAdd(AddLocationText.text);
+        updateTourListOnAdd(AddLocationText.text, time);
         //print("Array values" + tours.Count);
         AddLocationText.text = null;
-
+        //AddLocationText.text = null;
     }
 
-    void updateTourListOnAdd(string name)
+    void updateTourListOnAdd(string name, string updtime)
     {
 
         GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
         LocationListItem controller = newSchedule.GetComponent<LocationListItem>();
         controller.Name.text = name;
+        controller.Time.text = updtime;
+        print(updtime);
         newSchedule.transform.parent = ContentPanel.transform;
         newSchedule.transform.localScale = Vector3.one;
     }
@@ -113,40 +119,36 @@ public class CreateSchedule : MonoBehaviour
     {
 
         string userName = "nikhil";
-        string jsonData;
-
+        JObject Timeobj = new JObject();
+        JObject Locobj = new JObject();
+        JObject Scheduleobj = new JObject();
         //Creating JSON 
 
         for (int i = 0; i < tours.Count; i++)
         {
-            JObject Timeobj = new JObject();
+            //JObject Timeobj = new JObject();
 
-            Timeobj["Time"] = Timearr[i];
+            Timeobj["Time"] = Timearr[i].ToString();
 
-            JObject Locobj = new JObject();
+            //JObject Locobj = new JObject();
 
-
+            
             Locobj[tours[i]] = Timeobj;
 
-            JObject Scheduleobj = new JObject();
-
-
-            Scheduleobj[TourNameText.text] = Locobj;
-
+            //JObject Scheduleobj = new JObject();
 
             
 
         }
 
+        Scheduleobj[TourNameText.text] = Locobj;
         jsonData = Scheduleobj.ToString();
-
-
         //Append Values to database
         print("Wrting to database values : " + jsonData);
 
         try
         {
-            reference.Child(dbDetails.getScheduleDBName()).Child(userName).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
+            reference.Child(dbDetails.getScheduleDBName()).Child(userName).Child("Friday Schedule").SetRawJsonValueAsync(jsonData).ContinueWith(task =>
             {
                 if (task.IsFaulted)
                 {
@@ -171,7 +173,7 @@ public class CreateSchedule : MonoBehaviour
             // Perform some action here, and then throw a new exception.
             throw new Exception("EXCEPTION: ERROR while appending values to database  ", e);
         }
-        SceneManager.LoadScene("ManagerTourView");
+        //SceneManager.LoadScene("ManagerTourView");
     }
 
     /*public void OnSubmit()

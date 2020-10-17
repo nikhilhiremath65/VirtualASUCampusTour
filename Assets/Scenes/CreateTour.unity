@@ -467,6 +467,7 @@ MonoBehaviour:
   AddLocationText: {fileID: 1561438597}
   TiMe_hours: {fileID: 3781452194026908697}
   TiMe_mins: {fileID: 3781452194943168370}
+  username: 
 --- !u!114 &91848503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,6 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: {fileID: 573240170}
+  Time: {fileID: 721125905}
   item: {fileID: 258186701}
   deletePanel: {fileID: 210543314}
   TourName: 
@@ -7019,7 +7021,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Scgedules
+  m_Text: Schedules
 --- !u!222 &6823210640100447995
 CanvasRenderer:
   m_ObjectHideFlags: 0

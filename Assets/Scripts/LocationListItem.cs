@@ -10,9 +10,10 @@ public class LocationListItem : MonoBehaviour
 {
 
     public Text Name;
+    public Text Time;
     public GameObject item;
     public GameObject deletePanel;
-    public string TourName = "PolyCampusTour";
+    public string TourName = "nikhil";
 
     public void confirmDelete()
     {
@@ -37,7 +38,7 @@ public class LocationListItem : MonoBehaviour
         // Get the root reference location of the database.
         DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-        reference.Child(dbDetails.getTourDBName()).Child(TourName).Child(Name.text).RemoveValueAsync().ContinueWith(task =>
+        reference.Child(dbDetails.getScheduleDBName()).Child(TourName).Child(Name.text).Child(Time.text).RemoveValueAsync().ContinueWith(task =>
         {
             if (task.IsFaulted)
             {
