@@ -799,7 +799,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -1.3653, y: -718.2267}
+  m_AnchoredPosition: {x: -1.3653, y: -374.81418}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1054470255
@@ -2408,6 +2408,7 @@ GameObject:
   - component: {fileID: 6590293871687936880}
   - component: {fileID: 5213951707557817456}
   - component: {fileID: 408250995782250194}
+  - component: {fileID: 408250995782250195}
   m_Layer: 5
   m_Name: ListItem
   m_TagString: Untagged
@@ -2430,6 +2431,22 @@ MonoBehaviour:
   Name: {fileID: 5448293727834251419}
   item: {fileID: 408250995782250193}
   deletePanel: {fileID: 2003097148}
+--- !u!114 &408250995782250195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408250995782250193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7cb1687bfb9746fa81e845ee2ff66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: {fileID: 5448293727834251419}
+  item: {fileID: 0}
+  deletePanel: {fileID: 0}
+  scheduleName: 
 --- !u!222 &595101404686842915
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@
     private static Singleton _instance;
 
     private string TourName;
+    private string ScheduleName;
 
     protected Singleton()
     {
@@ -27,5 +28,14 @@
     public string getTourName()
     {
         return this.TourName;
+    }
+    public void setScheduleName(string ScheduleName)
+    {
+        this.ScheduleName = ScheduleName;
+    }
+
+    public string getScheduleName()
+    {
+        return this.ScheduleName;
     }
 }

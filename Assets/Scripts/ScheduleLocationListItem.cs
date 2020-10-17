@@ -6,19 +6,17 @@ using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
 
-public class LocationListItem : MonoBehaviour
+public class ScheduleLocationListItem : MonoBehaviour
 {
 
     public Text Name;
     public GameObject item;
     public GameObject deletePanel;
-    public string TourName = "PolyCampusTour";
+    public string scheduleName = "";
 
     Singleton singleton;
     public void confirmDelete()
     {
-        singleton = Singleton.Instance();
-        TourName = singleton.getTourName();
         //deletePanel.transform.SetAsLastSibling();
         deletePanel.SetActive(true);
         //Debug.Log(Name.text);
@@ -31,6 +29,8 @@ public class LocationListItem : MonoBehaviour
 
     public void onDelete()
     {
+        singleton = Singleton.Instance();
+        scheduleName = singleton.getScheduleName();
         // write delete logic here
         DB_Details dbDetails = new DB_Details();
 
@@ -40,7 +40,7 @@ public class LocationListItem : MonoBehaviour
         // Get the root reference location of the database.
         DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-        reference.Child(dbDetails.getTourDBName()).Child(TourName).Child(Name.text).RemoveValueAsync().ContinueWith(task =>
+        reference.Child(dbDetails.getTourDBName()).Child(scheduleName).Child(Name.text).RemoveValueAsync().ContinueWith(task =>
         {
             if (task.IsFaulted)
             {

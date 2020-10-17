@@ -47,7 +47,8 @@ public class ListController : MonoBehaviour
     void getScheduleData()
     {
 
-        reference.GetValueAsync().ContinueWith(task => {
+        reference.GetValueAsync().ContinueWith(task =>
+        {
             if (task.IsFaulted)
             {
                 // Handle the error...
