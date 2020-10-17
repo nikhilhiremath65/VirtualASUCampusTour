@@ -12,6 +12,9 @@ using System;
 
 public class CreateSchedule : MonoBehaviour
 {
+    //region variables
+    public static string location;
+    public static string scheduleName;
 
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
@@ -23,11 +26,16 @@ public class CreateSchedule : MonoBehaviour
     DatabaseReference reference;
 
     ArrayList tours;
+    ArrayList Timearr;
     bool toursDisplayed;
 
     public static string time;
     public static string time_h;
     public static string time_m;
+    public string username;
+
+
+    //end region
 
     List<string> time_hours = new List<string>() { "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18" };
     List<string> time_mins = new List<string>() { "00", "15", "30", "45" };
@@ -36,8 +44,11 @@ public class CreateSchedule : MonoBehaviour
     void Start()
     {
         tours = new ArrayList();
+        Timearr = new ArrayList();
         dbDetails = new DB_Details();
         PopulateList();
+
+        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://asu-ar-app.firebaseio.com/scheduleDataBase");
 
         // Set up the Editor before calling into the realtime database.
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
@@ -45,17 +56,12 @@ public class CreateSchedule : MonoBehaviour
         // Get the root reference location of the database.
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-        
+
         toursDisplayed = false;
 
     }
 
-    void PopulateList()
-    {
-        TiMe_hours.AddOptions(time_hours);
-        TiMe_mins.AddOptions(time_mins);
-    }
-
+    //dropdown index change function for hours
     public void Dropdown_IndexChanged_hours(int index)
     {
         time_h = time_hours[index];
@@ -67,16 +73,25 @@ public class CreateSchedule : MonoBehaviour
     {
         time_m = time_mins[index];
         //concatenate both the results
-        time = time_h + time_m;
-        //time = Selectedname.text;
+        for (int i = 0; i < tours.Count; i++)
+        {
+            time = time_h + time_m;
+            Timearr[i] = time;
+        }
     }
 
-   
+    void PopulateList()
+    {
+        TiMe_hours.AddOptions(time_hours);
+        TiMe_mins.AddOptions(time_mins);
+    }
+
     public void onAddLocation()
     {
 
         print("Location" + AddLocationText.text + "added.");
         this.tours.Add(AddLocationText.text);
+        this.Timearr.Add(time);
         updateTourListOnAdd(AddLocationText.text);
         //print("Array values" + tours.Count);
         AddLocationText.text = null;
@@ -91,51 +106,65 @@ public class CreateSchedule : MonoBehaviour
         controller.Name.text = name;
         newSchedule.transform.parent = ContentPanel.transform;
         newSchedule.transform.localScale = Vector3.one;
-
     }
 
 
     public void onSave()
     {
 
-        string dummyString = "dummy";
+        string userName = "nikhil";
+        string jsonData;
 
         //Creating JSON 
 
-
-        JObject locations = new JObject();
-        foreach (string s in tours)
+        for (int i = 0; i < tours.Count; i++)
         {
-            locations[s] = dummyString;
+            JObject Timeobj = new JObject();
+
+            Timeobj["Time"] = Timearr[i];
+
+            JObject Locobj = new JObject();
+
+
+            Locobj[tours[i]] = Timeobj;
+
+            JObject Scheduleobj = new JObject();
+
+
+            Scheduleobj[TourNameText.text] = Locobj;
+
+
+            
+
         }
 
-        string jsonData = locations.ToString();
+        jsonData = Scheduleobj.ToString();
 
 
         //Append Values to database
         print("Wrting to database values : " + jsonData);
-             
-        try { 
-        reference.Child(dbDetails.getTourDBName()).Child(TourNameText.text).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
+
+        try
         {
-            if (task.IsFaulted)
+            reference.Child(dbDetails.getScheduleDBName()).Child(userName).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
             {
-                print("ERROR: when accessing Data from Database");
+                if (task.IsFaulted)
+                {
+                    print("ERROR: when accessing Data from Database");
 
-            }
-            else if (task.IsCompleted)
-            {
-                print("SUCCESS: DATA ADDED TO DATABASE");
-            }
+                }
+                else if (task.IsCompleted)
+                {
+                    print("SUCCESS: DATA ADDED TO DATABASE");
+                }
 
 
-        });
-
+            });
         }
         catch (InvalidCastException e)
         {
-                 // Perform some action here, and then throw a new exception.
-                 throw new Exception("EXCEPTION: ERROR while appending values to database  ", e);
+            // Perform some action here, and then throw a new exception.
+            throw new Exception("EXCEPTION: ERROR while appending values to database  ", e);
         }
         catch (Exception e)
         {
@@ -145,5 +174,56 @@ public class CreateSchedule : MonoBehaviour
         SceneManager.LoadScene("ManagerTourView");
     }
 
+    /*public void OnSubmit()
+    {
+        location = locationText.text;
+        scheduleName = scheduleNameText.text;
+        Schedule_name.text = scheduleName;
+        //prints the data onto console
+        Debug.Log("location = " + location);
+        Debug.Log("time = " + time);
+        Debug.Log("schedule = " + scheduleName);
 
+        //testing
+        //forTests();
+
+        //posts the data onto the database
+        PostToDatabase();
+    }*/
+
+    /*public void forTests()
+    {
+        location = "Hayden";
+        time = "14:00";
+        scheduleName = "sch1";
+        //prints the data onto console
+        Debug.Log("location = " + location);
+        Debug.Log("time = " + time);
+        Debug.Log("schedule = " + scheduleName);
+    }*/
+
+    /*private void PostToDatabase()
+    {
+        //User user = new User();
+        JObject time_jobj = new JObject();
+        time_jobj["Time"] = time;
+        JObject location_jobj = new JObject();
+        location_jobj[location] = time_jobj;
+        print(location_jobj.ToString());
+
+
+        /*if(RestClient.Get("https://fir-f7893.firebaseio.com/" + scheduleName  + ".json"))
+        {
+
+        }*/
+
+        //connects to the firebase
+       // RestClient.Put("https://virtualasucampustour.firebaseio.com/" + scheduleName + ".json", location_jobj.ToString());
+    //}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }
