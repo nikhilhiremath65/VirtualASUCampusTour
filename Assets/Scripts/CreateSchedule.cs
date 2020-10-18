@@ -43,6 +43,7 @@ public class CreateSchedule : MonoBehaviour
         // Get the root reference location of the database.
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
+        // To check if schedules are already displayed
         schedulesDisplayed = false;
     }
 
