@@ -19,7 +19,99 @@ namespace UnityEngine.UI.Extensions
         public Color disabledTextColor;
         public DropDownListItem SelectedItem { get; private set; } //outside world gets to get this, not set it
 
-        public List<string> AvailableOptions;
+        public List<string> AvailableOptionsCustomize = new List<string> { "A Mountain",
+                                                                        "A. J. Matthews Center",
+                                                                        "Adelphi Commons",
+                                                                        "Alberta B. Farrington Softball Stadium",
+                                                                        "Armstrong Hall",
+                                                                        "Art Building",
+                                                                        "Art Warehouse",
+                                                                        "Artisan Court at the Brickyard",
+                                                                        "ASU Art Museum Brickyard",
+                                                                        "ASU Gammage",
+                                                                        "ASU Performing and Media Arts",
+                                                                        "ASU Police Department",
+                                                                        "Bateman Physical Sciences Center",
+                                                                        "Best Hall",
+                                                                        "Bulldog Hall",
+                                                                        "Business Administration",
+                                                                        "Business Administration C-Wing",
+                                                                        "Campus Children's Center",
+                                                                        "Center for Family Studies",
+                                                                        "Centerpoint",
+                                                                        "Ceramics Research Center and Brickyard Gallery",
+                                                                        "Charles Wexler Hall",
+                                                                        "College Avenue Marketplace",
+                                                                        "Community Services Building",
+                                                                        "Cowden Family Resources",
+                                                                        "Creativity Commons",
+                                                                        "Danforth Chapel",
+                                                                        "Daniel E. Noble Science and Engineering Library",
+                                                                        "Desert Arboretum Park",
+                                                                        "Desert Financial Arena",
+                                                                        "Design Buildings",
+                                                                        "Discovery Hall",
+                                                                        "Dixie Gammage Hall",
+                                                                        "Ed and Nadine Carson Student-Athlete Center",
+                                                                        "Education Lecture Hall",
+                                                                        "Engineering Center",
+                                                                        "Engineering Research Center",
+                                                                        "Fulton Center",
+                                                                        "Future Sun Devil Welcome Center and College Ave. Commons",
+                                                                        "G. Homer Durham Hall",
+                                                                        "Goldwater Center",
+                                                                        "H.B. Farmer Education Building",
+                                                                        "Hayden Hall",
+                                                                        "Hayden Library",
+                                                                        "Health Service Building",
+                                                                        "Inclusivity at ASU",
+                                                                        "Interdisciplinary A & B",
+                                                                        "Interdisciplinary Science and Technology I",
+                                                                        "Interdisciplinary Science and Technology II",
+                                                                        "Interdisciplinary Science and Technology II",
+                                                                        "Interdisciplinary Science and Technology IV",
+                                                                        "Interdisciplinary Science and Technology IV",
+                                                                        "Interdisciplinary Science and Technology V",
+                                                                        "Ira D. Payne Educational Hall",
+                                                                        "Irish Hall",
+                                                                        "J. Russell and Bonita Nelson Fine Arts Center | ASU Art Museum",
+                                                                        "John W. Schwada Building",
+                                                                        "L. S. Neeb Hall",
+                                                                        "Lattie F. Coor Hall",
+                                                                        "Life Sciences Center",
+                                                                        "Lyceum Theatre",
+                                                                        "Manzanita Hall",
+                                                                        "Matthews Hall",
+                                                                        "McClintock Hall",
+                                                                        "McCord Hall",
+                                                                        "Memorial Union",
+                                                                        "Moeur Building",
+                                                                        "Mona Plummer Aquatic Complex",
+                                                                        "Murdock Hall",
+                                                                        "Music Building",
+                                                                        "Old Main",
+                                                                        "Orange Mall Green Infrastructure Project",
+                                                                        "Orchid House at the Brickyard",
+                                                                        "Packard Baseball Stadium",
+                                                                        "Palo Verde East",
+                                                                        "Palo Verde West",
+                                                                        "Psychology Building",
+                                                                        "Psychology North",
+                                                                        "Riches Wrestling Complex",
+                                                                        "Robson Family Player Facility",
+                                                                        "Ross-Blakley Hall",
+                                                                        "Social Sciences Building",
+                                                                        "Student Pavilion",
+                                                                        "Sun Angel Stadium /Joe Selleh Track",
+                                                                        "Sun Devil Fitness Complex Tempe",
+                                                                        "Sun Devil Hall",
+                                                                        "Sun Devil Stadium",
+                                                                        "Sustainability Point of Pride: ASU Police Department",
+                                                                        "The Biodesign Institute - Bldg A",
+                                                                        "The Biodesign Institute - Bldg B",
+                                                                        "Tower Center",
+                                                                        "Weatherup Center",
+                                                                        "Wrigley Hall"};
 
         //private bool isInitialized = false;
         private bool _isPanelActive = false;
@@ -129,9 +221,9 @@ namespace UnityEngine.UI.Extensions
         }
 		public void Start()
 		{
-			if (SelectFirstItemOnStart && AvailableOptions.Count > 0) {
+			if (SelectFirstItemOnStart && AvailableOptionsCustomize.Count > 0) {
 				ToggleDropdownPanel (false);
-				OnItemClicked (AvailableOptions [0]);
+				OnItemClicked (AvailableOptionsCustomize [0]);
 			}
 		}
 
@@ -222,8 +314,8 @@ namespace UnityEngine.UI.Extensions
             _panelItems.Clear();
             _prunedPanelItems.Clear();
             panelObjects.Clear();
-
-            foreach (string option in AvailableOptions)
+            
+            foreach (string option in AvailableOptionsCustomize)
             {
                 _panelItems.Add(option.ToLower());
             }
@@ -231,7 +323,7 @@ namespace UnityEngine.UI.Extensions
             List<GameObject> itemObjs = new List<GameObject>(panelObjects.Values);
 
             int indx = 0;
-            while (itemObjs.Count < AvailableOptions.Count)
+            while (itemObjs.Count < AvailableOptionsCustomize.Count)
             {
                 GameObject newItem = Instantiate(itemTemplate) as GameObject;
                 newItem.name = "Item " + indx;
@@ -242,8 +334,8 @@ namespace UnityEngine.UI.Extensions
 
             for (int i = 0; i < itemObjs.Count; i++)
             {
-                itemObjs[i].SetActive(i <= AvailableOptions.Count);
-                if (i < AvailableOptions.Count)
+                itemObjs[i].SetActive(i <= AvailableOptionsCustomize.Count);
+                if (i < AvailableOptionsCustomize.Count)
                 {
                     itemObjs[i].name = "Item " + i + " " + _panelItems[i];
                     itemObjs[i].transform.Find("Text").GetComponent<Text>().text = _panelItems[i]; //set the text value
