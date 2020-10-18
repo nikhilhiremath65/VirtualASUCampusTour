@@ -6,6 +6,7 @@ using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
 
+// Location item used to display its details
 public class LocationWithTimeItem : MonoBehaviour
 {
 
