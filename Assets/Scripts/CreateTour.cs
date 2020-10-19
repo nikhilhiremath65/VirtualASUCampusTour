@@ -123,4 +123,20 @@ public class CreateTour : MonoBehaviour
             ErrorPanel.SetActive(true);
         }
     }
+
+
+    public void onDelete(Text name)
+    {
+        for (int i = 0; i < tours.Count; i++)
+        {
+            if (tours[i].Equals(name.text))
+            {
+                tours.RemoveAt(i);
+                break;
+            }
+        }
+
+    }
+
+
 }
