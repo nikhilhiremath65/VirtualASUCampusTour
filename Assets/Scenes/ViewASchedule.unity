@@ -400,6 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: {fileID: 1997900005}
+  deletePanel: {fileID: 0}
 --- !u!114 &400673268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -907,7 +908,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tours
+  m_Text: Schedules
 --- !u!222 &799126991
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1912,7 +1913,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: List Of Locations
+  m_Text: Locations
 --- !u!222 &1711783257
 CanvasRenderer:
   m_ObjectHideFlags: 0
