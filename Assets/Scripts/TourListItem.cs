@@ -50,6 +50,7 @@ public class TourListItem : MonoBehaviour
             }
             else if (task.IsCompleted)
             {
+                DataSnapshot snapshot = task.Result;
                 Debug.Log("SUCCESS: DATA Deleted IN DATABASE");
             }
         });
