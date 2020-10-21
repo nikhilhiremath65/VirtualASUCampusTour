@@ -2004,7 +2004,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: List Of Locations
+  m_Text: Locations
 --- !u!222 &1711783257
 CanvasRenderer:
   m_ObjectHideFlags: 0

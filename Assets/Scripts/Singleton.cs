@@ -5,8 +5,10 @@
     private string TourName;
     private string ScheduleName;
 
+    private string UserName = "nhiremat";
     protected Singleton()
     {
+
     }
 
     public static Singleton Instance()
@@ -37,5 +39,14 @@
     public string getScheduleName()
     {
         return this.ScheduleName;
+    }
+
+    public void setUserName(string UserName)
+    {
+        this.ScheduleName = UserName;
+    }
+    public string getUserName()
+    {
+        return this.UserName;
     }
 }
