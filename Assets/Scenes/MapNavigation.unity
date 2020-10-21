@@ -165,6 +165,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 813287886060266223, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 813287886060266223, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 975668196933678985, guid: 998052222df7dc6998338894b830732d,
         type: 3}
       propertyPath: m_Layer
@@ -800,6 +810,36 @@ PrefabInstance:
       propertyPath: AvailableOptions.Array.data[119]
       value: Social Sciences Building
       objectReference: {fileID: 0}
+    - target: {fileID: 3154594406681609436, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 715
+      objectReference: {fileID: 0}
+    - target: {fileID: 3154594406681609436, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290203295233758141, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290203295233758141, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_ChildScaleWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290203295233758141, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_ChildControlHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290203295233758141, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_ChildScaleHeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3862608054596356764, guid: 998052222df7dc6998338894b830732d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -884,6 +924,26 @@ PrefabInstance:
         type: 3}
       propertyPath: AvailableOptions.Array.data[7]
       value: Health Service Building
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243264413353357582, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243264413353357582, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093518841135097355, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 715
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093518841135097355, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6438026418476373851, guid: 998052222df7dc6998338894b830732d,
         type: 3}
@@ -973,6 +1033,26 @@ PrefabInstance:
     - target: {fileID: 7916031196907952569, guid: 998052222df7dc6998338894b830732d,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366207660748526499, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366207660748526499, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_ChildScaleWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366207660748526499, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_ChildControlHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366207660748526499, guid: 998052222df7dc6998338894b830732d,
+        type: 3}
+      propertyPath: m_ChildScaleHeight
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8559069718381218744, guid: 998052222df7dc6998338894b830732d,

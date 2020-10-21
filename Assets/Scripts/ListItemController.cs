@@ -9,6 +9,7 @@ public class ListItemController : MonoBehaviour
 {
 
     public Text Name;
+    public Text Time;
     Singleton singleton;
     public GameObject deletePanel;
     public void confirmDelete()
