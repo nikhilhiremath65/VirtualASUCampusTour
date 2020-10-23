@@ -20,21 +20,21 @@
         return _instance;
     }
 
-    public void setTourName(string TourName)
+    public void SetTourName(string TourName)
     {
         this.TourName = TourName;
     }
 
-    public string getTourName()
+    public string GetTourName()
     {
         return this.TourName;
     }
-    public void setScheduleName(string ScheduleName)
+    public void SetScheduleName(string ScheduleName)
     {
         this.ScheduleName = ScheduleName;
     }
 
-    public string getScheduleName()
+    public string GetScheduleName()
     {
         return this.ScheduleName;
     }

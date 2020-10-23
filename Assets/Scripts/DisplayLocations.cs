@@ -44,7 +44,7 @@ public class DisplayLocations : MonoBehaviour
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
         singleton = Singleton.Instance();
-        TourName = singleton.getTourName();
+        TourName = singleton.GetTourName();
 
         TourNameText.text = TourName;
 

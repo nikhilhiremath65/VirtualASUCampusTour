@@ -18,7 +18,7 @@ public class LocationListItem : MonoBehaviour
     public void confirmDelete()
     {
         singleton = Singleton.Instance();
-        TourName = singleton.getTourName();
+        TourName = singleton.GetTourName();
         //deletePanel.transform.SetAsLastSibling();
         deletePanel.SetActive(true);
         //Debug.Log(Name.text);

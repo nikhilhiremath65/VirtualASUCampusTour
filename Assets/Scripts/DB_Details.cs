@@ -1,10 +1,14 @@
-﻿public class DB_Details
+﻿using System;
+
+public class DB_Details
 {
 
     private string URL = "https://asu-ar-app.firebaseio.com/";
     private string buildingDBName = "buildingDataBase";
     private string scheduleDBName = "scheduleDataBase";
     private string tourDBName = "tourDataBase";
+    private string depttourDBName = "departmentTourDataBase";
+
 
     public string getDBUrl()
     {
@@ -24,5 +28,10 @@
     public string getTourDBName()
     {
         return tourDBName;
+    }
+
+    internal string getDeptTourDBName()
+    {
+        return depttourDBName;
     }
 }

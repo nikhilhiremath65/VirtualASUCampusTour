@@ -1,30 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using Crud;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class ListItemController : MonoBehaviour
+public class Dept_tourlistcontroller : MonoBehaviour
 {
 
     public Text Name;
     Singleton singleton;
     public GameObject deletePanel;
-    public void confirmDelete()
+    public void ConfirmDelete()
     {
         deletePanel.SetActive(true);
     }
 
-    public void onCancel()
+    public void OnCancel()
     {
         deletePanel.SetActive(false);
     }
-    public void delete()
+    public void Delete()
 
     {
-        CrudOperations crud = new CrudOperations();
-        crud.deleteSchedule("scheduleDataBase", "nhiremat", Name.text);
         Destroy(gameObject);
     }
 
@@ -36,7 +31,7 @@ public class ListItemController : MonoBehaviour
         SceneManager.LoadScene(scenename);
     }
 
-    public void nextScene()
+    public void NextScene()
     {
         // write next scene logic here
     }

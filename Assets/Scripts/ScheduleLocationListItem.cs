@@ -30,7 +30,7 @@ public class ScheduleLocationListItem : MonoBehaviour
     public void onDelete()
     {
         singleton = Singleton.Instance();
-        scheduleName = singleton.getScheduleName();
+        scheduleName = singleton.GetScheduleName();
         // write delete logic here
         DB_Details dbDetails = new DB_Details();
 

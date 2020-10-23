@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Firebase;
 using Firebase.Database;
@@ -50,6 +48,7 @@ public class TourListItem : MonoBehaviour
             }
             else if (task.IsCompleted)
             {
+                
                 Debug.Log("SUCCESS: DATA Deleted IN DATABASE");
             }
         });
@@ -61,14 +60,14 @@ public class TourListItem : MonoBehaviour
     public void Edit(string scenename)
     {
         // write edit logic here
-        singleton.setTourName(Name.text);
+        singleton.SetTourName(Name.text);
         SceneManager.LoadScene(scenename);
     }
 
     public void nextScene(string scenename)
     {
         // write next scene logic here
-        singleton.setTourName(Name.text);
+        singleton.SetTourName(Name.text);
         SceneManager.LoadScene(scenename);
     }
 }
