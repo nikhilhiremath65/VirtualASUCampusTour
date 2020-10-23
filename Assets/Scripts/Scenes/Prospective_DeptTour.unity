@@ -1014,7 +1014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa698ad6084f4326b1c647538f0801c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: {fileID: 0}
+  Name: {fileID: 942161792686779691}
   deletePanel: {fileID: 0}
 --- !u!114 &4838387113857262494
 MonoBehaviour:
@@ -2034,7 +2034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770e50ea0b3194895bb87b5a33d4b0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ContentPanel: {fileID: 0}
+  ContentPanel: {fileID: 6123440368776000998}
   ListItemPrefab: {fileID: 0}
 --- !u!224 &6808177257469986160
 RectTransform:
