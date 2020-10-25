@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 43123477}
   - component: {fileID: 43123476}
   - component: {fileID: 43123474}
+  - component: {fileID: 43123480}
   m_Layer: 5
   m_Name: ContentContainerGameObject
   m_TagString: Untagged
@@ -149,7 +150,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43123473}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d32b2cfac9c93444ab188a169400dbac, type: 3}
   m_Name: 
@@ -261,6 +262,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43123473}
   m_CullTransparentMesh: 0
+--- !u!114 &43123480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43123473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b079fc2eec90404486f6192d14a75d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ContentPanel: {fileID: 1020428604}
+  ErrorPanel: {fileID: 1197719016}
+  ListItemPrefab: {fileID: 480516178}
+  ErrorMessage: {fileID: 2030155187}
+  TourNameText: {fileID: 1043711741}
+  AddLocationText: {fileID: 1020232323}
 --- !u!1 &53926533
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,7 +1611,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 43123474}
+      - m_Target: {fileID: 43123480}
         m_MethodName: onAddLocation
         m_Mode: 1
         m_Arguments:
@@ -5272,7 +5291,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 43123474}
+      - m_Target: {fileID: 43123480}
         m_MethodName: onSave
         m_Mode: 1
         m_Arguments:

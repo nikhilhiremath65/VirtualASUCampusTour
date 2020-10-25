@@ -150,51 +150,6 @@ public class PSUpdateLocations : MonoBehaviour
 
     public void onSave()
     {
-        string dummyString = "dummy";
-
-        //Creating JSON 
-        JObject locations = new JObject();
-
-        foreach (string s in tours)
-        {
-            locations[s] = dummyString;
-        }
-        string jsonData = locations.ToString();
-
-        try
-        {
-            if (TourNameText.text == "")
-            {
-                throw new Exception("Please enter Tour Name!");
-            }
-
-            reference.Child(dbDetails.getTourDBName()).Child(TourNameText.text).RemoveValueAsync();
-
-            reference.Child(dbDetails.getTourDBName()).Child(TourNameText.text).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
-            {
-                if (task.IsFaulted)
-                {
-                    throw new Exception("ERROR while appending values to database.");
-
-                }
-                else if (task.IsCompleted)
-                {
-                    Debug.Log("SUCCESS: DATA ADDED TO DATABASE");
-                }
-            });
-            SceneManager.LoadScene("ManagerTourView");
-        }
-        catch (InvalidCastException e)
-        {
-            // Perform some action here, and then throw a new exception.
-            ErrorMessage.text = e.Message;
-            ErrorPanel.SetActive(true);
-        }
-        catch (Exception e)
-        {
-            // Perform some action here, and then throw a new exception.
-            ErrorMessage.text = e.Message;
-            ErrorPanel.SetActive(true);
-        }
+        
     }
 }
