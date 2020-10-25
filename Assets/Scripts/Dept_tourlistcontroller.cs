@@ -6,6 +6,10 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Threading;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System;
 
 public class Dept_tourlistcontroller : MonoBehaviour
 {
@@ -16,25 +20,31 @@ public class Dept_tourlistcontroller : MonoBehaviour
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
 
-
     DB_Details dbDetails;
     DatabaseReference reference;
     bool schedulesDisplayed;
 
-    ArrayList schedules;
+    ArrayList tours;
+    public bool locationsDisplayed;
+    
 
     void Start()
     {
-        schedules = new ArrayList();
+        tours = new ArrayList();
 
         dbDetails = new DB_Details();
 
-        // Set up the Editor before calling into the realtime database.
+        //Set up the Editor before calling into the realtime database.
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
 
         // Get the root reference location of the database.
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
+        //singleton = Singleton.Instance();
+        //Tourname = singleton.GetDeptTourName();
+        //Name.text = Tourname;
+        //tours.Add(Tourname);
+        
         getScheduleData();
         schedulesDisplayed = false;
     }
@@ -54,16 +64,60 @@ public class Dept_tourlistcontroller : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Edit(string scenename)
+    public void Edit()
     {
-        // write edit logic here
-        //singleton = Singleton.Instance();
-        //singleton.SetScheduleName(Name.text);
-        SceneManager.LoadScene(scenename);
+    
+        
     }
 
     public void NextScene()
     {
         // write next scene logic here
+    }
+    void Update()
+    {
+        if (!schedulesDisplayed && tours.Count > 0)
+        {
+            createScheduleList();
+        }
+    }
+    void getScheduleData()
+    {
+
+        reference.GetValueAsync().ContinueWith(task =>
+        {
+            if (task.IsFaulted)
+            {
+                // Handle the error...
+                Debug.Log("error fetching data");
+            }
+            else if (task.IsCompleted)
+            {
+                // getting schedules for a particular user.
+                DataSnapshot snapshot = task.Result.Child(dbDetails.getDeptTourDBName()).Child("Business");
+
+                Dictionary<string, string> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
+
+                foreach (string schedule in scheduleData.Keys)
+                {
+                    this.tours.Add(new Schedule(schedule));
+                }
+            }
+        });
+    }
+    void createScheduleList()
+    {
+        foreach (Schedule s in tours)
+        {
+            ListItemPrefab.SetActive(true);
+            GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
+
+            ListItemController controller = newSchedule.GetComponent<ListItemController>();
+            controller.Name.text = s.Name;
+
+            newSchedule.transform.parent = ContentPanel.transform;
+            newSchedule.transform.localScale = Vector3.one;
+        }
+        schedulesDisplayed = true;
     }
 }

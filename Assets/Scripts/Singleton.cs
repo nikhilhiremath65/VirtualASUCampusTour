@@ -4,6 +4,7 @@
 
     private string TourName;
     private string ScheduleName;
+    private string DeptTourName;
 
     private string UserName = "nhiremat";
     protected Singleton()
@@ -48,5 +49,9 @@
     public string getUserName()
     {
         return this.UserName;
+    }
+    public string GetDeptTourName()
+    {
+        return this.DeptTourName;
     }
 }

@@ -46,7 +46,7 @@ public class DisplayLocationsSchedule : MonoBehaviour
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
         singleton = Singleton.Instance();
-        ScheduleName = singleton.getScheduleName();
+        ScheduleName = singleton.GetScheduleName();
         UserName = singleton.getUserName();
         ScheduleNameText.text = ScheduleName;
 
