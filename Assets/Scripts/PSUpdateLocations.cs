@@ -22,6 +22,7 @@ public class PSUpdateLocations : MonoBehaviour
 
     private string TourName;
     private Singleton singleton;
+    private PSLocationArraySingleton locationArraySingleton;
 
     public GameObject ContentPanel;
     public GameObject ErrorPanel;
@@ -150,6 +151,8 @@ public class PSUpdateLocations : MonoBehaviour
 
     public void onSave()
     {
-        
+        PSLocationArraySingleton s = PSLocationArraySingleton.Instance;
+        s.setUpdateStatus(0);
+        s.setLocations(tours);
     }
 }
