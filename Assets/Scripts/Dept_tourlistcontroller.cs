@@ -26,6 +26,7 @@ public class Dept_tourlistcontroller : MonoBehaviour
 
     ArrayList tours;
     public bool locationsDisplayed;
+    public string Tourname;
     
 
     void Start()
@@ -40,10 +41,10 @@ public class Dept_tourlistcontroller : MonoBehaviour
         // Get the root reference location of the database.
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-        //singleton = Singleton.Instance();
-        //Tourname = singleton.GetDeptTourName();
-        //Name.text = Tourname;
-        //tours.Add(Tourname);
+        singleton = Singleton.Instance();
+        Tourname = singleton.GetDeptTourName();
+        Name.text = Tourname;
+        
         
         getScheduleData();
         schedulesDisplayed = false;
@@ -94,9 +95,9 @@ public class Dept_tourlistcontroller : MonoBehaviour
             else if (task.IsCompleted)
             {
                 // getting schedules for a particular user.
-                DataSnapshot snapshot = task.Result.Child(dbDetails.getDeptTourDBName()).Child("Business");
+                DataSnapshot snapshot = task.Result.Child(dbDetails.getDeptTourDBName()).Child(Tourname);
 
-                Dictionary<string, string> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
+                Dictionary<string, object> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
 
                 foreach (string schedule in scheduleData.Keys)
                 {

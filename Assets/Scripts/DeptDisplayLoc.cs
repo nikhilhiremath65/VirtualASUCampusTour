@@ -19,7 +19,6 @@ public class DeptDisplayLoc : MonoBehaviour
     ArrayList locations;
 
     // Start is called before the first frame update
-    [System.Obsolete]
     void Start()
     {
         locations = new ArrayList();
@@ -61,11 +60,11 @@ public class DeptDisplayLoc : MonoBehaviour
                 // getting schedules for a particular user.
                 DataSnapshot snapshot = task.Result.Child(dbDetails.getDeptTourDBName()).Child(tourName);
 
-                Dictionary<string, string> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
+                Dictionary<string, object> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
 
-                foreach (KeyValuePair<string, string> schedule in scheduleData)
+                foreach (string schedule in scheduleData.Keys)
                 {
-                    this.locations.Add(new ScheduleLocation(schedule.Key, schedule.Value));
+                    this.locations.Add(new Schedule(schedule));
                 }
             }
         });
