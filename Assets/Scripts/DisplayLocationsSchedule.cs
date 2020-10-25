@@ -11,30 +11,32 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
-public class DisplayLocations : MonoBehaviour
+public class DisplayLocationsSchedule : MonoBehaviour
 {
-    bool toursDisplayed;
+    bool locationsDisplayed;
 
-    ArrayList tours;
 
     DB_Details dbDetails;
     DatabaseReference reference;
 
-    private string TourName;
+    private string ScheduleName;
+    private string UserName;
     private Singleton singleton;
 
+    private Dictionary<string, string> locationsData;
     public GameObject ContentPanel;
     public GameObject ErrorPanel;
     public GameObject ListItemPrefab;
 
     public Text ErrorMessage;
 
-    public InputField TourNameText;
+    public InputField ScheduleNameText;
     public InputField AddLocationText;
-
+    public Text Hours;
+    public Text Minutes;
     void Start()
     {
-        tours = new ArrayList();
+        locationsData = new Dictionary<string, string>();
         dbDetails = new DB_Details();
 
         // Set up the Editor before calling into the realtime database.
@@ -44,26 +46,26 @@ public class DisplayLocations : MonoBehaviour
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
         singleton = Singleton.Instance();
-        TourName = singleton.GetTourName();
+        ScheduleName = singleton.getScheduleName();
+        UserName = singleton.getUserName();
+        ScheduleNameText.text = ScheduleName;
 
-        TourNameText.text = TourName;
+        getScheduleData();
 
-        getTourData();
-
-        toursDisplayed = false;
+        locationsDisplayed = false;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!toursDisplayed && tours.Count > 0)
+        if (!locationsDisplayed && locationsData.Count > 0)
         {
-            createTourList();
+            createScheduleList();
         }
     }
 
-    void getTourData()
+    void getScheduleData()
     {
         try
         {
@@ -71,18 +73,14 @@ public class DisplayLocations : MonoBehaviour
             {
                 if (task.IsFaulted)
                 {
-                    throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
+                    throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click locations)");
                 }
                 else if (task.IsCompleted)
                 {
-                    DataSnapshot snapshot = task.Result.Child(dbDetails.getTourDBName()).Child(TourName);
+                    DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleName);
 
-                    Dictionary<string, object> tourData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
+                    locationsData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
 
-                    foreach (string tour in tourData.Keys)
-                    {
-                        this.tours.Add(tour);
-                    }
                 }
             });
         }
@@ -100,26 +98,27 @@ public class DisplayLocations : MonoBehaviour
         }
     }
 
-    void createTourList()
+    void createScheduleList()
     {
-        foreach (string s in tours)
+        foreach (string s in locationsData.Keys)
         {
             GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
 
-            LocationListItem controller = newSchedule.GetComponent<LocationListItem>();
+            LocationWithTimeItem controller = newSchedule.GetComponent<LocationWithTimeItem>();
             controller.Name.text = s;
-
+            controller.Time.text = "Time : " + locationsData[s];
             newSchedule.transform.parent = ContentPanel.transform;
             newSchedule.transform.localScale = Vector3.one;
         }
-        toursDisplayed = true;
+        locationsDisplayed = true;
     }
 
-    void updateTourListOnAdd(string name)
+    void updateTourListOnAdd(string name, string time)
     {
         GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
-        LocationListItem controller = newSchedule.GetComponent<LocationListItem>();
+        LocationWithTimeItem controller = newSchedule.GetComponent<LocationWithTimeItem>();
         controller.Name.text = name;
+        controller.Time.text = time;
         newSchedule.transform.parent = ContentPanel.transform;
         newSchedule.transform.localScale = Vector3.one;
 
@@ -134,42 +133,52 @@ public class DisplayLocations : MonoBehaviour
             {
                 throw new Exception("Please enter location!");
             }
-            this.tours.Add(AddLocationText.text);
-            updateTourListOnAdd(AddLocationText.text);
+            if (Hours.text == "hour" || Minutes.text == "minute")
+            {
+                throw new Exception("Please enter correct time!");
+            }
+
+            String time = Hours.text + ":" + Minutes.text;
+            this.locationsData[AddLocationText.text] = time;
+            updateTourListOnAdd(AddLocationText.text, time);
             AddLocationText.text = null;
         }
         catch (Exception e)
         {
-            // Perform some action here, and then throw a new exception.
+            //Perform some action here, and then throw a new exception.
             ErrorMessage.text = e.Message;
             ErrorPanel.SetActive(true);
         }
+    }
+    public void onDelete(Text locationName)
+    {
+        locationsData.Remove(locationName.text);
     }
 
 
     public void onSave()
     {
-        string dummyString = "dummy";
+        ;
 
         //Creating JSON 
-        JObject locations = new JObject();
+        JObject locationsObj = new JObject();
 
-        foreach (string s in tours)
+        foreach (string s in locationsData.Keys)
         {
-            locations[s] = dummyString;
+            locationsObj[s] = locationsData[s];
         }
-        string jsonData = locations.ToString();
+        string jsonData = locationsObj.ToString();
 
         try
         {
-            if (TourNameText.text == "")
+            if (ScheduleNameText.text == "")
             {
-                throw new Exception("Please enter Tour Name!");
+                throw new Exception("Please enter Schedule Name!");
             }
 
-            reference.Child(dbDetails.getTourDBName()).Child(TourNameText.text).RemoveValueAsync();
+            reference.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleNameText.text).RemoveValueAsync();
 
-            reference.Child(dbDetails.getTourDBName()).Child(TourNameText.text).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
+            reference.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleNameText.text).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
             {
                 if (task.IsFaulted)
                 {
@@ -181,7 +190,7 @@ public class DisplayLocations : MonoBehaviour
                     Debug.Log("SUCCESS: DATA ADDED TO DATABASE");
                 }
             });
-            SceneManager.LoadScene("ManagerTourView");
+            SceneManager.LoadScene("SchedulesScene");
         }
         catch (InvalidCastException e)
         {

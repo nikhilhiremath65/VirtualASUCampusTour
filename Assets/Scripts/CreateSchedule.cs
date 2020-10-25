@@ -94,8 +94,9 @@ public class CreateSchedule : MonoBehaviour
 
         foreach (LocationWithTime location in this.locations)
         {
-            time["Time"] = location.Time;
-            locations[location.Name] = time;
+            locations.Add(location.Name, location.Time);
+           // time["Time"] = location.Time;
+           // locations[location.Name] = time;
         }
 
         string jsonData = locations.ToString();
