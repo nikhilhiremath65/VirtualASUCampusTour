@@ -32,7 +32,7 @@
     {
         return this.TourName;
     }
-    public void SetScheduleName(string ScheduleName)
+    public void setScheduleName(string ScheduleName)
     {
         this.ScheduleName = ScheduleName;
     }

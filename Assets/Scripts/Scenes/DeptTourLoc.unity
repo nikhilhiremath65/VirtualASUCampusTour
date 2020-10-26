@@ -1205,7 +1205,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8365995499249603032}
+      - m_Target: {fileID: 0}
         m_MethodName: OnCancel
         m_Mode: 1
         m_Arguments:
@@ -1354,7 +1354,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8365995499249603032}
+      - m_Target: {fileID: 0}
         m_MethodName: Delete
         m_Mode: 1
         m_Arguments:
@@ -2294,7 +2294,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8365995499249603032}
+      - m_Target: {fileID: 0}
         m_MethodName: ConfirmDelete
         m_Mode: 1
         m_Arguments:
@@ -2571,7 +2571,6 @@ GameObject:
   - component: {fileID: 8365995498323203941}
   - component: {fileID: 8365995498323203940}
   - component: {fileID: 8365995498323203943}
-  - component: {fileID: 8365995498323203942}
   - component: {fileID: 8365995498323203866}
   m_Layer: 5
   m_Name: ContentContainer
@@ -2682,20 +2681,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8365995498323203942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8365995498323203864}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb9f1998a18f42cf9ce3374ca438a83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ContentPanel: {fileID: 8365995498263026204}
-  ListItemPrefab: {fileID: 8365995499249603031}
 --- !u!114 &8365995498323203943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2769,21 +2754,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1677, y: 168}
   m_SizeDelta: {x: 1000, y: 186.02151}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8365995499249603029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8365995499249603031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8368c5827dff94d7ab0a872494cdbbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: {fileID: 8365995497646608579}
-  Time: {fileID: 0}
-  deletePanel: {fileID: 0}
 --- !u!1 &8365995499249603031
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,7 +2765,6 @@ GameObject:
   - component: {fileID: 8365995499249603028}
   - component: {fileID: 8365995499249603027}
   - component: {fileID: 8365995499249603026}
-  - component: {fileID: 8365995499249603029}
   - component: {fileID: 8365995499249603032}
   m_Layer: 5
   m_Name: LocationItem
@@ -2813,13 +2782,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8365995499249603031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caa698ad6084f4326b1c647538f0801c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b87d54d4df7b4856a694dd634c7cc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: {fileID: 8365995497646608579}
-  deletePanel: {fileID: 5259129325165547067}
-  ContentPanel: {fileID: 8365995498263026204}
-  ListItemPrefab: {fileID: 8365995499249603031}
+  deletePanel: {fileID: 5259129324486106064}
 --- !u!114 &8365995499677205320
 MonoBehaviour:
   m_ObjectHideFlags: 0

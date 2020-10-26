@@ -33,7 +33,7 @@ public class ListItemController : MonoBehaviour
     {
         // write edit logic here
         singleton = Singleton.Instance();
-        singleton.SetScheduleName(Name.text);
+        singleton.setScheduleName(Name.text);
         SceneManager.LoadScene(scenename);
     }
 

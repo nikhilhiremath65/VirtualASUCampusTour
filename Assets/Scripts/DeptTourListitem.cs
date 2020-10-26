@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class DeptTourListitem : MonoBehaviour
 {
 
-    public Text Location;
+    public Text Name;
     Singleton singleton;
     public GameObject deletePanel;
     public void confirmDelete()
@@ -23,13 +23,17 @@ public class DeptTourListitem : MonoBehaviour
     public void delete()
 
     {
-    
-        Destroy(gameObject);
+        //CrudOperations crud = new CrudOperations();
+        //crud.deleteSchedule("departmentTourDataBase", Name.text);
+        //Destroy(gameObject);
     }
 
     public void Edit(string scenename)
     {
         // write edit logic here
+        singleton = Singleton.Instance();
+        singleton.setScheduleName(Name.text);
+        SceneManager.LoadScene(scenename);
     }
 
     public void nextScene()

@@ -30,7 +30,7 @@ public class DB_Details
         return tourDBName;
     }
 
-    internal string getDeptTourDBName()
+    public string getDeptTourDBName()
     {
         return depttourDBName;
     }

@@ -19,6 +19,7 @@ public class DeptDisplayLoc : MonoBehaviour
     ArrayList locations;
 
     // Start is called before the first frame update
+    [System.Obsolete]
     void Start()
     {
         locations = new ArrayList();
@@ -31,7 +32,7 @@ public class DeptDisplayLoc : MonoBehaviour
         // Get the root reference location of the database.
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-        GetLocationData();
+        getLocationData();
         locationsDisplayed = false;
     }
 
@@ -40,14 +41,14 @@ public class DeptDisplayLoc : MonoBehaviour
     {
         if (!locationsDisplayed && locations.Count > 0)
         {
-            CreateLocationsList();
+            createLocationsList();
         }
     }
 
-    void GetLocationData()
+    void getLocationData()
     {
         DeptTournametransfer s = DeptTournametransfer.Instance;
-        string tourName = s.getDeptTourName();
+        string scheduleName = s.getDeptTourName();
 
         reference.GetValueAsync().ContinueWith(task => {
             if (task.IsFaulted)
@@ -58,26 +59,26 @@ public class DeptDisplayLoc : MonoBehaviour
             else if (task.IsCompleted)
             {
                 // getting schedules for a particular user.
-                DataSnapshot snapshot = task.Result.Child(dbDetails.getDeptTourDBName()).Child(tourName);
+                DataSnapshot snapshot = task.Result.Child(dbDetails.getDeptTourDBName()).Child(scheduleName);
 
-                Dictionary<string, object> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
+                Dictionary<string, string> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
 
-                foreach (string schedule in scheduleData.Keys)
+                foreach (string schedule in scheduleData.Values)
                 {
-                    this.locations.Add(new Schedule(schedule));
+                    this.locations.Add(new DeptLocation(schedule));
                 }
             }
         });
     }
 
-    void CreateLocationsList()
+    void createLocationsList()
     {
-        foreach (ScheduleLocation s in locations)
+        foreach (DeptLocation s in locations)
         {
             ListItemPrefab.SetActive(true);
-            GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
+            GameObject newSchedule = Instantiate(ListItemPrefab);
 
-            ListItemController controller = newSchedule.GetComponent<ListItemController>();
+            DeptTourListitem controller = newSchedule.GetComponent<DeptTourListitem>();
             controller.Name.text = s.Name;
 
             newSchedule.transform.parent = ContentPanel.transform;
