@@ -28,6 +28,7 @@ public class DisplayLocationsSchedule : MonoBehaviour
     public GameObject ErrorPanel;
     public GameObject ListItemPrefab;
 
+    public GameObject NamePanel;
     public Text ErrorMessage;
 
     public InputField ScheduleNameText;
@@ -124,9 +125,15 @@ public class DisplayLocationsSchedule : MonoBehaviour
 
     }
 
+    public void addLink()
+    {
+
+        NamePanel.SetActive(true);
+    }
 
     public void onAddLocation()
     {
+
         try
         {
             if (AddLocationText.text == "")
@@ -137,8 +144,11 @@ public class DisplayLocationsSchedule : MonoBehaviour
             {
                 throw new Exception("Please enter correct time!");
             }
-
             String time = Hours.text + ":" + Minutes.text;
+            if (AddLocationText.text.Contains(":"))
+            {
+                addLink();
+            }
             this.locationsData[AddLocationText.text] = time;
             updateTourListOnAdd(AddLocationText.text, time);
             AddLocationText.text = null;
@@ -158,7 +168,7 @@ public class DisplayLocationsSchedule : MonoBehaviour
 
     public void onSave()
     {
-        ;
+
 
         //Creating JSON 
         JObject locationsObj = new JObject();
