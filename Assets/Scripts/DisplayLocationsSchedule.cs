@@ -32,6 +32,7 @@ public class DisplayLocationsSchedule : MonoBehaviour
     public GameObject NamePanel;
     public GameObject ListItemPrefab;
 
+    public GameObject NamePanel;
     public Text ErrorMessage;
 
     public InputField ScheduleNameText;
@@ -164,7 +165,6 @@ public class DisplayLocationsSchedule : MonoBehaviour
             {
                 throw new Exception("Please enter correct time!");
             }
-
             String time = Hours.text + ":" + Minutes.text;
             if (AddLocationText.text.Contains(":"))
             {
@@ -194,7 +194,7 @@ public class DisplayLocationsSchedule : MonoBehaviour
 
     public void onSave()
     {
-        ;
+
 
         //Creating JSON 
         JObject locationsObj = new JObject();
