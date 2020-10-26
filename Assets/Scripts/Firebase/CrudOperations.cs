@@ -39,7 +39,25 @@ namespace Crud
             });
         }
 
+        public void addLinkLocation(string database, string user, string location)
+        {
+            rootReference.Child(database).Child(user).SetRawJsonValueAsync(location).ContinueWith(task =>
+                        {
+                            if (task.IsFaulted)
+                            {
+                                throw new Exception("ERROR while appending values to database.");
+
+                            }
+                            else if (task.IsCompleted)
+                            {
+                                Debug.Log("SUCCESS: DATA ADDED TO DATABASE");
+
+                            }
 
 
+
+                        }
+        );
+        }
     }
 }

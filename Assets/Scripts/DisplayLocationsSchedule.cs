@@ -10,6 +10,7 @@ using System.Threading;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using Crud;
 
 public class DisplayLocationsSchedule : MonoBehaviour
 {
@@ -23,9 +24,12 @@ public class DisplayLocationsSchedule : MonoBehaviour
     private string UserName;
     private Singleton singleton;
 
+    private CrudOperations crud;
+
     private Dictionary<string, string> locationsData;
     public GameObject ContentPanel;
     public GameObject ErrorPanel;
+    public GameObject NamePanel;
     public GameObject ListItemPrefab;
 
     public Text ErrorMessage;
@@ -123,10 +127,33 @@ public class DisplayLocationsSchedule : MonoBehaviour
         newSchedule.transform.localScale = Vector3.one;
 
     }
+    public string checkIfShared(string location)
+    {
+        if (location.Contains(":"))
+        {
+            return "Shared Location";
+        }
+        return location;
+    }
 
+    private string parseFromLink(string link)
+    {
+        string[] data = link.Split(':');
+        JObject locationObj = new JObject();
+        JObject coordinatesObj = new JObject();
+        JObject scheduleObj = new JObject();
+        coordinatesObj["latitude"] = data[0];
+        coordinatesObj["longitude"] = data[1];
+        locationObj["Coordinates"] = coordinatesObj;
+        locationObj["time"] = data[2] + ":" + data[3];
+        locationObj["shared"] = "true";
+        scheduleObj[ScheduleNameText.text] = locationObj;
+        return scheduleObj.ToString();
+    }
 
     public void onAddLocation()
     {
+        //33.4282515:-111.935851
         try
         {
             if (AddLocationText.text == "")
@@ -139,8 +166,17 @@ public class DisplayLocationsSchedule : MonoBehaviour
             }
 
             String time = Hours.text + ":" + Minutes.text;
-            this.locationsData[AddLocationText.text] = time;
-            updateTourListOnAdd(AddLocationText.text, time);
+            if (AddLocationText.text.Contains(":"))
+            {
+                string locationData = parseFromLink(AddLocationText.text);
+                NamePanel.SetActive(true);
+                // crud.addLinkLocation(dbDetails.getSharedDBName(), singleton.getUserName(), locationData);
+            }
+            else
+            {
+                this.locationsData[AddLocationText.text] = time;
+            }
+            updateTourListOnAdd(checkIfShared(AddLocationText.text), time);
             AddLocationText.text = null;
         }
         catch (Exception e)
@@ -168,7 +204,7 @@ public class DisplayLocationsSchedule : MonoBehaviour
             locationsObj[s] = locationsData[s];
         }
         string jsonData = locationsObj.ToString();
-
+        Debug.Log(jsonData);
         try
         {
             if (ScheduleNameText.text == "")
