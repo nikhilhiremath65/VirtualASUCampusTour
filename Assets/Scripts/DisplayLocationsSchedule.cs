@@ -32,7 +32,6 @@ public class DisplayLocationsSchedule : MonoBehaviour
     public GameObject NamePanel;
     public GameObject ListItemPrefab;
 
-    public GameObject NamePanel;
     public Text ErrorMessage;
 
     public InputField ScheduleNameText;
