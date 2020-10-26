@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Threading;
 using UnityEngine.UI;
 using System;
+using System.Collections;
 
 public class ShareLocation : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class ShareLocation : MonoBehaviour
     public Text ErrorMessage;
     public Text Hours;
     public Text Minutes;
+
+    public Toggle locationToggle;
 
     // Start is called before the first frame update
     void Start()
@@ -37,44 +40,54 @@ public class ShareLocation : MonoBehaviour
     }
 
     public void getCoordinates()
-    { 
+    {
         try
         {
-
-            if (location.text == "")
-            {
-                throw new Exception("Please enter location!");
-            }
-
             if (Hours.text == "hour" || Minutes.text == "minute")
             {
+                ErrorPanel.transform.SetAsLastSibling();
                 throw new Exception("Please enter time");
             }
 
-            reference.GetValueAsync().ContinueWith(task =>
+            if (locationToggle.isOn)
             {
-                if (task.IsFaulted)
+                GetCurrentLocation();
+            }
+            else
+            {
+                if (location.text == "")
                 {
-                    throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
+                    ErrorPanel.transform.SetAsLastSibling();
+                    throw new Exception("Please enter location!");
                 }
-                else if (task.IsCompleted)
+
+                reference.GetValueAsync().ContinueWith(task =>
                 {
-                    DataSnapshot snapshot = task.Result.Child(dbDetails.getBuildingDBname());
+                    if (task.IsFaulted)
+                    {
+                        ErrorPanel.transform.SetAsLastSibling();
+                        throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
+                    }
+                    else if (task.IsCompleted)
+                    {
+                        DataSnapshot snapshot = task.Result.Child(dbDetails.getBuildingDBname());
 
-                    string str = snapshot.GetRawJsonValue();
-                    JObject jsonLocation = JObject.Parse(str);
+                        string str = snapshot.GetRawJsonValue();
+                        JObject jsonLocation = JObject.Parse(str);
 
-                    var locationText = location.text.ToLower();
-                    locationText = locationText.Replace(" ", "");
+                        var locationText = location.text.ToLower();
+                        locationText = locationText.Replace(" ", "");
 
-                    lat =(string)jsonLocation[locationText]["Coordinates"]["Latitude"];
-                    lon =(string)jsonLocation[locationText]["Coordinates"]["Longitude"];
+                        lat = (string)jsonLocation[locationText]["Coordinates"]["Latitude"];
+                        lon = (string)jsonLocation[locationText]["Coordinates"]["Longitude"];
 
-                }
-            });
+                    }
+                });
+            }
 
             if (lat == null || lon == null)
             {
+                ErrorPanel.transform.SetAsLastSibling();
                 throw new Exception("Error fetching data, please try again!");
             }
 
@@ -95,6 +108,45 @@ public class ShareLocation : MonoBehaviour
             // Perform some action here, and then throw a new exception.
             ErrorMessage.text = e.Message;
             ErrorPanel.SetActive(true);
+        }
+    }
+
+    private IEnumerator GetCurrentLocation()
+    {
+        if (!Input.location.isEnabledByUser)
+            yield break;
+
+        // Start service before querying location
+        Input.location.Start();
+
+        // Wait until service initializes
+        int maxWait = 20;
+        while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
+        {
+            yield return new WaitForSeconds(1);
+            maxWait--;
+        }
+
+        // Service didn't initialize in 20 seconds
+        if (maxWait < 1)
+        {
+            print("Timed out");
+            yield break;
+        }
+
+        // Connection has failed
+        if (Input.location.status == LocationServiceStatus.Failed)
+        {
+            print("Unable to determine device location");
+            yield break;
+        }
+        else
+        {
+            float latitude = Input.location.lastData.latitude;
+            float longitude = Input.location.lastData.longitude;
+
+            lat = latitude.ToString();
+            lon = longitude.ToString();
         }
     }
 }
