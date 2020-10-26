@@ -47,7 +47,7 @@ public class DisplayTours : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+        void Update()
     {
         if(!toursDisplayed && tours.Count > 0)
         {
@@ -63,7 +63,7 @@ public class DisplayTours : MonoBehaviour
         }
     }
 
-    void getTourData()
+    public void getTourData()
     {
         try
         {
@@ -99,7 +99,7 @@ public class DisplayTours : MonoBehaviour
         }
     }
 
-    void createTourList()
+    public void createTourList()
     {
         foreach (Tour s in tours)
         {
@@ -114,4 +114,6 @@ public class DisplayTours : MonoBehaviour
         }
         toursDisplayed = true;
     }
+
+   
 }

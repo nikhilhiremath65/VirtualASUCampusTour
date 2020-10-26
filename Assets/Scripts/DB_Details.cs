@@ -5,6 +5,7 @@
     private string buildingDBName = "buildingDataBase";
     private string scheduleDBName = "scheduleDataBase";
     private string tourDBName = "tourDataBase";
+    
 
     public string getDBUrl()
     {
