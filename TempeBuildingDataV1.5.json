@@ -1,0 +1,804 @@
+{
+  "buildingDataBase" : {
+    "adelphicommons" : {
+      "BuildingCode" : "ADELA",
+      "BuildingName" : "Adelphi Commons",
+      "Coordinates" : {
+        "Latitude" : "33.4145124",
+        "Longitude" : "-111.9277695"
+      }
+    },
+    "ajmatthewscenter" : {
+      "BuildingCode" : "MCENT",
+      "BuildingName" : "A J Matthews Center",
+      "Coordinates" : {
+        "Latitude" : "33.4199292",
+        "Longitude" : "-111.935502"
+      }
+    },
+    "albertabfarringtonsoftballstadium" : {
+      "BuildingCode" : "ALBER",
+      "BuildingName" : "Alberta B. Farrington Softball Stadium",
+      "Coordinates" : {
+        "Latitude" : "33.4254902",
+        "Longitude" : "-111.9236519"
+      }
+    },
+    "amountain" : {
+      "BuildingCode" : "AMTN",
+      "BuildingName" : "A Mountain",
+      "Coordinates" : {
+        "Latitude" : "33.4282515",
+        "Longitude" : "-111.935851"
+      }
+    },
+    "armstronghall" : {
+      "BuildingCode" : "ARM",
+      "BuildingName" : "Armstrong Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4178808",
+        "Longitude" : "-111.929473"
+      }
+    },
+    "artbuilding" : {
+      "BuildingCode" : "ART",
+      "BuildingName" : "Art Building",
+      "Coordinates" : {
+        "Latitude" : "33.4205064",
+        "Longitude" : "-111.9373537"
+      }
+    },
+    "artisancourtatthebrickyard" : {
+      "BuildingCode" : "BYAC",
+      "BuildingName" : "Artisan Court at the Brickyard",
+      "Coordinates" : {
+        "Latitude" : "33.4234996",
+        "Longitude" : "-111.9390249"
+      }
+    },
+    "artwarehouse" : {
+      "BuildingCode" : "ARWH",
+      "BuildingName" : "Art Warehouse",
+      "Coordinates" : {
+        "Latitude" : "33.4209474",
+        "Longitude" : "-111.9379487"
+      }
+    },
+    "asuartmuseumbrickyard" : {
+      "BuildingCode" : "CRCNTR",
+      "BuildingName" : "ASU Art Museum Brickyard",
+      "Coordinates" : {
+        "Latitude" : "33.4236243",
+        "Longitude" : "-111.9396125"
+      }
+    },
+    "asugammage" : {
+      "BuildingCode" : "GGMA",
+      "BuildingName" : "ASU Gammage",
+      "Coordinates" : {
+        "Latitude" : "33.4162697",
+        "Longitude" : "-111.9380721"
+      }
+    },
+    "asuperformingandmediaarts" : {
+      "BuildingCode" : "APMA",
+      "BuildingName" : "ASU Performing and Media Arts",
+      "Coordinates" : {
+        "Latitude" : "33.4234935",
+        "Longitude" : "-111.9242529"
+      }
+    },
+    "asupolicedepartment" : {
+      "BuildingCode" : "ASUPD",
+      "BuildingName" : "ASU Police Department",
+      "Coordinates" : {
+        "Latitude" : "33.4143327",
+        "Longitude" : "-111.9344567"
+      }
+    },
+    "batemanphysicalsciencescenter" : {
+      "BuildingCode" : "PSB",
+      "BuildingName" : "Bateman Physical Sciences Center",
+      "Coordinates" : {
+        "Latitude" : "33.4208495",
+        "Longitude" : "-111.9321245"
+      }
+    },
+    "besthall" : {
+      "BuildingCode" : "MB",
+      "BuildingName" : "Best Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4158373",
+        "Longitude" : "-111.936492"
+      }
+    },
+    "bulldoghall" : {
+      "BuildingCode" : "BDH",
+      "BuildingName" : "Bulldog Hall",
+      "Coordinates" : {
+        "Latitude" : "33.418414",
+        "Longitude" : "-111.9308182"
+      }
+    },
+    "businessadministration" : {
+      "BuildingCode" : "BA",
+      "BuildingName" : "Business Administration",
+      "Coordinates" : {
+        "Latitude" : "33.4165566",
+        "Longitude" : "-111.9344819"
+      }
+    },
+    "businessadministrationc-wing" : {
+      "BuildingCode" : "BAC",
+      "BuildingName" : "Business Administration C-Wing",
+      "Coordinates" : {
+        "Latitude" : "33.4166015",
+        "Longitude" : "-111.9338556"
+      }
+    },
+    "campuschildrenscenter" : {
+      "BuildingCode" : "CHILD",
+      "BuildingName" : "Campus Children's Center",
+      "Coordinates" : {
+        "Latitude" : "33.4198435",
+        "Longitude" : "-111.9247221"
+      }
+    },
+    "centerforfamilystudies" : {
+      "BuildingCode" : "CFS",
+      "BuildingName" : "Center for Family Studies",
+      "Coordinates" : {
+        "Latitude" : "33.4209768",
+        "Longitude" : "-111.9362488"
+      }
+    },
+    "centerpoint" : {
+      "BuildingCode" : "CTRPT",
+      "BuildingName" : "Centerpoint",
+      "Coordinates" : {
+        "Latitude" : "33.423821",
+        "Longitude" : "-111.9410695"
+      }
+    },
+    "ceramicsresearchcenterandbrickyardgallery" : {
+      "BuildingCode" : "CRCNTR",
+      "BuildingName" : "Ceramics Research Center and Brickyard Gallery",
+      "Coordinates" : {
+        "Latitude" : "33.4236243",
+        "Longitude" : "-111.9396125"
+      }
+    },
+    "charleswexlerhall" : {
+      "BuildingCode" : "WXLR",
+      "BuildingName" : "Charles Wexler Hall",
+      "Coordinates" : {
+        "Latitude" : "33.420627",
+        "Longitude" : "-111.9321809"
+      }
+    },
+    "collegeavenuemarketplace" : {
+      "BuildingCode" : "CAM",
+      "BuildingName" : "College Avenue Marketplace",
+      "Coordinates" : {
+        "Latitude" : "33.4227968",
+        "Longitude" : "-111.9345668"
+      }
+    },
+    "communityservicesbuilding" : {
+      "BuildingCode" : "CSB",
+      "BuildingName" : "Community Services Building",
+      "Coordinates" : {
+        "Latitude" : "33.440682",
+        "Longitude" : "-111.9405849"
+      }
+    },
+    "cowdenfamilyresources" : {
+      "BuildingCode" : "COWDN",
+      "BuildingName" : "Cowden Family Resources",
+      "Coordinates" : {
+        "Latitude" : "33.4210967",
+        "Longitude" : "-111.9355431"
+      }
+    },
+    "creativitycommons" : {
+      "BuildingCode" : "CRTVC",
+      "BuildingName" : "Creativity Commons",
+      "Coordinates" : {
+        "Latitude" : "33.4181439",
+        "Longitude" : "-111.9323895"
+      }
+    },
+    "danforthchapel" : {
+      "BuildingCode" : "CHAPL",
+      "BuildingName" : "Danforth Chapel",
+      "Coordinates" : {
+        "Latitude" : "33.4181933",
+        "Longitude" : "-111.9350976"
+      }
+    },
+    "danielenoblescienceandengineeringlibrary" : {
+      "BuildingCode" : "NOBLE",
+      "BuildingName" : "Daniel E Noble Science and Engineering Library",
+      "Coordinates" : {
+        "Latitude" : "33.4203272",
+        "Longitude" : "-111.931007"
+      }
+    },
+    "desertarboretumpark" : {
+      "BuildingCode" : "DAP",
+      "BuildingName" : "Desert Arboretum Park",
+      "Coordinates" : {
+        "Latitude" : "33.4297105",
+        "Longitude" : "-111.9293032"
+      }
+    },
+    "desertfinancialarena" : {
+      "BuildingCode" : "DFA",
+      "BuildingName" : "Desert Financial Arena",
+      "Coordinates" : {
+        "Latitude" : "33.4245048",
+        "Longitude" : "-111.9310057"
+      }
+    },
+    "designbuildings" : {
+      "BuildingCode" : "CDN",
+      "BuildingName" : "Design Buildings",
+      "Coordinates" : {
+        "Latitude" : "33.4215572",
+        "Longitude" : "-111.9370626"
+      }
+    },
+    "discoveryhall" : {
+      "BuildingCode" : "DISCVRY",
+      "BuildingName" : "Discovery Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4164657",
+        "Longitude" : "-111.935563"
+      }
+    },
+    "dixiegammagehall" : {
+      "BuildingCode" : "GHALL",
+      "BuildingName" : "Dixie Gammage Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4191163",
+        "Longitude" : "-111.9363023"
+      }
+    },
+    "ecenter" : {
+      "BuildingCode" : "ECA",
+      "BuildingName" : "Engineering Center",
+      "Coordinates" : {
+        "Latitude" : "33.4188878",
+        "Longitude" : "-111.9327128"
+      }
+    },
+    "edandnadinecarsonstudentathletecenter" : {
+      "BuildingCode" : "CSAC",
+      "BuildingName" : "Ed and Nadine Carson Student-Athlete Center",
+      "Coordinates" : {
+        "Latitude" : "33.4263639",
+        "Longitude" : "-111.9325849"
+      }
+    },
+    "educationlecturehall" : {
+      "BuildingCode" : "EDC",
+      "BuildingName" : "Education Lecture Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4179169",
+        "Longitude" : "-111.9378426"
+      }
+    },
+    "engineeringresearchcenter" : {
+      "BuildingCode" : "ENGRC",
+      "BuildingName" : "Engineering Research Center",
+      "Coordinates" : {
+        "Latitude" : "33.4203244",
+        "Longitude" : "-111.9313552"
+      }
+    },
+    "fultoncenter" : {
+      "BuildingCode" : "FULTN",
+      "BuildingName" : "Fulton Center",
+      "Coordinates" : {
+        "Latitude" : "33.4222974",
+        "Longitude" : "-111.9344383"
+      }
+    },
+    "futuresundevilwelcomecenterandcollegeavecommons" : {
+      "BuildingCode" : "CAVC",
+      "BuildingName" : "Future Sun Devil Welcome Center and College Ave Commons",
+      "Coordinates" : {
+        "Latitude" : "33.4234089",
+        "Longitude" : "-111.9352264"
+      }
+    },
+    "ghomerdurhamhall" : {
+      "BuildingCode" : "DH",
+      "BuildingName" : "G Homer Durham Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4208917",
+        "Longitude" : "-111.934581"
+      }
+    },
+    "goldwatercenter" : {
+      "BuildingCode" : "GWC",
+      "BuildingName" : "Goldwater Center",
+      "Coordinates" : {
+        "Latitude" : "33.4207916",
+        "Longitude" : "-111.9303122"
+      }
+    },
+    "haydenhall" : {
+      "BuildingCode" : "HAYDN",
+      "BuildingName" : "Hayden Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4156796",
+        "Longitude" : "-111.9338506"
+      }
+    },
+    "haydenlibrary" : {
+      "BuildingCode" : "LIB",
+      "BuildingName" : "Hayden Library",
+      "Coordinates" : {
+        "Latitude" : "33.4190755",
+        "Longitude" : "-111.9346142"
+      }
+    },
+    "hbfarmereducationbuilding" : {
+      "BuildingCode" : "ED",
+      "BuildingName" : "H B Farmer Education Building",
+      "Coordinates" : {
+        "Latitude" : "33.4180342",
+        "Longitude" : "-111.9373076"
+      }
+    },
+    "healthservicebuilding" : {
+      "BuildingCode" : "HSB",
+      "BuildingName" : "Health Service Building",
+      "Coordinates" : {
+        "Latitude" : "33.4213463",
+        "Longitude" : "-111.93304"
+      }
+    },
+    "inclusivityatasu" : {
+      "BuildingCode" : "MU",
+      "BuildingName" : "Inclusivity at ASU",
+      "Coordinates" : {
+        "Latitude" : "33.4177323",
+        "Longitude" : "-111.9344185"
+      }
+    },
+    "interdisciplinarya&b" : {
+      "BuildingCode" : "INTDS",
+      "BuildingName" : "Interdisciplinary A & B",
+      "Coordinates" : {
+        "Latitude" : "33.4175905",
+        "Longitude" : "-111.9354917"
+      }
+    },
+    "interdisciplinaryscienceandtechnologyI" : {
+      "BuildingCode" : "ISTB1",
+      "BuildingName" : "Interdisciplinary Science and Technology I",
+      "Coordinates" : {
+        "Latitude" : "33.4189185",
+        "Longitude" : "-111.9315224"
+      }
+    },
+    "iradpayneeducationalhall" : {
+      "BuildingCode" : "EDB",
+      "BuildingName" : "Ira D Payne Educational Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4188896",
+        "Longitude" : "-111.9372772"
+      }
+    },
+    "irishhall" : {
+      "BuildingCode" : "IRISH",
+      "BuildingName" : "Irish Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4146351",
+        "Longitude" : "-111.9349331"
+      }
+    },
+    "johnwschwadabuilding" : {
+      "BuildingCode" : "SCOB",
+      "BuildingName" : "John W Schwada Building",
+      "Coordinates" : {
+        "Latitude" : "33.4187806",
+        "Longitude" : "-111.9306788"
+      }
+    },
+    "jrussellandbonitanelsonfineartscenterasuartmuseum" : {
+      "BuildingCode" : "FAC",
+      "BuildingName" : "J Russell and Bonita Nelson Fine Arts Center | ASU Art Museum",
+      "Coordinates" : {
+        "Latitude" : "33.4188446",
+        "Longitude" : "-111.9386525"
+      }
+    },
+    "lattiefcoorhall" : {
+      "BuildingCode" : "COOR",
+      "BuildingName" : "Lattie F Coor Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4194551",
+        "Longitude" : "-111.9374957"
+      }
+    },
+    "lifesciencescenter" : {
+      "BuildingCode" : "LSA",
+      "BuildingName" : "Life Sciences Center",
+      "Coordinates" : {
+        "Latitude" : "33.4203103",
+        "Longitude" : "-111.9329497"
+      }
+    },
+    "lsneebhall" : {
+      "BuildingCode" : "NEEB",
+      "BuildingName" : "L S Neeb Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4203413",
+        "Longitude" : "-111.9368889"
+      }
+    },
+    "lyceumtheatre" : {
+      "BuildingCode" : "LYC",
+      "BuildingName" : "Lyceum Theatre",
+      "Coordinates" : {
+        "Latitude" : "33.4205213",
+        "Longitude" : "-111.9363888"
+      }
+    },
+    "manzanitahall" : {
+      "BuildingCode" : "MANZH",
+      "BuildingName" : "Manzanita Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4226259",
+        "Longitude" : "-111.9303734"
+      }
+    },
+    "matthewshall" : {
+      "BuildingCode" : "MHALL",
+      "BuildingName" : "Matthews Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4201485",
+        "Longitude" : "-111.9361268"
+      }
+    },
+    "mcclintockhall" : {
+      "BuildingCode" : "MCL",
+      "BuildingName" : "McClintock Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4197042",
+        "Longitude" : "-111.9358208"
+      }
+    },
+    "mccordhall" : {
+      "BuildingCode" : "MCRD",
+      "BuildingName" : "McCord Hall",
+      "Coordinates" : {
+        "Latitude" : "33.416202",
+        "Longitude" : "-111.9333874"
+      }
+    },
+    "memorial union" : {
+      "BuildingCode" : "MU",
+      "BuildingName" : "Memorial Union",
+      "Coordinates" : {
+        "Latitude" : "33.4177323",
+        "Longitude" : "-111.9344185"
+      }
+    },
+    "moeurbuilding" : {
+      "BuildingCode" : "MOEUR",
+      "BuildingName" : "Moeur Building",
+      "Coordinates" : {
+        "Latitude" : "33.4179176",
+        "Longitude" : "-111.9361855"
+      }
+    },
+    "monaplummeraquaticcomplex" : {
+      "BuildingCode" : "AQUAT",
+      "BuildingName" : "Mona Plummer Aquatic Complex",
+      "Coordinates" : {
+        "Latitude" : "33.4241151",
+        "Longitude" : "-111.9341413"
+      }
+    },
+    "murdockhall" : {
+      "BuildingCode" : "MUR",
+      "BuildingName" : "Murdock Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4185928",
+        "Longitude" : "-111.9330399"
+      }
+    },
+    "musicbuilding" : {
+      "BuildingCode" : "MUSIC",
+      "BuildingName" : "Music Building",
+      "Coordinates" : {
+        "Latitude" : "33.4176261",
+        "Longitude" : "-111.9387296"
+      }
+    },
+    "oldmain" : {
+      "BuildingCode" : "MAIN",
+      "BuildingName" : "Old Main",
+      "Coordinates" : {
+        "Latitude" : "33.4205873",
+        "Longitude" : "-111.9340001"
+      }
+    },
+    "orangemallgreeninfrastructureproject" : {
+      "BuildingCode" : "OMALL",
+      "BuildingName" : "Orange Mall Green Infrastructure Project",
+      "Coordinates" : {
+        "Latitude" : "33.4183328",
+        "Longitude" : "-111.935237"
+      }
+    },
+    "orchidhouseatthebrickyard" : {
+      "BuildingCode" : "BYOH",
+      "BuildingName" : "Orchid House at the Brickyard",
+      "Coordinates" : {
+        "Latitude" : "33.4240718",
+        "Longitude" : "-111.9387687"
+      }
+    },
+    "packardbaseballstadium" : {
+      "BuildingCode" : "PBS",
+      "BuildingName" : "Packard Baseball Stadium",
+      "Coordinates" : {
+        "Latitude" : "33.4276807",
+        "Longitude" : "-111.9279877"
+      }
+    },
+    "paloverdeeast" : {
+      "BuildingCode" : "PVE",
+      "BuildingName" : "Palo Verde East",
+      "Coordinates" : {
+        "Latitude" : "33.4224163",
+        "Longitude" : "-111.9320081"
+      }
+    },
+    "paloverdewest" : {
+      "BuildingCode" : "PVW",
+      "BuildingName" : "Palo Verde West",
+      "Coordinates" : {
+        "Latitude" : "33.4219811",
+        "Longitude" : "-111.9330749"
+      }
+    },
+    "psychologybuilding" : {
+      "BuildingCode" : "PSY",
+      "BuildingName" : "Psychology Building",
+      "Coordinates" : {
+        "Latitude" : "33.4198736",
+        "Longitude" : "-111.9295509"
+      }
+    },
+    "psychologynorth" : {
+      "BuildingCode" : "PSYN",
+      "BuildingName" : "Psychology North",
+      "Coordinates" : {
+        "Latitude" : "33.4206512",
+        "Longitude" : "-111.9295819"
+      }
+    },
+    "richeswrestlingcomplex" : {
+      "BuildingCode" : "WTF",
+      "BuildingName" : "Riches Wrestling Complex",
+      "Coordinates" : {
+        "Latitude" : "33.426494",
+        "Longitude" : "-111.9236934"
+      }
+    },
+    "robsonfamilyplayerfacility" : {
+      "BuildingCode" : "RFPF",
+      "BuildingName" : "Robson Family Player Facility",
+      "Coordinates" : {
+        "Latitude" : "33.4248477",
+        "Longitude" : "-111.9276643"
+      }
+    },
+    "rossblakleyhall" : {
+      "BuildingCode" : "RBHL",
+      "BuildingName" : "Ross-Blakley Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4170941",
+        "Longitude" : "-111.9297199"
+      }
+    },
+    "socialsciencesbuilding" : {
+      "BuildingCode" : "SS",
+      "BuildingName" : "Social Sciences Building",
+      "Coordinates" : {
+        "Latitude" : "33.41978",
+        "Longitude" : "-111.9345321"
+      }
+    },
+    "studentpavilion" : {
+      "BuildingCode" : "STPV",
+      "BuildingName" : "Student Pavilion",
+      "Coordinates" : {
+        "Latitude" : "33.4185542",
+        "Longitude" : "-111.9337034"
+      }
+    },
+    "sunangelstadiumjoesellehtrack" : {
+      "BuildingCode" : "TRACK",
+      "BuildingName" : "Sun Angel Stadium Joe Selleh Track",
+      "Coordinates" : {
+        "Latitude" : "33.42646",
+        "Longitude" : "-111.927703"
+      }
+    },
+    "sundevilfitnesscomplextempe" : {
+      "BuildingCode" : "SDFCT",
+      "BuildingName" : "Sun Devil Fitness Complex Tempe",
+      "Coordinates" : {
+        "Latitude" : "33.414788",
+        "Longitude" : "-111.9307346"
+      }
+    },
+    "sundevilhall" : {
+      "BuildingCode" : "SDH",
+      "BuildingName" : "Sun Devil Hall",
+      "Coordinates" : {
+        "Latitude" : "33.41834",
+        "Longitude" : "-111.9330553"
+      }
+    },
+    "sundevilstadium" : {
+      "BuildingCode" : "STAD",
+      "BuildingName" : "Sun Devil Stadium",
+      "Coordinates" : {
+        "Latitude" : "33.4263639",
+        "Longitude" : "-111.9325849"
+      }
+    },
+    "sustainabilitypointofprideasupolicedepartment" : {
+      "BuildingCode" : "ASUPD",
+      "BuildingName" : "Sustainability Point of Pride: ASU Police Department",
+      "Coordinates" : {
+        "Latitude" : "33.4143327",
+        "Longitude" : "-111.9344567"
+      }
+    },
+    "thebiodesigninstitutebldg a" : {
+      "BuildingCode" : "BDA",
+      "BuildingName" : "The Biodesign Institute - Bldg A",
+      "Coordinates" : {
+        "Latitude" : "33.4193847",
+        "Longitude" : "-111.9282621"
+      }
+    },
+    "thebiodesigninstitutebldgb" : {
+      "BuildingCode" : "BDB",
+      "BuildingName" : "The Biodesign Institute - Bldg B",
+      "Coordinates" : {
+        "Latitude" : "33.4195371",
+        "Longitude" : "-111.928552"
+      }
+    },
+    "towercenter" : {
+      "BuildingCode" : "TOWER",
+      "BuildingName" : "Tower Center",
+      "Coordinates" : {
+        "Latitude" : "33.4215655",
+        "Longitude" : "-111.93748420"
+      }
+    },
+    "weatherupcenter" : {
+      "BuildingCode" : "WUC",
+      "BuildingName" : "Weatherup Center",
+      "Coordinates" : {
+        "Latitude" : "33.4248193",
+        "Longitude" : "-111.923403"
+      }
+    },
+    "wrigleyhall" : {
+      "BuildingCode" : "WGHL",
+      "BuildingName" : "Wrigley Hall",
+      "Coordinates" : {
+        "Latitude" : "33.4214838",
+        "Longitude" : "-111.9353372"
+      }
+    }
+  },
+  "departmentTourDataBase" : {
+    "Business" : [ "Agribusiness Center", "Sutton Hall", "Student Union", "Cooley Ballroom", "Academic Center", "Administration", "Century Hall", "Citrus Dining Pavilion", "Picacho Hall", "Startup Labs", "Sun Devil Fitness Complex" ],
+    "Engineering" : [ "Algae Lab", "Altitude Chamber", "Engineering Design Studio", "Flight Simulator", "Interdisciplinary Science and Technology III", "Peralta Hall", "Santan Hall", "Simulator Building", "Technology Center", "Wanner Hall", "Student Union", "Cooley Ballroom", "Academic Center", "Administration", "Century Hall", "Citrus Dining Pavilion", "Picacho Hall", "Startup Labs", "Sun Devil Fitness Complex" ],
+    "Integrative Arts and Sciences" : [ "Applied Arts Pavilion", "Aravaipa Auditorium,", "Interdisciplinary Science and Technology III", "Santa Catalina Hall", "Santan Hall", "Technology Center", "Student Union", "Cooley Ballroom", "Academic Center", "Administration", "Century Hall", "Citrus Dining Pavilion", "Picacho Hall", "Startup Labs", "Sun Devil Fitness Complex", "Interdisciplinary Science and Technology III" ]
+  },
+  "sharedLocations" : {
+    "nhiremat" : {
+      "location" : {
+        "Coordinates" : {
+          "latitude" : 111,
+          "longitude" : 1111
+        },
+        "shared" : true
+      }
+    }
+  },
+  "scheduleDataBase":{
+      "nhiremat":{
+         "MondaySchedule":{
+            "ArmstrongHall":{
+               "Time":"10:00"
+            },
+            "Hayden":{
+               "Time":"11:00"
+            }
+         },
+         "TuesdaySchedule":{
+            "MemorialUnion":{
+               "Time":"16:00"
+            },
+            "SDFC":{
+               "Time":"17:00"
+            }
+         },
+         "WednesdaySchedule":{
+            "A Mountain":{
+               "Time":"11:00"
+            },
+            "SDFC":{
+               "Time":"12:00"
+            }
+         },
+         "ThursdaySchedule":{
+            "Student Pavilion":{
+               "Time":"9:00"
+            },
+            "SDFC":{
+               "Time":"10:00"
+            }
+         },
+         "FridaySchedule":{
+            "Tower Center":{
+               "Time":"19:00"
+            },
+            "SDFC":{
+               "Time":"18:00"
+            }
+         },
+         "SatardaySchedule":{
+            "Sun Devil Stadium":{
+               "Time":"13:00"
+            },
+            "SDFC":{
+               "Time":"20:00"
+            }
+         },
+         "SundaySchedule":{
+            "Psychology North":{
+               "Time":"11:00"
+            },
+            "SDFC":{
+               "Time":"12:00"
+            }
+         }
+      }
+   },
+  "tourDataBase" : {
+    "PolyCampusTour" : {
+      "adelphicommons" : "dummy",
+      "artwarehouse" : "dummy",
+      "asupolicedepartment" : "dummy",
+      "besthall" : "dummy",
+      "cowdenfamilyresources" : "dummy",
+      "richeswrestlingcomplex" : "dummy"
+    },
+    "TempeCampusTour" : {
+      "Hayden" : "dummy",
+      "Noble" : "dummy",
+      "SDFC" : "dummy"
+    },
+    "testTour" : {
+      "adelphi commons" : "dummy",
+      "art building" : "dummy",
+      "community services building" : "dummy"
+    }
+  }
+}
