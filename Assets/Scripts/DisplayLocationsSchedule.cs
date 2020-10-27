@@ -36,13 +36,14 @@ public class DisplayLocationsSchedule : MonoBehaviour
 
     public InputField ScheduleNameText;
     public InputField AddLocationText;
+    public InputField SharedLocationText;
     public Text Hours;
     public Text Minutes;
     void Start()
     {
         locationsData = new Dictionary<string, string>();
         dbDetails = new DB_Details();
-
+        crud = new CrudOperations();
         // Set up the Editor before calling into the realtime database.
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
 
@@ -127,14 +128,7 @@ public class DisplayLocationsSchedule : MonoBehaviour
         newSchedule.transform.localScale = Vector3.one;
 
     }
-    public string checkIfShared(string location)
-    {
-        if (location.Contains(":"))
-        {
-            return "Shared Location";
-        }
-        return location;
-    }
+
 
     private string parseFromLink(string link)
     {
@@ -144,39 +138,65 @@ public class DisplayLocationsSchedule : MonoBehaviour
         JObject scheduleObj = new JObject();
         coordinatesObj["latitude"] = data[0];
         coordinatesObj["longitude"] = data[1];
-        locationObj["Coordinates"] = coordinatesObj;
-        locationObj["time"] = data[2] + ":" + data[3];
-        locationObj["shared"] = "true";
+        locationObj[SharedLocationText.text] = coordinatesObj;
         scheduleObj[ScheduleNameText.text] = locationObj;
+
+        Hours.text = data[2];
+        Minutes.text = data[3];
         return scheduleObj.ToString();
     }
+    public void saveSharedLocation()
+    {
 
+        try
+        {
+            if (SharedLocationText.text == "")
+            {
+                throw new Exception("Name can't be empty!");
+            }
+
+            string locationData = parseFromLink(AddLocationText.text);
+
+            crud.addLinkLocation(dbDetails.getSharedDBName(), singleton.getUserName(), locationData);
+            AddLocationText.text = SharedLocationText.text;
+            onAddLocation();
+            NamePanel.SetActive(false);
+        }
+        catch (Exception e)
+        {
+            //Perform some action here, and then throw a new exception.
+            ErrorMessage.text = e.Message;
+            ErrorPanel.SetActive(true);
+        }
+
+    }
     public void onAddLocation()
     {
         //33.4282515:-111.935851
         try
         {
-            if (AddLocationText.text == "")
-            {
-                throw new Exception("Please enter location!");
-            }
-            if (Hours.text == "hour" || Minutes.text == "minute")
-            {
-                throw new Exception("Please enter correct time!");
-            }
-            String time = Hours.text + ":" + Minutes.text;
             if (AddLocationText.text.Contains(":"))
             {
-                string locationData = parseFromLink(AddLocationText.text);
                 NamePanel.SetActive(true);
-                // crud.addLinkLocation(dbDetails.getSharedDBName(), singleton.getUserName(), locationData);
             }
             else
             {
+                if (AddLocationText.text == "")
+                {
+                    throw new Exception("Please enter location!");
+                }
+                if (Hours.text == "hour" || Minutes.text == "minute")
+                {
+                    throw new Exception("Please enter correct time!");
+                }
+                String time = Hours.text + ":" + Minutes.text;
+
+
                 this.locationsData[AddLocationText.text] = time;
+                updateTourListOnAdd(AddLocationText.text, time);
+                AddLocationText.text = null;
             }
-            updateTourListOnAdd(checkIfShared(AddLocationText.text), time);
-            AddLocationText.text = null;
+
         }
         catch (Exception e)
         {

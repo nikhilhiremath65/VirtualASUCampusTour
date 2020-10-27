@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class ErrorClickOk : MonoBehaviour
 {
-    public GameObject ErrorPanel;
 
     public void onClickOk()
     {
-        ErrorPanel.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

@@ -4,7 +4,7 @@
     private string URL = "https://asu-ar-app.firebaseio.com/";
     private string buildingDBName = "buildingDataBase";
     private string scheduleDBName = "scheduleDataBase";
-    private string sharedDBName = "sharedLocationsDataBase";
+    private string sharedDBName = "sharedLocations";
     private string tourDBName = "tourDataBase";
 
     public string getDBUrl()
