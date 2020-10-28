@@ -4,6 +4,8 @@
 
     private string TourName;
     private string ScheduleName;
+    private string UserEmail;
+    private string UserRole;
 
     private string UserName = "nhiremat";
     protected Singleton()
@@ -48,5 +50,25 @@
     public string getUserName()
     {
         return this.UserName;
+    }
+
+    public void setUserEmail(string UserEmail)
+    {
+        this.UserEmail = UserEmail;
+    }
+
+    public string getUserEmail()
+    {
+        return this.UserEmail;
+    }
+
+    public void setUserRole(string UserRole)
+    {
+        this.UserRole = UserRole;
+    }
+
+    public string getUserRole()
+    {
+        return this.UserRole;
     }
 }
