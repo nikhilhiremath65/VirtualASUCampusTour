@@ -157,7 +157,7 @@ public class DisplayLocationsSchedule : MonoBehaviour
 
             string locationData = parseFromLink(AddLocationText.text);
 
-            crud.addLinkLocation(dbDetails.getSharedDBName(), singleton.getUserName(), locationData);
+            // crud.addSharedLocation(dbDetails.getSharedDBName(), singleton.getUserName(), locationData);
             AddLocationText.text = SharedLocationText.text;
             onAddLocation();
             NamePanel.SetActive(false);
