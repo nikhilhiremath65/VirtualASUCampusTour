@@ -2614,6 +2614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ContentPanel: {fileID: 8365995498263026204}
   ListItemPrefab: {fileID: 8365995499249603031}
+  DepartmentTour: {fileID: 1535184610}
 --- !u!222 &8365995498323203938
 CanvasRenderer:
   m_ObjectHideFlags: 0

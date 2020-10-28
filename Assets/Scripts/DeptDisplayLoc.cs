@@ -5,6 +5,7 @@ using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
 using Newtonsoft.Json;
+using UnityEngine.UI;
 
 public class DeptDisplayLoc : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class DeptDisplayLoc : MonoBehaviour
     bool locationsDisplayed;
 
     ArrayList locations;
+
+    public Text DepartmentTour;
 
     // Start is called before the first frame update
     [System.Obsolete]
@@ -49,6 +52,8 @@ public class DeptDisplayLoc : MonoBehaviour
     {
         DeptTournametransfer s = DeptTournametransfer.Instance;
         string scheduleName = s.getDeptTourName();
+
+        DepartmentTour.text = scheduleName + " Department Locations";
         print(scheduleName);
 
         reference.GetValueAsync().ContinueWith(task => {
