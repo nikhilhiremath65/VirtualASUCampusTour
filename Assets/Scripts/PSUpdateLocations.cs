@@ -154,5 +154,11 @@ public class PSUpdateLocations : MonoBehaviour
         PSLocationArraySingleton s = PSLocationArraySingleton.Instance;
         s.setUpdateStatus(0);
         s.setLocations(tours);
+
+        ArrayList allLocations = s.getLocations();
+        foreach (string location in allLocations) {
+            print(location+"\n");
+        }
+
     }
 }
