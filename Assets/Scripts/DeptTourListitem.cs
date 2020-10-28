@@ -36,8 +36,11 @@ public class DeptTourListitem : MonoBehaviour
         SceneManager.LoadScene(scenename);
     }
 
-    public void nextScene()
+    public void nextScene(string scenename)
     {
         // write next scene logic here
+        singleton = Singleton.Instance();
+        singleton.setScheduleName(Name.text);
+        SceneManager.LoadScene(scenename);
     }
 }

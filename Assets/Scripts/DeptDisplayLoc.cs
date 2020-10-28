@@ -49,6 +49,7 @@ public class DeptDisplayLoc : MonoBehaviour
     {
         DeptTournametransfer s = DeptTournametransfer.Instance;
         string scheduleName = s.getDeptTourName();
+        print(scheduleName);
 
         reference.GetValueAsync().ContinueWith(task => {
             if (task.IsFaulted)
@@ -61,12 +62,17 @@ public class DeptDisplayLoc : MonoBehaviour
                 // getting schedules for a particular user.
                 DataSnapshot snapshot = task.Result.Child(dbDetails.getDeptTourDBName()).Child(scheduleName);
 
+                print(scheduleName);
+                print(snapshot);
+
                 Dictionary<string, string> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
 
                 foreach (string schedule in scheduleData.Values)
                 {
                     this.locations.Add(new DeptLocation(schedule));
                 }
+
+                print("Tour locations:" + scheduleData.Values);
             }
         });
     }
@@ -79,7 +85,8 @@ public class DeptDisplayLoc : MonoBehaviour
             GameObject newSchedule = Instantiate(ListItemPrefab);
 
             DeptTourListitem controller = newSchedule.GetComponent<DeptTourListitem>();
-            controller.Name.text = s.Name;
+            string name1 = s.Name;
+            controller.Name.text = name1;
 
             newSchedule.transform.parent = ContentPanel.transform;
             newSchedule.transform.localScale = Vector3.one;
