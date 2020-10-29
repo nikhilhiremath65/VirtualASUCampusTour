@@ -244,20 +244,8 @@ public class DisplayLocationsSchedule : MonoBehaviour
                 throw new Exception("Please enter Schedule Name!");
             }
 
-            reference.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleName).RemoveValueAsync();
-
-            reference.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleNameText.text).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
-            {
-                if (task.IsFaulted)
-                {
-                    throw new Exception("ERROR while appending values to database.");
-
-                }
-                else if (task.IsCompleted)
-                {
-                    Debug.Log("SUCCESS: DATA ADDED TO DATABASE");
-                }
-            });
+            crud.deleteSchedule(dbDetails.getScheduleDBName(), UserName, ScheduleName);
+            crud.addLocation(dbDetails.getScheduleDBName(), UserName, ScheduleNameText.text, jsonData);
             SceneManager.LoadScene("SchedulesScene");
         }
         catch (InvalidCastException e)
