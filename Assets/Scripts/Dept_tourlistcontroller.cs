@@ -59,7 +59,7 @@ public class Dept_tourlistcontroller : MonoBehaviour
             else if (task.IsCompleted)
             {
                 // getting schedules for a particular user.
-                DataSnapshot snapshot = task.Result.Child(dbDetails.getDeptTourDBName());
+                DataSnapshot snapshot = task.Result.Child(dbDetails.getTourDBName());
 
                 Dictionary<string, object> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
 

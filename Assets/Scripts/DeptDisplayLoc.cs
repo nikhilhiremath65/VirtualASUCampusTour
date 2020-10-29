@@ -55,10 +55,10 @@ public class DeptDisplayLoc : MonoBehaviour
 
     void getLocationData()
     {
-        DeptTournametransfer s = DeptTournametransfer.Instance;
-        string scheduleName = s.getDeptTourName();
+        Singleton s = Singleton.Instance();
+        string scheduleName = s.getTourName();
 
-        DepartmentTour.text = scheduleName + " Department Locations";
+        DepartmentTour.text = scheduleName + " Locations";
         
 
         reference.GetValueAsync().ContinueWith(task =>
@@ -73,14 +73,15 @@ public class DeptDisplayLoc : MonoBehaviour
                 // getting schedules for a particular user.
 
 
-                snapshot = task.Result.Child(dbDetails.getDeptTourDBName()).Child(scheduleName.ToString());
+                snapshot = task.Result.Child(dbDetails.getTourDBName()).Child(scheduleName.ToString());
                 
-                //scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
+                
                 scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
 
                 foreach (KeyValuePair<string, string> schedule in scheduleData)
                 {
                     this.locations.Add(new DeptLocation(schedule.Key));
+                    //print(schedule.Key);
                 }
             }
         });
