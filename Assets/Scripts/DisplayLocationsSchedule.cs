@@ -10,6 +10,7 @@ using System.Threading;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using Models;
 using Crud;
 
 public class DisplayLocationsSchedule : MonoBehaviour
@@ -27,6 +28,7 @@ public class DisplayLocationsSchedule : MonoBehaviour
     private CrudOperations crud;
 
     private Dictionary<string, string> locationsData;
+    private Dictionary<string, JObject> sharedLocationsData;
     public GameObject ContentPanel;
     public GameObject ErrorPanel;
     public GameObject NamePanel;
@@ -42,6 +44,7 @@ public class DisplayLocationsSchedule : MonoBehaviour
     void Start()
     {
         locationsData = new Dictionary<string, string>();
+        sharedLocationsData = new Dictionary<string, JObject>();
         dbDetails = new DB_Details();
         crud = new CrudOperations();
         // Set up the Editor before calling into the realtime database.
@@ -85,6 +88,11 @@ public class DisplayLocationsSchedule : MonoBehaviour
                     DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleName);
 
                     locationsData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
+
+                    DataSnapshot sharedLocationSnapshot = task.Result.Child(dbDetails.getSharedDBName()).Child(UserName).Child(ScheduleName);
+
+                    sharedLocationsData = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(sharedLocationSnapshot.GetRawJsonValue());
+
 
                 }
             });
@@ -130,22 +138,20 @@ public class DisplayLocationsSchedule : MonoBehaviour
     }
 
 
-    private string parseFromLink(string link)
+    private JObject parseFromLink(string link)
     {
         string[] data = link.Split(':');
         JObject locationObj = new JObject();
         JObject coordinatesObj = new JObject();
-        JObject scheduleObj = new JObject();
         coordinatesObj["latitude"] = data[0];
         coordinatesObj["longitude"] = data[1];
         locationObj[SharedLocationText.text] = coordinatesObj;
-        scheduleObj[ScheduleNameText.text] = locationObj;
 
         Hours.text = data[2];
         Minutes.text = data[3];
-        return scheduleObj.ToString();
+        return locationObj;
     }
-    public void saveSharedLocation()
+    public void addSharedLocation()
     {
 
         try
@@ -154,10 +160,14 @@ public class DisplayLocationsSchedule : MonoBehaviour
             {
                 throw new Exception("Name can't be empty!");
             }
+            if (ScheduleNameText.text == "")
+            {
+                throw new Exception("Please enter Schedule Name!");
+            }
 
-            string locationData = parseFromLink(AddLocationText.text);
+            JObject locationData = parseFromLink(AddLocationText.text);
 
-            // crud.addSharedLocation(dbDetails.getSharedDBName(), singleton.getUserName(), locationData);
+            sharedLocationsData.Add(SharedLocationText.text, locationData);
             AddLocationText.text = SharedLocationText.text;
             onAddLocation();
             NamePanel.SetActive(false);
@@ -208,12 +218,16 @@ public class DisplayLocationsSchedule : MonoBehaviour
     public void onDelete(Text locationName)
     {
         locationsData.Remove(locationName.text);
+        if (sharedLocationsData.ContainsKey(locationName.text))
+        {
+            sharedLocationsData.Remove(locationName.text);
+        }
+
     }
 
 
     public void onSave()
     {
-
 
         //Creating JSON 
         JObject locationsObj = new JObject();
@@ -223,7 +237,6 @@ public class DisplayLocationsSchedule : MonoBehaviour
             locationsObj[s] = locationsData[s];
         }
         string jsonData = locationsObj.ToString();
-        Debug.Log(jsonData);
         try
         {
             if (ScheduleNameText.text == "")
@@ -231,7 +244,7 @@ public class DisplayLocationsSchedule : MonoBehaviour
                 throw new Exception("Please enter Schedule Name!");
             }
 
-            reference.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleNameText.text).RemoveValueAsync();
+            reference.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleName).RemoveValueAsync();
 
             reference.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleNameText.text).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
             {
@@ -259,5 +272,19 @@ public class DisplayLocationsSchedule : MonoBehaviour
             ErrorMessage.text = e.Message;
             ErrorPanel.SetActive(true);
         }
+    }
+    public void onSaveSharedLocation()
+    {
+        JObject locationsObj = new JObject();
+
+        foreach (string s in sharedLocationsData.Keys)
+        {
+            locationsObj[s] = sharedLocationsData[s];
+        }
+        string jsonData = locationsObj.ToString();
+        crud.deleteSchedule(dbDetails.getSharedDBName(), UserName, ScheduleName);
+        crud.addLocation(dbDetails.getSharedDBName(), UserName, ScheduleNameText.text, jsonData);
+        SceneManager.LoadScene("SchedulesScene");
+
     }
 }

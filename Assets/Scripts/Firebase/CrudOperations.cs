@@ -39,11 +39,11 @@ namespace Crud
             });
         }
 
-        public void addSharedLocation(string database, string user, string location)
+        public void addLocation(string database, string user, string schedule, string location)
         {
             try
             {
-                rootReference.Child(database).Child(user).SetRawJsonValueAsync(location).ContinueWith(task =>
+                rootReference.Child(database).Child(user).Child(schedule).SetRawJsonValueAsync(location).ContinueWith(task =>
                             {
                                 if (task.IsFaulted)
                                 {
@@ -63,6 +63,7 @@ namespace Crud
                 Debug.Log("Error: " + e);
             }
         }
+
         // public void test(){
         //     addSharedLocation("SharedLocations","nhitremat","ob");
         //     addSharedLocation("","nhitremat","ob");
