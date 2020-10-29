@@ -59,7 +59,7 @@ public class DeptDisplayLoc : MonoBehaviour
         string scheduleName = s.getDeptTourName();
 
         DepartmentTour.text = scheduleName + " Department Locations";
-        //print(scheduleName);
+        
 
         reference.GetValueAsync().ContinueWith(task =>
         {
