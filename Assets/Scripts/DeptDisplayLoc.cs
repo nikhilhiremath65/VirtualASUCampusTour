@@ -16,6 +16,10 @@ public class DeptDisplayLoc : MonoBehaviour
     DB_Details dbDetails;
     DatabaseReference reference;
     bool locationsDisplayed;
+    DataSnapshot snapshot;
+
+    private Dictionary<string, string> scheduleData;
+
 
     ArrayList locations;
 
@@ -25,6 +29,7 @@ public class DeptDisplayLoc : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
+        scheduleData = new Dictionary<string, string>();
         locations = new ArrayList();
 
         dbDetails = new DB_Details();
@@ -54,9 +59,10 @@ public class DeptDisplayLoc : MonoBehaviour
         string scheduleName = s.getDeptTourName();
 
         DepartmentTour.text = scheduleName + " Department Locations";
-        print(scheduleName);
+        //print(scheduleName);
 
-        reference.GetValueAsync().ContinueWith(task => {
+        reference.GetValueAsync().ContinueWith(task =>
+        {
             if (task.IsFaulted)
             {
                 // Handle the error...
@@ -65,19 +71,17 @@ public class DeptDisplayLoc : MonoBehaviour
             else if (task.IsCompleted)
             {
                 // getting schedules for a particular user.
-                DataSnapshot snapshot = task.Result.Child(dbDetails.getDeptTourDBName()).Child(scheduleName);
 
-                print(scheduleName);
-                print(snapshot);
 
-                Dictionary<string, string> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
+                snapshot = task.Result.Child(dbDetails.getDeptTourDBName()).Child(scheduleName.ToString());
+                
+                //scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
+                scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
 
-                foreach (string schedule in scheduleData.Values)
+                foreach (KeyValuePair<string, string> schedule in scheduleData)
                 {
-                    this.locations.Add(new DeptLocation(schedule));
+                    this.locations.Add(new DeptLocation(schedule.Key));
                 }
-
-                print("Tour locations:" + scheduleData.Values);
             }
         });
     }
@@ -97,5 +101,11 @@ public class DeptDisplayLoc : MonoBehaviour
             newSchedule.transform.localScale = Vector3.one;
         }
         locationsDisplayed = true;
+         
+        
     }
+    //public void onDelete(Text locationName)
+    //{
+    //    locations.Remove(locationName.text);
+    //}
 }

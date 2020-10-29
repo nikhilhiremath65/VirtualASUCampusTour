@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DeptTourLoc.unity
     guid: ba4b3d21722674ae19e1e4c705e6b5b0
+  - enabled: 1
+    path: Assets/Scenes/UpdateSchedule.unity
+    guid: 7ac4168ad209b5fcaa2dfefa9ea211bf
   m_configObjects: {}

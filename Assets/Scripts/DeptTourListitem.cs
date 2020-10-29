@@ -10,6 +10,7 @@ public class DeptTourListitem : MonoBehaviour
 
     public Text Name;
     Singleton singleton;
+    public GameObject item;
     public GameObject deletePanel;
     public void confirmDelete()
     {
@@ -20,12 +21,11 @@ public class DeptTourListitem : MonoBehaviour
     {
         deletePanel.SetActive(false);
     }
-    public void delete()
+    public void onDelete()
 
     {
-        //CrudOperations crud = new CrudOperations();
-        //crud.deleteSchedule("departmentTourDataBase", Name.text);
-        //Destroy(gameObject);
+        Destroy(gameObject);
+        deletePanel.SetActive(false);
     }
 
     public void Edit(string scenename)
