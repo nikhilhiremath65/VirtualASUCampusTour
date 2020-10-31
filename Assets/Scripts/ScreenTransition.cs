@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class ScreenTransition : MonoBehaviour
 {
     static ScheduleNameTransfer s;
+    static Singleton q;
     public void SceneLoader(string scenename)
     {
         SceneManager.LoadScene(scenename);
@@ -33,5 +34,24 @@ public class ScreenTransition : MonoBehaviour
         s = ScheduleNameTransfer.Instance;
         s.setScheduleName(texts[0].text);
         
+    }
+
+    public void OnDeptButtonClick()
+    {
+        Text[] texts = EventSystem.current.currentSelectedGameObject.GetComponentsInChildren<Text>();
+
+        print("Clicked on : " + texts[0].text);
+        q = Singleton.Instance();
+        q.setTourName(texts[0].text);
+
+    }
+    public void OnStartTourButtonClick()
+    {
+        Text[] texts = EventSystem.current.currentSelectedGameObject.GetComponentsInChildren<Text>();
+
+        print("Clicked on : " + texts[0].text);
+        q = Singleton.Instance();
+        q.setTourName(texts[0].text);
+
     }
 }
