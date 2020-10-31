@@ -60,11 +60,11 @@ public class DisplayScheduleLocations : MonoBehaviour
                 // getting schedules for a particular user.
                 DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child("nhiremat").Child(scheduleName);
 
-                Dictionary<string, object> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
+                Dictionary<string, string> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
 
-                foreach (string schedule in scheduleData.Keys)
+                foreach (KeyValuePair<string, string> schedule in scheduleData)
                 {
-                    this.locations.Add(new ScheduleLocation(schedule));
+                    this.locations.Add(new ScheduleLocation(schedule.Key, schedule.Value));
                 }
             }
         });
@@ -79,6 +79,7 @@ public class DisplayScheduleLocations : MonoBehaviour
 
             ListItemController controller = newSchedule.GetComponent<ListItemController>();
             controller.Name.text = s.Name;
+            controller.Time.text = s.Time;
 
             newSchedule.transform.parent = ContentPanel.transform;
             newSchedule.transform.localScale = Vector3.one;

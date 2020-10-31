@@ -9,8 +9,20 @@ public class ListItemController : MonoBehaviour
 {
 
     public Text Name;
+    public Text Time;
     Singleton singleton;
+    public GameObject deletePanel;
+    public void confirmDelete()
+    {
+        deletePanel.SetActive(true);
+    }
+
+    public void onCancel()
+    {
+        deletePanel.SetActive(false);
+    }
     public void delete()
+
     {
         CrudOperations crud = new CrudOperations();
         crud.deleteSchedule("scheduleDataBase", "nhiremat", Name.text);

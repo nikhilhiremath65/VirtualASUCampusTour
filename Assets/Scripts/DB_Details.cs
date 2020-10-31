@@ -5,6 +5,7 @@
     private string buildingDBName = "buildingDataBase";
     private string scheduleDBName = "scheduleDataBase";
     private string tourDBName = "tourDataBase";
+    private string depttourDBName = "departmentTourDataBase";
 
     public string getDBUrl()
     {
@@ -24,5 +25,10 @@
     public string getTourDBName()
     {
         return tourDBName;
+    }
+
+    public string getDeptTourDBName()
+    {
+        return depttourDBName;
     }
 }

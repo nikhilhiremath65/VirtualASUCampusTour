@@ -56,6 +56,15 @@ public class LocationListItem : MonoBehaviour
         deletePanel.SetActive(false);
     }
 
+
+    public void onCreateTourLocationDelete()
+    {
+        item.Destroy();
+        deletePanel.SetActive(false);
+    }
+
+
+
     public void Edit()
     {
         // write edit logic here
@@ -65,4 +74,8 @@ public class LocationListItem : MonoBehaviour
     {
         // write next scene logic here
     }
+
+
+
+
 }

@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 using System;
 
 public class DisplayLocations : MonoBehaviour
-{   
+{
     bool toursDisplayed;
 
     ArrayList tours;
@@ -51,7 +51,7 @@ public class DisplayLocations : MonoBehaviour
         getTourData();
 
         toursDisplayed = false;
-            
+
     }
 
     // Update is called once per frame
@@ -67,7 +67,8 @@ public class DisplayLocations : MonoBehaviour
     {
         try
         {
-            reference.GetValueAsync().ContinueWith(task => {
+            reference.GetValueAsync().ContinueWith(task =>
+            {
                 if (task.IsFaulted)
                 {
                     throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
@@ -154,7 +155,7 @@ public class DisplayLocations : MonoBehaviour
         JObject locations = new JObject();
 
         foreach (string s in tours)
-        {   
+        {
             locations[s] = dummyString;
         }
         string jsonData = locations.ToString();
