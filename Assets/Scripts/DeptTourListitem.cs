@@ -36,6 +36,13 @@ public class DeptTourListitem : MonoBehaviour
         SceneManager.LoadScene(scenename);
     }
 
+    public void PSEdit(string scenename)
+    {
+        singleton = Singleton.Instance();
+        singleton.setPSTourNameEdit(Name.text);
+        SceneManager.LoadScene(scenename);
+
+    }
     public void nextScene(string scenename)
     {
         // write next scene logic here
