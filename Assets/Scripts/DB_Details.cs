@@ -31,6 +31,7 @@
     public string getSharedDBName()
     {
         return sharedDBName;
+    }        
     public string getDeptTourDBName()
     {
         return depttourDBName;
