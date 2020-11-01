@@ -29,7 +29,7 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 		[Range(1,10)]
 		private float UpdateFrequency = 2;
 
-
+		
 
 		private Directions _directions;
 		private int _counter;
@@ -89,20 +89,24 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 			while (true)
 			{
 				yield return new WaitForSeconds(UpdateFrequency);
-				for (int i = 0; i < _waypoints.Length; i++)
-				{
-					if (_waypoints[i].position != _cachedWaypoints[i])
+				if (!_map.mapDrag)
+                {
+					for (int i = 0; i < _waypoints.Length; i++)
 					{
-						_recalculateNext = true;
-						_cachedWaypoints[i] = _waypoints[i].position;
+						if (_waypoints[i].position != _cachedWaypoints[i])
+						{
+							_recalculateNext = true;
+							_cachedWaypoints[i] = _waypoints[i].position;
+						}
+					}
+
+					if (_recalculateNext)
+					{
+						Query();
+						_recalculateNext = false;
 					}
 				}
-
-				if (_recalculateNext)
-				{
-					Query();
-					_recalculateNext = false;
-				}
+				
 			}
 		}
 

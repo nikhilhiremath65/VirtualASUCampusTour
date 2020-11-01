@@ -46,7 +46,12 @@
 			};
 		}
 
-		public void Update()
+        void OnMouseDown()
+        {
+			print(gameObject.name);
+		}
+
+        public void Update()
 		{
 			if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject())
 			{
