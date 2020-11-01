@@ -10,6 +10,8 @@ using System.Threading;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using Models;
+using Crud;
 
 public class DisplayLocationsSchedule : MonoBehaviour
 {
@@ -23,22 +25,28 @@ public class DisplayLocationsSchedule : MonoBehaviour
     private string UserName;
     private Singleton singleton;
 
+    private CrudOperations crud;
+
     private Dictionary<string, string> locationsData;
+    private Dictionary<string, JObject> sharedLocationsData;
     public GameObject ContentPanel;
     public GameObject ErrorPanel;
+    public GameObject NamePanel;
     public GameObject ListItemPrefab;
 
     public Text ErrorMessage;
 
     public InputField ScheduleNameText;
     public InputField AddLocationText;
+    public InputField SharedLocationText;
     public Text Hours;
     public Text Minutes;
     void Start()
     {
         locationsData = new Dictionary<string, string>();
+        sharedLocationsData = new Dictionary<string, JObject>();
         dbDetails = new DB_Details();
-
+        crud = new CrudOperations();
         // Set up the Editor before calling into the realtime database.
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
 
@@ -80,6 +88,11 @@ public class DisplayLocationsSchedule : MonoBehaviour
                     DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleName);
 
                     locationsData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
+
+                    DataSnapshot sharedLocationSnapshot = task.Result.Child(dbDetails.getSharedDBName()).Child(UserName).Child(ScheduleName);
+
+                    sharedLocationsData = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(sharedLocationSnapshot.GetRawJsonValue());
+
 
                 }
             });
@@ -125,23 +138,73 @@ public class DisplayLocationsSchedule : MonoBehaviour
     }
 
 
-    public void onAddLocation()
+    private JObject parseFromLink(string link)
     {
+        string[] data = link.Split(':');
+        JObject coordinatesObj = new JObject();
+        coordinatesObj["latitude"] = data[0];
+        coordinatesObj["longitude"] = data[1];
+
+        Hours.text = data[2];
+        Minutes.text = data[3];
+        return coordinatesObj;
+    }
+    public void addSharedLocation()
+    {
+
         try
         {
-            if (AddLocationText.text == "")
+            if (SharedLocationText.text == "")
             {
-                throw new Exception("Please enter location!");
+                throw new Exception("Name can't be empty!");
             }
-            if (Hours.text == "hour" || Minutes.text == "minute")
+            if (ScheduleNameText.text == "")
             {
-                throw new Exception("Please enter correct time!");
+                throw new Exception("Please enter Schedule Name!");
             }
 
-            String time = Hours.text + ":" + Minutes.text;
-            this.locationsData[AddLocationText.text] = time;
-            updateTourListOnAdd(AddLocationText.text, time);
-            AddLocationText.text = null;
+            JObject coordinateObj = parseFromLink(AddLocationText.text);
+
+            sharedLocationsData.Add(SharedLocationText.text, coordinateObj);
+            AddLocationText.text = SharedLocationText.text;
+            onAddLocation();
+            NamePanel.SetActive(false);
+        }
+        catch (Exception e)
+        {
+            //Perform some action here, and then throw a new exception.
+            ErrorMessage.text = e.Message;
+            ErrorPanel.SetActive(true);
+        }
+
+    }
+    public void onAddLocation()
+    {
+        //33.4282515:-111.935851
+        try
+        {
+            if (AddLocationText.text.Contains(":"))
+            {
+                NamePanel.SetActive(true);
+            }
+            else
+            {
+                if (AddLocationText.text == "")
+                {
+                    throw new Exception("Please enter location!");
+                }
+                if (Hours.text == "hour" || Minutes.text == "minute")
+                {
+                    throw new Exception("Please enter correct time!");
+                }
+                String time = Hours.text + ":" + Minutes.text;
+
+
+                this.locationsData[AddLocationText.text] = time;
+                updateTourListOnAdd(AddLocationText.text, time);
+                AddLocationText.text = null;
+            }
+
         }
         catch (Exception e)
         {
@@ -153,12 +216,16 @@ public class DisplayLocationsSchedule : MonoBehaviour
     public void onDelete(Text locationName)
     {
         locationsData.Remove(locationName.text);
+        if (sharedLocationsData.ContainsKey(locationName.text))
+        {
+            sharedLocationsData.Remove(locationName.text);
+        }
+
     }
 
 
     public void onSave()
     {
-        ;
 
         //Creating JSON 
         JObject locationsObj = new JObject();
@@ -168,7 +235,6 @@ public class DisplayLocationsSchedule : MonoBehaviour
             locationsObj[s] = locationsData[s];
         }
         string jsonData = locationsObj.ToString();
-
         try
         {
             if (ScheduleNameText.text == "")
@@ -176,20 +242,8 @@ public class DisplayLocationsSchedule : MonoBehaviour
                 throw new Exception("Please enter Schedule Name!");
             }
 
-            reference.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleNameText.text).RemoveValueAsync();
-
-            reference.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleNameText.text).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
-            {
-                if (task.IsFaulted)
-                {
-                    throw new Exception("ERROR while appending values to database.");
-
-                }
-                else if (task.IsCompleted)
-                {
-                    Debug.Log("SUCCESS: DATA ADDED TO DATABASE");
-                }
-            });
+            crud.deleteSchedule(dbDetails.getScheduleDBName(), UserName, ScheduleName);
+            crud.addLocation(dbDetails.getScheduleDBName(), UserName, ScheduleNameText.text, jsonData);
             SceneManager.LoadScene("SchedulesScene");
         }
         catch (InvalidCastException e)
@@ -204,5 +258,20 @@ public class DisplayLocationsSchedule : MonoBehaviour
             ErrorMessage.text = e.Message;
             ErrorPanel.SetActive(true);
         }
+    }
+    public void onSaveSharedLocation()
+    {
+        JObject locationsObj = new JObject();
+
+        foreach (string s in sharedLocationsData.Keys)
+        {
+            locationsObj[s] = sharedLocationsData[s];
+        }
+        string jsonData = locationsObj.ToString();
+        Debug.Log(jsonData);
+        crud.deleteSchedule(dbDetails.getSharedDBName(), UserName, ScheduleName);
+        crud.addLocation(dbDetails.getSharedDBName(), UserName, ScheduleNameText.text, jsonData);
+        SceneManager.LoadScene("SchedulesScene");
+
     }
 }
