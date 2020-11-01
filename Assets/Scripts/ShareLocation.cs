@@ -66,7 +66,7 @@ public class ShareLocation : MonoBehaviour
                     if (task.IsFaulted)
                     {
                         ErrorPanel.transform.SetAsLastSibling();
-                        throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
+                        throw new Exception("ERROR while fetching data from database!!! Please refresh!");
                     }
                     else if (task.IsCompleted)
                     {
@@ -75,12 +75,10 @@ public class ShareLocation : MonoBehaviour
                         string str = snapshot.GetRawJsonValue();
                         JObject jsonLocation = JObject.Parse(str);
 
-                        var locationText = location.text.ToLower();
-                        locationText = locationText.Replace(" ", "");
+                        var locationText = location.text;
 
                         lat = (string)jsonLocation[locationText]["Coordinates"]["Latitude"];
                         lon = (string)jsonLocation[locationText]["Coordinates"]["Longitude"];
-
                     }
                 });
             }

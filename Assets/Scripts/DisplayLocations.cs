@@ -146,6 +146,10 @@ public class DisplayLocations : MonoBehaviour
         }
     }
 
+    public void onDelete(Text locationName)
+    {
+        this.tours.Remove(locationName.text);
+    }
 
     public void onSave()
     {
