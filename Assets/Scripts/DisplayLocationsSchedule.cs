@@ -141,15 +141,13 @@ public class DisplayLocationsSchedule : MonoBehaviour
     private JObject parseFromLink(string link)
     {
         string[] data = link.Split(':');
-        JObject locationObj = new JObject();
         JObject coordinatesObj = new JObject();
         coordinatesObj["latitude"] = data[0];
         coordinatesObj["longitude"] = data[1];
-        locationObj[SharedLocationText.text] = coordinatesObj;
 
         Hours.text = data[2];
         Minutes.text = data[3];
-        return locationObj;
+        return coordinatesObj;
     }
     public void addSharedLocation()
     {
@@ -165,9 +163,9 @@ public class DisplayLocationsSchedule : MonoBehaviour
                 throw new Exception("Please enter Schedule Name!");
             }
 
-            JObject locationData = parseFromLink(AddLocationText.text);
+            JObject coordinateObj = parseFromLink(AddLocationText.text);
 
-            sharedLocationsData.Add(SharedLocationText.text, locationData);
+            sharedLocationsData.Add(SharedLocationText.text, coordinateObj);
             AddLocationText.text = SharedLocationText.text;
             onAddLocation();
             NamePanel.SetActive(false);
@@ -270,6 +268,7 @@ public class DisplayLocationsSchedule : MonoBehaviour
             locationsObj[s] = sharedLocationsData[s];
         }
         string jsonData = locationsObj.ToString();
+        Debug.Log(jsonData);
         crud.deleteSchedule(dbDetails.getSharedDBName(), UserName, ScheduleName);
         crud.addLocation(dbDetails.getSharedDBName(), UserName, ScheduleNameText.text, jsonData);
         SceneManager.LoadScene("SchedulesScene");

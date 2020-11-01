@@ -1781,6 +1781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: {fileID: 6478973124748661557}
+  Time: {fileID: 0}
   deletePanel: {fileID: 575226068}
 --- !u!222 &1889238529013125005
 CanvasRenderer:
@@ -2870,7 +2871,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6823210641727383854}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1073875337}
+        m_MethodName: SceneLoader
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Profile
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6840480732280416342
 MonoBehaviour:
   m_ObjectHideFlags: 0
