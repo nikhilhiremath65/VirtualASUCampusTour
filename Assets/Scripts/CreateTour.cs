@@ -34,9 +34,13 @@ public class CreateTour : MonoBehaviour
         tours = new ArrayList();
         dbDetails = new DB_Details();
 
+
+
         // Set up the Editor before calling into the realtime database.
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
+        
 
+    
         // Get the root reference location of the database.
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
@@ -72,8 +76,12 @@ public class CreateTour : MonoBehaviour
         newSchedule.transform.localScale = Vector3.one;
     }
 
-
     public void onSave()
+    {
+        StartCoroutine(save());
+    }
+
+    private IEnumerator save()
     {
         string dummyString = "dummy";
 
@@ -88,40 +96,36 @@ public class CreateTour : MonoBehaviour
         string jsonData = locations.ToString();
 
 
-        try
+        
+        if (TourNameText.text == "")
         {
-            if (TourNameText.text == "")
+             ErrorMessage.text = "Please enter Tour Name!";
+            ErrorPanel.SetActive(true);
+        }
+
+           
+
+        var deleteTask = reference.Child(dbDetails.getTourDBName()).Child(TourNameText.text).SetValueAsync(null);
+        yield return new WaitUntil(predicate: () => deleteTask.IsCompleted);
+        if (deleteTask.Exception != null)
+        {
+            throw new Exception("ERROR while deleting values from database.");
+        }
+        else
+        {
+            var appendTask = reference.Child(dbDetails.getTourDBName()).Child(TourNameText.text).SetRawJsonValueAsync(jsonData);
+            yield return new WaitUntil(predicate: () => appendTask.IsCompleted);
+            if (appendTask.Exception != null)
             {
-                throw new Exception("Please enter Tour Name!");
+                throw new Exception("ERROR while appending values from database.");
             }
-
-            reference.Child(dbDetails.getTourDBName()).Child(TourNameText.text).RemoveValueAsync();
-
-            reference.Child(dbDetails.getTourDBName()).Child(TourNameText.text).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
+            else
             {
-                if (task.IsFaulted)
-                {
-                    throw new Exception("ERROR while appending values to database.");
-                }
-                else if (task.IsCompleted)
-                {
-                    Debug.Log("SUCCESS: DATA ADDED TO DATABASE");
-                }
-            });
-            SceneManager.LoadScene("ManagerTourView");
-        }
-        catch (InvalidCastException e)
-        {
-            // Perform some action here, and then throw a new exception.
-            ErrorMessage.text = e.Message;
-            ErrorPanel.SetActive(true);
-        }
-        catch (Exception e)
-        {
-            // Perform some action here, and then throw a new exception.
-            ErrorMessage.text = e.Message;
-            ErrorPanel.SetActive(true);
-        }
+                Debug.Log("SUCCESS: DATA ADDED TO DATABASE");
+            }
+        };
+
+        SceneManager.LoadScene("ManagerTourView");
     }
 
 

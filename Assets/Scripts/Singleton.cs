@@ -46,7 +46,7 @@
 
     public void setUserName(string UserName)
     {
-        this.ScheduleName = UserName;
+        this.UserName = UserName;
     }
     public string getUserName()
     {
