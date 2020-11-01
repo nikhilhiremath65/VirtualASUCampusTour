@@ -81,7 +81,7 @@
             // Get the root reference location of the database.
             reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-            PSLocationArraySingleton pSLocationArraySingleton = PSLocationArraySingleton.Instance;
+            PSLocationArraySingleton pSLocationArraySingleton = PSLocationArraySingleton.Instance();
 
             if (pSLocationArraySingleton.getUpdateStatus() == 0)
             {
@@ -269,7 +269,6 @@
                             double lat = double.Parse(location.Latitute);
                             double lon = double.Parse(location.Longitude);
                             coordinates.Add(new Vector2d(lat, lon));
-                            print(location);
                         }
                     }
                 });
