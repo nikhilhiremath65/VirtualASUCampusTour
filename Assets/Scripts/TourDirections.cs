@@ -73,7 +73,6 @@
             Singleton singleton = Singleton.Instance();
 
             TourName = singleton.getTourName();
-            TourName = "PolyCampusTour";
 
             path = false;
             // Set up the Editor before calling into the realtime database.
@@ -82,7 +81,20 @@
             // Get the root reference location of the database.
             reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-            getTourData();
+            PSLocationArraySingleton pSLocationArraySingleton = PSLocationArraySingleton.Instance;
+
+            if (pSLocationArraySingleton.getUpdateStatus() == 0)
+            {
+                getTourData();
+            }
+            else
+            {
+                foreach (string location in pSLocationArraySingleton.getLocations())
+                {
+                    locations.Add(new TourLocation(location));
+                }
+                getCoordinates();
+            }
 
             InvokeRepeating("UpdatePath", 2.0f, 0.3f);
         }
@@ -251,11 +263,13 @@
 
                         foreach (TourLocation location in this.locations)
                         {
+                            print(location);
                             location.Latitute = (string)jsonLocation[location.Name]["Coordinates"]["Latitude"];
                             location.Longitude = (string)jsonLocation[location.Name]["Coordinates"]["Longitude"];
                             double lat = double.Parse(location.Latitute);
                             double lon = double.Parse(location.Longitude);
                             coordinates.Add(new Vector2d(lat, lon));
+                            print(location);
                         }
                     }
                 });

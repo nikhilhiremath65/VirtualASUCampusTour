@@ -45,13 +45,4 @@ public class ScreenTransition : MonoBehaviour
         q.setTourName(texts[0].text);
 
     }
-    public void OnStartTourButtonClick()
-    {
-        Text[] texts = EventSystem.current.currentSelectedGameObject.GetComponentsInChildren<Text>();
-
-        print("Clicked on : " + texts[0].text);
-        q = Singleton.Instance();
-        q.setTourName(texts[0].text);
-
-    }
 }
