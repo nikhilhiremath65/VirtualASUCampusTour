@@ -20,7 +20,7 @@ namespace UnityEngine.UI.Extensions
         public DropDownListItem SelectedItem { get; private set; } //outside world gets to get this, not set it
 
         public List<string> AvailableOptionsCustomize = new List<string> { "A Mountain",
-                                                                        "A. J. Matthews Center",
+                                                                        "A J Matthews Center",
                                                                         "Adelphi Commons",
                                                                         "Alberta B. Farrington Softball Stadium",
                                                                         "Armstrong Hall",

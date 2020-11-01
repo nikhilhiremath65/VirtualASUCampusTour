@@ -63,9 +63,9 @@ public class AuthController : MonoBehaviour
     public void Login_Anonymous()
     {
         singleton = Singleton.Instance();
-        userMail = "Anonymous";
-        userRole = "Anonymous";
-        userName = "Anonymous";
+        userMail = "Guest";
+        userRole = "Guest";
+        userName = "Guest";
 
         Debug.Log("UserEmail: " + userMail);
         singleton.setUserEmail(userMail);
