@@ -6,6 +6,7 @@
     private string scheduleDBName = "scheduleDataBase";
     private string sharedDBName = "sharedLocations";
     private string tourDBName = "tourDataBase";
+    private string depttourDBName = "departmentTourDataBase";
 
     public string getDBUrl()
     {
@@ -30,5 +31,8 @@
     public string getSharedDBName()
     {
         return sharedDBName;
+    public string getDeptTourDBName()
+    {
+        return depttourDBName;
     }
 }

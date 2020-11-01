@@ -12,16 +12,11 @@ public class LocationListItem : MonoBehaviour
     public Text Name;
     public GameObject item;
     public GameObject deletePanel;
-    public string TourName = "PolyCampusTour";
 
     Singleton singleton;
     public void confirmDelete()
     {
-        singleton = Singleton.Instance();
-        TourName = singleton.getTourName();
-        //deletePanel.transform.SetAsLastSibling();
         deletePanel.SetActive(true);
-        //Debug.Log(Name.text);
     }
 
     public void onCancel()
@@ -31,39 +26,9 @@ public class LocationListItem : MonoBehaviour
 
     public void onDelete()
     {
-        // write delete logic here
-        DB_Details dbDetails = new DB_Details();
-
-        // Set up the Editor before calling into the realtime database.
-        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
-
-        // Get the root reference location of the database.
-        DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
-
-        reference.Child(dbDetails.getTourDBName()).Child(TourName).Child(Name.text).RemoveValueAsync().ContinueWith(task =>
-        {
-            if (task.IsFaulted)
-            {
-                Debug.Log("ERROR: when accessing Data from Database");
-            }
-            else if (task.IsCompleted)
-            {
-                Debug.Log("SUCCESS: DATA Deleted IN DATABASE");
-            }
-        });
-        // Debug.Log("heloo");
         item.Destroy();
         deletePanel.SetActive(false);
     }
-
-
-    public void onCreateTourLocationDelete()
-    {
-        item.Destroy();
-        deletePanel.SetActive(false);
-    }
-
-
 
     public void Edit()
     {
@@ -74,8 +39,4 @@ public class LocationListItem : MonoBehaviour
     {
         // write next scene logic here
     }
-
-
-
-
 }

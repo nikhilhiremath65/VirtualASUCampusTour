@@ -6,6 +6,7 @@ using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
 using UnityEngine.SceneManagement;
+using Firebase.Auth;
 
 public class TourListItem : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class TourListItem : MonoBehaviour
     public Text Name;
     public GameObject item;
     public GameObject deletePanel;
+    public Text userName;
 
     Singleton singleton;
 
@@ -20,6 +22,8 @@ public class TourListItem : MonoBehaviour
     {
         singleton = Singleton.Instance();
     }
+
+    
 
     public void confirmDelete()
     {
