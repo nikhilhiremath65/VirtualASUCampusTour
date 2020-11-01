@@ -11,7 +11,7 @@ public class DeptDisplayLoc : MonoBehaviour
 {
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
-    ArrayList x = new ArrayList();
+    ArrayList gameObjectsList = new ArrayList();
 
     DB_Details dbDetails;
     DatabaseReference reference;
@@ -57,11 +57,11 @@ public class DeptDisplayLoc : MonoBehaviour
         PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
         if (!updateLocationsDisplayed && s.getUpdateStatus() == 1)
         {
-            foreach (GameObject g in x)
+            foreach (GameObject g in gameObjectsList)
             {
                 g.Destroy();
             }
-            x.Clear();
+            gameObjectsList.Clear();
             updateLocationsList(s.getLocations());
         }
     }
@@ -106,7 +106,7 @@ public class DeptDisplayLoc : MonoBehaviour
         {
             ListItemPrefab.SetActive(true);
             GameObject newSchedule = Instantiate(ListItemPrefab);
-            x.Add(newSchedule);
+            gameObjectsList.Add(newSchedule);
             DeptTourListitem controller = newSchedule.GetComponent<DeptTourListitem>();
             string name1 = s.Name;
             controller.Name.text = name1;
