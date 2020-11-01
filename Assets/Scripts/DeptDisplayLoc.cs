@@ -11,7 +11,7 @@ public class DeptDisplayLoc : MonoBehaviour
 {
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
-
+    ArrayList x = new ArrayList();
 
     DB_Details dbDetails;
     DatabaseReference reference;
@@ -57,7 +57,11 @@ public class DeptDisplayLoc : MonoBehaviour
         PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
         if (!updateLocationsDisplayed && s.getUpdateStatus() == 1)
         {
-           
+            foreach (GameObject g in x)
+            {
+                g.Destroy();
+            }
+            x.Clear();
             updateLocationsList(s.getLocations());
         }
     }
@@ -102,7 +106,7 @@ public class DeptDisplayLoc : MonoBehaviour
         {
             ListItemPrefab.SetActive(true);
             GameObject newSchedule = Instantiate(ListItemPrefab);
-
+            x.Add(newSchedule);
             DeptTourListitem controller = newSchedule.GetComponent<DeptTourListitem>();
             string name1 = s.Name;
             controller.Name.text = name1;
@@ -119,15 +123,17 @@ public class DeptDisplayLoc : MonoBehaviour
     {
         foreach (string s in updateLocations)
         {
+            // Destroy(ListItemPrefab);
+            // Destroy(ContentPanel);
             ListItemPrefab.SetActive(true);
-            GameObject newSchedule = Instantiate(ListItemPrefab);
-
-            DeptTourListitem controller = newSchedule.GetComponent<DeptTourListitem>();
+            GameObject newToursLocation = Instantiate(ListItemPrefab);
+            
+            DeptTourListitem controller = newToursLocation.GetComponent<DeptTourListitem>();
            
             controller.Name.text = s;
 
-            newSchedule.transform.parent = ContentPanel.transform;
-            newSchedule.transform.localScale = Vector3.one;
+            newToursLocation.transform.parent = ContentPanel.transform;
+            newToursLocation.transform.localScale = Vector3.one;
         }
         updateLocationsDisplayed = true;
 
