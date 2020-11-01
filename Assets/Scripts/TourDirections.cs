@@ -269,7 +269,6 @@
                             double lat = double.Parse(location.Latitute);
                             double lon = double.Parse(location.Longitude);
                             coordinates.Add(new Vector2d(lat, lon));
-                            print(location);
                         }
                     }
                 });

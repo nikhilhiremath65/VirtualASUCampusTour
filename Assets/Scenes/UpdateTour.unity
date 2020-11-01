@@ -963,7 +963,6 @@ MonoBehaviour:
   Name: {fileID: 573240170}
   item: {fileID: 258186701}
   deletePanel: {fileID: 210543314}
-  TourName: 
 --- !u!114 &258186704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4656,6 +4655,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 91848508}
+        m_MethodName: onDelete
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 573240170}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 258186703}
         m_MethodName: onDelete
         m_Mode: 1
@@ -5562,11 +5572,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disabledTextColor: {r: 0, g: 0, b: 0, a: 0}
-  AvailableOptionsCustomize:
+  AvailableOptionsCustomized:
   - A Mountain
-  - A. J. Matthews Center
+  - A J Matthews Center
   - Adelphi Commons
-  - Alberta B. Farrington Softball Stadium
+  - Alberta B Farrington Softball Stadium
   - Armstrong Hall
   - Art Building
   - Art Warehouse
@@ -5590,7 +5600,7 @@ MonoBehaviour:
   - Cowden Family Resources
   - Creativity Commons
   - Danforth Chapel
-  - Daniel E. Noble Science and Engineering Library
+  - Daniel E Noble Science and Engineering Library
   - Desert Arboretum Park
   - Desert Financial Arena
   - Design Buildings
@@ -5601,27 +5611,22 @@ MonoBehaviour:
   - Engineering Center
   - Engineering Research Center
   - Fulton Center
-  - Future Sun Devil Welcome Center and College Ave. Commons
-  - G. Homer Durham Hall
+  - Future Sun Devil Welcome Center and College Ave Commons
+  - G Homer Durham Hall
   - Goldwater Center
-  - H.B. Farmer Education Building
+  - H B Farmer Education Building
   - Hayden Hall
   - Hayden Library
   - Health Service Building
   - Inclusivity at ASU
   - Interdisciplinary A & B
   - Interdisciplinary Science and Technology I
-  - Interdisciplinary Science and Technology II
-  - Interdisciplinary Science and Technology II
-  - Interdisciplinary Science and Technology IV
-  - Interdisciplinary Science and Technology IV
-  - Interdisciplinary Science and Technology V
-  - Ira D. Payne Educational Hall
+  - Ira D Payne Educational Hall
   - Irish Hall
-  - J. Russell and Bonita Nelson Fine Arts Center | ASU Art Museum
-  - John W. Schwada Building
-  - L. S. Neeb Hall
-  - Lattie F. Coor Hall
+  - J Russell and Bonita Nelson Fine Arts Center | ASU Art Museum
+  - John W Schwada Building
+  - L S Neeb Hall
+  - Lattie F Coor Hall
   - Life Sciences Center
   - Lyceum Theatre
   - Manzanita Hall
@@ -5646,7 +5651,7 @@ MonoBehaviour:
   - Ross-Blakley Hall
   - Social Sciences Building
   - Student Pavilion
-  - Sun Angel Stadium /Joe Selleh Track
+  - Sun Angel Stadium Joe Selleh Track
   - Sun Devil Fitness Complex Tempe
   - Sun Devil Hall
   - Sun Devil Stadium

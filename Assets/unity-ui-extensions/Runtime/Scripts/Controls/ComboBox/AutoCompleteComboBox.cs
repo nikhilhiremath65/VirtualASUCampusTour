@@ -19,10 +19,10 @@ namespace UnityEngine.UI.Extensions
         public Color disabledTextColor;
         public DropDownListItem SelectedItem { get; private set; } //outside world gets to get this, not set it
 
-        public List<string> AvailableOptionsCustomize = new List<string> { "A Mountain",
+        public List<string> AvailableOptionsCustomized = new List<string> { "A Mountain",
                                                                         "A J Matthews Center",
                                                                         "Adelphi Commons",
-                                                                        "Alberta B. Farrington Softball Stadium",
+                                                                        "Alberta B Farrington Softball Stadium",
                                                                         "Armstrong Hall",
                                                                         "Art Building",
                                                                         "Art Warehouse",
@@ -46,7 +46,7 @@ namespace UnityEngine.UI.Extensions
                                                                         "Cowden Family Resources",
                                                                         "Creativity Commons",
                                                                         "Danforth Chapel",
-                                                                        "Daniel E. Noble Science and Engineering Library",
+                                                                        "Daniel E Noble Science and Engineering Library",
                                                                         "Desert Arboretum Park",
                                                                         "Desert Financial Arena",
                                                                         "Design Buildings",
@@ -57,27 +57,22 @@ namespace UnityEngine.UI.Extensions
                                                                         "Engineering Center",
                                                                         "Engineering Research Center",
                                                                         "Fulton Center",
-                                                                        "Future Sun Devil Welcome Center and College Ave. Commons",
-                                                                        "G. Homer Durham Hall",
+                                                                        "Future Sun Devil Welcome Center and College Ave Commons",
+                                                                        "G Homer Durham Hall",
                                                                         "Goldwater Center",
-                                                                        "H.B. Farmer Education Building",
+                                                                        "H B Farmer Education Building",
                                                                         "Hayden Hall",
                                                                         "Hayden Library",
                                                                         "Health Service Building",
                                                                         "Inclusivity at ASU",
                                                                         "Interdisciplinary A & B",
-                                                                        "Interdisciplinary Science and Technology I",
-                                                                        "Interdisciplinary Science and Technology II",
-                                                                        "Interdisciplinary Science and Technology II",
-                                                                        "Interdisciplinary Science and Technology IV",
-                                                                        "Interdisciplinary Science and Technology IV",
-                                                                        "Interdisciplinary Science and Technology V",
-                                                                        "Ira D. Payne Educational Hall",
+                                                                        "Interdisciplinary Science and Technology I",                                                              
+                                                                        "Ira D Payne Educational Hall",
                                                                         "Irish Hall",
-                                                                        "J. Russell and Bonita Nelson Fine Arts Center | ASU Art Museum",
-                                                                        "John W. Schwada Building",
-                                                                        "L. S. Neeb Hall",
-                                                                        "Lattie F. Coor Hall",
+                                                                        "J Russell and Bonita Nelson Fine Arts Center | ASU Art Museum",
+                                                                        "John W Schwada Building",
+                                                                        "L S Neeb Hall",
+                                                                        "Lattie F Coor Hall",
                                                                         "Life Sciences Center",
                                                                         "Lyceum Theatre",
                                                                         "Manzanita Hall",
@@ -102,7 +97,7 @@ namespace UnityEngine.UI.Extensions
                                                                         "Ross-Blakley Hall",
                                                                         "Social Sciences Building",
                                                                         "Student Pavilion",
-                                                                        "Sun Angel Stadium /Joe Selleh Track",
+                                                                        "Sun Angel Stadium Joe Selleh Track",
                                                                         "Sun Devil Fitness Complex Tempe",
                                                                         "Sun Devil Hall",
                                                                         "Sun Devil Stadium",
@@ -221,9 +216,9 @@ namespace UnityEngine.UI.Extensions
         }
 		public void Start()
 		{
-			if (SelectFirstItemOnStart && AvailableOptionsCustomize.Count > 0) {
+			if (SelectFirstItemOnStart && AvailableOptionsCustomized.Count > 0) {
 				ToggleDropdownPanel (false);
-				OnItemClicked (AvailableOptionsCustomize [0]);
+				OnItemClicked (AvailableOptionsCustomized[0]);
 			}
 		}
 
@@ -315,7 +310,7 @@ namespace UnityEngine.UI.Extensions
             _prunedPanelItems.Clear();
             panelObjects.Clear();
             
-            foreach (string option in AvailableOptionsCustomize)
+            foreach (string option in AvailableOptionsCustomized)
             {
                 _panelItems.Add(option.ToLower());
             }
@@ -323,7 +318,7 @@ namespace UnityEngine.UI.Extensions
             List<GameObject> itemObjs = new List<GameObject>(panelObjects.Values);
 
             int indx = 0;
-            while (itemObjs.Count < AvailableOptionsCustomize.Count)
+            while (itemObjs.Count < AvailableOptionsCustomized.Count)
             {
                 GameObject newItem = Instantiate(itemTemplate) as GameObject;
                 newItem.name = "Item " + indx;
@@ -334,8 +329,8 @@ namespace UnityEngine.UI.Extensions
 
             for (int i = 0; i < itemObjs.Count; i++)
             {
-                itemObjs[i].SetActive(i <= AvailableOptionsCustomize.Count);
-                if (i < AvailableOptionsCustomize.Count)
+                itemObjs[i].SetActive(i <= AvailableOptionsCustomized.Count);
+                if (i < AvailableOptionsCustomized.Count)
                 {
                     itemObjs[i].name = "Item " + i + " " + _panelItems[i];
                     itemObjs[i].transform.Find("Text").GetComponent<Text>().text = _panelItems[i]; //set the text value
