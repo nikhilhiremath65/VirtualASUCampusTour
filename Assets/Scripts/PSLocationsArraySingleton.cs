@@ -8,15 +8,14 @@ public class PSLocationArraySingleton
     private static ArrayList Tours;
     private static int updateStatus = 0;
 
-    public static PSLocationArraySingleton Instance
+    public static PSLocationArraySingleton Instance()
     {
-        get
-        {
+       
             if (instance == null)
                 instance = new PSLocationArraySingleton();
 
             return instance;
-        }
+        
     }
 
     private PSLocationArraySingleton()

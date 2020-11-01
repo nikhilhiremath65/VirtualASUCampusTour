@@ -6,6 +6,7 @@
     private string ScheduleName;
     private string UserEmail;
     private string UserRole;
+    private string PSTourNameEdit;
 
     private string UserName = "nhiremat";
     protected Singleton()
@@ -70,5 +71,15 @@
     public string getUserRole()
     {
         return this.UserRole;
+    }
+
+    public string getPSTourNameEdit()
+    {
+        return this.PSTourNameEdit;
+    }
+
+    public void setPSTourNameEdit(string PSTourName)
+    {
+        this.PSTourNameEdit = PSTourName;
     }
 }

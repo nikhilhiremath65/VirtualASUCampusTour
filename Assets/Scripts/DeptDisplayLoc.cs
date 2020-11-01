@@ -16,6 +16,7 @@ public class DeptDisplayLoc : MonoBehaviour
     DB_Details dbDetails;
     DatabaseReference reference;
     bool locationsDisplayed;
+    bool updateLocationsDisplayed;
     DataSnapshot snapshot;
 
     private Dictionary<string, string> scheduleData;
@@ -42,6 +43,7 @@ public class DeptDisplayLoc : MonoBehaviour
 
         getLocationData();
         locationsDisplayed = false;
+        updateLocationsDisplayed = false;
     }
 
     // Update is called once per frame
@@ -50,6 +52,13 @@ public class DeptDisplayLoc : MonoBehaviour
         if (!locationsDisplayed && locations.Count > 0)
         {
             createLocationsList();
+        }
+
+        PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
+        if (!updateLocationsDisplayed && s.getUpdateStatus() == 1)
+        {
+           
+            updateLocationsList(s.getLocations());
         }
     }
 
@@ -105,6 +114,27 @@ public class DeptDisplayLoc : MonoBehaviour
          
         
     }
+
+    void updateLocationsList(ArrayList updateLocations)
+    {
+        foreach (string s in updateLocations)
+        {
+            ListItemPrefab.SetActive(true);
+            GameObject newSchedule = Instantiate(ListItemPrefab);
+
+            DeptTourListitem controller = newSchedule.GetComponent<DeptTourListitem>();
+           
+            controller.Name.text = s;
+
+            newSchedule.transform.parent = ContentPanel.transform;
+            newSchedule.transform.localScale = Vector3.one;
+        }
+        updateLocationsDisplayed = true;
+
+
+    }
+
+
     //public void onDelete(Text locationName)
     //{
     //    locations.Remove(locationName.text);

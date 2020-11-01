@@ -44,10 +44,9 @@ public class PSUpdateLocations : MonoBehaviour
         // Get the root reference location of the database.
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-        // singleton = Singleton.Instance();
-        // TourName = singleton.getTourName();
+        Singleton s = Singleton.Instance();
+        TourName = s.getPSTourNameEdit();
 
-        TourName = "PolyCampusTour";
         TourNameText.text = TourName;
 
         getTourData();
@@ -151,9 +150,11 @@ public class PSUpdateLocations : MonoBehaviour
 
     public void onSave()
     {
-        PSLocationArraySingleton s = PSLocationArraySingleton.Instance;
-        s.setUpdateStatus(0);
+        PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
+        s.setUpdateStatus(1);
         s.setLocations(tours);
+        SceneManager.LoadScene("DeptTourLoc");
+
 
         ArrayList allLocations = s.getLocations();
         foreach (string location in allLocations) {
