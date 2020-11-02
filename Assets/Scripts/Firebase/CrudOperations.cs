@@ -39,7 +39,35 @@ namespace Crud
             });
         }
 
+        public void addLocation(string database, string user, string schedule, string location)
+        {
+            try
+            {
+                rootReference.Child(database).Child(user).Child(schedule).SetRawJsonValueAsync(location).ContinueWith(task =>
+                            {
+                                if (task.IsFaulted)
+                                {
+                                    throw new Exception("ERROR while appending values to database.");
 
+                                }
+                                else if (task.IsCompleted)
+                                {
+                                    Debug.Log("SUCCESS: DATA ADDED TO DATABASE");
 
+                                }
+
+                            });
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Error: " + e);
+            }
+        }
+
+        // public void test(){
+        //     addSharedLocation("SharedLocations","nhitremat","ob");
+        //     addSharedLocation("","nhitremat","ob");
+        //     addSharedLocation("SharedLocations","","ob");
+        // }
     }
 }

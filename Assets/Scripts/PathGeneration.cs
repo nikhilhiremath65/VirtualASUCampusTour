@@ -14,6 +14,13 @@
     using UnityEngine.UI;
     using Proyecto26;
     using Models;
+    using Firebase.Database;
+    using Firebase;
+    using Firebase.Unity.Editor;
+    using System;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using Random = UnityEngine.Random;
 
     public class PathGeneration : MonoBehaviour
     {
@@ -25,22 +32,27 @@
         [SerializeField]
         Material _material;
 
-        public GameObject StartWayPoint;
-        public GameObject EndWayPoint;
-        public InputField DestinationField;
-        public InputField StartField;
+
+        public Text startLocation;
+        public Text destLocation;
+        public GameObject WayPoint;
+        public GameObject locationIndicator;
+        public GameObject ErrorPanel;
+        public Text ErrorMessage;
+
         private Directions _directions;
         private int _counter;
+        private bool path;
+        private ArrayList coordinates;
+        private ArrayList locations;
+        private List<GameObject> _instances;
 
+        DB_Details dbDetails;
+        DatabaseReference reference;
         GameObject _directionsGO;
 
-        private bool path;
-        private Vector2d start;
-        private Vector2d end;
 
-        private Coordinates coordinates;
 
-        public Button startNavigation;
         protected virtual void Awake()
         {
             if (_map == null)
@@ -57,9 +69,60 @@
                 modifier.Initialize();
             }
 
-            InvokeRepeating("UpdatePath", 2.0f, 0.3f);
-            startNavigation.onClick.AddListener(Search);
+            dbDetails = new DB_Details();
+            locations = new ArrayList();
+            coordinates = new ArrayList();
+            _instances = new List<GameObject>();
 
+            path = false;
+            // Set up the Editor before calling into the realtime database.
+            FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
+
+            // Get the root reference location of the database.
+            reference = FirebaseDatabase.DefaultInstance.RootReference;
+
+            InvokeRepeating("UpdatePath", 2.0f, 0.3f);
+        }
+
+        public void OnClickStart()
+        {
+            foreach (GameObject point in _instances)
+            {
+                point.Destroy();
+            }
+
+            _instances.Clear();
+            locations.Clear();
+            coordinates.Clear();
+
+            path = false;
+
+            if (startLocation.text != "")
+            {
+                locations.Add(new TourLocation(startLocation.text));
+            }
+            else
+            {
+                GetCurrentLocation();
+            }
+
+            if(destLocation.text != "")
+            {
+                // Testing current location:
+                Debug.Log(coordinates.Count);
+                if (locations.Count < 1 && coordinates.Count < 1)
+                {
+                    coordinates.Add(new Vector2d(33.4209125, -111.9331915));
+                }
+
+                locations.Add(new TourLocation(destLocation.text));
+                getCoordinates();
+            }
+            else
+            {
+                ErrorMessage.text = "Please enter destination location!!!";
+                ErrorPanel.SetActive(true);
+            }
         }
 
         void HandleDirectionsResponse(DirectionsResponse response)
@@ -76,17 +139,15 @@
                 dat.Add(Conversions.GeoToWorldPosition(point.x, point.y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz()); ;
             }
 
-            Debug.Log("Count : " + dat.Count);
             var feat = new VectorFeatureUnity();
             feat.Points.Add(dat);
 
             foreach (MeshModifier mod in MeshModifiers.Where(x => x.Active))
             {
                 mod.Run(feat, meshData, _map.WorldRelativeScale);
-                Debug.Log("mesh Count : " + meshData.Triangles.Count);
+
             }
 
-            Debug.Log("mesh Count : " + meshData.Triangles.Count);
             CreateGameObject(meshData);
         }
 
@@ -116,169 +177,156 @@
             }
 
             mesh.RecalculateNormals();
+
+            // pick a random color
+            //Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
+            //_material.SetColor("_Color",newColor);
+
             _directionsGO.AddComponent<MeshRenderer>().material = _material;
+            _directionsGO.transform.SetAsFirstSibling();
             return _directionsGO;
         }
 
         private void UpdatePath()
         {
-            if (path & _map.updatePath)
+            if (coordinates.Count > 0 && (!path || _map.updatePath))
             {
-                generatePath(start, end);
+                generatePath();
+                path = true;
             }
-        }
-
-        private void generatePath(Vector2d start, Vector2d end)
-        {
-            this.start = start;
-            this.end = end;
-
-            var count = 2;
-            var wp = new Vector2d[count];
-
-            wp[0] = start;
-            wp[1] = end;
-
-            StartWayPoint.SetActive(true);
-            EndWayPoint.SetActive(true);
-
-
-            var _directionResource = new DirectionResource(wp, RoutingProfile.Driving);
-            _directionResource.Steps = true;
-            _directions.Query(_directionResource, HandleDirectionsResponse);
-
-            StartWayPoint.transform.position = Conversions.GeoToWorldPosition(start.x, start.y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
-            EndWayPoint.transform.position = Conversions.GeoToWorldPosition(end.x, end.y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
-
-            path = true;
-            _map.updatePath = false;
+            // Testing
+            Vector3 position = Conversions.GeoToWorldPosition(33.4209125, -111.9331915, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
+            locationIndicator.transform.position = position;
 
         }
 
-        public void Search()
+        private void generatePath()
         {
-            string apiBaseUrl = "https://asu-ar-app.firebaseio.com/";
-            Input.location.Start();
-            float latitude = Input.location.lastData.latitude;
-            float longitude = Input.location.lastData.longitude;
-            Input.location.Stop();
+            try
+            {
 
-            string destinationBuilding = ParseSpaces(DestinationField.text);
-            string startBuilding = ParseSpaces(StartField.text);
-            RestClient.Get<Coordinates>(apiBaseUrl + destinationBuilding + "/Coordinates.json").Then(response =>
-           {
-               Coordinates endCoordinates = response;
-               end = new Vector2d(float.Parse(endCoordinates.Latitude), float.Parse(endCoordinates.Longitude));
-               if (startBuilding != "")
-               {
+                var count = coordinates.Count;
+                var wp = new Vector2d[count];
 
-                   RestClient.Get<Coordinates>(apiBaseUrl + startBuilding + "/Coordinates.json").Then(res =>
+                for (int i = 0; i < count; i++)
                 {
-                    Coordinates startCoordinates = res;
-                    start = new Vector2d(float.Parse(startCoordinates.Latitude), float.Parse(startCoordinates.Longitude));
-                    _map.UpdateMap(start, _map.Zoom);
-                    generatePath(start, end);
+                    wp[i] = (Vector2d)coordinates[i];
+                }
+
+                var _directionResource = new DirectionResource(wp, RoutingProfile.Driving);
+                _directionResource.Steps = true;
+                _directions.Query(_directionResource, HandleDirectionsResponse);
+
+                if (!path)
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        var prefab = WayPoint;
+                        var instance = Instantiate(WayPoint) as GameObject;
+
+                        _instances.Add(instance);
+                    }
+                }
+
+                for (int i = 0; i < count; i++)
+                {
+                    var instance = _instances[i];
+                    instance.transform.position = Conversions.GeoToWorldPosition(wp[i].x, wp[i].y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
+                    instance.SetActive(true);
+                    instance.transform.SetAsLastSibling();
+                }
+
+                path = true;
+            }
+            catch (Exception e)
+            {
+                //Do nothing
+            }
+
+        }
+
+        void getCoordinates()
+        {
+            try
+            {
+                reference.GetValueAsync().ContinueWith(task => {
+                    if (task.IsFaulted)
+                    {
+                        throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
+                    }
+                    else if (task.IsCompleted)
+                    {
+                        DataSnapshot snapshot = task.Result.Child(dbDetails.getBuildingDBname());
+
+                        string str = snapshot.GetRawJsonValue();
+                        JObject jsonLocation = JObject.Parse(str);
+
+                        foreach (TourLocation location in this.locations)
+                        {
+                            print(location);
+                            location.Latitute = (string)jsonLocation[location.Name]["Coordinates"]["Latitude"];
+                            location.Longitude = (string)jsonLocation[location.Name]["Coordinates"]["Longitude"];
+                            double lat = double.Parse(location.Latitute);
+                            double lon = double.Parse(location.Longitude);
+                            coordinates.Add(new Vector2d(lat, lon));
+                        }
+                    }
                 });
-               }
-
-               else
-               {
-
-                   start = new Vector2d(latitude, longitude);
-                   generatePath(start, end);
-               }
-           }).Catch(error =>
-           {
-               Debug.Log("ERROR:" + error.Message);
-           });
-
-
-        }
-        public string ParseSpaces(string text)
-        {
-            string parsedText = "";
-            for (int i = 0; i < text.Length; i++)
-            {
-                if (text[i] == ' ')
-                {
-                    parsedText += "%20";
-                }
-                else
-                {
-                    parsedText += text[i];
-                }
             }
-            return parsedText.ToLower();
+            catch (InvalidCastException e)
+            {
+                // Perform some action here, and then throw a new exception.
+                ErrorMessage.text = e.Message;
+                ErrorPanel.SetActive(true);
+            }
+            catch (Exception e)
+            {
+                // Perform some action here, and then throw a new exception.
+                ErrorMessage.text = e.Message;
+                ErrorPanel.SetActive(true);
+            }
         }
 
-        // Tests
+        IEnumerator GetCurrentLocation()
+        {
+            if (!Input.location.isEnabledByUser)
+                yield break;
 
-        // public void SearchTest( string startBuilding, string destinationBuilding)
-        // {
-        //     string apiBaseUrl = "https://asu-ar-app.firebaseio.com/";
-        //     Input.location.Start();
-        //     float latitude = Input.location.lastData.latitude;
-        //     float longitude = Input.location.lastData.longitude;
-        //     Debug.Log("Live location: " + latitude + ", " + longitude);
-        //     Input.location.Stop();
+            // Start service before querying location
+            Input.location.Start();
 
+            // Wait until service initializes
+            int maxWait = 20;
+            while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
+            {
+                yield return new WaitForSeconds(1);
+                maxWait--;
+            }
 
-        //     RestClient.Get<Coordinates>(apiBaseUrl + destinationBuilding + "/Coordinates.json").Then(response =>
-        //    {
-        //        if (startBuilding != "")
-        //        {
+            // Service didn't initialize in 20 seconds
+            if (maxWait < 1)
+            {
+                print("Timed out");
+                yield break;
+            }
 
-        //            RestClient.Get<Coordinates>("https://asu-ar-app.firebaseio.com/" + destinationBuilding + "/Coordinates.json").Then(response =>
-        //         {
-        //             Coordinates startCoordinates = response;
+            // Connection has failed
+            if (Input.location.status == LocationServiceStatus.Failed)
+            {
+                print("Unable to determine device location");
+                yield break;
+            }
+            else
+            {
+                float latitude = Input.location.lastData.latitude;
+                float longitude = Input.location.lastData.longitude;
 
-        //             Debug.Log("Latitude:" + startCoordinates.Latitude + "Longitude: " + startCoordinates.Longitude);
-        //         });
-        //        }
+                locations.Add(new Vector2d(latitude,longitude));
+            }
 
-        //        else
-        //        {
-
-        //            Coordinates endCoordinates = response;
-
-        //            Debug.Log("Latitude:" + endCoordinates.Latitude + "Longitude: " + endCoordinates.Longitude);
-
-        //        }
-        //    }).Catch(error =>
-        //    {
-        //        Debug.Log(error);
-        //    });
-        // public string ParseSpacesTest(string text)
-        // {
-        //     string parsedText = "";
-        //     for (int i = 0; i < text.Length; i++)
-        //     {
-        //         if (text[i] == ' ')
-        //         {
-        //             parsedText += "%20";
-        //         }
-        //         else
-        //         {
-        //             parsedText += text[i];
-        //         }
-        //     }
-        //  Debug.Log(parsedText);
-        // }
-
-        // }
-        //     public void test()
-        //     {
-        //         ParseSpacesTest("");
-        //         ParseSpacesTest("abcdef");
-        //         ParseSpacesTest("ab cd ef");
-        //         ParseSpacesTest("   ab kjdjwkdks   jdwjdk  ");
-        //         ParseSpacesTest("         ");
-
-        //         SearchTest("", "");
-        //         SearchTest("Hayden Library", "");
-        //         SearchTest("", "Hayden Library");
-        //         SearchTest("Centerpoint", "Hayden Library");
-        //     }
+            // Stop service if there is no need to query location updates continuously
+            Input.location.Stop();
+        }
     }
 
 }

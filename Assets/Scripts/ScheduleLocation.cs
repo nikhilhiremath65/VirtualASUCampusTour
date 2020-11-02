@@ -4,10 +4,11 @@
     public string Name;
     public string Time;
 
-    public ScheduleLocation(string name)
+    public ScheduleLocation(string name, string time)
     {
 
         Name = name;
+        Time = time;
 
     }
 }
