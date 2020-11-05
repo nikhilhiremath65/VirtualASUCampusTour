@@ -33,7 +33,8 @@ public class ScreenTransition : MonoBehaviour
             print("Clicked on : " + texts[0].text);
         s = ScheduleNameTransfer.Instance;
         s.setScheduleName(texts[0].text);
-        
+        q = Singleton.Instance();
+        q.setScheduleName(texts[0].text);
     }
 
     public void OnDeptButtonClick()

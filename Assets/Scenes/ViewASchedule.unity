@@ -1407,7 +1407,7 @@ GameObject:
   - component: {fileID: 1538701370}
   - component: {fileID: 1538701369}
   m_Layer: 5
-  m_Name: GoBackButton
+  m_Name: StartNavigation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1430,8 +1430,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -368, y: -591}
-  m_SizeDelta: {x: 343.943, y: 207.63309}
+  m_AnchoredPosition: {x: -380.1, y: -632.3}
+  m_SizeDelta: {x: 319.9026, y: 125.111725}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1538701369
 MonoBehaviour:
@@ -1484,7 +1484,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SchedulesScene
+          m_StringArgument: ScheduleDirections
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1538701370
@@ -1593,7 +1593,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go Back
+  m_Text: Start
 --- !u!222 &1539766718
 CanvasRenderer:
   m_ObjectHideFlags: 0
