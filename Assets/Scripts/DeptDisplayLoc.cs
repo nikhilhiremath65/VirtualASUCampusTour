@@ -54,15 +54,27 @@ public class DeptDisplayLoc : MonoBehaviour
             createLocationsList();
         }
 
+        
         PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
+        
         if (!updateLocationsDisplayed && s.getUpdateStatus() == 1)
         {
             foreach (GameObject g in gameObjectsList)
             {
+                
                 g.Destroy();
             }
             gameObjectsList.Clear();
             updateLocationsList(s.getLocations());
+        }
+        if(gameObjectsList.Count >=1 && s.getUpdateStatus() == 1)
+        {
+            foreach (GameObject g in gameObjectsList)
+            {
+             
+                g.Destroy();
+            }
+            gameObjectsList.Clear();
         }
     }
 
