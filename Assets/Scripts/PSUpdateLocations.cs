@@ -45,9 +45,11 @@ public class PSUpdateLocations : MonoBehaviour
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
         Singleton s = Singleton.Instance();
-        TourName = s.getPSTourNameEdit();
+        TourName = s.getTourName();
 
         TourNameText.text = TourName;
+        print(TourName);
+
 
         getTourData();
 
