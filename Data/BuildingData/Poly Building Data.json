@@ -1,0 +1,266 @@
+[
+    {
+        "BuildingName": "academic center",
+        "BuildingCode": "CNTR",
+        "Coordinates": {
+            "Latitude": "33.3071092",
+            "Longitude": "-111.6783254"
+        }
+    },
+    {
+        "BuildingName": "administration",
+        "BuildingCode": "ADMIN",
+        "Coordinates": {
+            "Latitude": "33.3071381",
+            "Longitude": "-111.6794067"
+        }
+    },
+    {
+        "BuildingName": "agribusiness center",
+        "BuildingCode": "AGBC",
+        "Coordinates": {
+            "Latitude": "33.3050908",
+            "Longitude": "-111.6783618"
+        }
+    },
+    {
+        "BuildingName": "algae lab",
+        "BuildingCode": "ISTB3",
+        "Coordinates": {
+            "Latitude": "33.3051338",
+            "Longitude": "-111.6750115"
+        }
+    },
+    {
+        "BuildingName": "altitude chamber",
+        "BuildingCode": "ALTCH",
+        "Coordinates": {
+            "Latitude": "33.3091482",
+            "Longitude": "-111.6826186"
+        }
+    },
+    {
+        "BuildingName": "altitude chamber",
+        "BuildingCode": "ALTCH",
+        "Coordinates": {
+            "Latitude": "33.3091437",
+            "Longitude": "-111.6804246"
+        }
+    },
+    {
+        "BuildingName": "applied arts pavilion",
+        "BuildingCode": "AAPAV",
+        "Coordinates": {
+            "Latitude": "33.30633",
+            "Longitude": "-111.6760516"
+        }
+    },
+    {
+        "BuildingName": "aravaipa auditorium",
+        "BuildingCode": "ARAVA",
+        "Coordinates": {
+            "Latitude": "33.3064886",
+            "Longitude": "-111.6790796"
+        }
+    },
+    {
+        "BuildingName": "arboretum date palms",
+        "BuildingCode": "L832",
+        "Coordinates": {
+            "Latitude": "33.302089",
+            "Longitude": "-111.6839906"
+        }
+    },
+    {
+        "BuildingName": "asu preparatory academy",
+        "BuildingCode": "UPSI",
+        "Coordinates": {
+            "Latitude": "33.3086372",
+            "Longitude": "-111.6842335"
+        }
+    },
+    {
+        "BuildingName": "century hall",
+        "BuildingCode": "CNTRY",
+        "Coordinates": {
+            "Latitude": "33.3081659",
+            "Longitude": "-111.6775044"
+        }
+    },
+    {
+        "BuildingName": "citrus dining pavilion",
+        "BuildingCode": "CITRS",
+        "Coordinates": {
+            "Latitude": "33.41985",
+            "Longitude": "-111.9371092"
+        }
+    },
+    {
+        "BuildingName": "engineering design studio",
+        "BuildingCode": "ENGR",
+        "Coordinates": {
+            "Latitude": "33.3046161",
+            "Longitude": "-111.6777549"
+        }
+    },
+    {
+        "BuildingName": "facilities development and management ",
+        "BuildingCode": "FS",
+        "Coordinates": {
+            "Latitude": "33.3054835",
+            "Longitude": "-111.6816595"
+        }
+    },
+    {
+        "BuildingName": "flight simulator",
+        "BuildingCode": "SIM",
+        "Coordinates": {
+            "Latitude": "33.3099558",
+            "Longitude": "-111.6743931"
+        }
+    },
+    {
+        "BuildingName": "interdisciplinary science and technology iii",
+        "BuildingCode": "ISTB3",
+        "Coordinates": {
+            "Latitude": "33.3051509",
+            "Longitude": "-111.6732157"
+        }
+    },
+    {
+        "BuildingName": "ironwood building",
+        "BuildingCode": "IRNWD",
+        "Coordinates": {
+            "Latitude": "33.3063037",
+            "Longitude": "-111.6811175"
+        }
+    },
+    {
+        "BuildingName": "north residence halls: eagle and talon",
+        "BuildingCode": "EAGLE",
+        "Coordinates": {
+            "Latitude": "33.3083237",
+            "Longitude": "-111.6791722"
+        }
+    },
+    {
+        "BuildingName": "north residence halls: falcon, mustang & phantom",
+        "BuildingCode": "FALCO",
+        "Coordinates": {
+            "Latitude": "33.3103788",
+            "Longitude": "-111.6765798"
+        }
+    },
+    {
+        "BuildingName": "parade grounds and flagpole",
+        "BuildingCode": "L100",
+        "Coordinates": {
+            "Latitude": "33.3072533",
+            "Longitude": "-111.687249"
+        }
+    },
+    {
+        "BuildingName": "peralta hall",
+        "BuildingCode": "PRLTA",
+        "Coordinates": {
+            "Latitude": "33.3059879",
+            "Longitude": "-111.6788988"
+        }
+    },
+    {
+        "BuildingName": "picacho hall",
+        "BuildingCode": "PICHO",
+        "Coordinates": {
+            "Latitude": "33.3063508",
+            "Longitude": "-111.6793416"
+        }
+    },
+    {
+        "BuildingName": "quads 2-4",
+        "BuildingCode": "QUAD",
+        "Coordinates": {
+            "Latitude": "33.3086172",
+            "Longitude": "-111.6806417"
+        }
+    },
+    {
+        "BuildingName": "santa catalina hall",
+        "BuildingCode": "SANCA",
+        "Coordinates": {
+            "Latitude": "33.305976",
+            "Longitude": "-111.6764887"
+        }
+    },
+    {
+        "BuildingName": "santan hall",
+        "BuildingCode": "SANTN",
+        "Coordinates": {
+            "Latitude": "33.306479",
+            "Longitude": "-111.6764763"
+        }
+    },
+    {
+        "BuildingName": "simulator building ",
+        "BuildingCode": "SIM",
+        "Coordinates": {
+            "Latitude": "33.3098924",
+            "Longitude": "-111.6722012"
+        }
+    },
+    {
+        "BuildingName": "startup labs",
+        "BuildingCode": "TECH",
+        "Coordinates": {
+            "Latitude": "33.3051484",
+            "Longitude": "-111.6824081"
+        }
+    },
+    {
+        "BuildingName": "student union ",
+        "BuildingCode": "UNION",
+        "Coordinates": {
+            "Latitude": "33.30716",
+            "Longitude": "-111.6770328"
+        }
+    },
+    {
+        "BuildingName": "sun devil fitness complex",
+        "BuildingCode": "SDFCP",
+        "Coordinates": {
+            "Latitude": "33.3077565",
+            "Longitude": "-111.6754675"
+        }
+    },
+    {
+        "BuildingName": "sunpower solar farm",
+        "BuildingCode": "X66",
+        "Coordinates": {
+            "Latitude": "33.2927415",
+            "Longitude": "-111.6883434"
+        }
+    },
+    {
+        "BuildingName": "sutton hall",
+        "BuildingCode": "SUTON",
+        "Coordinates": {
+            "Latitude": "33.306325",
+            "Longitude": "-111.6771996"
+        }
+    },
+    {
+        "BuildingName": "technology center",
+        "BuildingCode": "TECH",
+        "Coordinates": {
+            "Latitude": "33.3053205",
+            "Longitude": "-111.6804836"
+        }
+    },
+    {
+        "BuildingName": "wanner hall",
+        "BuildingCode": "WANER",
+        "Coordinates": {
+            "Latitude": "33.3058931",
+            "Longitude": "-111.677226"
+        }
+    }
+]
