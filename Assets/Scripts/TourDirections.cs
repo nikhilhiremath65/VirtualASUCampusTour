@@ -89,9 +89,11 @@
             }
             else
             {
+                int i = 0;
                 foreach (string location in pSLocationArraySingleton.getLocations())
                 {
-                    locations.Add(new TourLocation(location));
+                    locations.Add(new TourLocation(location, i));
+                    i++;
                 }
                 getCoordinates();
             }
@@ -222,9 +224,11 @@
                         DataSnapshot snapshot = task.Result.Child(dbDetails.getTourDBName()).Child(TourName);
 
                         Dictionary<string, object> locationData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
+                        int i = 0;
                         foreach (string location in locationData.Keys)
                         {
-                            locations.Add(new TourLocation(location));
+                            locations.Add(new TourLocation(location, i));
+                            i++;
                         }
 
                         getCoordinates();

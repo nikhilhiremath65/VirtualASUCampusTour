@@ -8,6 +8,8 @@
     private string UserRole;
     private string PSTourNameEdit;
 
+    private bool IsDrag; 
+
     private string UserName = "nhiremat";
     protected Singleton()
     {
@@ -81,5 +83,15 @@
     public void setPSTourNameEdit(string PSTourName)
     {
         this.PSTourNameEdit = PSTourName;
+    }
+
+    public void setISDrag(bool IsDrag)
+    {
+        this.IsDrag = IsDrag;
+    }
+
+    public bool getIsDrag()
+    {
+        return this.IsDrag;
     }
 }
