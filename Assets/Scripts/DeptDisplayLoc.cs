@@ -12,7 +12,7 @@ public class DeptDisplayLoc : MonoBehaviour
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
     ArrayList gameObjectsList = new ArrayList();
-
+    ArrayList tours;
     DB_Details dbDetails;
     DatabaseReference reference;
     bool locationsDisplayed;
@@ -23,13 +23,14 @@ public class DeptDisplayLoc : MonoBehaviour
 
 
     ArrayList locations;
-
+    PSLocationArraySingleton singletonObject = PSLocationArraySingleton.Instance();
     public Text DepartmentTour;
 
     // Start is called before the first frame update
     [System.Obsolete]
     void Start()
     {
+        tours = new ArrayList();
         scheduleData = new Dictionary<string, string>();
         locations = new ArrayList();
 
@@ -106,8 +107,20 @@ public class DeptDisplayLoc : MonoBehaviour
                 foreach (KeyValuePair<string, string> schedule in scheduleData)
                 {
                     this.locations.Add(new DeptLocation(schedule.Key));
+                    this.tours.Add(schedule.Key);
+
                     //print(schedule.Key);
                 }
+
+                
+                singletonObject.setLocations(tours);
+
+                //ArrayList allLocations = singletonObject.getLocations();
+                //foreach (string location in allLocations)
+                //{
+                //    print(location + "\n");
+                //}
+
             }
         });
     }
@@ -127,8 +140,8 @@ public class DeptDisplayLoc : MonoBehaviour
             newSchedule.transform.localScale = Vector3.one;
         }
         locationsDisplayed = true;
-         
         
+
     }
 
     void updateLocationsList(ArrayList updateLocations)
@@ -148,8 +161,7 @@ public class DeptDisplayLoc : MonoBehaviour
             newToursLocation.transform.localScale = Vector3.one;
         }
         updateLocationsDisplayed = true;
-
-
+        
     }
 
 

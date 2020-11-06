@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Crud;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class DeptTourListitem : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class DeptTourListitem : MonoBehaviour
     Singleton singleton;
     public GameObject item;
     public GameObject deletePanel;
+    PSLocationArraySingleton singletonObject = PSLocationArraySingleton.Instance();
     public void confirmDelete()
     {
         deletePanel.SetActive(true);
@@ -24,8 +26,35 @@ public class DeptTourListitem : MonoBehaviour
     public void onDelete()
 
     {
-        Destroy(gameObject);
+        item.Destroy();
         deletePanel.SetActive(false);
+        GameObject ChildGameObject1 = item.transform.GetChild(0).gameObject;
+        GameObject ChildGameObject2 = ChildGameObject1.transform.GetChild(0).gameObject;
+        deleteFromArrayList(ChildGameObject2.GetComponent<UnityEngine.UI.Text>().text);
+
+        //print(item.GetComponent<UnityEngine.UI.Text>().text);
+        //deleteFromArrayList();
+    }
+
+    public void deleteFromArrayList(string deleteLocation)
+    {
+        print("deleting" + deleteLocation);
+        ArrayList tourLocationsList = singletonObject.getLocations();
+        if (tourLocationsList.Contains(deleteLocation))
+        {
+            print("found " + deleteLocation);
+            tourLocationsList.RemoveAt(tourLocationsList.IndexOf(deleteLocation));
+        }
+        else
+            print("Not found " + deleteLocation);
+        singletonObject.setLocations(tourLocationsList);
+
+        ArrayList allLocations = singletonObject.getLocations();
+        print("No of elements remaining" + allLocations.Count);
+        foreach (string location in allLocations)
+        {
+            print(location + "\n");
+        }
     }
 
     public void Edit(string scenename)

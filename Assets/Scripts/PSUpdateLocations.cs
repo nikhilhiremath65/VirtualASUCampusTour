@@ -36,7 +36,10 @@ public class PSUpdateLocations : MonoBehaviour
     void Start()
     {
         tours = new ArrayList();
+        PSLocationArraySingleton singletonObject = PSLocationArraySingleton.Instance();
+        tours = singletonObject.getLocations();
         dbDetails = new DB_Details();
+        locationsDisplayed = false;
 
         // Set up the Editor before calling into the realtime database.
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
@@ -50,10 +53,10 @@ public class PSUpdateLocations : MonoBehaviour
         TourNameText.text = TourName;
         print(TourName);
 
+        createTourList();
+        //getTourData();
 
-        getTourData();
-
-        locationsDisplayed = false;
+        
 
     }
 
@@ -105,6 +108,7 @@ public class PSUpdateLocations : MonoBehaviour
 
     void createTourList()
     {
+        
         foreach (string s in tours)
         {
             GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
@@ -158,10 +162,10 @@ public class PSUpdateLocations : MonoBehaviour
         SceneManager.LoadScene("DeptTourLoc");
 
 
-        ArrayList allLocations = s.getLocations();
-        foreach (string location in allLocations) {
-            print(location+"\n");
-        }
+        //ArrayList allLocations = s.getLocations();
+        //foreach (string location in allLocations) {
+        //    print(location+"\n");
+        //}
 
     }
 }
