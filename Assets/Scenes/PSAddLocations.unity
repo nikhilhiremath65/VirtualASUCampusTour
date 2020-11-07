@@ -275,11 +275,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ContentPanel: {fileID: 1020428604}
+  NamePanel: {fileID: 361759545}
   ErrorPanel: {fileID: 1197719016}
   ListItemPrefab: {fileID: 480516178}
   ErrorMessage: {fileID: 2030155187}
   TourNameText: {fileID: 1043711741}
   AddLocationText: {fileID: 1020232323}
+  LinkLocationText: {fileID: 1321290137}
 --- !u!1 &53926533
 GameObject:
   m_ObjectHideFlags: 0
@@ -5485,8 +5487,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: addSharedLocation
+      - m_Target: {fileID: 43123480}
+        m_MethodName: addLinkLocation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
