@@ -1,12 +1,19 @@
-﻿public class TourLocation
+﻿using UnityEngine;
+
+public class TourLocation : MonoBehaviour
 {
 
     public string Name;
     public string Latitute;
     public string Longitude;
+    public int index;
 
-    public TourLocation(string name)
+    public bool Drag;
+
+    public TourLocation(string name, int index)
     {
-        Name = name;
+        this.Name = name;
+        this.Drag = false;
+        this.index = index;
     }
 }
