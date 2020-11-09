@@ -6,6 +6,7 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System;
 
 public class DisplayScheduleLocations : MonoBehaviour
 {
@@ -49,6 +50,9 @@ public class DisplayScheduleLocations : MonoBehaviour
         ScheduleNameTransfer s = ScheduleNameTransfer.Instance;
         string scheduleName = s.getScheduleName();
 
+        Singleton singleton = Singleton.Instance();
+        String user = singleton.getUserName();
+
         reference.GetValueAsync().ContinueWith(task => {
             if (task.IsFaulted)
             {
@@ -58,7 +62,7 @@ public class DisplayScheduleLocations : MonoBehaviour
             else if (task.IsCompleted)
             {
                 // getting schedules for a particular user.
-                DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child("nhiremat").Child(scheduleName);
+                DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child(user).Child(scheduleName);
 
                 Dictionary<string, string> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
 
