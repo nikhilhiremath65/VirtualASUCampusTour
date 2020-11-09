@@ -22,7 +22,7 @@
     using Newtonsoft.Json.Linq;
     using Random = UnityEngine.Random;
 
-    public class TourDirections : MonoBehaviour
+    public class ScheduleDirections : MonoBehaviour
     {
         [SerializeField]
         AbstractMap _map;
@@ -35,20 +35,22 @@
         public GameObject WayPoint;
         public GameObject ErrorPanel;
         public Text ErrorMessage;
+        public GameObject Player;
 
         private Directions _directions;
         private int _counter;
         private bool path;
         private ArrayList coordinates;
         private ArrayList locations;
-        private string TourName;
+        private string ScheduleName;
+        private string UserName;
         private List<GameObject> _instances;
+        private int completedOffSet;
 
         DB_Details dbDetails;
         DatabaseReference reference;
         GameObject _directionsGO;
-
-
+        Vector2d CurrentPosition;
 
         protected virtual void Awake()
         {
@@ -71,8 +73,10 @@
             coordinates = new ArrayList();
             _instances = new List<GameObject>();
             Singleton singleton = Singleton.Instance();
+            completedOffSet = 0;
 
-            TourName = singleton.getTourName();
+            ScheduleName = singleton.getScheduleName();
+            UserName = singleton.getUserName();
 
             path = false;
             // Set up the Editor before calling into the realtime database.
@@ -81,22 +85,12 @@
             // Get the root reference location of the database.
             reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-            PSLocationArraySingleton pSLocationArraySingleton = PSLocationArraySingleton.Instance();
+            // Add current location to list
+            CurrentPosition = Player.transform.GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
+            locations.Add(new TourLocation("CurrentLocation", 0));
+            coordinates.Add(CurrentPosition);
 
-            if (pSLocationArraySingleton.getUpdateStatus() == 0)
-            {
-                getTourData();
-            }
-            else
-            {
-                int i = 0;
-                foreach (string location in pSLocationArraySingleton.getLocations())
-                {
-                    locations.Add(new TourLocation(location, i));
-                    i++;
-                }
-                getCoordinates();
-            }
+            getScheduleData();
 
             InvokeRepeating("UpdatePath", 2.0f, 0.3f);
         }
@@ -121,7 +115,7 @@
             foreach (MeshModifier mod in MeshModifiers.Where(x => x.Active))
             {
                 mod.Run(feat, meshData, _map.WorldRelativeScale);
-               
+
             }
 
             CreateGameObject(meshData);
@@ -165,8 +159,11 @@
 
         private void UpdatePath()
         {
-            if (coordinates.Count > 0 && (!path || _map.updatePath))
+            CurrentPosition = Player.transform.GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
+            coordinates[0] = CurrentPosition;
+            if (coordinates.Count > 1 && (!path || _map.updatePath))
             {
+                CheckLocation();
                 generatePath();
                 path = true;
             }
@@ -183,9 +180,12 @@
                 wp[i] = (Vector2d)coordinates[i];
             }
 
-            var _directionResource = new DirectionResource(wp, RoutingProfile.Driving);
-            _directionResource.Steps = true;
-            _directions.Query(_directionResource, HandleDirectionsResponse);
+            if(coordinates.Count > 1)
+            {
+                var _directionResource = new DirectionResource(wp, RoutingProfile.Walking);
+                _directionResource.Steps = true;
+                _directions.Query(_directionResource, HandleDirectionsResponse);
+            }
 
             if (!path)
             {
@@ -193,41 +193,54 @@
                 {
                     var prefab = WayPoint;
                     var instance = Instantiate(WayPoint) as GameObject;
-
+                    Text wayPointNumber = instance.GetComponentInChildren<Text>();
+                    wayPointNumber.text = (i+1).ToString();
                     _instances.Add(instance);
+
+                    DragWayPoint dragWayPoint = instance.GetComponentInChildren<DragWayPoint>();
+                    dragWayPoint.location = (TourLocation)locations[i];
                 }
             }
 
-            for (int i = 0; i < count; i++)
+            for (int i = 1; i < count; i++)
             {
                 var instance = _instances[i];
-                instance.transform.position = Conversions.GeoToWorldPosition(wp[i].x, wp[i].y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
-                instance.SetActive(true);
-                instance.transform.SetAsLastSibling();
+
+                DragWayPoint dragWayPoint = instance.GetComponentInChildren<DragWayPoint>();
+                TourLocation location = dragWayPoint.location;
+
+                if (!location.Drag)
+                {
+                    instance.transform.position = Conversions.GeoToWorldPosition(wp[i].x, wp[i].y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz() + new Vector3(0, 5, 5);
+                    instance.SetActive(true);
+                    instance.transform.SetAsLastSibling();
+                }
+
             }
 
             path = true;
 
         }
 
-        void getTourData()
+        void getScheduleData()
         {
             try
             {
-                reference.GetValueAsync().ContinueWith(task => {
+                reference.GetValueAsync().ContinueWith(task =>
+                {
                     if (task.IsFaulted)
                     {
                         throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
                     }
                     else if (task.IsCompleted)
                     {
-                        DataSnapshot snapshot = task.Result.Child(dbDetails.getTourDBName()).Child(TourName);
+                        DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleName);
 
                         Dictionary<string, object> locationData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
                         int i = 0;
                         foreach (string location in locationData.Keys)
                         {
-                            locations.Add(new TourLocation(location, i));
+                            locations.Add(new TourLocation(location,i+1));
                             i++;
                         }
 
@@ -253,7 +266,8 @@
         {
             try
             {
-                reference.GetValueAsync().ContinueWith(task => {
+                reference.GetValueAsync().ContinueWith(task =>
+                {
                     if (task.IsFaulted)
                     {
                         throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
@@ -265,9 +279,9 @@
                         string str = snapshot.GetRawJsonValue();
                         JObject jsonLocation = JObject.Parse(str);
 
-                        foreach (TourLocation location in this.locations)
+                        for (int i = 1; i < locations.Count; i++)
                         {
-                            print(location);
+                            TourLocation location = (TourLocation)locations[i];
                             location.Latitute = (string)jsonLocation[location.Name]["Coordinates"]["Latitude"];
                             location.Longitude = (string)jsonLocation[location.Name]["Coordinates"]["Longitude"];
                             double lat = double.Parse(location.Latitute);
@@ -290,6 +304,29 @@
                 ErrorPanel.SetActive(true);
             }
         }
-    }
+        public void setLocationCoOrdinates(Vector2d points, int index)
+        {
+            coordinates[index - completedOffSet] = points;
+        }
 
+        private void CheckLocation()
+        {
+            Vector2d point1 = (Vector2d)coordinates[0];
+            Vector2d point2 = (Vector2d)coordinates[1];
+            double dist = getDistance(point1.x, point1.y, point2.x, point2.y);
+
+            if(dist < 0.0005)
+            {
+                coordinates.RemoveAt(1);
+                _instances[1].Destroy();
+                _instances.RemoveAt(1);
+                completedOffSet++;
+            }
+        }
+
+        private double getDistance(double x1, double y1, double x2, double y2)
+        {
+            return Math.Sqrt(Math.Pow((x1 - x2),2) + Math.Pow((y1 - y2), 2));
+        }
+    }
 }
