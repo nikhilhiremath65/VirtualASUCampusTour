@@ -18,95 +18,130 @@ namespace UnityEngine.UI.Extensions
     {
         public Color disabledTextColor;
         public DropDownListItem SelectedItem { get; private set; } //outside world gets to get this, not set it
+        public List<string> dropdownOptionsPoly = new List<string>
+        {
+            "academic center",
+            "administration",
+            "agribusiness center",
+            "algae lab",
+            "altitude chamber",
+            "applied arts pavilion",
+            "aravaipa auditorium",
+            "arboretum date palms",
+            "asu preparatory academy",
+            "century hall",
+            "citrus dining pavilion",
+            "engineering design studio",
+            "facilities development and management",
+            "flight simulator",
+            "interdisciplinary science and technology iii",
+            "ironwood building",
+            "north residence halls: eagle and talon",
+            "north residence halls: falcon, mustang & phantom",
+            "parade grounds and flagpole",
+            "peralta hall",
+            "picacho hall",
+            "quads 2-4",
+            "santa catalina hall",
+            "santan hall",
+            "simulator building",
+            "startup labs",
+            "student union",
+            "sun devil fitness complex",
+            "sunpower solar farm",
+            "sutton hall",
+            "technology center",
+            "wanner hall"
+        };
 
-        public List<string> AvailableOptionsCustomized = new List<string> { "A Mountain",
-                                                                        "A J Matthews Center",
-                                                                        "Adelphi Commons",
-                                                                        "Alberta B Farrington Softball Stadium",
-                                                                        "Armstrong Hall",
-                                                                        "Art Building",
-                                                                        "Art Warehouse",
-                                                                        "Artisan Court at the Brickyard",
-                                                                        "ASU Art Museum Brickyard",
-                                                                        "ASU Gammage",
-                                                                        "ASU Performing and Media Arts",
-                                                                        "ASU Police Department",
-                                                                        "Bateman Physical Sciences Center",
-                                                                        "Best Hall",
-                                                                        "Bulldog Hall",
-                                                                        "Business Administration",
-                                                                        "Business Administration C-Wing",
-                                                                        "Campus Children's Center",
-                                                                        "Center for Family Studies",
-                                                                        "Centerpoint",
-                                                                        "Ceramics Research Center and Brickyard Gallery",
-                                                                        "Charles Wexler Hall",
-                                                                        "College Avenue Marketplace",
-                                                                        "Community Services Building",
-                                                                        "Cowden Family Resources",
-                                                                        "Creativity Commons",
-                                                                        "Danforth Chapel",
-                                                                        "Daniel E Noble Science and Engineering Library",
-                                                                        "Desert Arboretum Park",
-                                                                        "Desert Financial Arena",
-                                                                        "Design Buildings",
-                                                                        "Discovery Hall",
-                                                                        "Dixie Gammage Hall",
-                                                                        "Ed and Nadine Carson Student-Athlete Center",
-                                                                        "Education Lecture Hall",
-                                                                        "Engineering Center",
-                                                                        "Engineering Research Center",
-                                                                        "Fulton Center",
-                                                                        "Future Sun Devil Welcome Center and College Ave Commons",
-                                                                        "G Homer Durham Hall",
-                                                                        "Goldwater Center",
-                                                                        "H B Farmer Education Building",
-                                                                        "Hayden Hall",
-                                                                        "Hayden Library",
-                                                                        "Health Service Building",
-                                                                        "Inclusivity at ASU",
-                                                                        "Interdisciplinary A & B",
-                                                                        "Interdisciplinary Science and Technology I",                                                              
-                                                                        "Ira D Payne Educational Hall",
-                                                                        "Irish Hall",
-                                                                        "J Russell and Bonita Nelson Fine Arts Center | ASU Art Museum",
-                                                                        "John W Schwada Building",
-                                                                        "L S Neeb Hall",
-                                                                        "Lattie F Coor Hall",
-                                                                        "Life Sciences Center",
-                                                                        "Lyceum Theatre",
-                                                                        "Manzanita Hall",
-                                                                        "Matthews Hall",
-                                                                        "McClintock Hall",
-                                                                        "McCord Hall",
-                                                                        "Memorial Union",
-                                                                        "Moeur Building",
-                                                                        "Mona Plummer Aquatic Complex",
-                                                                        "Murdock Hall",
-                                                                        "Music Building",
-                                                                        "Old Main",
-                                                                        "Orange Mall Green Infrastructure Project",
-                                                                        "Orchid House at the Brickyard",
-                                                                        "Packard Baseball Stadium",
-                                                                        "Palo Verde East",
-                                                                        "Palo Verde West",
-                                                                        "Psychology Building",
-                                                                        "Psychology North",
-                                                                        "Riches Wrestling Complex",
-                                                                        "Robson Family Player Facility",
-                                                                        "Ross-Blakley Hall",
-                                                                        "Social Sciences Building",
-                                                                        "Student Pavilion",
-                                                                        "Sun Angel Stadium Joe Selleh Track",
-                                                                        "Sun Devil Fitness Complex Tempe",
-                                                                        "Sun Devil Hall",
-                                                                        "Sun Devil Stadium",
-                                                                        "Sustainability Point of Pride: ASU Police Department",
-                                                                        "The Biodesign Institute - Bldg A",
-                                                                        "The Biodesign Institute - Bldg B",
-                                                                        "Tower Center",
-                                                                        "Weatherup Center",
-                                                                        "Wrigley Hall"};
+        //public List<string> AvailableOptionsCustomized = new List<string> { "A Mountain",
+        //                                                                "A J Matthews Center",
+        //                                                                "Adelphi Commons",
+        //                                                                "Alberta B Farrington Softball Stadium",
+        //                                                                "Armstrong Hall",
+        //                                                                "Art Building",
+        //                                                                "Art Warehouse",
+        //                                                                "Artisan Court at the Brickyard",
+        //                                                                "ASU Art Museum Brickyard",
+        //                                                                "ASU Gammage",
+        //                                                                "ASU Performing and Media Arts",
+        //                                                                "ASU Police Department",
+        //                                                                "Bateman Physical Sciences Center",
+        //                                                                "Best Hall",
+        //                                                                "Bulldog Hall",
+        //                                                                "Business Administration",
+        //                                                                "Business Administration C-Wing",
+        //                                                                "Campus Children's Center",
+        //                                                                "Center for Family Studies",
+        //                                                                "Centerpoint",
+        //                                                                "Ceramics Research Center and Brickyard Gallery",
+        //                                                                "Charles Wexler Hall",
+        //                                                                "College Avenue Marketplace",
+        //                                                                "Community Services Building",
+        //                                                                "Cowden Family Resources",
+        //                                                                "Creativity Commons",
+        //                                                                "Danforth Chapel",
+        //                                                                "Daniel E Noble Science and Engineering Library",
+        //                                                                "Desert Arboretum Park",
+        //                                                                "Desert Financial Arena",
+        //                                                                "Design Buildings",
+        //                                                                "Discovery Hall",
+        //                                                                "Dixie Gammage Hall",
+        //                                                                "Ed and Nadine Carson Student-Athlete Center",
+        //                                                                "Education Lecture Hall",
+        //                                                                "Engineering Center",
+        //                                                                "Engineering Research Center",
+        //                                                                "Fulton Center",
+        //                                                                "Future Sun Devil Welcome Center and College Ave Commons",
+        //                                                                "G Homer Durham Hall",
+        //                                                                "Goldwater Center",
+        //                                                                "H B Farmer Education Building",
+        //                                                                "Hayden Hall",
+        //                                                                "Hayden Library",
+        //                                                                "Health Service Building",
+        //                                                                "Inclusivity at ASU",
+        //                                                                "Interdisciplinary A & B",
+        //                                                                "Interdisciplinary Science and Technology I",                                                              
+        //                                                                "Ira D Payne Educational Hall",
+        //                                                                "Irish Hall",
+        //                                                                "J Russell and Bonita Nelson Fine Arts Center | ASU Art Museum",
+        //                                                                "John W Schwada Building",
+        //                                                                "L S Neeb Hall",
+        //                                                                "Lattie F Coor Hall",
+        //                                                                "Life Sciences Center",
+        //                                                                "Lyceum Theatre",
+        //                                                                "Manzanita Hall",
+        //                                                                "Matthews Hall",
+        //                                                                "McClintock Hall",
+        //                                                                "McCord Hall",
+        //                                                                "Memorial Union",
+        //                                                                "Moeur Building",
+        //                                                                "Mona Plummer Aquatic Complex",
+        //                                                                "Murdock Hall",
+        //                                                                "Music Building",
+        //                                                                "Old Main",
+        //                                                                "Orange Mall Green Infrastructure Project",
+        //                                                                "Orchid House at the Brickyard",
+        //                                                                "Packard Baseball Stadium",
+        //                                                                "Palo Verde East",
+        //                                                                "Palo Verde West",
+        //                                                                "Psychology Building",
+        //                                                                "Psychology North",
+        //                                                                "Riches Wrestling Complex",
+        //                                                                "Robson Family Player Facility",
+        //                                                                "Ross-Blakley Hall",
+        //                                                                "Social Sciences Building",
+        //                                                                "Student Pavilion",
+        //                                                                "Sun Angel Stadium Joe Selleh Track",
+        //                                                                "Sun Devil Fitness Complex Tempe",
+        //                                                                "Sun Devil Hall",
+        //                                                                "Sun Devil Stadium",
+        //                                                                "Sustainability Point of Pride: ASU Police Department",
+        //                                                                "The Biodesign Institute - Bldg A",
+        //                                                                "The Biodesign Institute - Bldg B",
+        //                                                                "Tower Center",
+        //                                                                "Weatherup Center",
+        //                                                                "Wrigley Hall"};
 
         //private bool isInitialized = false;
         private bool _isPanelActive = false;
@@ -115,7 +150,7 @@ namespace UnityEngine.UI.Extensions
         private InputField _mainInput;
         private RectTransform _inputRT;
 
-		//private Button _arrow_Button;
+        //private Button _arrow_Button;
 
         private RectTransform _rectTransform;
 
@@ -134,7 +169,7 @@ namespace UnityEngine.UI.Extensions
         private List<string> _prunedPanelItems; //items that used to show in the drop-down
 
         private Dictionary<string, GameObject> panelObjects;
-        
+
         private GameObject itemTemplate;
 
         public string Text { get; private set; }
@@ -166,61 +201,67 @@ namespace UnityEngine.UI.Extensions
             }
         }
 
-		public bool SelectFirstItemOnStart = false;
+        public bool SelectFirstItemOnStart = false;
 
-		[SerializeField]
+        [SerializeField]
         [Tooltip("Change input text color based on matching items")]
         private bool _ChangeInputTextColorBasedOnMatchingItems = false;
-		public bool InputColorMatching{
-			get { return _ChangeInputTextColorBasedOnMatchingItems; }
-			set 
-			{
-				_ChangeInputTextColorBasedOnMatchingItems = value;
-				if (_ChangeInputTextColorBasedOnMatchingItems) {
-					SetInputTextColor ();
-				}
-			}
-		}
+        public bool InputColorMatching
+        {
+            get { return _ChangeInputTextColorBasedOnMatchingItems; }
+            set
+            {
+                _ChangeInputTextColorBasedOnMatchingItems = value;
+                if (_ChangeInputTextColorBasedOnMatchingItems)
+                {
+                    SetInputTextColor();
+                }
+            }
+        }
 
-		//TODO design as foldout for Inspector
-		public Color ValidSelectionTextColor = Color.green;
-		public Color MatchingItemsRemainingTextColor = Color.black;
-		public Color NoItemsRemainingTextColor = Color.red;
+        //TODO design as foldout for Inspector
+        public Color ValidSelectionTextColor = Color.green;
+        public Color MatchingItemsRemainingTextColor = Color.black;
+        public Color NoItemsRemainingTextColor = Color.red;
 
         public AutoCompleteSearchType autocompleteSearchType = AutoCompleteSearchType.Linq;
 
         private bool _selectionIsValid = false;
 
-		[System.Serializable]
-		public class SelectionChangedEvent :  UnityEngine.Events.UnityEvent<string, bool> {
-		}
+        [System.Serializable]
+        public class SelectionChangedEvent : UnityEngine.Events.UnityEvent<string, bool>
+        {
+        }
 
         [System.Serializable]
-		public class SelectionTextChangedEvent :  UnityEngine.Events.UnityEvent<string> {
-		}
+        public class SelectionTextChangedEvent : UnityEngine.Events.UnityEvent<string>
+        {
+        }
 
-		[System.Serializable]
-		public class SelectionValidityChangedEvent :  UnityEngine.Events.UnityEvent<bool> {
-		}
+        [System.Serializable]
+        public class SelectionValidityChangedEvent : UnityEngine.Events.UnityEvent<bool>
+        {
+        }
 
-		// fires when input text is changed;
-		public SelectionTextChangedEvent OnSelectionTextChanged;
-		// fires when an Item gets selected / deselected (including when items are added/removed once this is possible)
-		public SelectionValidityChangedEvent OnSelectionValidityChanged;
-		// fires in both cases
-		public SelectionChangedEvent OnSelectionChanged;
+        // fires when input text is changed;
+        public SelectionTextChangedEvent OnSelectionTextChanged;
+        // fires when an Item gets selected / deselected (including when items are added/removed once this is possible)
+        public SelectionValidityChangedEvent OnSelectionValidityChanged;
+        // fires in both cases
+        public SelectionChangedEvent OnSelectionChanged;
 
         public void Awake()
         {
             Initialize();
         }
-		public void Start()
-		{
-			if (SelectFirstItemOnStart && AvailableOptionsCustomized.Count > 0) {
-				ToggleDropdownPanel (false);
-				OnItemClicked (AvailableOptionsCustomized[0]);
-			}
-		}
+        public void Start()
+        {
+            if (SelectFirstItemOnStart && dropdownOptionsPoly.Count > 0)
+            {
+                ToggleDropdownPanel(false);
+                OnItemClicked(dropdownOptionsPoly[0]);
+            }
+        }
 
         private bool Initialize()
         {
@@ -231,7 +272,7 @@ namespace UnityEngine.UI.Extensions
                 _inputRT = _rectTransform.Find("InputField").GetComponent<RectTransform>();
                 _mainInput = _inputRT.GetComponent<InputField>();
 
-				//_arrow_Button = _rectTransform.FindChild ("ArrowBtn").GetComponent<Button> ();
+                //_arrow_Button = _rectTransform.FindChild ("ArrowBtn").GetComponent<Button> ();
 
                 _overlayRT = _rectTransform.Find("Overlay").GetComponent<RectTransform>();
                 _overlayRT.gameObject.SetActive(false);
@@ -309,8 +350,8 @@ namespace UnityEngine.UI.Extensions
             _panelItems.Clear();
             _prunedPanelItems.Clear();
             panelObjects.Clear();
-            
-            foreach (string option in AvailableOptionsCustomized)
+
+            foreach (string option in dropdownOptionsPoly)
             {
                 _panelItems.Add(option.ToLower());
             }
@@ -318,7 +359,7 @@ namespace UnityEngine.UI.Extensions
             List<GameObject> itemObjs = new List<GameObject>(panelObjects.Values);
 
             int indx = 0;
-            while (itemObjs.Count < AvailableOptionsCustomized.Count)
+            while (itemObjs.Count < dropdownOptionsPoly.Count)
             {
                 GameObject newItem = Instantiate(itemTemplate) as GameObject;
                 newItem.name = "Item " + indx;
@@ -329,8 +370,8 @@ namespace UnityEngine.UI.Extensions
 
             for (int i = 0; i < itemObjs.Count; i++)
             {
-                itemObjs[i].SetActive(i <= AvailableOptionsCustomized.Count);
-                if (i < AvailableOptionsCustomized.Count)
+                itemObjs[i].SetActive(i <= dropdownOptionsPoly.Count);
+                if (i < dropdownOptionsPoly.Count)
                 {
                     itemObjs[i].name = "Item " + i + " " + _panelItems[i];
                     itemObjs[i].transform.Find("Text").GetComponent<Text>().text = _panelItems[i]; //set the text value
@@ -345,7 +386,7 @@ namespace UnityEngine.UI.Extensions
                     panelObjects[_panelItems[i]] = itemObjs[i];
                 }
             }
-			SetInputTextColor ();
+            SetInputTextColor();
         }
 
         /// <summary>
@@ -445,28 +486,36 @@ namespace UnityEngine.UI.Extensions
                 ToggleDropdownPanel(false);
             }
 
-			bool validity_changed = (_panelItems.Contains (Text) != _selectionIsValid);
-			_selectionIsValid = _panelItems.Contains (Text);
-			OnSelectionChanged.Invoke (Text, _selectionIsValid);
-			OnSelectionTextChanged.Invoke (Text);
-			if(validity_changed){
-				OnSelectionValidityChanged.Invoke (_selectionIsValid);
-			}
+            bool validity_changed = (_panelItems.Contains(Text) != _selectionIsValid);
+            _selectionIsValid = _panelItems.Contains(Text);
+            OnSelectionChanged.Invoke(Text, _selectionIsValid);
+            OnSelectionTextChanged.Invoke(Text);
+            if (validity_changed)
+            {
+                OnSelectionValidityChanged.Invoke(_selectionIsValid);
+            }
 
-			SetInputTextColor ();
+            SetInputTextColor();
         }
 
-		private void SetInputTextColor(){
-			if (InputColorMatching) {
-				if (_selectionIsValid) {
-					_mainInput.textComponent.color = ValidSelectionTextColor;
-				} else if (_panelItems.Count > 0) {
-					_mainInput.textComponent.color = MatchingItemsRemainingTextColor;
-				} else {
-					_mainInput.textComponent.color = NoItemsRemainingTextColor;
-				}
-			}
-		}
+        private void SetInputTextColor()
+        {
+            if (InputColorMatching)
+            {
+                if (_selectionIsValid)
+                {
+                    _mainInput.textComponent.color = ValidSelectionTextColor;
+                }
+                else if (_panelItems.Count > 0)
+                {
+                    _mainInput.textComponent.color = MatchingItemsRemainingTextColor;
+                }
+                else
+                {
+                    _mainInput.textComponent.color = NoItemsRemainingTextColor;
+                }
+            }
+        }
 
 
 
