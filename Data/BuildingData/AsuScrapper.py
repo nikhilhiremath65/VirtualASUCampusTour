@@ -6,7 +6,7 @@ import json
 baseUrl = "https://tours.asu.edu"
 # Url extension to access all the buildings in Tempe campus.
 # Change tempe to polytechnic/Phoenix/Downtown to get corresponding data.
-campusUrl = "/tempe/buildings"
+campusUrl = "/polytechnic/buildings"
 
 
 # Scrapes required data from the links to buildings
@@ -15,7 +15,7 @@ def getData(filename, buildings):
     for url in buildings:
         buildingPage = req.get(baseUrl+url)
         soup = bs(buildingPage.content, 'lxml')
-        name = soup.find_all("h1")[0].string
+        name = soup.find_all("h1")[0].string.lower()
         location = soup.find("div", class_="field-name-field-bldg-address")
         code = soup.find(
             "div", class_="field-name-field-bldg-code").contents[1].div.string
@@ -49,5 +49,5 @@ for buildingLink in soup.find_all("div", class_="field-content"):
 buildingsData = getData("Building_Data.csv", buildings)
 
 # # Writing collected data to a file in json format
-with open('Data/Tempe Building Data.json', 'w') as file:
+with open('Poly Building Data.json', 'w') as file:
     json.dump(buildingsData, file)
