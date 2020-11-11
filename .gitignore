@@ -11,7 +11,7 @@
 
 # ignore firebase SDK
 /[Aa]ssets/Firebase/
-/[Aa]ssets/Editor\ Default\ Resources/
+/[Aa]ssets/Editor*Default*Resources/
 /[Aa]ssets/ExternalDependencyManager/
 /[Aa]ssets/Plugins/Android/
 /[Aa]ssets/Plugins/iOS/
