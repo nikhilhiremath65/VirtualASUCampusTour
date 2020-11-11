@@ -4,12 +4,11 @@ using UnityEngine;
 using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System.Threading;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using Models;
 
 public class PSUpdateLocations : MonoBehaviour
 {
@@ -23,8 +22,10 @@ public class PSUpdateLocations : MonoBehaviour
     private string TourName;
     private Singleton singleton;
     private PSLocationArraySingleton locationArraySingleton;
+    private Dictionary<string, Coordinates> sharedTourLocations;
 
     public GameObject ContentPanel;
+    public GameObject NamePanel;
     public GameObject ErrorPanel;
     public GameObject ListItemPrefab;
 
@@ -32,20 +33,21 @@ public class PSUpdateLocations : MonoBehaviour
 
     public InputField TourNameText;
     public InputField AddLocationText;
+    public InputField LinkLocationText;
 
     void Start()
     {
         tours = new ArrayList();
         dbDetails = new DB_Details();
-
+        sharedTourLocations = new Dictionary<string, Coordinates>();
         // Set up the Editor before calling into the realtime database.
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
 
         // Get the root reference location of the database.
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-        Singleton s = Singleton.Instance();
-        TourName = s.getTourName();
+        singleton = Singleton.Instance();
+        TourName = singleton.getTourName();
 
         TourNameText.text = TourName;
         print(TourName);
@@ -127,19 +129,44 @@ public class PSUpdateLocations : MonoBehaviour
         newSchedule.transform.localScale = Vector3.one;
 
     }
+    public void addLinkLocation()
+    {
+        try
+        {
+            if (LinkLocationText.text == "")
+            {
+                throw new Exception("Please enter location name!");
 
-
+            }
+            NamePanel.SetActive(false);
+            String[] data = AddLocationText.text.Split(':');
+            this.tours.Add(LinkLocationText.text);
+            updateTourListOnAdd(LinkLocationText.text);
+            sharedTourLocations.Add(LinkLocationText.text, new Coordinates(data[0], data[1]));
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+    }
     public void onAddLocation()
     {
         try
         {
-            if (AddLocationText.text == "")
+            if (AddLocationText.text.Contains(":"))
             {
-                throw new Exception("Please enter location!");
+                NamePanel.SetActive(true);
             }
-            this.tours.Add(AddLocationText.text);
-            updateTourListOnAdd(AddLocationText.text);
-            AddLocationText.text = null;
+            else
+            {
+                if (AddLocationText.text == "")
+                {
+                    throw new Exception("Please enter location!");
+                }
+                this.tours.Add(AddLocationText.text);
+                updateTourListOnAdd(AddLocationText.text);
+                AddLocationText.text = null;
+            }
         }
         catch (Exception e)
         {
@@ -155,12 +182,14 @@ public class PSUpdateLocations : MonoBehaviour
         PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
         s.setUpdateStatus(1);
         s.setLocations(tours);
+        singleton.setSharedLocation(sharedTourLocations);
         SceneManager.LoadScene("DeptTourLoc");
 
 
         ArrayList allLocations = s.getLocations();
-        foreach (string location in allLocations) {
-            print(location+"\n");
+        foreach (string location in allLocations)
+        {
+            print(location + "\n");
         }
 
     }

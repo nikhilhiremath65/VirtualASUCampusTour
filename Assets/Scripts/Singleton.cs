@@ -1,4 +1,6 @@
-﻿public class Singleton
+﻿using Models;
+using System.Collections.Generic;
+public class Singleton
 {
     private static Singleton _instance;
 
@@ -8,12 +10,13 @@
     private string UserRole;
     private string PSTourNameEdit;
 
+    private Dictionary<string, Coordinates> sharedTourLocations;
     private bool IsDrag; 
 
     private string UserName = "nhiremat";
     protected Singleton()
     {
-
+        sharedTourLocations = new Dictionary<string, Coordinates>();
     }
 
     public static Singleton Instance()
@@ -85,6 +88,14 @@
         this.PSTourNameEdit = PSTourName;
     }
 
+    public Dictionary<string, Coordinates> getSharedTourLocations()
+    {
+        return sharedTourLocations;
+    }
+
+    public void setSharedLocation(Dictionary<string, Coordinates> sharedLocations)
+    {
+        sharedTourLocations = sharedLocations;
     public void setISDrag(bool IsDrag)
     {
         this.IsDrag = IsDrag;

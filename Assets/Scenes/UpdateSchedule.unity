@@ -2316,11 +2316,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disabledTextColor: {r: 0, g: 0, b: 0, a: 0}
-  AvailableOptionsCustomize:
+  AvailableOptionsCustomized:
   - A Mountain
-  - A. J. Matthews Center
+  - A J Matthews Center
   - Adelphi Commons
-  - Alberta B. Farrington Softball Stadium
+  - Alberta B Farrington Softball Stadium
   - Armstrong Hall
   - Art Building
   - Art Warehouse
@@ -2344,7 +2344,7 @@ MonoBehaviour:
   - Cowden Family Resources
   - Creativity Commons
   - Danforth Chapel
-  - Daniel E. Noble Science and Engineering Library
+  - Daniel E Noble Science and Engineering Library
   - Desert Arboretum Park
   - Desert Financial Arena
   - Design Buildings
@@ -2355,27 +2355,22 @@ MonoBehaviour:
   - Engineering Center
   - Engineering Research Center
   - Fulton Center
-  - Future Sun Devil Welcome Center and College Ave. Commons
-  - G. Homer Durham Hall
+  - Future Sun Devil Welcome Center and College Ave Commons
+  - G Homer Durham Hall
   - Goldwater Center
-  - H.B. Farmer Education Building
+  - H B Farmer Education Building
   - Hayden Hall
   - Hayden Library
   - Health Service Building
   - Inclusivity at ASU
   - Interdisciplinary A & B
   - Interdisciplinary Science and Technology I
-  - Interdisciplinary Science and Technology II
-  - Interdisciplinary Science and Technology II
-  - Interdisciplinary Science and Technology IV
-  - Interdisciplinary Science and Technology IV
-  - Interdisciplinary Science and Technology V
-  - Ira D. Payne Educational Hall
+  - Ira D Payne Educational Hall
   - Irish Hall
-  - J. Russell and Bonita Nelson Fine Arts Center | ASU Art Museum
-  - John W. Schwada Building
-  - L. S. Neeb Hall
-  - Lattie F. Coor Hall
+  - J Russell and Bonita Nelson Fine Arts Center | ASU Art Museum
+  - John W Schwada Building
+  - L S Neeb Hall
+  - Lattie F Coor Hall
   - Life Sciences Center
   - Lyceum Theatre
   - Manzanita Hall
@@ -2400,7 +2395,7 @@ MonoBehaviour:
   - Ross-Blakley Hall
   - Social Sciences Building
   - Student Pavilion
-  - Sun Angel Stadium /Joe Selleh Track
+  - Sun Angel Stadium Joe Selleh Track
   - Sun Devil Fitness Complex Tempe
   - Sun Devil Hall
   - Sun Devil Stadium
@@ -3355,7 +3350,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter location...
+  m_Text: Enter location or paste a link...
 --- !u!222 &778884265
 CanvasRenderer:
   m_ObjectHideFlags: 0
