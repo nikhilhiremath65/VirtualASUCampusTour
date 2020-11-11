@@ -96,6 +96,7 @@ public class Singleton
     public void setSharedLocation(Dictionary<string, Coordinates> sharedLocations)
     {
         sharedTourLocations = sharedLocations;
+    }
     public void setISDrag(bool IsDrag)
     {
         this.IsDrag = IsDrag;

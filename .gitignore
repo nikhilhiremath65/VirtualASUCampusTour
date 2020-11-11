@@ -18,6 +18,12 @@
 /[Aa]ssets/ExternalDependencyManager.meta
 /[Aa]ssets/Firebase.meta
 
+# additional files to ignore
+/[Aa]ssets/Parse/Plugins/Unity.Compat.dll.meta
+/[Aa]ssets/Parse/Plugins/Unity.Tasks.dll.meta
+/[Aa]ssets/Parse/Plugins/dotNet45.meta
+/[Pp]rojectSettings/AndroidResolverDependencies.xml
+
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
