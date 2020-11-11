@@ -11,6 +11,8 @@ public class Singleton
     private string PSTourNameEdit;
 
     private Dictionary<string, Coordinates> sharedTourLocations;
+    private bool IsDrag; 
+
     private string UserName = "nhiremat";
     protected Singleton()
     {
@@ -94,5 +96,13 @@ public class Singleton
     public void setSharedLocation(Dictionary<string, Coordinates> sharedLocations)
     {
         sharedTourLocations = sharedLocations;
+    public void setISDrag(bool IsDrag)
+    {
+        this.IsDrag = IsDrag;
+    }
+
+    public bool getIsDrag()
+    {
+        return this.IsDrag;
     }
 }

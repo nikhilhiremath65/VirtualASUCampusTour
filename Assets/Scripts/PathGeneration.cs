@@ -99,7 +99,7 @@
 
             if (startLocation.text != "")
             {
-                locations.Add(new TourLocation(startLocation.text));
+                locations.Add(new TourLocation(startLocation.text,0));
             }
             else
             {
@@ -115,7 +115,7 @@
                     coordinates.Add(new Vector2d(33.4209125, -111.9331915));
                 }
 
-                locations.Add(new TourLocation(destLocation.text));
+                locations.Add(new TourLocation(destLocation.text, 0));
                 getCoordinates();
             }
             else

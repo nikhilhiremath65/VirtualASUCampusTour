@@ -6,6 +6,7 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System;
 
 public class ListController : MonoBehaviour
 {
@@ -46,6 +47,8 @@ public class ListController : MonoBehaviour
 
     void getScheduleData()
     {
+        Singleton singleton = Singleton.Instance();
+        String user = singleton.getUserName();
 
         reference.GetValueAsync().ContinueWith(task =>
         {
@@ -57,7 +60,7 @@ public class ListController : MonoBehaviour
             else if (task.IsCompleted)
             {
                 // getting schedules for a particular user.
-                DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child("nhiremat");
+                DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child(user);
 
                 Dictionary<string, object> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
 

@@ -109,7 +109,9 @@ public class CreateSchedule : MonoBehaviour
             }
 
             //Temp until authentication is completed
-            String user = "nhiremat";
+            Singleton singleton = Singleton.Instance();
+            String user = singleton.getUserName();
+            //String user = "nhiremat";
 
             reference.Child(dbDetails.getTourDBName()).Child(user).Child(ScheduleNameText.text).RemoveValueAsync();
 
