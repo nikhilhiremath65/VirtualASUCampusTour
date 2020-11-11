@@ -194,10 +194,10 @@
                     var prefab = WayPoint;
                     var instance = Instantiate(WayPoint) as GameObject;
                     Text wayPointNumber = instance.GetComponentInChildren<Text>();
-                    wayPointNumber.text = (i+1).ToString();
+                    wayPointNumber.text = (i).ToString();
                     _instances.Add(instance);
 
-                    DragWayPoint dragWayPoint = instance.GetComponentInChildren<DragWayPoint>();
+                    DragScheduleWayPoint dragWayPoint = instance.GetComponentInChildren<DragScheduleWayPoint>();
                     dragWayPoint.location = (TourLocation)locations[i];
                 }
             }
@@ -206,7 +206,7 @@
             {
                 var instance = _instances[i];
 
-                DragWayPoint dragWayPoint = instance.GetComponentInChildren<DragWayPoint>();
+                DragScheduleWayPoint dragWayPoint = instance.GetComponentInChildren<DragScheduleWayPoint>();
                 TourLocation location = dragWayPoint.location;
 
                 if (!location.Drag)

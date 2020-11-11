@@ -5,7 +5,7 @@ using Mapbox.Utils;
 using Mapbox.Unity.Utilities;
 using Mapbox.Unity.MeshGeneration.Factories;
 
-public class DragWayPoint : MonoBehaviour
+public class DragTourWayPoint : MonoBehaviour
 {
     [SerializeField]
     AbstractMap _map;
@@ -19,7 +19,7 @@ public class DragWayPoint : MonoBehaviour
     public GameObject Directions;
     public GameObject DragInfoPanel;
 
-    private ScheduleDirections scheduleDirections;
+    private TourDirections tourDirections;
     private int clicked;
     private Singleton singleton;
 
@@ -27,7 +27,7 @@ public class DragWayPoint : MonoBehaviour
     void Start()
     {
         singleton = Singleton.Instance();
-        scheduleDirections = Directions.GetComponentInChildren<ScheduleDirections>();
+        tourDirections = Directions.GetComponentInChildren<TourDirections>();
     }
 
     void Update()
@@ -63,7 +63,7 @@ public class DragWayPoint : MonoBehaviour
                     {
                         location.Drag = !location.Drag;
                         Vector2d latitudeLongitude = WayPoint.transform.GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
-                        scheduleDirections.setLocationCoOrdinates(latitudeLongitude, location.index);
+                        tourDirections.setLocationCoOrdinates(latitudeLongitude, location.index);
                         singleton.setISDrag(!IsDrag);
                         DragInfoPanel.SetActive(false);
                         _map.updatePath = true;
