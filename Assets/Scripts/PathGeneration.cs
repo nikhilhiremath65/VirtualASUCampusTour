@@ -99,14 +99,14 @@
 
             if (startLocation.text != "")
             {
-                locations.Add(new TourLocation(startLocation.text,0));
+                locations.Add(new TourLocation(startLocation.text, 0));
             }
             else
             {
                 GetCurrentLocation();
             }
 
-            if(destLocation.text != "")
+            if (destLocation.text != "")
             {
                 // Testing current location:
                 Debug.Log(coordinates.Count);
@@ -249,7 +249,8 @@
         {
             try
             {
-                reference.GetValueAsync().ContinueWith(task => {
+                reference.GetValueAsync().ContinueWith(task =>
+                {
                     if (task.IsFaulted)
                     {
                         throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
@@ -263,7 +264,6 @@
 
                         foreach (TourLocation location in this.locations)
                         {
-                            print(location);
                             location.Latitute = (string)jsonLocation[location.Name]["Coordinates"]["Latitude"];
                             location.Longitude = (string)jsonLocation[location.Name]["Coordinates"]["Longitude"];
                             double lat = double.Parse(location.Latitute);
@@ -321,7 +321,7 @@
                 float latitude = Input.location.lastData.latitude;
                 float longitude = Input.location.lastData.longitude;
 
-                locations.Add(new Vector2d(latitude,longitude));
+                locations.Add(new Vector2d(latitude, longitude));
             }
 
             // Stop service if there is no need to query location updates continuously
