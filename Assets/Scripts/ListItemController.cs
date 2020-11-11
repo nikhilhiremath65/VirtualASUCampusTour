@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Crud;
 using UnityEngine.SceneManagement;
+using System;
 
 public class ListItemController : MonoBehaviour
 {
@@ -24,8 +25,11 @@ public class ListItemController : MonoBehaviour
     public void delete()
 
     {
+        Singleton singleton = Singleton.Instance();
+        String user = singleton.getUserName();
+
         CrudOperations crud = new CrudOperations();
-        crud.deleteSchedule("scheduleDataBase", "nhiremat", Name.text);
+        crud.deleteSchedule("scheduleDataBase", user, Name.text);
         Destroy(gameObject);
     }
 
