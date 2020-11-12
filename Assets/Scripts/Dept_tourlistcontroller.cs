@@ -45,7 +45,7 @@ public class Dept_tourlistcontroller : MonoBehaviour
         if (!tourLocationsObjectStatus)
         {
             getScheduleData();
-            createScheduleList();
+            //createScheduleList();
         }
         else
         {
@@ -60,7 +60,7 @@ public class Dept_tourlistcontroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!schedulesDisplayed)
+        if (!schedulesDisplayed && schedules.Count >0)
         {
             createScheduleList();
         }
