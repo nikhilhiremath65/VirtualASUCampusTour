@@ -46,4 +46,6 @@ public class ScreenTransition : MonoBehaviour
         q.setTourName(texts[0].text);
 
     }
+
+
 }

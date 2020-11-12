@@ -18,7 +18,7 @@ public class DeptDisplayLoc : MonoBehaviour
     bool locationsDisplayed;
     bool updateLocationsDisplayed;
     DataSnapshot snapshot;
-
+    PSLocationArraySingleton psObject = PSLocationArraySingleton.Instance();
     private Dictionary<string, string> scheduleData;
 
 
@@ -41,7 +41,7 @@ public class DeptDisplayLoc : MonoBehaviour
         // Get the root reference location of the database.
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-        getLocationData();
+        // getLocationData();
         locationsDisplayed = false;
         updateLocationsDisplayed = false;
     }
@@ -49,15 +49,15 @@ public class DeptDisplayLoc : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!locationsDisplayed && locations.Count > 0)
+        if (!locationsDisplayed)
         {
             createLocationsList();
         }
 
         
-        PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
         
-        if (!updateLocationsDisplayed && s.getUpdateStatus() == 1)
+        
+        if (!updateLocationsDisplayed && psObject.getUpdateStatus() == 1)
         {
             foreach (GameObject g in gameObjectsList)
             {
@@ -65,9 +65,9 @@ public class DeptDisplayLoc : MonoBehaviour
                 g.Destroy();
             }
             gameObjectsList.Clear();
-            updateLocationsList(s.getLocations());
+            updateLocationsList(psObject.getLocations());
         }
-        if(gameObjectsList.Count >=1 && s.getUpdateStatus() == 1)
+        if(gameObjectsList.Count >=1 && psObject.getUpdateStatus() == 1)
         {
             foreach (GameObject g in gameObjectsList)
             {
@@ -114,13 +114,18 @@ public class DeptDisplayLoc : MonoBehaviour
 
     void createLocationsList()
     {
-        foreach (DeptLocation s in locations)
+        Singleton s = Singleton.Instance();
+        string scheduleName = s.getTourName();
+
+        Dictionary<string, ArrayList> toursLocations = psObject.getToursLocationDictionary();
+        ArrayList locations = toursLocations[scheduleName];
+        foreach (string location in locations )
         {
             ListItemPrefab.SetActive(true);
             GameObject newSchedule = Instantiate(ListItemPrefab);
             gameObjectsList.Add(newSchedule);
             DeptTourListitem controller = newSchedule.GetComponent<DeptTourListitem>();
-            string name1 = s.Name;
+            string name1 = location;
             controller.Name.text = name1;
 
             newSchedule.transform.parent = ContentPanel.transform;
