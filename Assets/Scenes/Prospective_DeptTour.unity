@@ -905,7 +905,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2464695950241542113}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1919184150}
+        m_MethodName: SceneLoader
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MapNavigation
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1919184150}
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2464695950241542113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,7 +1001,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 121.8, y: 84.317}
+  m_AnchoredPosition: {x: 121.79999, y: 84.316895}
   m_SizeDelta: {x: 248.53967, y: 168.63441}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2464695950609711132
@@ -1252,7 +1274,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -137, y: 84.317}
+  m_AnchoredPosition: {x: -137, y: 84.316895}
   m_SizeDelta: {x: 243.28418, y: 168.63405}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2464695951042682319
