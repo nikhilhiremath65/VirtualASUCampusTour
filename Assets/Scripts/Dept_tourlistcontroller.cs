@@ -45,6 +45,7 @@ public class Dept_tourlistcontroller : MonoBehaviour
         if (!tourLocationsObjectStatus)
         {
             getScheduleData();
+            createScheduleList();
         }
         else
         {
