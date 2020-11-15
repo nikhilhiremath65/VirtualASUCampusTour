@@ -12,6 +12,8 @@ public class DeptDisplayLoc : MonoBehaviour
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
     ArrayList gameObjectsList = new ArrayList();
+    PSLocationArraySingleton psObject = PSLocationArraySingleton.Instance();
+    ArrayList locationsTemp = new ArrayList();
 
     DB_Details dbDetails;
     DatabaseReference reference;
@@ -82,6 +84,7 @@ public class DeptDisplayLoc : MonoBehaviour
     {
         Singleton s = Singleton.Instance();
         string scheduleName = s.getTourName();
+        
 
         DepartmentTour.text = scheduleName + " Locations";
         
@@ -106,14 +109,26 @@ public class DeptDisplayLoc : MonoBehaviour
                 foreach (KeyValuePair<string, string> schedule in scheduleData)
                 {
                     this.locations.Add(new DeptLocation(schedule.Key));
+                    
                     //print(schedule.Key);
                 }
+                
             }
         });
     }
 
+    void fillLocationsInDictionary(string tourName, ArrayList locations)
+    {
+        Dictionary<string, ArrayList> toursLocations = psObject.getToursLocationDictionary();
+        toursLocations[tourName] = locations; // set locations array for given tour
+
+    }
+
     void createLocationsList()
     {
+        Singleton so = Singleton.Instance();
+        string scheduleName = so.getTourName();
+
         foreach (DeptLocation s in locations)
         {
             ListItemPrefab.SetActive(true);
@@ -123,12 +138,14 @@ public class DeptDisplayLoc : MonoBehaviour
             string name1 = s.Name;
             controller.Name.text = name1;
 
+            locationsTemp.Add(s.Name);
+
             newSchedule.transform.parent = ContentPanel.transform;
             newSchedule.transform.localScale = Vector3.one;
         }
         locationsDisplayed = true;
-         
-        
+        fillLocationsInDictionary(scheduleName, locationsTemp);
+
     }
 
     void updateLocationsList(ArrayList updateLocations)
