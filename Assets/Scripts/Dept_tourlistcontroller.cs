@@ -19,6 +19,7 @@ public class Dept_tourlistcontroller : MonoBehaviour
 
     ArrayList schedules;
     Dictionary<string, ArrayList> toursLocationsDictObj;
+    Dictionary<string, int> toursLocationsUpdateStatusDictObj;
     PSLocationArraySingleton psObject = PSLocationArraySingleton.Instance();
 
     // Start is called before the first frame update
@@ -97,12 +98,16 @@ public class Dept_tourlistcontroller : MonoBehaviour
         if (!psObject.getToursLocationsObjectStatus())
         {
             toursLocationsDictObj = new Dictionary<string, ArrayList>();
-            foreach(Department s in schedules)
+            toursLocationsUpdateStatusDictObj = new Dictionary<string, int>();
+            foreach (Department s in schedules)
             {
                 toursLocationsDictObj.Add(s.Name, null);
+                toursLocationsUpdateStatusDictObj.Add(s.Name, 0);
             }
             psObject.setToursLocationsObjectStatus(true); // dictionary object is filled
             psObject.setToursLocationsDictionary(toursLocationsDictObj); // set Dictionary object
+            psObject.setToursLocationsUpdateStatusDictionary(toursLocationsUpdateStatusDictObj);
+
         }
         // dictionary object is filled with tours
         else
@@ -113,9 +118,11 @@ public class Dept_tourlistcontroller : MonoBehaviour
             if (toursLocationsDictObj.Count != schedules.Count)
             {
                 toursLocationsDictObj.Clear();
+                toursLocationsUpdateStatusDictObj.Clear();
                 foreach (Department s in schedules)
                 {
                     toursLocationsDictObj.Add(s.Name, null);
+                    toursLocationsUpdateStatusDictObj.Add(s.Name, 0);
                 }
             }
         }

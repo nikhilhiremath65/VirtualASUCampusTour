@@ -6,10 +6,12 @@ public class PSLocationArraySingleton
 
     private static PSLocationArraySingleton instance = null;
     private static Dictionary<string, ArrayList> toursLocations;
+    private static Dictionary<string, int> toursLocationsUpdateStatusDictionary;
     private static bool tourLocationsObjectStatus = false;
 
     private static ArrayList Tours;
     private static int updateStatus = 0;
+    private static int updateDeleteStatus = 0;
 
     public static PSLocationArraySingleton Instance()
     {
@@ -64,4 +66,25 @@ public class PSLocationArraySingleton
     {
         return tourLocationsObjectStatus;
     }
+
+    public void setUpdateDeleteStatus(int update)
+    {
+        updateDeleteStatus = update;
+    }
+
+    public int getUpdateDeleteStatus()
+    {
+        return updateDeleteStatus;
+    }
+
+    public void setToursLocationsUpdateStatusDictionary(Dictionary<string, int> toursLocationsStatusUpdateObject)
+    {
+        toursLocationsUpdateStatusDictionary = toursLocationsStatusUpdateObject;
+    }
+
+    public Dictionary<string, int> getToursLocationsUpdateStatusDictionary()
+    {
+        return toursLocationsUpdateStatusDictionary;
+    }
+
 }

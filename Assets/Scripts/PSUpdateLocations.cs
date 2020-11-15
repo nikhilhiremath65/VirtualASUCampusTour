@@ -181,6 +181,8 @@ public class PSUpdateLocations : MonoBehaviour
     public void onSave()
     {
         PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
+        Dictionary<string, int> toursLocationsStatusUpdate = s.getToursLocationsUpdateStatusDictionary();
+
         s.setUpdateStatus(1);
         s.setLocations(tours);
 
@@ -191,6 +193,7 @@ public class PSUpdateLocations : MonoBehaviour
 
         Dictionary<string, ArrayList> toursLocations = s.getToursLocationDictionary();
         toursLocations[currentTourName] = tours;
+        toursLocationsStatusUpdate[currentTourName] = 1;
 
         singleton.setSharedLocation(sharedTourLocations);
         SceneManager.LoadScene("DeptTourLoc");
