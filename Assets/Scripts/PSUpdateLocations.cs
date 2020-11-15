@@ -15,7 +15,7 @@ public class PSUpdateLocations : MonoBehaviour
     bool locationsDisplayed;
 
     ArrayList tours;
-
+    ArrayList locations;
     DB_Details dbDetails;
     DatabaseReference reference;
 
@@ -65,7 +65,8 @@ public class PSUpdateLocations : MonoBehaviour
     {
         if (!locationsDisplayed && tours.Count > 0)
         {
-            createTourList();
+            createTourListFromDictionary();
+            //createTourList();
         }
     }
 
@@ -104,6 +105,31 @@ public class PSUpdateLocations : MonoBehaviour
             ErrorMessage.text = e.Message;
             ErrorPanel.SetActive(true);
         }
+    }
+
+    void createTourListFromDictionary()
+    {
+        singleton = Singleton.Instance();
+        string currentTourName = singleton.getTourName();
+
+        PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
+        Dictionary<string, ArrayList> toursLocations = s.getToursLocationDictionary();
+
+        locations = toursLocations[currentTourName];
+
+        foreach (string location in locations)
+        {
+            GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
+
+            LocationListItem controller = newSchedule.GetComponent<LocationListItem>();
+            controller.Name.text = location;
+
+            newSchedule.transform.parent = ContentPanel.transform;
+            newSchedule.transform.localScale = Vector3.one;
+        }
+        locationsDisplayed = true;
+
+
     }
 
     void createTourList()
@@ -165,6 +191,7 @@ public class PSUpdateLocations : MonoBehaviour
                     throw new Exception("Please enter location!");
                 }
                 this.tours.Add(AddLocationText.text);
+                locations.Add(AddLocationText.text);
                 updateTourListOnAdd(AddLocationText.text);
                 AddLocationText.text = null;
             }
@@ -192,7 +219,7 @@ public class PSUpdateLocations : MonoBehaviour
         // updating location of the tour in dictionary
 
         Dictionary<string, ArrayList> toursLocations = s.getToursLocationDictionary();
-        toursLocations[currentTourName] = tours;
+        toursLocations[currentTourName] = locations;
         toursLocationsStatusUpdate[currentTourName] = 1;
 
         singleton.setSharedLocation(sharedTourLocations);
