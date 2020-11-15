@@ -67,8 +67,18 @@ public class DeptDisplayLoc : MonoBehaviour
                 g.Destroy();
             }
             gameObjectsList.Clear();
-            updateLocationsList(s.getLocations());
+
+            // getting updated locations from dictionary
+
+            Singleton so = Singleton.Instance();
+            string currentTourName = so.getTourName();
+
+            Dictionary<string, ArrayList> toursLocations = s.getToursLocationDictionary();
+            ArrayList updatedLocations = toursLocations[currentTourName];
+
+            updateLocationsList(updatedLocations);
         }
+
         if(gameObjectsList.Count >=1 && s.getUpdateStatus() == 1)
         {
             foreach (GameObject g in gameObjectsList)
