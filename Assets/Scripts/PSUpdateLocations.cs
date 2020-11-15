@@ -233,4 +233,10 @@ public class PSUpdateLocations : MonoBehaviour
         }
 
     }
+
+    public void onDelete()
+    {
+        Destroy(gameObject);
+
+    }
 }
