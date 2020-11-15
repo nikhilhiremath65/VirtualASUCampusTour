@@ -51,13 +51,13 @@ public class DeptDisplayLoc : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!locationsDisplayed && locations.Count > 0)
+        PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
+
+        if (!locationsDisplayed && locations.Count > 0 && s.getUpdateStatus() != 1)
         {
             createLocationsList();
         }
 
-        
-        PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
         
         if (!updateLocationsDisplayed && s.getUpdateStatus() == 1)
         {
