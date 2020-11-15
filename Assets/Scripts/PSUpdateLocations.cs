@@ -35,6 +35,7 @@ public class PSUpdateLocations : MonoBehaviour
     public InputField AddLocationText;
     public InputField LinkLocationText;
 
+    [Obsolete]
     void Start()
     {
         tours = new ArrayList();

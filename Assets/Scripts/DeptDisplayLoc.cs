@@ -122,6 +122,14 @@ public class DeptDisplayLoc : MonoBehaviour
         Dictionary<string, ArrayList> toursLocations = psObject.getToursLocationDictionary();
         toursLocations[tourName] = locations; // set locations array for given tour
 
+
+        // testing to see if locations are stored in dictionary or not
+
+        //print("locations in tour:  " + tourName);
+        //ArrayList locationsGet = toursLocations[tourName];
+        //foreach (string location in locationsGet)
+        //    print(location);
+
     }
 
     void createLocationsList()
