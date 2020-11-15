@@ -187,6 +187,7 @@ public class DeptDisplayLoc : MonoBehaviour
 
     }
 
+  
 
     //public void onDelete(Text locationName)
     //{

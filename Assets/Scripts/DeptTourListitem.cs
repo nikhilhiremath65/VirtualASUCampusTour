@@ -15,6 +15,7 @@ public class DeptTourListitem : MonoBehaviour
     public void confirmDelete()
     {
         deletePanel.SetActive(true);
+
     }
 
     public void onCancel()
@@ -26,7 +27,30 @@ public class DeptTourListitem : MonoBehaviour
     {
         Destroy(gameObject);
         deletePanel.SetActive(false);
+
+      
+        deleteFromArrayList(Name.text);
+
+
     }
+
+    public void deleteFromArrayList(string deleteLocation)
+    {
+        singleton = Singleton.Instance();
+        string tourName = singleton.getTourName();
+
+        PSLocationArraySingleton psObject = PSLocationArraySingleton.Instance();
+        Dictionary<string, ArrayList> toursLocations = psObject.getToursLocationDictionary();
+
+        print("Deleting location in tour: " + tourName);
+        ArrayList locations = toursLocations[tourName];
+        print("Deleting locations: " + deleteLocation);
+        locations.RemoveAt(locations.IndexOf(deleteLocation));
+
+        toursLocations[tourName] = locations;
+        psObject.setUpdateStatus(1);
+    }
+
 
     public void Edit(string scenename)
     {
