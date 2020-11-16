@@ -16,8 +16,8 @@ using Mapbox.Json.Bson;
 
 public class Dynamic_navigation : MonoBehaviour
 {
-    public Text Role;
     private Singleton singleton;
+    private string role;
     public GameObject nav_Manager_Panel;
     public GameObject nav_Student_Panel;
     public GameObject nav_Prospective_Panel;
@@ -26,8 +26,24 @@ public class Dynamic_navigation : MonoBehaviour
     void Start()
     {
         singleton = Singleton.Instance();
-        Role.text = "Role: " + singleton.getUserRole();
-        on_Navigation(Role.text);
+        
+        role = singleton.getUserRole();
+        if (role == "Manager")
+        {
+            nav_Manager_Panel.SetActive(true);
+        }
+        else if (role == "Student")
+        {
+            nav_Student_Panel.SetActive(true);
+        }
+        else if (role == "Guest")
+        {
+            nav_Prospective_Panel.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("invalid role");
+        }
     }
 
     public void onLogout()
@@ -44,25 +60,6 @@ public class Dynamic_navigation : MonoBehaviour
         //redirect to login
         SceneManager.LoadScene("Login");
 
-    }
-    public void on_Navigation(string role)
-    {
-        if(role == "Manager")
-        {
-            nav_Manager_Panel.SetActive(true);
-        }
-        else if(role == "Student")
-        {
-            nav_Student_Panel.SetActive(true);
-        }
-        else if(role == "Guest")
-        {
-            nav_Prospective_Panel.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("invalid role");
-        }
     }
 
 }

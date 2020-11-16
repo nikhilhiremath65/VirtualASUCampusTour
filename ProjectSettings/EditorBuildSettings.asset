@@ -59,4 +59,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PSAddLocations.unity
     guid: 9b661ff6fb7b745998decd24b3b84c3d
+  - enabled: 1
+    path: Assets/Scenes/ShareLocation.unity
+    guid: 5f2d37abb07394492a24faef3df59bca
   m_configObjects: {}
