@@ -25,12 +25,6 @@ namespace Mapbox.Unity.Map
     [ExecuteInEditMode]
     public class AbstractMap : MonoBehaviour, IMap
     {
-        #region Public Fields
-        public bool updatePath;
-
-
-        #endregion
-
         #region Private Fields
 
         [SerializeField] private MapOptions _options = new MapOptions();

@@ -8,7 +8,8 @@
     private string UserRole;
     private string PSTourNameEdit;
 
-    private bool IsDrag; 
+    private bool IsDrag;
+    private bool updatePath;
 
     private string UserName = "nhiremat";
     protected Singleton()
@@ -93,5 +94,15 @@
     public bool getIsDrag()
     {
         return this.IsDrag;
+    }
+
+    public bool getUpdatePath()
+    {
+        return this.updatePath;
+    }
+
+    public void setUpdatePath(bool value)
+    {
+        this.updatePath = value;
     }
 }

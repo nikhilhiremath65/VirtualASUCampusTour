@@ -46,6 +46,7 @@
         private ArrayList coordinates;
         private ArrayList locations;
         private List<GameObject> _instances;
+        private Singleton singleton;
 
         DB_Details dbDetails;
         DatabaseReference reference;
@@ -73,6 +74,7 @@
             locations = new ArrayList();
             coordinates = new ArrayList();
             _instances = new List<GameObject>();
+            singleton = Singleton.Instance();
 
             path = false;
             // Set up the Editor before calling into the realtime database.
@@ -189,7 +191,7 @@
 
         private void UpdatePath()
         {
-            if (coordinates.Count > 0 && (!path || _map.updatePath))
+            if (coordinates.Count > 0 && (!path || singleton.getUpdatePath()))
             {
                 generatePath();
                 path = true;

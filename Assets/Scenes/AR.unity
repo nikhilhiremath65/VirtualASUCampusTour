@@ -5331,6 +5331,7 @@ GameObject:
   - component: {fileID: 114209522188780625}
   - component: {fileID: 114984962829370725}
   - component: {fileID: 1501223898434126}
+  - component: {fileID: 1501223898434127}
   m_Layer: 0
   m_Name: ArAlignedMap
   m_TagString: Untagged
@@ -5345,7 +5346,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501223898434125}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b56423a4e7312466d88dadf0d5adc78a, type: 3}
   m_Name: 
@@ -5353,6 +5354,23 @@ MonoBehaviour:
   _panSpeed: 1
   _referenceCamera: {fileID: 20207340269941357}
   _mapManager: {fileID: 114793276091328529}
+  _useDegreeMethod: 0
+--- !u!114 &1501223898434127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501223898434125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c699b8e1864b4b248acb7a04ede9480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _panSpeed: 1
+  _zoomSpeed: 0.25
+  _referenceCamera: {fileID: 0}
+  _mapManager: {fileID: 0}
   _useDegreeMethod: 0
 --- !u!1 &1552413822068319
 GameObject:
@@ -5991,7 +6009,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 28672
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -6077,7 +6095,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 28672
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

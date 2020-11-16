@@ -66,7 +66,7 @@ public class DragWayPoint : MonoBehaviour
                         scheduleDirections.setLocationCoOrdinates(latitudeLongitude, location.index);
                         singleton.setISDrag(!IsDrag);
                         DragInfoPanel.SetActive(false);
-                        _map.updatePath = true;
+                        singleton.setUpdatePath(true);
                     }
                 }
             }

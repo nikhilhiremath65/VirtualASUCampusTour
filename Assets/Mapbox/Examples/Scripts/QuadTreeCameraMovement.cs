@@ -33,6 +33,8 @@
 		private Plane _groundPlane = new Plane(Vector3.up, 0);
 		private bool _dragStartedOnUI = false;
 
+		private Singleton singleton;
+
 		void Awake()
 		{
 			if (null == _referenceCamera)
@@ -44,6 +46,8 @@
 			{
 				_isInitialized = true;
 			};
+
+			singleton = Singleton.Instance();
 		}
 
 		public void Update()
@@ -69,10 +73,12 @@
 				if (Input.touchSupported && Input.touchCount > 0)
 				{
 					HandleTouch();
+					singleton.setUpdatePath(true);
 				}
 				else
 				{
 					HandleMouseAndKeyBoard();
+					singleton.setUpdatePath(true);
 				}
 			}
 		}
@@ -134,10 +140,12 @@
 		void ZoomMapUsingTouchOrMouse(float zoomFactor)
 		{
 			var zoom = Mathf.Max(0.0f, Mathf.Min(_mapManager.Zoom + zoomFactor * _zoomSpeed, 21.0f));
+			zoom = (float)Math.Ceiling(zoom);
 			if (Math.Abs(zoom - _mapManager.Zoom) > 0.0f)
 			{
 				_mapManager.UpdateMap(_mapManager.CenterLatitudeLongitude, zoom);
 			}
+			singleton.setUpdatePath(true);
 		}
 
 		void PanMapUsingKeyBoard(float xMove, float zMove)

@@ -43,12 +43,11 @@
         private ArrayList locations;
         private string TourName;
         private List<GameObject> _instances;
+        private Singleton singleton;
 
         DB_Details dbDetails;
         DatabaseReference reference;
         GameObject _directionsGO;
-
-
 
         protected virtual void Awake()
         {
@@ -70,7 +69,7 @@
             locations = new ArrayList();
             coordinates = new ArrayList();
             _instances = new List<GameObject>();
-            Singleton singleton = Singleton.Instance();
+            singleton = Singleton.Instance();
 
             TourName = singleton.getTourName();
 
@@ -165,7 +164,7 @@
 
         private void UpdatePath()
         {
-            if (coordinates.Count > 0 && (!path || _map.updatePath))
+            if (coordinates.Count > 0 && (!path || singleton.getUpdatePath()))
             {
                 generatePath();
                 path = true;

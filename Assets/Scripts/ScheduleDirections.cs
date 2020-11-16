@@ -46,6 +46,7 @@
         private string UserName;
         private List<GameObject> _instances;
         private int completedOffSet;
+        private Singleton singleton;
 
         DB_Details dbDetails;
         DatabaseReference reference;
@@ -72,7 +73,7 @@
             locations = new ArrayList();
             coordinates = new ArrayList();
             _instances = new List<GameObject>();
-            Singleton singleton = Singleton.Instance();
+            singleton = Singleton.Instance();
             completedOffSet = 0;
 
             ScheduleName = singleton.getScheduleName();
@@ -161,7 +162,7 @@
         {
             CurrentPosition = Player.transform.GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
             coordinates[0] = CurrentPosition;
-            if (coordinates.Count > 1 && (!path || _map.updatePath))
+            if (coordinates.Count > 1 && (!path || singleton.getUpdatePath()))
             {
                 CheckLocation();
                 generatePath();

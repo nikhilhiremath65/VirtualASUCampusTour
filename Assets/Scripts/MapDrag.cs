@@ -48,13 +48,11 @@
 			if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject())
 			{
 				_dragStartedOnUI = true;
-				_mapManager.updatePath = true;
 			}
 
 			if (Input.GetMouseButtonUp(0))
 			{
 				_dragStartedOnUI = false;
-				_mapManager.updatePath = true;
 			}
 		}
 
