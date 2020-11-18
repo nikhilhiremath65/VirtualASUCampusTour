@@ -57,8 +57,6 @@ public class DeptDisplayLoc : MonoBehaviour
 
         Dictionary<string, int> toursLocationsStatusUpdate = s.getToursLocationsUpdateStatusDictionary();
 
-        print("Current tour " + currentTourName + " Update status: " + toursLocationsStatusUpdate[currentTourName] +" Locations displayed: "+ locationsDisplayed + "Locations count: " + locations.Count);
-
         if (!locationsDisplayed && locations.Count > 0 && toursLocationsStatusUpdate[currentTourName] == 0)
         {
             createLocationsList();
@@ -75,37 +73,8 @@ public class DeptDisplayLoc : MonoBehaviour
             Dictionary<string, ArrayList> toursLocations = s.getToursLocationDictionary();
             ArrayList updatedLocations = toursLocations[currentTourName];
             updateLocationsList(updatedLocations);
-            s.setUpdateDeleteStatus(0);
         }
         
-        //if (!updateLocationsDisplayed && s.getUpdateStatus() == 1)
-        //{
-        //    foreach (GameObject g in gameObjectsList)
-        //    {
-                
-        //        g.Destroy();
-        //    }
-        //    gameObjectsList.Clear();
-
-        //    // getting updated locations from dictionary
-
-            
-
-        //    Dictionary<string, ArrayList> toursLocations = s.getToursLocationDictionary();
-        //    ArrayList updatedLocations = toursLocations[currentTourName];   
-        //    updateLocationsList(updatedLocations);
-
-        //}
-
-        //if(gameObjectsList.Count >=1 && s.getUpdateStatus() == 1)
-        //{
-        //    foreach (GameObject g in gameObjectsList)
-        //    {
-             
-        //        g.Destroy();
-        //    }
-        //    gameObjectsList.Clear();
-        //}
     }
 
     void getLocationData()
@@ -159,14 +128,6 @@ public class DeptDisplayLoc : MonoBehaviour
         Dictionary<string, ArrayList> toursLocations = psObject.getToursLocationDictionary();
         toursLocations[tourName] = locations; // set locations array for given tour
 
-
-        // testing to see if locations are stored in dictionary or not
-
-        //print("locations in tour:  " + tourName);
-        //ArrayList locationsGet = toursLocations[tourName];
-        //foreach (string location in locationsGet)
-        //    print(location);
-
     }
 
     void createLocationsList()
@@ -216,11 +177,4 @@ public class DeptDisplayLoc : MonoBehaviour
 
 
     }
-
-  
-
-    //public void onDelete(Text locationName)
-    //{
-    //    locations.Remove(locationName.text);
-    //}
 }

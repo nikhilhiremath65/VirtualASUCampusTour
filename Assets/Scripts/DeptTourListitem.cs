@@ -48,7 +48,6 @@ public class DeptTourListitem : MonoBehaviour
         locations.RemoveAt(locations.IndexOf(deleteLocation));
 
         toursLocations[tourName] = locations;
-        psObject.setUpdateDeleteStatus(1);
         Dictionary<string, int> toursLocationsStatusUpdate = psObject.getToursLocationsUpdateStatusDictionary();
         toursLocationsStatusUpdate[tourName] = 1;
     }

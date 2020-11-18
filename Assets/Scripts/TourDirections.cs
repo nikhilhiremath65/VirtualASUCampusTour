@@ -61,6 +61,7 @@
             _directions = MapboxAccess.Instance.Directions;
         }
 
+        [Obsolete]
         public void Start()
         {
             foreach (var modifier in MeshModifiers)
@@ -88,21 +89,16 @@
             coordinates.Add(CurrentPosition);
 
             PSLocationArraySingleton pSLocationArraySingleton = PSLocationArraySingleton.Instance();
+            Dictionary<string, ArrayList> toursLocationsDictObject = pSLocationArraySingleton.getToursLocationDictionary();
 
-            if (pSLocationArraySingleton.getUpdateStatus() == 0)
-            {
-                getTourData();
-            }
-            else
-            {
-                int i = 0;
-                foreach (string location in pSLocationArraySingleton.getLocations())
+            int i = 0;
+                foreach (string location in toursLocationsDictObject[TourName])
                 {
                     locations.Add(new TourLocation(location, i));
                     i++;
                 }
                 getCoordinates();
-            }
+            
 
             InvokeRepeating("UpdatePath", 2.0f, 0.3f);
         }
