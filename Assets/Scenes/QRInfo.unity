@@ -376,10 +376,10 @@ RectTransform:
   m_Father: {fileID: 213486049}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 7, y: 179}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: -880, y: -1720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &459534994
 MonoBehaviour:
@@ -415,10 +415,10 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Peralta Hall
 
-    
 
-    The Engineering and Manufacturing Engineering
-    program offices are based in Peralta Hall. In addition, engineering studios equipped
+
+    The Engineering and Manufacturing Engineering program
+    offices are based in Peralta Hall. In addition, engineering studios equipped
     with all sorts of tools allow students to work in teams on projects that help
     solve technological problems. Classrooms to accommodate business and computing,
     as well as many other subjects, are also in Peralta Hall.'
