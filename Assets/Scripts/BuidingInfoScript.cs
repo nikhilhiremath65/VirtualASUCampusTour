@@ -1,6 +1,4 @@
-﻿
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
@@ -13,22 +11,17 @@ using Firebase;
 using Mapbox.Json.Bson;
 
 
-
-public class Profile : MonoBehaviour
+public class BuidingInfoScript : MonoBehaviour
 {
-    public Text UserName;
-    public Text Email;
-    public Text Role;
+    public Text BuildingInfoText;
     private Singleton singleton;
-   
-
+    
     // Start is called before the first frame update
     void Start()
     {
         singleton = Singleton.Instance();
-        UserName.text= "User Name: "+ singleton.getUserName();
-        Email.text = "Email: "+singleton.getUserEmail();
-        Role.text = "Role: "+singleton.getUserRole();
+        Debug.Log("Get values: " + singleton.getBuildingInfo());
+        BuildingInfoText.text = "Building Info: " + singleton.getBuildingInfo();
     }
 
     public void onLogout()
@@ -48,13 +41,5 @@ public class Profile : MonoBehaviour
         SceneManager.LoadScene("Login");
 
     }
-
-    public void onQRScan()
-    { 
-        //redirect to login
-        SceneManager.LoadScene("QRCodeReader");
-
-    }
-
 
 }

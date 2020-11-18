@@ -9,9 +9,10 @@ public class QRCodeReaderDemo : MonoBehaviour {
     private IReader QRReader;
     public Text resultText;
     public RawImage image;
+    private Singleton singleton;
 
 
-	void Awake () {
+    void Awake () {
         Screen.autorotateToPortrait = false;
         Screen.autorotateToPortraitUpsideDown = false;
 	}
@@ -19,9 +20,9 @@ public class QRCodeReaderDemo : MonoBehaviour {
     // Use this for initialization
     private void Start()
     {
+        singleton = Singleton.Instance();
         QRReader = new QRCodeReader();
-
-
+        QRReader.Camera.Play();
         QRReader.Camera.Play();
 
         QRReader.OnReady += StartReadingQR;
@@ -65,16 +66,17 @@ public class QRCodeReaderDemo : MonoBehaviour {
         }
 
         // Start Scanning
-        QRReader.Scan((barCodeType, barCodeValue) => {
+            QRReader.Scan((barCodeType, barCodeValue) => {
             QRReader.Stop();
             resultText.text = "Found: [" + barCodeType + "] " + "<b>" + barCodeValue +"</b>";
-            QRReader.Stop();
-            SceneManager.LoadScene("ManagerTourView");
-
-#if UNITY_ANDROID || UNITY_IOS
-            Handheld.Vibrate();
-
-#endif
-        });
+            singleton.setBuildingInfo(barCodeValue);
+                
+            Debug.Log("Building Information : " + singleton.getBuildingInfo());
+            QRReader.Camera.Stop();
+            SceneManager.LoadScene("QRInfo");
+            
+            });
     }
+
+    
 }
