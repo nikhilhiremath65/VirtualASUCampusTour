@@ -15,14 +15,15 @@ public class PSUpdateLocations : MonoBehaviour
     bool locationsDisplayed;
 
     ArrayList tours;
-
+    ArrayList locations;
     DB_Details dbDetails;
     DatabaseReference reference;
 
     private string TourName;
     private Singleton singleton;
     private PSLocationArraySingleton locationArraySingleton;
-    private Dictionary<string, Coordinates> sharedTourLocations;
+    private string sharedLocationName;
+    private Coordinates sharedLocationCoordinates;
 
     public GameObject ContentPanel;
     public GameObject NamePanel;
@@ -35,11 +36,11 @@ public class PSUpdateLocations : MonoBehaviour
     public InputField AddLocationText;
     public InputField LinkLocationText;
 
+    [Obsolete]
     void Start()
     {
         tours = new ArrayList();
         dbDetails = new DB_Details();
-        sharedTourLocations = new Dictionary<string, Coordinates>();
         // Set up the Editor before calling into the realtime database.
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
 
@@ -50,11 +51,6 @@ public class PSUpdateLocations : MonoBehaviour
         TourName = singleton.getTourName();
 
         TourNameText.text = TourName;
-        print(TourName);
-
-
-        getTourData();
-
         locationsDisplayed = false;
 
     }
@@ -62,62 +58,37 @@ public class PSUpdateLocations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!locationsDisplayed && tours.Count > 0)
+        if (!locationsDisplayed)
         {
-            createTourList();
+            createTourListFromDictionary();
+            //createTourList();
         }
     }
 
-    void getTourData()
+
+    void createTourListFromDictionary()
     {
-        try
-        {
-            reference.GetValueAsync().ContinueWith(task =>
-            {
-                if (task.IsFaulted)
-                {
-                    throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
-                }
-                else if (task.IsCompleted)
-                {
-                    DataSnapshot snapshot = task.Result.Child(dbDetails.getTourDBName()).Child(TourName);
+        singleton = Singleton.Instance();
+        string currentTourName = singleton.getTourName();
 
-                    Dictionary<string, object> tourData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
+        PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
+        Dictionary<string, ArrayList> toursLocations = s.getToursLocationDictionary();
 
-                    foreach (string tour in tourData.Keys)
-                    {
-                        this.tours.Add(tour);
-                    }
-                }
-            });
-        }
-        catch (InvalidCastException e)
-        {
-            // Perform some action here, and then throw a new exception.
-            ErrorMessage.text = e.Message;
-            ErrorPanel.SetActive(true);
-        }
-        catch (Exception e)
-        {
-            // Perform some action here, and then throw a new exception.
-            ErrorMessage.text = e.Message;
-            ErrorPanel.SetActive(true);
-        }
-    }
+        locations = toursLocations[currentTourName];
 
-    void createTourList()
-    {
-        foreach (string s in tours)
+        foreach (string location in locations)
         {
             GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
 
             LocationListItem controller = newSchedule.GetComponent<LocationListItem>();
-            controller.Name.text = s;
+            controller.Name.text = location;
 
             newSchedule.transform.parent = ContentPanel.transform;
             newSchedule.transform.localScale = Vector3.one;
         }
         locationsDisplayed = true;
+
+
     }
 
     void updateTourListOnAdd(string name)
@@ -141,8 +112,10 @@ public class PSUpdateLocations : MonoBehaviour
             NamePanel.SetActive(false);
             String[] data = AddLocationText.text.Split(':');
             this.tours.Add(LinkLocationText.text);
+            locations.Add(LinkLocationText.text);
             updateTourListOnAdd(LinkLocationText.text);
-            sharedTourLocations.Add(LinkLocationText.text, new Coordinates(data[0], data[1]));
+            sharedLocationName = LinkLocationText.text;
+            sharedLocationCoordinates =  new Coordinates(data[0], data[1]);
         }
         catch (Exception e)
         {
@@ -164,6 +137,7 @@ public class PSUpdateLocations : MonoBehaviour
                     throw new Exception("Please enter location!");
                 }
                 this.tours.Add(AddLocationText.text);
+                locations.Add(AddLocationText.text);
                 updateTourListOnAdd(AddLocationText.text);
                 AddLocationText.text = null;
             }
@@ -180,17 +154,19 @@ public class PSUpdateLocations : MonoBehaviour
     public void onSave()
     {
         PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
-        s.setUpdateStatus(1);
-        s.setLocations(tours);
-        singleton.setSharedLocation(sharedTourLocations);
+        Dictionary<string, int> toursLocationsStatusUpdate = s.getToursLocationsUpdateStatusDictionary();
+
+        singleton = Singleton.Instance();
+        string currentTourName = singleton.getTourName();
+
+        // updating location of the tour in dictionary, and setting update status in dictionary
+
+        Dictionary<string, ArrayList> toursLocations = s.getToursLocationDictionary();
+        toursLocations[currentTourName] = locations;
+        toursLocationsStatusUpdate[currentTourName] = 1;
+
+        singleton.addSharedLocation(sharedLocationName, sharedLocationCoordinates);
         SceneManager.LoadScene("DeptTourLoc");
-
-
-        ArrayList allLocations = s.getLocations();
-        foreach (string location in allLocations)
-        {
-            print(location + "\n");
-        }
 
     }
 }

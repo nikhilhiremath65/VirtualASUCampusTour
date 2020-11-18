@@ -98,6 +98,11 @@ public class Singleton
         sharedTourLocations = sharedLocations;
     }
 
+    public void addSharedLocation(string name, Coordinates coordinates){
+        
+        sharedTourLocations[name] = coordinates;
+    }
+
     public void setISDrag(bool IsDrag)
     {
         this.IsDrag = IsDrag;
