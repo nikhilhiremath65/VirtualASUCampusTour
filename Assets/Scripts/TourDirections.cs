@@ -42,6 +42,7 @@
         private bool path;
         private ArrayList coordinates;
         private ArrayList locations;
+        private Dictionary<string,Coordinates> sharedLocations;
         private string TourName;
         private List<GameObject> _instances;
         private int completedOffSet;
@@ -90,6 +91,7 @@
 
             PSLocationArraySingleton pSLocationArraySingleton = PSLocationArraySingleton.Instance();
             Dictionary<string, ArrayList> toursLocationsDictObject = pSLocationArraySingleton.getToursLocationDictionary();
+            sharedLocations = singleton.getSharedTourLocations();
 
             int i = 0;
                 foreach (string location in toursLocationsDictObject[TourName])
@@ -290,8 +292,15 @@
                         for (int i = 1; i < locations.Count; i++)
                         {
                             TourLocation location = (TourLocation)locations[i];
-                            location.Latitute = (string)jsonLocation[location.Name]["Coordinates"]["Latitude"];
-                            location.Longitude = (string)jsonLocation[location.Name]["Coordinates"]["Longitude"];
+
+                            if (sharedLocations.ContainsKey(location.Name)){
+                                location.Latitute = sharedLocations[location.Name].Latitude;
+                                location.Longitude = sharedLocations[location.Name].Longitude;
+                            }
+                            else{
+                                location.Latitute = (string)jsonLocation[location.Name]["Coordinates"]["Latitude"];
+                                location.Longitude = (string)jsonLocation[location.Name]["Coordinates"]["Longitude"];
+                            }
                             double lat = double.Parse(location.Latitute);
                             double lon = double.Parse(location.Longitude);
                             coordinates.Add(new Vector2d(lat, lon));

@@ -22,7 +22,8 @@ public class PSUpdateLocations : MonoBehaviour
     private string TourName;
     private Singleton singleton;
     private PSLocationArraySingleton locationArraySingleton;
-    private Dictionary<string, Coordinates> sharedTourLocations;
+    private string sharedLocationName;
+    private Coordinates sharedLocationCoordinates;
 
     public GameObject ContentPanel;
     public GameObject NamePanel;
@@ -40,7 +41,6 @@ public class PSUpdateLocations : MonoBehaviour
     {
         tours = new ArrayList();
         dbDetails = new DB_Details();
-        sharedTourLocations = new Dictionary<string, Coordinates>();
         // Set up the Editor before calling into the realtime database.
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
 
@@ -112,8 +112,10 @@ public class PSUpdateLocations : MonoBehaviour
             NamePanel.SetActive(false);
             String[] data = AddLocationText.text.Split(':');
             this.tours.Add(LinkLocationText.text);
+            locations.Add(LinkLocationText.text);
             updateTourListOnAdd(LinkLocationText.text);
-            sharedTourLocations.Add(LinkLocationText.text, new Coordinates(data[0], data[1]));
+            sharedLocationName = LinkLocationText.text;
+            sharedLocationCoordinates =  new Coordinates(data[0], data[1]);
         }
         catch (Exception e)
         {
@@ -163,7 +165,7 @@ public class PSUpdateLocations : MonoBehaviour
         toursLocations[currentTourName] = locations;
         toursLocationsStatusUpdate[currentTourName] = 1;
 
-        singleton.setSharedLocation(sharedTourLocations);
+        singleton.addSharedLocation(sharedLocationName, sharedLocationCoordinates);
         SceneManager.LoadScene("DeptTourLoc");
 
     }
