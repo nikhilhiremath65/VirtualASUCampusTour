@@ -23,8 +23,6 @@ public class QRCodeReaderDemo : MonoBehaviour {
         singleton = Singleton.Instance();
         QRReader = new QRCodeReader();
         QRReader.Camera.Play();
-        QRReader.Camera.Play();
-
         QRReader.OnReady += StartReadingQR;
 
         QRReader.StatusChanged += QRReader_StatusChanged;
