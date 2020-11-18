@@ -13,15 +13,16 @@ using Mapbox.Json.Bson;
 
 public class BuidingInfoScript : MonoBehaviour
 {
-    public Text BuildingInfoText;
+    public Text BuildingText;
     private Singleton singleton;
     
     // Start is called before the first frame update
     void Start()
     {
         singleton = Singleton.Instance();
+        BuildingText.text = singleton.getBuildingInfo();
         Debug.Log("Get values: " + singleton.getBuildingInfo());
-        BuildingInfoText.text = "Building Info: " + singleton.getBuildingInfo();
+       
     }
 
     public void onLogout()
