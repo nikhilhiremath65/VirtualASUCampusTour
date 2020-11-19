@@ -65,4 +65,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShareLocation.unity
     guid: 5f2d37abb07394492a24faef3df59bca
+  - enabled: 1
+    path: Assets/Scenes/QRInfo.unity
+    guid: ef2c51f2908099943a3bea0bebceb2f6
+  - enabled: 1
+    path: Assets/Scenes/QRCodeReader.unity
+    guid: ed037ab870bd77043a40a1bfb027137b
   m_configObjects: {}
