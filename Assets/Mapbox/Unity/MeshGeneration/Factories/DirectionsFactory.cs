@@ -25,11 +25,12 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 		Transform[] _waypoints;
 		private List<Vector3> _cachedWaypoints;
 
+
 		[SerializeField]
 		[Range(1,10)]
 		private float UpdateFrequency = 2;
 
-
+		
 
 		private Directions _directions;
 		private int _counter;

@@ -51,6 +51,7 @@
         DatabaseReference reference;
         GameObject _directionsGO;
 
+        public Transform Mapholder;
 
 
         protected virtual void Awake()
@@ -81,7 +82,7 @@
             // Get the root reference location of the database.
             reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-            InvokeRepeating("UpdatePath", 2.0f, 0.3f);
+            InvokeRepeating("UpdatePath", 2.0f, 0.1f);
         }
 
         public void OnClickStart()
@@ -184,6 +185,10 @@
 
             _directionsGO.AddComponent<MeshRenderer>().material = _material;
             _directionsGO.transform.SetAsFirstSibling();
+            //_directionsGO.transform.position = new Vector3(_directionsGO.transform.position.x,-1.26f, _directionsGO.transform.position.z);
+            _directionsGO.transform.rotation = Mapholder.rotation;
+            _directionsGO.transform.localScale = new Vector3(1.0f,0.0f,1.0f);
+            _directionsGO.transform.position = new Vector3(_directionsGO.transform.position.x, -1.0f, _directionsGO.transform.position.y);
             return _directionsGO;
         }
 
@@ -247,8 +252,8 @@
 
         void getCoordinates()
         {
-            coordinates.Add(new Vector2d(33.409358, -111.921561));
-            coordinates.Add(new Vector2d(33.410069, -111.924177));
+            coordinates.Add(new Vector2d(33.409431, -111.924427));
+            coordinates.Add(new Vector2d(33.410072, -111.924586));
             try
             {
                 // reference.GetValueAsync().ContinueWith(task =>
