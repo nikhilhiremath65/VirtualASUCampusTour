@@ -12,6 +12,8 @@ public class DeptDisplayLoc : MonoBehaviour
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
     ArrayList gameObjectsList = new ArrayList();
+    PSLocationArraySingleton psObject = PSLocationArraySingleton.Instance();
+    ArrayList locationsTemp = new ArrayList();
 
     DB_Details dbDetails;
     DatabaseReference reference;
@@ -49,42 +51,41 @@ public class DeptDisplayLoc : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!locationsDisplayed && locations.Count > 0)
+        PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
+        Singleton so = Singleton.Instance();
+        string currentTourName = so.getTourName();
+
+        Dictionary<string, int> toursLocationsStatusUpdate = s.getToursLocationsUpdateStatusDictionary();
+
+        if (!locationsDisplayed && locations.Count > 0 && toursLocationsStatusUpdate[currentTourName] == 0)
         {
             createLocationsList();
         }
 
-        
-        PSLocationArraySingleton s = PSLocationArraySingleton.Instance();
-        
-        if (!updateLocationsDisplayed && s.getUpdateStatus() == 1)
+        else if(!updateLocationsDisplayed && toursLocationsStatusUpdate[currentTourName] ==1)
         {
             foreach (GameObject g in gameObjectsList)
             {
-                
+
                 g.Destroy();
             }
             gameObjectsList.Clear();
-            updateLocationsList(s.getLocations());
+            Dictionary<string, ArrayList> toursLocations = s.getToursLocationDictionary();
+            ArrayList updatedLocations = toursLocations[currentTourName];
+            updateLocationsList(updatedLocations);
         }
-        if(gameObjectsList.Count >=1 && s.getUpdateStatus() == 1)
-        {
-            foreach (GameObject g in gameObjectsList)
-            {
-             
-                g.Destroy();
-            }
-            gameObjectsList.Clear();
-        }
+        
     }
 
     void getLocationData()
     {
+        PSLocationArraySingleton ps = PSLocationArraySingleton.Instance();
         Singleton s = Singleton.Instance();
         string scheduleName = s.getTourName();
+        locationsTemp.Clear();
 
         DepartmentTour.text = scheduleName + " Locations";
-        
+
 
         reference.GetValueAsync().ContinueWith(task =>
         {
@@ -99,21 +100,41 @@ public class DeptDisplayLoc : MonoBehaviour
 
 
                 snapshot = task.Result.Child(dbDetails.getTourDBName()).Child(scheduleName.ToString());
-                
-                
+
+
                 scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
 
                 foreach (KeyValuePair<string, string> schedule in scheduleData)
                 {
                     this.locations.Add(new DeptLocation(schedule.Key));
+                    locationsTemp.Add(schedule.Key);
                     //print(schedule.Key);
                 }
+                Dictionary<string, ArrayList> toursLocations = ps.getToursLocationDictionary();
+                ArrayList updatedLocations = toursLocations[scheduleName];
+
+                if (updatedLocations == null)
+                {
+                    toursLocations[scheduleName] = locationsTemp;
+                }
+
+
             }
         });
     }
 
+    void fillLocationsInDictionary(string tourName, ArrayList locations)
+    {
+        Dictionary<string, ArrayList> toursLocations = psObject.getToursLocationDictionary();
+        toursLocations[tourName] = locations; // set locations array for given tour
+
+    }
+
     void createLocationsList()
     {
+        Singleton so = Singleton.Instance();
+        string scheduleName = so.getTourName();
+        locationsTemp.Clear();
         foreach (DeptLocation s in locations)
         {
             ListItemPrefab.SetActive(true);
@@ -122,13 +143,18 @@ public class DeptDisplayLoc : MonoBehaviour
             DeptTourListitem controller = newSchedule.GetComponent<DeptTourListitem>();
             string name1 = s.Name;
             controller.Name.text = name1;
+            print("Adding location on screen" + name1);
+
+            locationsTemp.Add(s.Name);
 
             newSchedule.transform.parent = ContentPanel.transform;
             newSchedule.transform.localScale = Vector3.one;
         }
         locationsDisplayed = true;
-         
-        
+        print("Displaying locations for: " + scheduleName);
+        print("LocationsTemm count" + locationsTemp.Count);
+        fillLocationsInDictionary(scheduleName, locationsTemp);
+
     }
 
     void updateLocationsList(ArrayList updateLocations)
@@ -151,10 +177,4 @@ public class DeptDisplayLoc : MonoBehaviour
 
 
     }
-
-
-    //public void onDelete(Text locationName)
-    //{
-    //    locations.Remove(locationName.text);
-    //}
 }

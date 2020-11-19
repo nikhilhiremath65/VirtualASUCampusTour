@@ -9,6 +9,7 @@ public class Singleton
     private string UserEmail;
     private string UserRole;
     private string PSTourNameEdit;
+    private string BuildingInfo;
 
     private Dictionary<string, Coordinates> sharedTourLocations;
     private bool IsDrag; 
@@ -98,6 +99,11 @@ public class Singleton
         sharedTourLocations = sharedLocations;
     }
 
+    public void addSharedLocation(string name, Coordinates coordinates){
+        
+        sharedTourLocations[name] = coordinates;
+    }
+
     public void setISDrag(bool IsDrag)
     {
         this.IsDrag = IsDrag;
@@ -106,5 +112,15 @@ public class Singleton
     public bool getIsDrag()
     {
         return this.IsDrag;
+    }
+
+    public void setBuildingInfo(string buildingInfo)
+    {
+        this.BuildingInfo = buildingInfo;
+    }
+
+    public string getBuildingInfo()
+    {
+        return this.BuildingInfo;
     }
 }

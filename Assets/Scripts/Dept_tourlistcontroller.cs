@@ -18,6 +18,9 @@ public class Dept_tourlistcontroller : MonoBehaviour
     bool schedulesDisplayed;
 
     ArrayList schedules;
+    Dictionary<string, ArrayList> toursLocationsDictObj;
+    Dictionary<string, int> toursLocationsUpdateStatusDictObj;
+    PSLocationArraySingleton psObject = PSLocationArraySingleton.Instance();
 
     // Start is called before the first frame update
     [System.Obsolete]
@@ -86,5 +89,42 @@ public class Dept_tourlistcontroller : MonoBehaviour
             newSchedule.transform.localScale = Vector3.one;
         }
         schedulesDisplayed = true;
+        fillDictionaryWithTours();
+    }
+
+    void fillDictionaryWithTours()
+    {
+        // dictionary object is not filled with tours
+        if (!psObject.getToursLocationsObjectStatus())
+        {
+            toursLocationsDictObj = new Dictionary<string, ArrayList>();
+            toursLocationsUpdateStatusDictObj = new Dictionary<string, int>();
+            foreach (Department s in schedules)
+            {
+                toursLocationsDictObj.Add(s.Name, null);
+                toursLocationsUpdateStatusDictObj.Add(s.Name, 0);
+            }
+            psObject.setToursLocationsObjectStatus(true); // dictionary object is filled
+            psObject.setToursLocationsDictionary(toursLocationsDictObj); // set Dictionary object
+            psObject.setToursLocationsUpdateStatusDictionary(toursLocationsUpdateStatusDictObj);
+
+        }
+        // dictionary object is filled with tours
+        else
+        {
+            toursLocationsDictObj = psObject.getToursLocationDictionary();
+            // check of manager changed any tours (added or deleted tour)
+
+            if (toursLocationsDictObj.Count != schedules.Count)
+            {
+                toursLocationsDictObj.Clear();
+                toursLocationsUpdateStatusDictObj.Clear();
+                foreach (Department s in schedules)
+                {
+                    toursLocationsDictObj.Add(s.Name, null);
+                    toursLocationsUpdateStatusDictObj.Add(s.Name, 0);
+                }
+            }
+        }
     }
 }
