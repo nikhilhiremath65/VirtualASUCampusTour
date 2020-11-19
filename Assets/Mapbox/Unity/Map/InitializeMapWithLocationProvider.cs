@@ -29,6 +29,7 @@
 			_locationProvider.OnLocationUpdated -= LocationProvider_OnLocationUpdated;
 			_map.Initialize(location.LatitudeLongitude, _map.AbsoluteZoom);
 			// _map.Initialize(_map.CenterLatitudeLongitude, _map.AbsoluteZoom);
+			_map.transform.position = new Vector3(0.0f,-2.0f,0.0f);
 		}
 	}
 }

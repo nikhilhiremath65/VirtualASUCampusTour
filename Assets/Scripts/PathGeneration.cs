@@ -82,7 +82,7 @@
             // Get the root reference location of the database.
             reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-            InvokeRepeating("UpdatePath", 2.0f, 0.1f);
+            InvokeRepeating("UpdatePath", 2.0f, 0.3f);
         }
 
         public void OnClickStart()
@@ -189,6 +189,7 @@
             _directionsGO.transform.rotation = Mapholder.rotation;
             _directionsGO.transform.localScale = new Vector3(1.0f,0.0f,1.0f);
             _directionsGO.transform.position = new Vector3(_directionsGO.transform.position.x, -1.0f, _directionsGO.transform.position.y);
+            _directionsGO.layer = LayerMask.NameToLayer("Path");
             return _directionsGO;
         }
 
