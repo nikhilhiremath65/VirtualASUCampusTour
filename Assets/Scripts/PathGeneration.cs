@@ -195,8 +195,8 @@
                 path = true;
             }
             // Testing
-            Vector3 position = Conversions.GeoToWorldPosition(33.4209125, -111.9331915, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
-            locationIndicator.transform.position = position;
+            // Vector3 position = Conversions.GeoToWorldPosition(33.4209125, -111.9331915, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
+            // locationIndicator.transform.position = position;
 
         }
 
@@ -247,31 +247,33 @@
 
         void getCoordinates()
         {
+            coordinates.Add(new Vector2d(33.409358, -111.921561));
+            coordinates.Add(new Vector2d(33.410069, -111.924177));
             try
             {
-                reference.GetValueAsync().ContinueWith(task =>
-                {
-                    if (task.IsFaulted)
-                    {
-                        throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
-                    }
-                    else if (task.IsCompleted)
-                    {
-                        DataSnapshot snapshot = task.Result.Child(dbDetails.getBuildingDBname());
+                // reference.GetValueAsync().ContinueWith(task =>
+                // {
+                //     if (task.IsFaulted)
+                //     {
+                //         throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
+                //     }
+                //     else if (task.IsCompleted)
+                //     {
+                //         DataSnapshot snapshot = task.Result.Child(dbDetails.getBuildingDBname());
 
-                        string str = snapshot.GetRawJsonValue();
-                        JObject jsonLocation = JObject.Parse(str);
+                //         string str = snapshot.GetRawJsonValue();
+                //         JObject jsonLocation = JObject.Parse(str);
 
-                        foreach (TourLocation location in this.locations)
-                        {
-                            location.Latitute = (string)jsonLocation[location.Name]["Coordinates"]["Latitude"];
-                            location.Longitude = (string)jsonLocation[location.Name]["Coordinates"]["Longitude"];
-                            double lat = double.Parse(location.Latitute);
-                            double lon = double.Parse(location.Longitude);
-                            coordinates.Add(new Vector2d(lat, lon));
-                        }
-                    }
-                });
+                //         foreach (TourLocation location in this.locations)
+                //         {
+                //             location.Latitute = (string)jsonLocation[location.Name]["Coordinates"]["Latitude"];
+                //             location.Longitude = (string)jsonLocation[location.Name]["Coordinates"]["Longitude"];
+                //             double lat = double.Parse(location.Latitute);
+                //             double lon = double.Parse(location.Longitude);
+                //             coordinates.Add(new Vector2d(lat, lon));
+                //         }
+                //     }
+                // });
             }
             catch (InvalidCastException e)
             {

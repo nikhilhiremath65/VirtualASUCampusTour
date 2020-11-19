@@ -256,14 +256,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23ccf66b6e18f454d9a5c71195e5bf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _map: {fileID: 0}
+  _map: {fileID: 114793276091328529}
   MeshModifiers:
   - {fileID: 11400000, guid: 72a54fd58e79618408c60d91df61d553, type: 2}
   _material: {fileID: 2100000, guid: fb0c8ef9b8e334e6dbead81f7c7b7eb1, type: 2}
   startLocation: {fileID: 578671681}
   destLocation: {fileID: 804445}
   WayPoint: {fileID: 157421083}
-  locationIndicator: {fileID: 1717271101921047}
+  locationIndicator: {fileID: 1842844345633809}
   ErrorPanel: {fileID: 1898797672}
   ErrorMessage: {fileID: 1819478647}
 --- !u!114 &43739771
@@ -5435,6 +5435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4556333791687895}
   - component: {fileID: 114723990685609639}
+  - component: {fileID: 1717271101921048}
   m_Layer: 12
   m_Name: ARPlayer
   m_TagString: Untagged
@@ -5442,6 +5443,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1717271101921048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717271101921047}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e7772fa90db336987462bf777eaa4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: {x: 10, y: 10}
 --- !u!1 &1718382636258687
 GameObject:
   m_ObjectHideFlags: 0
@@ -5910,7 +5924,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501223898434125}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -5953,7 +5967,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006237167382523}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 125, z: 0}
+  m_LocalPosition: {x: 0, y: 800, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4540409217549245}
@@ -6077,7 +6091,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 28672
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -6738,7 +6752,7 @@ MonoBehaviour:
   _autoFireEvent: 1
   _updateInterval: 0.1
   _sendEvent: 0
-  _latitudeLongitude: 33.306964, -111.677283
+  _latitudeLongitude: 33.409358, -111.921561
   _targetTransform: {fileID: 4656917426234683}
 --- !u!114 &114445513465996303
 MonoBehaviour:
@@ -6971,7 +6985,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842844345633809}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37ab97bfa6689994caf97070bd3a37ba, type: 3}
   m_Name: 
@@ -7109,7 +7123,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842844345633809}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d15554ba01a81b43836c6e4770c204f, type: 3}
   m_Name: 
@@ -7302,12 +7316,12 @@ MonoBehaviour:
         - water_label
         - waterway
         - waterway_label
-      _sourceType: 3
+      _sourceType: -2
       sourceOptions:
-        isActive: 0
+        isActive: 1
         layerSource:
           Name: Mapbox Streets
-          Id: mapbox.mapbox-streets-v7
+          Id: mapbox.mapbox-streets-v8
           Modified: 
           UserName: 
       useOptimizedStyle: 0

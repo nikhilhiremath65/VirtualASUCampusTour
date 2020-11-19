@@ -50,6 +50,7 @@ namespace Mapbox.Unity.Ar
 			}
 
 			_rotations.Add(rotation);
+			Debug.Log(rotation);
 			_averageRotation = meanAngle(_rotations);
 
 			if (Mathf.Abs(Mathf.DeltaAngle(rotation, _averageRotation)) < _ignoreAngleThreshold)
