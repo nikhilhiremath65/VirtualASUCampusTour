@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs/Nav_panel.prefab.meta
+guid: 647d1c791133346fcaedd47b1e377bde
+PrefabImporter:
+=======
 guid: 585345f0cf31fed45a58ee9c8f72a37b
 folderAsset: yes
 DefaultImporter:
+>>>>>>> Development:Assets/QRCodeReader.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
