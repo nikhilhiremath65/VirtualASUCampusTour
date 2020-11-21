@@ -51,6 +51,7 @@
         DatabaseReference reference;
         GameObject _directionsGO;
 
+        public Transform Mapholder;
 
 
         protected virtual void Awake()
@@ -99,14 +100,14 @@
 
             if (startLocation.text != "")
             {
-                locations.Add(new TourLocation(startLocation.text,0));
+                locations.Add(new TourLocation(startLocation.text, 0));
             }
             else
             {
                 GetCurrentLocation();
             }
 
-            if(destLocation.text != "")
+            if (destLocation.text != "")
             {
                 // Testing current location:
                 Debug.Log(coordinates.Count);
@@ -184,6 +185,11 @@
 
             _directionsGO.AddComponent<MeshRenderer>().material = _material;
             _directionsGO.transform.SetAsFirstSibling();
+            // _directionsGO.transform.position = new Vector3(_directionsGO.transform.position.x,-1.26f, _directionsGO.transform.position.z);
+            _directionsGO.transform.rotation = Mapholder.rotation;
+            _directionsGO.transform.localScale = new Vector3(1.0f,0.0f,1.0f);
+            _directionsGO.transform.position = new Vector3(_directionsGO.transform.position.x, 2.0f, _directionsGO.transform.position.y);
+            _directionsGO.layer = 9;
             return _directionsGO;
         }
 
@@ -193,10 +199,11 @@
             {
                 generatePath();
                 path = true;
+                _map.updatePath = false;
             }
             // Testing
-            Vector3 position = Conversions.GeoToWorldPosition(33.4209125, -111.9331915, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
-            locationIndicator.transform.position = position;
+            // Vector3 position = Conversions.GeoToWorldPosition(33.4209125, -111.9331915, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
+            // locationIndicator.transform.position = position;
 
         }
 
@@ -223,8 +230,9 @@
                     {
                         var prefab = WayPoint;
                         var instance = Instantiate(WayPoint) as GameObject;
-
+                        instance.layer = 9;
                         _instances.Add(instance);
+
                     }
                 }
 
@@ -247,31 +255,33 @@
 
         void getCoordinates()
         {
+            coordinates.Add(new Vector2d(33.409431, -111.924427));
+            coordinates.Add(new Vector2d(33.410072, -111.924586));
             try
             {
-                reference.GetValueAsync().ContinueWith(task => {
-                    if (task.IsFaulted)
-                    {
-                        throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
-                    }
-                    else if (task.IsCompleted)
-                    {
-                        DataSnapshot snapshot = task.Result.Child(dbDetails.getBuildingDBname());
+                // reference.GetValueAsync().ContinueWith(task =>
+                // {
+                //     if (task.IsFaulted)
+                //     {
+                //         throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
+                //     }
+                //     else if (task.IsCompleted)
+                //     {
+                //         DataSnapshot snapshot = task.Result.Child(dbDetails.getBuildingDBname());
 
-                        string str = snapshot.GetRawJsonValue();
-                        JObject jsonLocation = JObject.Parse(str);
+                //         string str = snapshot.GetRawJsonValue();
+                //         JObject jsonLocation = JObject.Parse(str);
 
-                        foreach (TourLocation location in this.locations)
-                        {
-                            print(location);
-                            location.Latitute = (string)jsonLocation[location.Name]["Coordinates"]["Latitude"];
-                            location.Longitude = (string)jsonLocation[location.Name]["Coordinates"]["Longitude"];
-                            double lat = double.Parse(location.Latitute);
-                            double lon = double.Parse(location.Longitude);
-                            coordinates.Add(new Vector2d(lat, lon));
-                        }
-                    }
-                });
+                //         foreach (TourLocation location in this.locations)
+                //         {
+                //             location.Latitute = (string)jsonLocation[location.Name]["Coordinates"]["Latitude"];
+                //             location.Longitude = (string)jsonLocation[location.Name]["Coordinates"]["Longitude"];
+                //             double lat = double.Parse(location.Latitute);
+                //             double lon = double.Parse(location.Longitude);
+                //             coordinates.Add(new Vector2d(lat, lon));
+                //         }
+                //     }
+                // });
             }
             catch (InvalidCastException e)
             {
@@ -321,7 +331,7 @@
                 float latitude = Input.location.lastData.latitude;
                 float longitude = Input.location.lastData.longitude;
 
-                locations.Add(new Vector2d(latitude,longitude));
+                locations.Add(new Vector2d(latitude, longitude));
             }
 
             // Stop service if there is no need to query location updates continuously

@@ -3,10 +3,14 @@
 	// Just add this script to your camera. It doesn't need any configuration.
 
 	using UnityEngine;
+    using Mapbox.Unity.Map;
 	using Mapbox.Unity.Location;
 
 	public class ManualTouchCamera : MonoBehaviour
 	{
+		[SerializeField]
+		AbstractMap _map;
+
 		[SerializeField]
 		Camera _camera;
 
@@ -47,7 +51,7 @@
 					var offset = new Vector3(touchDelta.x, 0f, touchDelta.y);
 					offset = _camera.transform.rotation * offset;
 					var newPos = new Vector3(offset.x, 0, offset.y);
-					_mapRoot.position = newPos + _mapRoot.position;
+					// _mapRoot.position = newPos + _mapRoot.position;
 				}
 			}
 			else
@@ -69,6 +73,7 @@
 					_oldTouchPositions[1] = newTouchPositions[1];
 					_oldTouchVector = newTouchVector;
 					_oldTouchDistance = newTouchDistance;
+					_map.updatePath = true;	
 				}
 			}
 		}
