@@ -23,7 +23,11 @@
 		float _oldTouchDistance;
 
 		bool _wasTouching;
+		private Singletion singleton;
 
+		void Start() {
+			singleton = Singletion.getInstance();	
+		}
 		void Update()
 		{
 
@@ -64,6 +68,7 @@
 					Vector2[] newTouchPositions = { Input.GetTouch(0).position, Input.GetTouch(1).position };
 					Vector2 newTouchVector = newTouchPositions[0] - newTouchPositions[1];
 					float newTouchDistance = newTouchVector.magnitude;
+					if(singleton.isMapMode())
 					_mapHolder.rotation *= Quaternion.Euler(new Vector3(0, Mathf.Asin(Mathf.Clamp((_oldTouchVector.y * newTouchVector.x - _oldTouchVector.x * newTouchVector.y) / _oldTouchDistance / newTouchDistance, -1f, 1f)) / 0.0174532924f, 0));
 					_oldTouchPositions[0] = newTouchPositions[0];
 					_oldTouchPositions[1] = newTouchPositions[1];
