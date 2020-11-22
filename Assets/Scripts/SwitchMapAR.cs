@@ -7,9 +7,11 @@ public class SwitchMapAR : MonoBehaviour
 {
     public GameObject mapCamera;
     public GameObject buttonToSwitchView;
+    private Singleton singleton;
     // Start is called before the first frame update
     void Start()
     {
+        singleton = Singleton.Instance();
         
     }
 
@@ -25,11 +27,13 @@ public class SwitchMapAR : MonoBehaviour
         {
             mapCamera.SetActive(false);
             buttonToSwitchView.GetComponent<Button>().GetComponentInChildren<Text>().text = "Map";
+            singleton.setMapMode(false);
         }
         else
         {
             mapCamera.SetActive(true);
             buttonToSwitchView.GetComponent<Button>().GetComponentInChildren<Text>().text = "AR";
+            singleton.setMapMode(true);
         }
 
     }

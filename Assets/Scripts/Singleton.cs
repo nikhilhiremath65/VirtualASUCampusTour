@@ -14,12 +14,13 @@ public class Singleton
 
     private Dictionary<string, Coordinates> sharedTourLocations;
     private bool IsDrag; 
-    private bool MapMode=true; 
+    private bool MapMode; 
 
     private string UserName = "nhiremat";
     protected Singleton()
     {
         sharedTourLocations = new Dictionary<string, Coordinates>();
+        MapMode = true;
     }
 
     public static Singleton Instance()

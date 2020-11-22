@@ -66,7 +66,7 @@
 		private void LateUpdate()
 		{
 			if (!_isInitialized ) { return; }
-
+			Debug.Log(singleton.isMapMode());
 			if (!_dragStartedOnUI && singleton.isMapMode())
 			{
 				if (Input.touchSupported && Input.touchCount > 0)

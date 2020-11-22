@@ -27,10 +27,10 @@
 		float _oldTouchDistance;
 
 		bool _wasTouching;
-		private Singletion singleton;
+		private Singleton singleton;
 
 		void Start() {
-			singleton = Singletion.getInstance();	
+			singleton = Singleton.Instance();	
 		}
 		void Update()
 		{
