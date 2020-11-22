@@ -1785,7 +1785,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1353068133043256}
         m_MethodName: FocusLocationAndUpdatePointer
         m_Mode: 1
         m_Arguments:
@@ -2506,7 +2506,7 @@ MonoBehaviour:
   startLocation: {fileID: 1698632295}
   destLocation: {fileID: 1945388109}
   WayPoint: {fileID: 457338513}
-  locationIndicator: {fileID: 1216700287144039}
+  locationIndicator: {fileID: 1353068133043255}
   ErrorPanel: {fileID: 1242698187}
   ErrorMessage: {fileID: 317027208}
   Mapholder: {fileID: 4829037719911227}
@@ -5369,6 +5369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4191894112286143}
   - component: {fileID: 114190437580094351}
+  - component: {fileID: 1353068133043256}
   m_Layer: 8
   m_Name: ARPlayer
   m_TagString: Untagged
@@ -5376,6 +5377,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1353068133043256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353068133043255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ddf9524650d340f18ac40a648fff35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mapManager: {fileID: 114611719443889589}
+  locationIndicator: {fileID: 1353068133043255}
 --- !u!1 &1601526222118733
 GameObject:
   m_ObjectHideFlags: 0
@@ -5494,7 +5509,6 @@ GameObject:
   - component: {fileID: 20795817613926573}
   - component: {fileID: 114470811996425459}
   - component: {fileID: 114456538946973667}
-  - component: {fileID: 114074517365069795}
   m_Layer: 12
   m_Name: MapCamera
   m_TagString: Untagged
@@ -5571,13 +5585,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612948323986977}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4647323952382547}
-  m_Father: {fileID: 4741526918243819}
-  m_RootOrder: 1
+  m_Father: {fileID: 4829037719911227}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4367254641370677
 Transform:
@@ -5630,8 +5644,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895993601257899}
   m_LocalRotation: {x: -0, y: -0, z: 0.3826834, w: 0.9238796}
-  m_LocalPosition: {x: 0, y: 0, z: 0.30000308}
-  m_LocalScale: {x: 0.0050000055, y: 0.0050000036, z: 0.0050000036}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 4349556930310547}
   m_RootOrder: 0
@@ -5676,7 +5690,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4318433821796013}
-  - {fileID: 4349556930310547}
   m_Father: {fileID: 4137091239927005}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -5721,6 +5734,7 @@ Transform:
   m_Children:
   - {fileID: 4191894112286143}
   - {fileID: 4843138277695321}
+  - {fileID: 4349556930310547}
   m_Father: {fileID: 4137091239927005}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6002,21 +6016,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1079003236465329}
   m_Enabled: 1
---- !u!114 &114074517365069795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946538598071181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 106a5ebea20cc4d5ba78304a86ff60d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _map: {fileID: 114611719443889589}
-  _button: {fileID: 0}
-  _mapTransform: {fileID: 4843138277695321}
 --- !u!114 &114190437580094351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6156,7 +6155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c1176ef30154c3ba573bc281801fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _map: {fileID: 0}
+  _map: {fileID: 114611719443889589}
   _camera: {fileID: 20795817613926573}
   _mapRoot: {fileID: 4843138277695321}
   _mapHolder: {fileID: 4829037719911227}
@@ -6338,9 +6337,9 @@ MonoBehaviour:
         - water_label
         - waterway
         - waterway_label
-      _sourceType: -2
+      _sourceType: 3
       sourceOptions:
-        isActive: 1
+        isActive: 0
         layerSource:
           Name: Mapbox Streets v7
           Id: mapbox.mapbox-streets-v8
@@ -6453,6 +6452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTransform: {fileID: 4970637121766367}
+  ARPlayer: {fileID: 4191894112286143}
 --- !u!114 &114794936329495599
 MonoBehaviour:
   m_ObjectHideFlags: 0
