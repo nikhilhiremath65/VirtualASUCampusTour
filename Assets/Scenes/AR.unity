@@ -3152,6 +3152,7 @@ MonoBehaviour:
   ErrorPanel: {fileID: 1242698187}
   ErrorMessage: {fileID: 317027208}
   Mapholder: {fileID: 4829037719911227}
+  startButtonText: {fileID: 734319588}
 --- !u!114 &1063245971
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -46,15 +46,16 @@
         private ArrayList coordinates;
         private ArrayList locations;
         private List<GameObject> _instances;
+        private bool pathGenerated;
 
         DB_Details dbDetails;
         DatabaseReference reference;
         GameObject _directionsGO;
 
         public Transform Mapholder;
+        public Text startButtonText;
 
-
-        protected virtual void Awake()
+        public void Awake()
         {
             if (_map == null)
             {
@@ -74,7 +75,7 @@
             locations = new ArrayList();
             coordinates = new ArrayList();
             _instances = new List<GameObject>();
-
+            pathGenerated = false;
             path = false;
             // Set up the Editor before calling into the realtime database.
             FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(dbDetails.getDBUrl());
@@ -96,6 +97,13 @@
             locations.Clear();
             coordinates.Clear();
 
+            if (pathGenerated){
+                pathGenerated = false;
+                startButtonText.text = "start";
+                _directionsGO.Destroy();
+                path = true;
+            }
+            else{
             path = false;
 
             if (startLocation.text != "")
@@ -118,11 +126,14 @@
 
                 locations.Add(new TourLocation(destLocation.text, 0));
                 getCoordinates();
+            startButtonText.text = "stop";
+                pathGenerated = true;
             }
             else
             {
                 ErrorMessage.text = "Please enter destination location!!!";
                 ErrorPanel.SetActive(true);
+            }
             }
         }
 
@@ -201,6 +212,8 @@
                 path = true;
                 _map.updatePath = false;
             }
+            if (!pathGenerated && _directionsGO!=null)
+            _directionsGO.Destroy();
             // Testing
             // Vector3 position = Conversions.GeoToWorldPosition(33.4209125, -111.9331915, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
             // locationIndicator.transform.position = position;
