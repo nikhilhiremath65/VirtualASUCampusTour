@@ -10,6 +10,7 @@ public class Singleton
     private string UserRole;
     private string PSTourNameEdit;
     private string BuildingInfo;
+    private string ViewName;
 
     private Dictionary<string, Coordinates> sharedTourLocations;
     private bool IsDrag; 
@@ -122,5 +123,14 @@ public class Singleton
     public string getBuildingInfo()
     {
         return this.BuildingInfo;
+    }
+    public void setViewName(string ViewName)
+    {
+        this.ViewName = ViewName;
+    }
+
+    public string getViewName()
+    {
+        return this.ViewName;
     }
 }
