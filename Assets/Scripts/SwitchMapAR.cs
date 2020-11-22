@@ -7,6 +7,9 @@ public class SwitchMapAR : MonoBehaviour
 {
     public GameObject mapCamera;
     public GameObject buttonToSwitchView;
+
+    public GameObject startLocationTextBox;
+    public GameObject destinationLocaitonTextBox;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +28,15 @@ public class SwitchMapAR : MonoBehaviour
         {
             mapCamera.SetActive(false);
             buttonToSwitchView.GetComponent<Button>().GetComponentInChildren<Text>().text = "Map";
+            startLocationTextBox.SetActive(false);
+            destinationLocaitonTextBox.SetActive(false);
         }
         else
         {
             mapCamera.SetActive(true);
             buttonToSwitchView.GetComponent<Button>().GetComponentInChildren<Text>().text = "AR";
+            startLocationTextBox.SetActive(true);
+            destinationLocaitonTextBox.SetActive(true);
         }
 
     }
