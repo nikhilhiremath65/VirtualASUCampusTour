@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scenes/QRCodeReader.unity.meta
 guid: ed037ab870bd77043a40a1bfb027137b
+=======
+guid: e13993a15b1b84b8996aba38ffafec0b
+folderAsset: yes
+>>>>>>> US252:Assets/Parse/Plugins.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

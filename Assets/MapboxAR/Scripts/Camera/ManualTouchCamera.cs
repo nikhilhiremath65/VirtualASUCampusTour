@@ -4,6 +4,8 @@
 
 	using UnityEngine;
 	using Mapbox.Unity.Location;
+    using Mapbox.Unity.Map;
+	using Mapbox.Unity.MeshGeneration.Factories;
 
 	public class ManualTouchCamera : MonoBehaviour
 	{
@@ -16,6 +18,8 @@
 		[SerializeField]
 		Transform _mapHolder;
 
+		public GameObject Directions;
+
 		Vector2?[] _oldTouchPositions = { null, null };
 
 		Vector2 _oldTouchVector;
@@ -24,7 +28,14 @@
 
 		bool _wasTouching;
 
-		void Update()
+		PathGeneration pg;
+
+		private void Start()
+        {
+			//pg = Directions.GetComponentInChildren<PathGeneration>();
+        }
+
+        void Update()
 		{
 
 			if (Input.touchCount == 0)
@@ -47,7 +58,7 @@
 					var offset = new Vector3(touchDelta.x, 0f, touchDelta.y);
 					offset = _camera.transform.rotation * offset;
 					var newPos = new Vector3(offset.x, 0, offset.y);
-					_mapRoot.position = newPos + _mapRoot.position;
+					//_mapRoot.position = newPos + _mapRoot.position;
 				}
 			}
 			else
@@ -69,6 +80,9 @@
 					_oldTouchPositions[1] = newTouchPositions[1];
 					_oldTouchVector = newTouchVector;
 					_oldTouchDistance = newTouchDistance;
+					//pg._directionsGO.transform.rotation = _mapHolder.rotation;
+
+
 				}
 			}
 		}
