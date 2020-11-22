@@ -198,6 +198,8 @@
                 generatePath();
                 path = true;
                 _map.updatePath = false;
+
+                locationIndicator.transform.rotation = Mapholder.transform.rotation;
             }
             if (!pathGenerated && _directionsGO!=null)
             _directionsGO.Destroy();
@@ -235,6 +237,7 @@
                 {
                     var instance = _instances[i];
                     instance.transform.position = Conversions.GeoToWorldPosition(wp[i].x, wp[i].y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
+                    instance.transform.rotation = Mapholder.transform.rotation;
                     instance.SetActive(true);
                     instance.transform.SetAsLastSibling();
                 }

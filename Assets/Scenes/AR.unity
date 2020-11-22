@@ -5368,7 +5368,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4191894112286143}
-  - component: {fileID: 114190437580094351}
   - component: {fileID: 1353068133043256}
   m_Layer: 8
   m_Name: ARPlayer
@@ -5592,7 +5591,7 @@ Transform:
   - {fileID: 4647323952382547}
   m_Father: {fileID: 4829037719911227}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4367254641370677
 Transform:
   m_ObjectHideFlags: 0
@@ -6016,21 +6015,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1079003236465329}
   m_Enabled: 1
---- !u!114 &114190437580094351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353068133043255}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bb39d89f6f3742418be7c93b4259637, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _map: {fileID: 114611719443889589}
-  _positionFollowFactor: 30
-  _useTransformLocationProvider: 1
 --- !u!114 &114244431014772767
 MonoBehaviour:
   m_ObjectHideFlags: 0
