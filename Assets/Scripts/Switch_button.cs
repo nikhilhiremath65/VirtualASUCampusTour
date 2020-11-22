@@ -12,7 +12,6 @@ public class Switch_button : MonoBehaviour
     private Singleton singleton;
 
     // Start is called before the first frame update
-    [System.Obsolete]
     void Start()
     {
         singleton = Singleton.Instance();
