@@ -17,7 +17,7 @@ public class Switch_button : MonoBehaviour
     {
         singleton = Singleton.Instance();
 
-        //view_selected = singleton.getViewName();
+        ViewText.text = singleton.getViewName();
         view_selected = ViewText.text;
 
         //if (view_selected == "View")
