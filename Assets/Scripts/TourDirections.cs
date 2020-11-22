@@ -338,6 +338,10 @@
                 _instances[1].Destroy();
                 _instances.RemoveAt(1);
                 completedOffSet++;
+                if (coordinates.Count < 2)
+                {
+                    _directionsGO.Destroy();
+                }
             }
         }
 

@@ -14,7 +14,7 @@
 		private void Awake()
 		{
 			// Prevent double initialization of the map. 
-			_map.InitializeOnStart = false;
+			_map.InitializeOnStart = true;
 		}
 
 		protected virtual IEnumerator Start()
