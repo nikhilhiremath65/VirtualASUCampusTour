@@ -1978,6 +1978,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapCamera: {fileID: 1946538598071181}
   buttonToSwitchView: {fileID: 571161077}
+  startLocationTextBox: {fileID: 2113445748}
+  destinationLocaitonTextBox: {fileID: 192111059}
 --- !u!1 &574712461
 GameObject:
   m_ObjectHideFlags: 0
