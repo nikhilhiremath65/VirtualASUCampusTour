@@ -20,8 +20,8 @@ public class Switch_button : MonoBehaviour
         //view_selected = singleton.getViewName();
         view_selected = ViewText.text;
 
-        if (view_selected == "View")
-        {
+        //if (view_selected == "View")
+        //{
             Debug.Log(view_selected);
             if (view_selected == "AR View")
             {
@@ -39,7 +39,7 @@ public class Switch_button : MonoBehaviour
                 ViewText.text = "AR View";
                 view_selected = ViewText.text;
             }
-        }
+        //}
     }
 
     // Update is called once per frame
