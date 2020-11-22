@@ -17,17 +17,20 @@ public class Switch_button : MonoBehaviour
     {
         singleton = Singleton.Instance();
 
-        view_selected = singleton.getViewName();
+        //view_selected = singleton.getViewName();
+        view_selected = ViewText.text;
 
-        if (MapCamera.active)
-        {
-            Debug.Log("Map Camera");
+        //if (MainCamera.active)
+        //{
+            Debug.Log("Main Camera");
+            Debug.Log(view_selected);
             if (view_selected == "AR View")
             {
                 Debug.Log("AR Camera");
                 MapCamera.SetActive(false);
                 MainCamera.SetActive(true);
                 ViewText.text = "Map View";
+                view_selected = ViewText.text;
             }
             if (view_selected == "Map View")
             {
@@ -35,8 +38,9 @@ public class Switch_button : MonoBehaviour
                 MainCamera.SetActive(false);
                 MapCamera.SetActive(true);
                 ViewText.text = "AR View";
+                view_selected = ViewText.text;
             }
-        }
+        //}
     }
 
     // Update is called once per frame
