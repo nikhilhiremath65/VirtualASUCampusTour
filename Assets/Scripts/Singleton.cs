@@ -11,13 +11,16 @@ public class Singleton
     private string PSTourNameEdit;
     private string BuildingInfo;
 
+
     private Dictionary<string, Coordinates> sharedTourLocations;
     private bool IsDrag; 
+    private bool MapMode; 
 
     private string UserName = "nhiremat";
     protected Singleton()
     {
         sharedTourLocations = new Dictionary<string, Coordinates>();
+        MapMode = true;
     }
 
     public static Singleton Instance()
@@ -114,6 +117,15 @@ public class Singleton
         return this.IsDrag;
     }
 
+    public void setMapMode(bool MapMode)
+    {
+        this.MapMode = MapMode;
+    }
+
+    public bool isMapMode()
+    {
+        return this.MapMode;
+    }
     public void setBuildingInfo(string buildingInfo)
     {
         this.BuildingInfo = buildingInfo;

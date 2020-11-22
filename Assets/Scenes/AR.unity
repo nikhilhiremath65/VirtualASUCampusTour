@@ -1978,6 +1978,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapCamera: {fileID: 1946538598071181}
   buttonToSwitchView: {fileID: 571161077}
+  startLocationTextBox: {fileID: 2113445748}
+  destinationLocaitonTextBox: {fileID: 192111059}
 --- !u!1 &574712461
 GameObject:
   m_ObjectHideFlags: 0
@@ -5383,7 +5385,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353068133043255}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ddf9524650d340f18ac40a648fff35e, type: 3}
   m_Name: 
