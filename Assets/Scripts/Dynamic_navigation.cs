@@ -28,6 +28,7 @@ public class Dynamic_navigation : MonoBehaviour
         singleton = Singleton.Instance();
         
         role = singleton.getUserRole();
+        
         if (role == "Manager")
         {
             nav_Manager_Panel.SetActive(true);

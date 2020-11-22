@@ -9,7 +9,6 @@ public class ScreenTransition : MonoBehaviour
 {
     static ScheduleNameTransfer s;
     static Singleton q;
-    static Singleton r;
     public void SceneLoader(string scenename)
     {
         SceneManager.LoadScene(scenename);
@@ -48,13 +47,4 @@ public class ScreenTransition : MonoBehaviour
 
     }
 
-    public void OnSwitchButtonClick()
-    {
-        Text[] texts = EventSystem.current.currentSelectedGameObject.GetComponentsInChildren<Text>();
-
-        print("Clicked on : " + texts[0].text);
-        r = Singleton.Instance();
-        r.setViewName(texts[0].text);
-
-    }
 }

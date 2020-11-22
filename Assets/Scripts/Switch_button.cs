@@ -1,49 +1,67 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
+using Firebase.Auth;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
+using Firebase;
+using Mapbox.Json.Bson;
+using System;
 
 public class Switch_button : MonoBehaviour
 {
+    public Singleton q;
     public GameObject MapCamera;
     public GameObject MainCamera;
     public Text ViewText;
-    private string view_selected;
-    private Singleton singleton;
+    private string view;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        singleton = Singleton.Instance();
 
-        ViewText.text = singleton.getViewName();
-        view_selected = ViewText.text;
+        q = Singleton.Instance();
 
-        //if (view_selected == "View")
-        //{
-            Debug.Log(view_selected);
-            if (view_selected == "AR View")
-            {
-                Debug.Log("AR Camera");
-                MapCamera.SetActive(false);
-                MainCamera.SetActive(true);
-                ViewText.text = "Map View";
-                view_selected = ViewText.text;
-            }
-            if (view_selected == "Map View")
-            {
-                Debug.Log("map Camera");
-                MainCamera.SetActive(false);
-                MapCamera.SetActive(true);
-                ViewText.text = "AR View";
-                view_selected = ViewText.text;
-            }
-        //}
+        view = q.getScheduleName().ToString();
+
+        print(view);
+        print(ViewText.text);
+
+        //onButtonClick(view);
+        //onButtonClick(ViewText.text);
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void onButtonClick(string view1)
+    {
+        
+        if (view1 == "Map")
+        {
+            MapCamera.SetActive(true);
+            MainCamera.SetActive(false);
+            ViewText.text = "AR";
+        }
+        else if (view1 == "AR")
+        {
+            MainCamera.SetActive(true);
+            MapCamera.SetActive(false);
+            ViewText.text = "Map";
+        }
+        else
+        {
+            Debug.Log("no view selected");
+        }
+
     }
 }
