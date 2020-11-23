@@ -199,6 +199,7 @@
 
             _directionsGO.AddComponent<MeshRenderer>().material = _material;
             _directionsGO.transform.SetAsFirstSibling();
+            _directionsGO.transform.SetParent(Mapholder);
             _directionsGO.transform.rotation = Mapholder.rotation;
             _directionsGO.transform.localScale = new Vector3(1.0f, 0.0f, 1.0f);
             _directionsGO.transform.position = new Vector3(_directionsGO.transform.position.x, 2.0f, _directionsGO.transform.position.y);
@@ -263,7 +264,8 @@
 
                 if (!location.Drag)
                 {
-                    //instance.transform.rotation = Mapholder.rotation;
+                    instance.transform.SetParent(Mapholder);
+                    instance.transform.rotation = Mapholder.rotation;
                     instance.transform.position = Conversions.GeoToWorldPosition(wp[i].x, wp[i].y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz() + new Vector3(0, 5, 5);
                     instance.SetActive(true);
                     instance.transform.SetAsLastSibling();
@@ -277,7 +279,7 @@
 
         public void setLocationCoOrdinates(Vector2d points, int index)
         {
-            coordinates[index - completedOffSet + 1] = points;
+            coordinates[index - completedOffSet] = points;
             for (int i = 0; i < coordinates.Count; i++)
             {
                 Debug.LogWarning(coordinates[i]);
@@ -339,7 +341,7 @@
             Dictionary<string, ArrayList> toursLocationsDictObject = pSLocationArraySingleton.getToursLocationDictionary();
             sharedLocations = singleton.getSharedTourLocations();
 
-            int i = 0;
+            int i = 1;
             foreach (string location in toursLocationsDictObject[TourName])
             {
                 locations.Add(new TourLocation(location, i));

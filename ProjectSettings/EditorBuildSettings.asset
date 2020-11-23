@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/AR.unity
+    guid: 24a04197541975f589e041ddf882ce67
+  - enabled: 1
     path: Assets/Scenes/Login.unity
     guid: ab9e4713721c9dc40b1b0a8f3ae06f4c
   - enabled: 1
@@ -71,7 +74,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/QRCodeReader.unity
     guid: ed037ab870bd77043a40a1bfb027137b
-  - enabled: 1
-    path: Assets/Scenes/AR.unity
-    guid: 24a04197541975f589e041ddf882ce67
   m_configObjects: {}

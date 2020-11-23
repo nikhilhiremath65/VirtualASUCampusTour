@@ -12,7 +12,7 @@ public class touchDrag : MonoBehaviour
 
     private static readonly float[] ZoomBounds = new float[]{10f, 85f};
     
-    private Camera cam;
+    public GameObject cam;
     
     private Vector3 lastPanPosition;
     private int panFingerId; // Touch mode only
@@ -20,9 +20,9 @@ public class touchDrag : MonoBehaviour
     private bool wasZoomingLastFrame; // Touch mode only
     private Vector2[] lastZoomPositions; // Touch mode only
 
-    void Awake() {
-        cam = GetComponent<Camera>();
-    }
+    //void Awake() {
+    //    cam = GetComponent<Camera>();
+    //}
     
     void Update() {
         if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer) {
@@ -89,16 +89,16 @@ public class touchDrag : MonoBehaviour
     
     void PanCamera(Vector3 newPanPosition) {
         // Determine how much to move the camera
-        Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
+        Vector3 offset = cam.GetComponent<Camera>().ScreenToViewportPoint(lastPanPosition - newPanPosition);
         Vector3 move = new Vector3(offset.x * PanSpeed, 0, offset.y * PanSpeed);
         
         // Perform the movement
-        transform.Translate(move, Space.World);  
+        cam.transform.Translate(move, Space.World);  
         
         // Ensure the camera remains within bounds.
-        Vector3 pos = transform.position;
+        Vector3 pos = cam.transform.position;
 
-        transform.position = pos;
+        cam.transform.position = pos;
     
         // Cache the position
         lastPanPosition = newPanPosition;
@@ -108,7 +108,7 @@ public class touchDrag : MonoBehaviour
         if (offset == 0) {
             return;
         }
-    
-        cam.fieldOfView = Mathf.Clamp(cam.fieldOfView - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
+
+        cam.GetComponent<Camera>().fieldOfView = Mathf.Clamp(cam.GetComponent<Camera>().fieldOfView - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
     }
 }
