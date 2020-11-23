@@ -10,6 +10,7 @@ public class Singleton
     private string UserRole;
     private string PSTourNameEdit;
     private string BuildingInfo;
+    private string ARType;
 
 
     private Dictionary<string, Coordinates> sharedTourLocations;
@@ -134,5 +135,15 @@ public class Singleton
     public string getBuildingInfo()
     {
         return this.BuildingInfo;
+    }
+
+    public void setARType(string ARType)
+    {
+        this.ARType = ARType;
+    }
+
+    public string getARType()
+    {
+        return this.ARType;
     }
 }

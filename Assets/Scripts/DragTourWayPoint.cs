@@ -12,14 +12,14 @@ public class DragTourWayPoint : MonoBehaviour
 
     private float timePressed = 0.0f;
     private float timeLastPress = 0.0f;
-    public float timeDelayThreshold = 1.0f;
+    public float timeDelayThreshold = 0.5f;
 
     public GameObject WayPoint;
     public TourLocation location;
-    public GameObject Directions;
+    public GameObject Canvas;
     public GameObject DragInfoPanel;
 
-    private TourDirections tourDirections;
+    private PathGeneration tourDirections;
     private int clicked;
     private Singleton singleton;
 
@@ -27,7 +27,7 @@ public class DragTourWayPoint : MonoBehaviour
     void Start()
     {
         singleton = Singleton.Instance();
-        tourDirections = Directions.GetComponentInChildren<TourDirections>();
+        tourDirections = Canvas.GetComponentInChildren<PathGeneration>();
     }
 
     void Update()
@@ -53,6 +53,7 @@ public class DragTourWayPoint : MonoBehaviour
                     if (!location.Drag)
                     {
                         Vector2d latitudeLongitude = (WayPoint.transform.position - new Vector3(0, 5, 5)).GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
+                        Debug.LogWarning(latitudeLongitude);
                         _map.UpdateMap(latitudeLongitude, _map.Zoom);
                         singleton.setISDrag(!IsDrag);
                         WayPoint.transform.position = Conversions.GeoToWorldPosition(latitudeLongitude.x, latitudeLongitude.y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz() + new Vector3(0, 5, 5);
@@ -63,6 +64,7 @@ public class DragTourWayPoint : MonoBehaviour
                     {
                         location.Drag = !location.Drag;
                         Vector2d latitudeLongitude = WayPoint.transform.GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
+                        Debug.LogWarning(latitudeLongitude);
                         tourDirections.setLocationCoOrdinates(latitudeLongitude, location.index);
                         singleton.setISDrag(!IsDrag);
                         DragInfoPanel.SetActive(false);
