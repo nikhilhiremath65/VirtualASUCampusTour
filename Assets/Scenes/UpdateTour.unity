@@ -3238,7 +3238,7 @@ GameObject:
   - component: {fileID: 1152217025}
   - component: {fileID: 1152217024}
   m_Layer: 5
-  m_Name: Tittle
+  m_Name: UpdateTourText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3260,8 +3260,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 94, y: 849}
-  m_SizeDelta: {x: 661.76636, y: 100}
+  m_AnchoredPosition: {x: 27, y: 855}
+  m_SizeDelta: {x: 401.88306, y: 111.01694}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1152217024
 MonoBehaviour:
@@ -3283,19 +3283,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bd1ea67ca2b5742d1a24fcbdc17c55e1, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 60
     m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 75
+    m_BestFit: 1
+    m_MinSize: 30
+    m_MaxSize: 60
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: UPDATE TOUR
+  m_Text: Update Tour
 --- !u!222 &1152217025
 CanvasRenderer:
   m_ObjectHideFlags: 0

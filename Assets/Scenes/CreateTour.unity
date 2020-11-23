@@ -3342,7 +3342,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 94, y: 849}
+  m_AnchoredPosition: {x: 120, y: 849}
   m_SizeDelta: {x: 661.76636, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1152217024
@@ -3365,7 +3365,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bd1ea67ca2b5742d1a24fcbdc17c55e1, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 60
     m_FontStyle: 1
     m_BestFit: 0
@@ -3377,7 +3377,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CREATE TOUR
+  m_Text: Create Tour
 --- !u!222 &1152217025
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5503,95 +5503,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disabledTextColor: {r: 0, g: 0, b: 0, a: 0}
-  AvailableOptionsCustomized:
-  - A Mountain
-  - A J Matthews Center
-  - Adelphi Commons
-  - Alberta B Farrington Softball Stadium
-  - Armstrong Hall
-  - Art Building
-  - Art Warehouse
-  - Artisan Court at the Brickyard
-  - ASU Art Museum Brickyard
-  - ASU Gammage
-  - ASU Performing and Media Arts
-  - ASU Police Department
-  - Bateman Physical Sciences Center
-  - Best Hall
-  - Bulldog Hall
-  - Business Administration
-  - Business Administration C-Wing
-  - Campus Children's Center
-  - Center for Family Studies
-  - Centerpoint
-  - Ceramics Research Center and Brickyard Gallery
-  - Charles Wexler Hall
-  - College Avenue Marketplace
-  - Community Services Building
-  - Cowden Family Resources
-  - Creativity Commons
-  - Danforth Chapel
-  - Daniel E Noble Science and Engineering Library
-  - Desert Arboretum Park
-  - Desert Financial Arena
-  - Design Buildings
-  - Discovery Hall
-  - Dixie Gammage Hall
-  - Ed and Nadine Carson Student-Athlete Center
-  - Education Lecture Hall
-  - Engineering Center
-  - Engineering Research Center
-  - Fulton Center
-  - Future Sun Devil Welcome Center and College Ave Commons
-  - G Homer Durham Hall
-  - Goldwater Center
-  - H B Farmer Education Building
-  - Hayden Hall
-  - Hayden Library
-  - Health Service Building
-  - Inclusivity at ASU
-  - Interdisciplinary A & B
-  - Interdisciplinary Science and Technology I
-  - Ira D Payne Educational Hall
-  - Irish Hall
-  - J Russell and Bonita Nelson Fine Arts Center | ASU Art Museum
-  - John W Schwada Building
-  - L S Neeb Hall
-  - Lattie F Coor Hall
-  - Life Sciences Center
-  - Lyceum Theatre
-  - Manzanita Hall
-  - Matthews Hall
-  - McClintock Hall
-  - McCord Hall
-  - Memorial Union
-  - Moeur Building
-  - Mona Plummer Aquatic Complex
-  - Murdock Hall
-  - Music Building
-  - Old Main
-  - Orange Mall Green Infrastructure Project
-  - Orchid House at the Brickyard
-  - Packard Baseball Stadium
-  - Palo Verde East
-  - Palo Verde West
-  - Psychology Building
-  - Psychology North
-  - Riches Wrestling Complex
-  - Robson Family Player Facility
-  - Ross-Blakley Hall
-  - Social Sciences Building
-  - Student Pavilion
-  - Sun Angel Stadium Joe Selleh Track
-  - Sun Devil Fitness Complex Tempe
-  - Sun Devil Hall
-  - Sun Devil Stadium
-  - 'Sustainability Point of Pride: ASU Police Department'
-  - The Biodesign Institute - Bldg A
-  - The Biodesign Institute - Bldg B
-  - Tower Center
-  - Weatherup Center
-  - Wrigley Hall
+  dropdownOptionsPoly:
+  - academic center
+  - administration
+  - agribusiness center
+  - algae lab
+  - altitude chamber
+  - applied arts pavilion
+  - aravaipa auditorium
+  - arboretum date palms
+  - asu preparatory academy
+  - century hall
+  - citrus dining pavilion
+  - engineering design studio
+  - facilities development and management
+  - flight simulator
+  - interdisciplinary science and technology iii
+  - ironwood building
+  - 'north residence halls: eagle and talon'
+  - 'north residence halls: falcon, mustang & phantom'
+  - parade grounds and flagpole
+  - peralta hall
+  - picacho hall
+  - quads 2-4
+  - santa catalina hall
+  - santan hall
+  - simulator building
+  - startup labs
+  - student union
+  - sun devil fitness complex
+  - sunpower solar farm
+  - sutton hall
+  - technology center
+  - wanner hall
   _scrollBarWidth: 40
   _itemsToDisplay: 3
   SelectFirstItemOnStart: 0

@@ -6127,7 +6127,7 @@ MonoBehaviour:
   _autoFireEvent: 1
   _updateInterval: 0.1
   _sendEvent: 0
-  _latitudeLongitude: 33.409431, -111.924427
+  _latitudeLongitude: 33.306964, -111.677283
   _targetTransform: {fileID: 4768118536399471}
 --- !u!114 &114456538946973667
 MonoBehaviour:
@@ -6229,7 +6229,7 @@ MonoBehaviour:
   updatePath: 0
   _options:
     locationOptions:
-      latitudeLongitude: 33.409431, -111.924427
+      latitudeLongitude: 33.306964, -111.677283
       zoom: 16
     extentOptions:
       extentType: 1
