@@ -10,6 +10,7 @@ public class LocationService : MonoBehaviour
     AbstractMap _mapManager;
 
     public GameObject locationIndicator;
+    public Transform camera;
 
     private bool _isInitialized = true;
 
@@ -77,7 +78,6 @@ public class LocationService : MonoBehaviour
 
         float latitude = Input.location.lastData.latitude;
         float longitude = Input.location.lastData.longitude;
-
         if (_isInitialized)
         {
             // Update position of location object wrt map.
@@ -114,6 +114,7 @@ public class LocationService : MonoBehaviour
             // Update position of location object wrt map.
             Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
             locationIndicator.transform.position = position;
+            camera.position = new Vector3(position.x,camera.position.y,position.z);
 
         }
 

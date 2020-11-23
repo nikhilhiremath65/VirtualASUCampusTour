@@ -6503,7 +6503,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181414382906439}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b56423a4e7312466d88dadf0d5adc78a, type: 3}
   m_Name: 
@@ -7911,13 +7911,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353068133043255}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ddf9524650d340f18ac40a648fff35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _mapManager: {fileID: 114611719443889589}
   locationIndicator: {fileID: 1353068133043255}
+  camera: {fileID: 4741526918243819}
 --- !u!1 &1601526222118733
 GameObject:
   m_ObjectHideFlags: 0
@@ -8036,6 +8037,7 @@ GameObject:
   - component: {fileID: 20795817613926573}
   - component: {fileID: 114470811996425459}
   - component: {fileID: 114456538946973667}
+  - component: {fileID: 1946538598071182}
   m_Layer: 12
   m_Name: MapCamera
   m_TagString: Untagged
@@ -8043,6 +8045,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1946538598071182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946538598071181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3adb7894d4512abac12be2a471cd64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4137091239927005
 Transform:
   m_ObjectHideFlags: 0
