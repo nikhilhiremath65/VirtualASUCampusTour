@@ -16,6 +16,7 @@ public class LocationListItem : MonoBehaviour
     Singleton singleton;
     public void confirmDelete()
     {
+        Destroy(gameObject);
         deletePanel.SetActive(true);
     }
 

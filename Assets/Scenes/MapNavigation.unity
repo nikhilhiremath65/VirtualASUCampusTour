@@ -752,6 +752,8 @@ MonoBehaviour:
   locationIndicator: {fileID: 1643071686}
   ErrorPanel: {fileID: 62008487}
   ErrorMessage: {fileID: 337471834}
+  Mapholder: {fileID: 0}
+  startButtonText: {fileID: 0}
 --- !u!1 &827522646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,6 +1203,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2107773434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2107773435}
+  - component: {fileID: 2107773436}
+  m_Layer: 0
+  m_Name: ARBbuttonGameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2107773435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107773434}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8559069718833311669}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2107773436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107773434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb99a2a47210f741b9cd9e141f82013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2132353149
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,7 +1896,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Map
+  m_Text: AR
 --- !u!222 &456856735901204720
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4901,15 +4946,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6835652036776294211}
-        m_MethodName: SceneLoader
-        m_Mode: 5
+      - m_Target: {fileID: 2107773436}
+        m_MethodName: onARClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MapNavigation
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!4 &5300193493185857543
@@ -6562,6 +6607,7 @@ Transform:
   m_Children:
   - {fileID: 8559069718311655317}
   - {fileID: 8559069719680322003}
+  - {fileID: 2107773435}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6608,8 +6654,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 804043040}
-        m_MethodName: OnClickStart
+      - m_Target: {fileID: 2107773436}
+        m_MethodName: onARClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

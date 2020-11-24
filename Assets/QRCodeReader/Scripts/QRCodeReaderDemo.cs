@@ -10,6 +10,7 @@ public class QRCodeReaderDemo : MonoBehaviour {
     public Text resultText;
     public RawImage image;
     private Singleton singleton;
+    private string role;
 
 
     void Awake () {
@@ -74,7 +75,31 @@ public class QRCodeReaderDemo : MonoBehaviour {
             SceneManager.LoadScene("QRInfo");
             
             });
+
+
     }
 
-    
+
+
+    public void onBackClick()
+    {
+        singleton = Singleton.Instance();
+        role = singleton.getUserRole();
+        Debug.Log("Role : " + role);
+        if (role == "Student")
+        {
+            singleton.setARType("schedule");
+        }
+
+        else if (role == "Guest")
+        {
+            singleton.setARType("tour");
+        }
+        SceneManager.LoadScene("AR");
+    }
 }
+
+
+
+
+

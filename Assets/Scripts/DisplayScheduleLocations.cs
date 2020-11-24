@@ -7,11 +7,14 @@ using Firebase.Unity.Editor;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System;
+using UnityEngine.SceneManagement;
 
 public class DisplayScheduleLocations : MonoBehaviour
 {
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
+    private Singleton singleton;
+    private string role;
 
 
     DB_Details dbDetails;
@@ -90,4 +93,33 @@ public class DisplayScheduleLocations : MonoBehaviour
         }
         locationsDisplayed = true;
     }
+
+    public void onstartClick()
+    {
+        singleton = Singleton.Instance();
+        role = singleton.getUserRole();
+        Debug.Log("Role : " + role);
+        if (role == "Student")
+        {
+            singleton.setARType("schedule");
+        }
+
+        else if (role == "Guest")
+        {
+            singleton.setARType("tour");
+        }
+        SceneManager.LoadScene("AR");
+    }
+
+
+    public void onARClick()
+    {
+        singleton = Singleton.Instance();
+        singleton.setARType(null);
+        SceneManager.LoadScene("AR");
+    }
+
+
+
+
 }

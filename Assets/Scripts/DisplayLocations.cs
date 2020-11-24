@@ -171,9 +171,10 @@ public class DisplayLocations : MonoBehaviour
                 throw new Exception("Please enter Tour Name!");
             }
 
-            reference.Child(dbDetails.getTourDBName()).Child(TourNameText.text).RemoveValueAsync();
+            reference.Child(dbDetails.getTourDBName()).Child(singleton.getTourName()).RemoveValueAsync();
+            singleton.setTourName(TourNameText.text);
 
-            reference.Child(dbDetails.getTourDBName()).Child(TourNameText.text).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
+            reference.Child(dbDetails.getTourDBName()).Child(singleton.getTourName()).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
             {
                 if (task.IsFaulted)
                 {
