@@ -132,6 +132,8 @@
                 if (destLocation.text != "")
                 {
                     locations.Add(new TourLocation(destLocation.text, c));
+                    //coordinates.Add(new Vector2d(33.305976 -111.6764887));
+
                     getCoordinates();
                     startButtonText.text = "stop";
                     pathGenerated = true;
@@ -199,10 +201,10 @@
 
             _directionsGO.AddComponent<MeshRenderer>().material = _material;
             _directionsGO.transform.SetAsFirstSibling();
-            _directionsGO.transform.SetParent(Mapholder);
+            //_directionsGO.transform.SetParent(Mapholder);
             _directionsGO.transform.rotation = Mapholder.rotation;
             _directionsGO.transform.localScale = new Vector3(1.0f, 0.0f, 1.0f);
-            _directionsGO.transform.position = new Vector3(_directionsGO.transform.position.x, 2.0f, _directionsGO.transform.position.y);
+            _directionsGO.transform.position = new Vector3(_directionsGO.transform.position.x, 1.0f, _directionsGO.transform.position.y);
             _directionsGO.layer = 9;
             return _directionsGO;
         }
@@ -235,7 +237,7 @@
 
             if (coordinates.Count > 1)
             {
-                var _directionResource = new DirectionResource(wp, RoutingProfile.Walking);
+                var _directionResource = new DirectionResource(wp, RoutingProfile.Cycling);
                 _directionResource.Steps = true;
                 _directions.Query(_directionResource, HandleDirectionsResponse);
             }
@@ -248,6 +250,7 @@
                     var instance = Instantiate(WayPoint) as GameObject;
                     //Text wayPointNumber = instance.GetComponentInChildren<Text>();
                     //wayPointNumber.text = (i).ToString();
+                    instance.layer = 9;
                     _instances.Add(instance);
 
                     DragTourWayPoint dragWayPoint = instance.GetComponentInChildren<DragTourWayPoint>();
@@ -264,11 +267,12 @@
 
                 if (!location.Drag)
                 {
-                    instance.transform.SetParent(Mapholder);
-                    instance.transform.rotation = Mapholder.rotation;
-                    instance.transform.position = Conversions.GeoToWorldPosition(wp[i].x, wp[i].y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz() + new Vector3(0, 5, 5);
+                    //instance.transform.SetParent(Mapholder);
+                    //instance.transform.rotation = Mapholder.rotation;
+                    instance.transform.position = Conversions.GeoToWorldPosition(wp[i].x, wp[i].y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz() + new Vector3(0, 20, 0);
                     instance.SetActive(true);
                     instance.transform.SetAsLastSibling();
+                    
                 }
 
             }

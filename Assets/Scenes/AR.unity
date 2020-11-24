@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 56884936}
   - component: {fileID: 56884935}
   - component: {fileID: 56884934}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pinpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2443,7 +2443,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 440966229}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Directions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4328,7 +4328,7 @@ MonoBehaviour:
   startLocation: {fileID: 1698632295}
   destLocation: {fileID: 1945388109}
   WayPoint: {fileID: 1833012986}
-  locationIndicator: {fileID: 1353068133043255}
+  locationIndicator: {fileID: 1216700287144039}
   ErrorPanel: {fileID: 1242698187}
   ErrorMessage: {fileID: 317027208}
   Mapholder: {fileID: 4829037719911227}
@@ -4494,7 +4494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1140149940}
   - component: {fileID: 1140149941}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MapboxPin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5169,7 +5169,7 @@ GameObject:
   - component: {fileID: 1287302935}
   - component: {fileID: 1287302934}
   - component: {fileID: 1287302933}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6585,7 +6585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1833012987}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Waypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6600,8 +6600,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833012986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -33, y: 20, z: 1.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1140149940}
   m_Father: {fileID: 440966229}
@@ -7963,7 +7963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mapManager: {fileID: 114611719443889589}
-  locationIndicator: {fileID: 1353068133043255}
+  locationIndicator: {fileID: 1216700287144039}
   camera: {fileID: 4741526918243819}
 --- !u!1 &1601526222118733
 GameObject:
@@ -8203,7 +8203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216700287144039}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4970637121766367}
@@ -8818,7 +8818,7 @@ MonoBehaviour:
   _options:
     locationOptions:
       latitudeLongitude: 33.306964, -111.677283
-      zoom: 15
+      zoom: 16
     extentOptions:
       extentType: 1
       defaultExtents:
@@ -8827,10 +8827,10 @@ MonoBehaviour:
           visibleBuffer: 0
           disposeBuffer: 0
         rangeAroundCenterOptions:
-          west: 1
-          north: 1
-          east: 1
-          south: 1
+          west: 3
+          north: 3
+          east: 3
+          south: 3
         rangeAroundTransformOptions:
           targetTransform: {fileID: 0}
           visibleBuffer: 0
@@ -9026,7 +9026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTransform: {fileID: 4970637121766367}
-  ARPlayer: {fileID: 4191894112286143}
+  ARPlayer: {fileID: 4608432744695587}
 --- !u!114 &114794936329495599
 MonoBehaviour:
   m_ObjectHideFlags: 0
