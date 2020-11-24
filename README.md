@@ -23,12 +23,13 @@ Role: Guest (Prospective Student)
 For some mobile versions, Camera does not get detected for the first time,when we open QR the code scanner. The solution is to just close the app and start it again. It happens only once in the lifetime of the application.
 
 # Links
-Firebase SDK: https://firebase.google.com/download/unity
-
-Mapbox SDK: https://www.mapbox.com/install/unity/
+-[Firebase SDK](https://firebase.google.com/download/unity)
+-[Mapbox SDK](https://www.mapbox.com/install/unity/)
 
 # Course Information
-Instructor: Michael Findler
-TA: Mayank Batra
+- Instructor: Michael Findler
+- TA: Mayank Batra
 
 # Documentation Link
+- [Google Drive](https://drive.google.com/drive/u/1/folders/1Iba4m-3zPiNDckWJbdGPTPylIKh7nO17)
+- [Taiga](https://tree.taiga.io/project/nikhilhiremath65-ser-515/backlog)
