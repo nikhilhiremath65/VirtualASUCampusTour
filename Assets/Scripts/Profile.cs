@@ -49,5 +49,12 @@ public class Profile : MonoBehaviour
 
     }
 
+    public void onQRScan()
+    { 
+        //redirect to login
+        SceneManager.LoadScene("QRCodeReader");
+
+    }
+
 
 }

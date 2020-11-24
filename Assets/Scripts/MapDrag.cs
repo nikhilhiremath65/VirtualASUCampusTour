@@ -26,12 +26,14 @@
 		private Vector3 _mousePosition;
 		private Vector3 _mousePositionPrevious;
 		private bool _shouldDrag;
+		private Singleton singleton;
 		private bool _isInitialized = false;
 		private Plane _groundPlane = new Plane(Vector3.up, 0);
 		private bool _dragStartedOnUI = false;
 
 		void Awake()
 		{
+			singleton = Singleton.Instance();
 			if (null == _referenceCamera)
 			{
 				_referenceCamera = GetComponent<Camera>();
@@ -45,6 +47,7 @@
 
 		public void Update()
 		{
+			if (singleton.isMapMode()){
 			if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject())
 			{
 				_dragStartedOnUI = true;
@@ -56,14 +59,15 @@
 				_dragStartedOnUI = false;
 				_mapManager.updatePath = true;
 			}
+			}
 		}
 
 
 		private void LateUpdate()
 		{
-			if (!_isInitialized) { return; }
-
-			if (!_dragStartedOnUI)
+			if (!_isInitialized ) { return; }
+			Debug.Log(singleton.isMapMode());
+			if (!_dragStartedOnUI && singleton.isMapMode())
 			{
 				if (Input.touchSupported && Input.touchCount > 0)
 				{

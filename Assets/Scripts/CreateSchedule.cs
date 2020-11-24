@@ -109,7 +109,9 @@ public class CreateSchedule : MonoBehaviour
             }
 
             //Temp until authentication is completed
-            String user = "nhiremat";
+            Singleton singleton = Singleton.Instance();
+            String user = singleton.getUserName();
+            //String user = "nhiremat";
 
             reference.Child(dbDetails.getTourDBName()).Child(user).Child(ScheduleNameText.text).RemoveValueAsync();
 
@@ -152,5 +154,13 @@ public class CreateSchedule : MonoBehaviour
             }
             i++;
         }
+    }
+
+    public void onARClick()
+    {
+        Singleton singleton = Singleton.Instance();
+        singleton = Singleton.Instance();
+        singleton.setARType(null);
+        SceneManager.LoadScene("AR");
     }
 }

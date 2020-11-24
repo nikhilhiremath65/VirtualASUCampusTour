@@ -152,12 +152,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 738849420}
-  m_Father: {fileID: 378252913}
-  m_RootOrder: 4
+  m_Father: {fileID: 1651982800}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: -691}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -8, y: 269}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &18920811
@@ -519,12 +519,12 @@ RectTransform:
   m_Children:
   - {fileID: 258186702}
   - {fileID: 1784912486}
-  m_Father: {fileID: 378252913}
-  m_RootOrder: 1
+  m_Father: {fileID: 1651982800}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0.4672292}
-  m_AnchoredPosition: {x: 0.024878, y: 490}
+  m_AnchoredPosition: {x: 2.024878, y: 490}
   m_SizeDelta: {x: 1017.28625, y: 280}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &91848502
@@ -1501,85 +1501,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343697266}
   m_CullTransparentMesh: 0
---- !u!1 &378252912
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 378252913}
-  - component: {fileID: 378252915}
-  - component: {fileID: 378252914}
-  m_Layer: 5
-  m_Name: Create_tour_screen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &378252913
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 378252912}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2040695099}
-  - {fileID: 91848501}
-  - {fileID: 1152217023}
-  - {fileID: 1189142151}
-  - {fileID: 18920810}
-  m_Father: {fileID: 1651982800}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: 0}
-  m_SizeDelta: {x: 1080, y: 1920}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &378252914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 378252912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &378252915
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 378252912}
-  m_CullTransparentMesh: 0
 --- !u!1 &400540312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1767,7 +1688,7 @@ RectTransform:
   - {fileID: 574274882}
   - {fileID: 262624283}
   m_Father: {fileID: 1651982800}
-  m_RootOrder: 3
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -2431,12 +2352,12 @@ RectTransform:
   - {fileID: 563203766}
   - {fileID: 1192636209}
   m_Father: {fileID: 1651982800}
-  m_RootOrder: 4
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -230, y: -1520}
+  m_SizeDelta: {x: 850, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678437590
 MonoBehaviour:
@@ -2794,12 +2715,12 @@ RectTransform:
   m_Children:
   - {fileID: 1037306680}
   m_Father: {fileID: 1651982800}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 395, y: 638}
-  m_SizeDelta: {x: 233.28961, y: 100.00458}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -145, y: -322}
+  m_SizeDelta: {x: 233.28961, y: 100.00464}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &789200893
 MonoBehaviour:
@@ -3333,16 +3254,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152217022}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 378252913}
-  m_RootOrder: 2
+  m_Father: {fileID: 1651982800}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 94, y: 849}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 122, y: -111}
   m_SizeDelta: {x: 661.76636, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1152217024
@@ -3365,7 +3286,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bd1ea67ca2b5742d1a24fcbdc17c55e1, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 60
     m_FontStyle: 1
     m_BestFit: 0
@@ -3377,7 +3298,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CREATE TOUR
+  m_Text: Create Tour
 --- !u!222 &1152217025
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3489,17 +3410,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1189142150}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 343697267}
-  m_Father: {fileID: 378252913}
-  m_RootOrder: 3
+  m_Father: {fileID: 1651982800}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -293, y: 734}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 249, y: -226}
   m_SizeDelta: {x: 540, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1189142152
@@ -4562,7 +4483,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 378252913}
+  - {fileID: 2040695099}
+  - {fileID: 18920810}
+  - {fileID: 1189142151}
+  - {fileID: 1152217023}
+  - {fileID: 91848501}
   - {fileID: 789200892}
   - {fileID: 2050337592}
   - {fileID: 444236131}
@@ -5483,7 +5408,7 @@ RectTransform:
   - {fileID: 169064359}
   - {fileID: 1293076409}
   m_Father: {fileID: 1651982800}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -5503,95 +5428,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disabledTextColor: {r: 0, g: 0, b: 0, a: 0}
-  AvailableOptionsCustomized:
-  - A Mountain
-  - A J Matthews Center
-  - Adelphi Commons
-  - Alberta B Farrington Softball Stadium
-  - Armstrong Hall
-  - Art Building
-  - Art Warehouse
-  - Artisan Court at the Brickyard
-  - ASU Art Museum Brickyard
-  - ASU Gammage
-  - ASU Performing and Media Arts
-  - ASU Police Department
-  - Bateman Physical Sciences Center
-  - Best Hall
-  - Bulldog Hall
-  - Business Administration
-  - Business Administration C-Wing
-  - Campus Children's Center
-  - Center for Family Studies
-  - Centerpoint
-  - Ceramics Research Center and Brickyard Gallery
-  - Charles Wexler Hall
-  - College Avenue Marketplace
-  - Community Services Building
-  - Cowden Family Resources
-  - Creativity Commons
-  - Danforth Chapel
-  - Daniel E Noble Science and Engineering Library
-  - Desert Arboretum Park
-  - Desert Financial Arena
-  - Design Buildings
-  - Discovery Hall
-  - Dixie Gammage Hall
-  - Ed and Nadine Carson Student-Athlete Center
-  - Education Lecture Hall
-  - Engineering Center
-  - Engineering Research Center
-  - Fulton Center
-  - Future Sun Devil Welcome Center and College Ave Commons
-  - G Homer Durham Hall
-  - Goldwater Center
-  - H B Farmer Education Building
-  - Hayden Hall
-  - Hayden Library
-  - Health Service Building
-  - Inclusivity at ASU
-  - Interdisciplinary A & B
-  - Interdisciplinary Science and Technology I
-  - Ira D Payne Educational Hall
-  - Irish Hall
-  - J Russell and Bonita Nelson Fine Arts Center | ASU Art Museum
-  - John W Schwada Building
-  - L S Neeb Hall
-  - Lattie F Coor Hall
-  - Life Sciences Center
-  - Lyceum Theatre
-  - Manzanita Hall
-  - Matthews Hall
-  - McClintock Hall
-  - McCord Hall
-  - Memorial Union
-  - Moeur Building
-  - Mona Plummer Aquatic Complex
-  - Murdock Hall
-  - Music Building
-  - Old Main
-  - Orange Mall Green Infrastructure Project
-  - Orchid House at the Brickyard
-  - Packard Baseball Stadium
-  - Palo Verde East
-  - Palo Verde West
-  - Psychology Building
-  - Psychology North
-  - Riches Wrestling Complex
-  - Robson Family Player Facility
-  - Ross-Blakley Hall
-  - Social Sciences Building
-  - Student Pavilion
-  - Sun Angel Stadium Joe Selleh Track
-  - Sun Devil Fitness Complex Tempe
-  - Sun Devil Hall
-  - Sun Devil Stadium
-  - 'Sustainability Point of Pride: ASU Police Department'
-  - The Biodesign Institute - Bldg A
-  - The Biodesign Institute - Bldg B
-  - Tower Center
-  - Weatherup Center
-  - Wrigley Hall
+  dropdownOptionsPoly:
+  - academic center
+  - administration
+  - agribusiness center
+  - algae lab
+  - altitude chamber
+  - applied arts pavilion
+  - aravaipa auditorium
+  - arboretum date palms
+  - asu preparatory academy
+  - century hall
+  - citrus dining pavilion
+  - engineering design studio
+  - facilities development and management
+  - flight simulator
+  - interdisciplinary science and technology iii
+  - ironwood building
+  - 'north residence halls: eagle and talon'
+  - 'north residence halls: falcon, mustang & phantom'
+  - parade grounds and flagpole
+  - peralta hall
+  - picacho hall
+  - quads 2-4
+  - santa catalina hall
+  - santan hall
+  - simulator building
+  - startup labs
+  - student union
+  - sun devil fitness complex
+  - sunpower solar farm
+  - sutton hall
+  - technology center
+  - wanner hall
   _scrollBarWidth: 40
   _itemsToDisplay: 3
   SelectFirstItemOnStart: 0
@@ -5614,7 +5483,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 378252913}
+    m_TransformParent: {fileID: 1651982800}
     m_Modifications:
     - target: {fileID: 2939660973258813304, guid: 11c1502a873b41c4d86261b5faf26442,
         type: 3}
@@ -5679,12 +5548,12 @@ PrefabInstance:
     - target: {fileID: 2939660973258813305, guid: 11c1502a873b41c4d86261b5faf26442,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2939660973258813305, guid: 11c1502a873b41c4d86261b5faf26442,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 955
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2939660973258813305, guid: 11c1502a873b41c4d86261b5faf26442,
         type: 3}
@@ -5694,7 +5563,7 @@ PrefabInstance:
     - target: {fileID: 2939660973258813305, guid: 11c1502a873b41c4d86261b5faf26442,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1919.9795
+      value: -0.020507812
       objectReference: {fileID: 0}
     - target: {fileID: 2939660973258813305, guid: 11c1502a873b41c4d86261b5faf26442,
         type: 3}
@@ -5714,7 +5583,7 @@ PrefabInstance:
     - target: {fileID: 2939660973258813305, guid: 11c1502a873b41c4d86261b5faf26442,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2939660973258813305, guid: 11c1502a873b41c4d86261b5faf26442,
         type: 3}

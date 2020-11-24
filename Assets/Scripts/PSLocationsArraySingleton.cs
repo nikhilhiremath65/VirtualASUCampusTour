@@ -1,12 +1,14 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 public class PSLocationArraySingleton
 {
 
     private static PSLocationArraySingleton instance = null;
-
-    private static ArrayList Tours;
-    private static int updateStatus = 0;
+    private static Dictionary<string, ArrayList> toursLocations;
+    private static Dictionary<string, int> toursLocationsUpdateStatusDictionary;
+    private static bool tourLocationsObjectStatus = false;
+   
 
     public static PSLocationArraySingleton Instance()
     {
@@ -22,23 +24,34 @@ public class PSLocationArraySingleton
     {
     }
 
-    public void setLocations(ArrayList tours)
+    public void setToursLocationsDictionary(Dictionary<string, ArrayList> toursLocationsObject)
     {
-        Tours = tours;
+        toursLocations = toursLocationsObject;
     }
 
-    public ArrayList getLocations()
+    public Dictionary<string, ArrayList> getToursLocationDictionary()
     {
-        return Tours;
+        return toursLocations;
     }
 
-    public void setUpdateStatus(int update)
+    public void setToursLocationsObjectStatus(bool status)
     {
-        updateStatus = update;
+        tourLocationsObjectStatus = status;
     }
 
-    public int getUpdateStatus()
+    public bool getToursLocationsObjectStatus()
     {
-        return updateStatus;
+        return tourLocationsObjectStatus;
     }
+
+    public void setToursLocationsUpdateStatusDictionary(Dictionary<string, int> toursLocationsStatusUpdateObject)
+    {
+        toursLocationsUpdateStatusDictionary = toursLocationsStatusUpdateObject;
+    }
+
+    public Dictionary<string, int> getToursLocationsUpdateStatusDictionary()
+    {
+        return toursLocationsUpdateStatusDictionary;
+    }
+
 }

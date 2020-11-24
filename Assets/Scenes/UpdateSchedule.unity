@@ -237,10 +237,10 @@ RectTransform:
   m_Father: {fileID: 1023559883}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -265.37695, y: -3.875}
-  m_SizeDelta: {x: -546.2622, y: -2.623169}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 94, y: 0}
+  m_SizeDelta: {x: 190.5451, y: 81.9519}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &47530401
 MonoBehaviour:
@@ -473,8 +473,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33.376648, y: -2.973755}
-  m_SizeDelta: {x: 255.28741, y: 77.28308}
+  m_AnchoredPosition: {x: -38, y: 0}
+  m_SizeDelta: {x: 255.28741, y: 81.9519}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &71139909
 MonoBehaviour:
@@ -1024,9 +1024,9 @@ RectTransform:
   m_Father: {fileID: 47530400}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000022888, y: -0.000034573}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 88, y: 0}
   m_SizeDelta: {x: 205.26855, y: 76.88526}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &163812929
@@ -1553,8 +1553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 1
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
@@ -1595,10 +1595,16 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 887104858}
   - {fileID: 1047022945}
-  - {fileID: 1677134577}
   - {fileID: 2043445174}
+  - {fileID: 808784986}
+  - {fileID: 837752020}
+  - {fileID: 2140194700}
+  - {fileID: 1048412438}
+  - {fileID: 1230823669}
+  - {fileID: 531130789}
+  - {fileID: 1023559883}
+  - {fileID: 1677134577}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2295,12 +2301,12 @@ RectTransform:
   - {fileID: 363449042}
   - {fileID: 724789889}
   - {fileID: 2065438116}
-  m_Father: {fileID: 887104858}
-  m_RootOrder: 5
+  m_Father: {fileID: 414240798}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -111, y: -319}
+  m_AnchoredPosition: {x: -108.99998, y: -319}
   m_SizeDelta: {x: 730, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &531130790
@@ -2316,100 +2322,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disabledTextColor: {r: 0, g: 0, b: 0, a: 0}
-  AvailableOptionsCustomize:
-  - A Mountain
-  - A. J. Matthews Center
-  - Adelphi Commons
-  - Alberta B. Farrington Softball Stadium
-  - Armstrong Hall
-  - Art Building
-  - Art Warehouse
-  - Artisan Court at the Brickyard
-  - ASU Art Museum Brickyard
-  - ASU Gammage
-  - ASU Performing and Media Arts
-  - ASU Police Department
-  - Bateman Physical Sciences Center
-  - Best Hall
-  - Bulldog Hall
-  - Business Administration
-  - Business Administration C-Wing
-  - Campus Children's Center
-  - Center for Family Studies
-  - Centerpoint
-  - Ceramics Research Center and Brickyard Gallery
-  - Charles Wexler Hall
-  - College Avenue Marketplace
-  - Community Services Building
-  - Cowden Family Resources
-  - Creativity Commons
-  - Danforth Chapel
-  - Daniel E. Noble Science and Engineering Library
-  - Desert Arboretum Park
-  - Desert Financial Arena
-  - Design Buildings
-  - Discovery Hall
-  - Dixie Gammage Hall
-  - Ed and Nadine Carson Student-Athlete Center
-  - Education Lecture Hall
-  - Engineering Center
-  - Engineering Research Center
-  - Fulton Center
-  - Future Sun Devil Welcome Center and College Ave. Commons
-  - G. Homer Durham Hall
-  - Goldwater Center
-  - H.B. Farmer Education Building
-  - Hayden Hall
-  - Hayden Library
-  - Health Service Building
-  - Inclusivity at ASU
-  - Interdisciplinary A & B
-  - Interdisciplinary Science and Technology I
-  - Interdisciplinary Science and Technology II
-  - Interdisciplinary Science and Technology II
-  - Interdisciplinary Science and Technology IV
-  - Interdisciplinary Science and Technology IV
-  - Interdisciplinary Science and Technology V
-  - Ira D. Payne Educational Hall
-  - Irish Hall
-  - J. Russell and Bonita Nelson Fine Arts Center | ASU Art Museum
-  - John W. Schwada Building
-  - L. S. Neeb Hall
-  - Lattie F. Coor Hall
-  - Life Sciences Center
-  - Lyceum Theatre
-  - Manzanita Hall
-  - Matthews Hall
-  - McClintock Hall
-  - McCord Hall
-  - Memorial Union
-  - Moeur Building
-  - Mona Plummer Aquatic Complex
-  - Murdock Hall
-  - Music Building
-  - Old Main
-  - Orange Mall Green Infrastructure Project
-  - Orchid House at the Brickyard
-  - Packard Baseball Stadium
-  - Palo Verde East
-  - Palo Verde West
-  - Psychology Building
-  - Psychology North
-  - Riches Wrestling Complex
-  - Robson Family Player Facility
-  - Ross-Blakley Hall
-  - Social Sciences Building
-  - Student Pavilion
-  - Sun Angel Stadium /Joe Selleh Track
-  - Sun Devil Fitness Complex Tempe
-  - Sun Devil Hall
-  - Sun Devil Stadium
-  - 'Sustainability Point of Pride: ASU Police Department'
-  - The Biodesign Institute - Bldg A
-  - The Biodesign Institute - Bldg B
-  - Tower Center
-  - Weatherup Center
-  - Wrigley Hall
+  dropdownOptionsPoly:
+  - academic center
+  - administration
+  - agribusiness center
+  - algae lab
+  - altitude chamber
+  - applied arts pavilion
+  - aravaipa auditorium
+  - arboretum date palms
+  - asu preparatory academy
+  - century hall
+  - citrus dining pavilion
+  - engineering design studio
+  - facilities development and management
+  - flight simulator
+  - interdisciplinary science and technology iii
+  - ironwood building
+  - 'north residence halls: eagle and talon'
+  - 'north residence halls: falcon, mustang & phantom'
+  - parade grounds and flagpole
+  - peralta hall
+  - picacho hall
+  - quads 2-4
+  - santa catalina hall
+  - santan hall
+  - simulator building
+  - startup labs
+  - student union
+  - sun devil fitness complex
+  - sunpower solar farm
+  - sutton hall
+  - technology center
+  - wanner hall
   _scrollBarWidth: 40
   _itemsToDisplay: 3
   SelectFirstItemOnStart: 0
@@ -2502,7 +2447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1564, y: 567}
+  m_AnchoredPosition: {x: 2389, y: 609}
   m_SizeDelta: {x: 1000, y: 186.02151}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &531261294
@@ -2523,6 +2468,49 @@ MonoBehaviour:
   deletePanel: {fileID: 2007497281}
   scheduleName: 
   scheduleTime: 
+--- !u!1 &575851697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 575851699}
+  - component: {fileID: 575851698}
+  m_Layer: 0
+  m_Name: ARBbuttonGameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &575851698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575851697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb99a2a47210f741b9cd9e141f82013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &575851699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575851697}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 180.65015, y: 282.27408, z: -2.3125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &644531793
 GameObject:
   m_ObjectHideFlags: 0
@@ -3355,7 +3343,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter location...
+  m_Text: Enter location or paste a link...
 --- !u!222 &778884265
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3471,13 +3459,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 887104858}
-  m_RootOrder: 0
+  m_Father: {fileID: 414240798}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 955}
-  m_SizeDelta: {x: 2.5183105, y: 1919.9795}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &808784987
 MonoBehaviour:
@@ -3573,12 +3561,12 @@ RectTransform:
   - {fileID: 531261293}
   - {fileID: 2015426759}
   - {fileID: 127294569}
-  m_Father: {fileID: 887104858}
-  m_RootOrder: 1
+  m_Father: {fileID: 414240798}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0.4672292}
-  m_AnchoredPosition: {x: 0.024878, y: 490}
+  m_AnchoredPosition: {x: 2.0249045, y: 490}
   m_SizeDelta: {x: 1017.28625, y: 280}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &837752021
@@ -3886,87 +3874,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &887104857
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 887104858}
-  - component: {fileID: 887104860}
-  - component: {fileID: 887104859}
-  m_Layer: 5
-  m_Name: CreateScheduleScreen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &887104858
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 887104857}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 808784986}
-  - {fileID: 837752020}
-  - {fileID: 2140194700}
-  - {fileID: 1048412438}
-  - {fileID: 1230823669}
-  - {fileID: 531130789}
-  - {fileID: 1023559883}
-  m_Father: {fileID: 414240798}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: 0}
-  m_SizeDelta: {x: 1080, y: 1920}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &887104859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 887104857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &887104860
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 887104857}
-  m_CullTransparentMesh: 0
 --- !u!1 &916166673
 GameObject:
   m_ObjectHideFlags: 0
@@ -4378,13 +4285,13 @@ RectTransform:
   - {fileID: 47530400}
   - {fileID: 71139908}
   - {fileID: 1722602744}
-  m_Father: {fileID: 887104858}
-  m_RootOrder: 6
+  m_Father: {fileID: 414240798}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.47000003}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -109.59961, y: 530.6992}
-  m_SizeDelta: {x: -359.136, y: -1838.0481}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -106.9, y: -433.9}
+  m_SizeDelta: {x: 730, y: 81.951904}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1023559884
 MonoBehaviour:
@@ -4555,7 +4462,7 @@ RectTransform:
   m_Children:
   - {fileID: 1843999261}
   m_Father: {fileID: 414240798}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4678,17 +4585,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048412437}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1902847167}
-  m_Father: {fileID: 887104858}
-  m_RootOrder: 3
+  m_Father: {fileID: 414240798}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -247, y: 749}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 295, y: -211}
   m_SizeDelta: {x: 453.79468, y: 87.7312}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1048412439
@@ -4837,12 +4744,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1821544609}
-  m_Father: {fileID: 887104858}
-  m_RootOrder: 4
+  m_Father: {fileID: 414240798}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: -691}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -7.9999733, y: 269}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1230823670
@@ -5878,15 +5785,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2043445175}
-        m_MethodName: SceneLoader
-        m_Mode: 5
+      - m_Target: {fileID: 575851698}
+        m_MethodName: onARClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MapNavigation
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1536386729
@@ -6194,7 +6101,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Map
+  m_Text: AR
 --- !u!222 &1582631216
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6452,12 +6359,12 @@ RectTransform:
   - {fileID: 149000015}
   - {fileID: 1584372221}
   m_Father: {fileID: 414240798}
-  m_RootOrder: 2
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -230, y: -1520}
+  m_SizeDelta: {x: 850, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1677134578
 MonoBehaviour:
@@ -6700,10 +6607,10 @@ RectTransform:
   m_Father: {fileID: 1023559883}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 226.62283, y: -1.8418579}
-  m_SizeDelta: {x: 264.37494, y: 79.47485}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -132, y: 0}
+  m_SizeDelta: {x: 264.37494, y: 81.9519}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1722602745
 MonoBehaviour:
@@ -8326,12 +8233,12 @@ RectTransform:
   - {fileID: 2098818184}
   - {fileID: 452385273}
   m_Father: {fileID: 414240798}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -875}
-  m_SizeDelta: {x: 1080, y: -1749.5969}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 85}
+  m_SizeDelta: {x: 0, y: 170.40308}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2043445175
 MonoBehaviour:
@@ -9066,16 +8973,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140194699}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 887104858}
-  m_RootOrder: 2
+  m_Father: {fileID: 414240798}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26, y: 869}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 61.99999, y: -91}
   m_SizeDelta: {x: 661.76636, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2140194701
@@ -9098,19 +9005,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bd1ea67ca2b5742d1a24fcbdc17c55e1, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 60
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 75
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: UPDATE SCHEDULE
+  m_Text: Update Schedule
 --- !u!222 &2140194702
 CanvasRenderer:
   m_ObjectHideFlags: 0

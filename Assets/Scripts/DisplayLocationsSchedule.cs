@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 using System;
 using Models;
 using Crud;
+using System.Linq;
 
 public class DisplayLocationsSchedule : MonoBehaviour
 {
@@ -87,12 +88,25 @@ public class DisplayLocationsSchedule : MonoBehaviour
                 {
                     DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleName);
 
-                    locationsData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
+                    string str = snapshot.GetRawJsonValue();
+                    JObject jsonLocation = JObject.Parse(str);
+                    IList<string> keys = jsonLocation.Properties().Select(p => p.Name).ToList();
 
                     DataSnapshot sharedLocationSnapshot = task.Result.Child(dbDetails.getSharedDBName()).Child(UserName).Child(ScheduleName);
 
-                    sharedLocationsData = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(sharedLocationSnapshot.GetRawJsonValue());
+                    string SharedLocationstr = sharedLocationSnapshot.GetRawJsonValue();
+                    JObject jsonSharedLocation = JObject.Parse(str);
+                    IList<string> Sharedkeys = jsonLocation.Properties().Select(p => p.Name).ToList();
 
+                    foreach(string key in keys)
+                    {
+                        locationsData.Add(key, (string)jsonLocation[key]);
+                    }
+
+                    foreach (string key in Sharedkeys)
+                    {
+                        sharedLocationsData.Add(key, (JObject)jsonLocation[key]);
+                    }
 
                 }
             });
