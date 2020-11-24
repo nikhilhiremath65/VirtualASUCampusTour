@@ -148,6 +148,7 @@ public class DisplayLocations : MonoBehaviour
 
     public void onDelete(Text locationName)
     {
+
         this.tours.Remove(locationName.text);
     }
 
@@ -173,7 +174,6 @@ public class DisplayLocations : MonoBehaviour
 
             reference.Child(dbDetails.getTourDBName()).Child(singleton.getTourName()).RemoveValueAsync();
             singleton.setTourName(TourNameText.text);
-
             reference.Child(dbDetails.getTourDBName()).Child(singleton.getTourName()).SetRawJsonValueAsync(jsonData).ContinueWith(task =>
             {
                 if (task.IsFaulted)

@@ -32,7 +32,11 @@ public class LocationListItem : MonoBehaviour
 
         deleteFromArrayList(Name.text);
     }
-
+    public void delete()
+    {
+        Destroy(gameObject);
+        deletePanel.SetActive(false);
+    }
     public void deleteFromArrayList(string deleteLocation)
     {
         singleton = Singleton.Instance();
