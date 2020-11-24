@@ -6,6 +6,7 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Linq;
 
 public class Dept_tourlistcontroller : MonoBehaviour
 {
@@ -64,11 +65,14 @@ public class Dept_tourlistcontroller : MonoBehaviour
                 // getting schedules for a particular user.
                 DataSnapshot snapshot = task.Result.Child(dbDetails.getTourDBName());
 
-                Dictionary<string, object> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
+                string str = snapshot.GetRawJsonValue();
+                JObject jsonLocation = JObject.Parse(str);
+                IList<string> keys = jsonLocation.Properties().Select(p => p.Name).ToList();
 
-                foreach (string schedule in scheduleData.Keys)
+                foreach (string key in keys)
                 {
-                    this.schedules.Add(new Department(schedule));
+                    Debug.Log(key);
+                    this.schedules.Add(new Department(key));
                 }
             }
         });

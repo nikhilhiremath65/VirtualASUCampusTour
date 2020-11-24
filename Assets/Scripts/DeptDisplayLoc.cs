@@ -6,6 +6,8 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using Newtonsoft.Json;
 using UnityEngine.UI;
+using Newtonsoft.Json.Linq;
+using System.Linq;
 
 public class DeptDisplayLoc : MonoBehaviour
 {
@@ -101,15 +103,16 @@ public class DeptDisplayLoc : MonoBehaviour
 
                 snapshot = task.Result.Child(dbDetails.getTourDBName()).Child(scheduleName.ToString());
 
+                string str = snapshot.GetRawJsonValue();
+                JObject jsonLocation = JObject.Parse(str);
+                IList<string> keys = jsonLocation.Properties().Select(p => p.Name).ToList();
 
-                scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
-
-                foreach (KeyValuePair<string, string> schedule in scheduleData)
+                foreach (string key in keys)
                 {
-                    this.locations.Add(new DeptLocation(schedule.Key));
-                    locationsTemp.Add(schedule.Key);
-                    //print(schedule.Key);
+                    Debug.Log(key);
+                    this.locations.Add(new DeptLocation(key));
                 }
+                
                 Dictionary<string, ArrayList> toursLocations = ps.getToursLocationDictionary();
                 ArrayList updatedLocations = toursLocations[scheduleName];
 

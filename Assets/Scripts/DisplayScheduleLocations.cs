@@ -7,6 +7,7 @@ using Firebase.Unity.Editor;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 
 public class DisplayScheduleLocations : MonoBehaviour
 {
@@ -64,11 +65,14 @@ public class DisplayScheduleLocations : MonoBehaviour
                 // getting schedules for a particular user.
                 DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child(user).Child(scheduleName);
 
-                Dictionary<string, string> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
+                string str = snapshot.GetRawJsonValue();
+                JObject jsonLocation = JObject.Parse(str);
+                IList<string> keys = jsonLocation.Properties().Select(p => p.Name).ToList();
+                //var values = jsonLocation.ToObject<Dictionary<string, object>>();
 
-                foreach (KeyValuePair<string, string> schedule in scheduleData)
+                foreach (string schedule in keys)
                 {
-                    this.locations.Add(new ScheduleLocation(schedule.Key, schedule.Value));
+                    this.locations.Add(new ScheduleLocation(schedule, (string)jsonLocation[schedule]));
                 }
             }
         });
