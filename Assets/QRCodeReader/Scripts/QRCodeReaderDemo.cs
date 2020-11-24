@@ -95,6 +95,8 @@ public class QRCodeReaderDemo : MonoBehaviour {
         {
             singleton.setARType("tour");
         }
+        QRReader.Stop();
+        QRReader.Camera.Stop();
         SceneManager.LoadScene("AR");
     }
 }
