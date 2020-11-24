@@ -164,9 +164,11 @@ public class PSUpdateLocations : MonoBehaviour
         Dictionary<string, ArrayList> toursLocations = s.getToursLocationDictionary();
         toursLocations[currentTourName] = locations;
         toursLocationsStatusUpdate[currentTourName] = 1;
-
-        if(sharedLocationName != null) 
-        singleton.addSharedLocation(sharedLocationName, sharedLocationCoordinates);
+        if (sharedLocationName != null)
+        {
+            singleton.addSharedLocation(sharedLocationName, sharedLocationCoordinates);
+        }
+ 
         SceneManager.LoadScene("DeptTourLoc");
 
     }

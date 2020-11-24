@@ -61,7 +61,7 @@ public class LocationService : MonoBehaviour
 
                 // Update position of location object wrt map.
                 Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
-                locationIndicator.transform.position = position;
+            locationIndicator.transform.position =  new Vector3(position.x,locationIndicator.transform.position.y,position.z);
 
             }
 
@@ -96,7 +96,7 @@ public class LocationService : MonoBehaviour
         {
             // Update position of location object wrt map.
             Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
-            locationIndicator.transform.position = position;
+            locationIndicator.transform.position =  new Vector3(position.x,locationIndicator.transform.position.y,position.z);
         }
     }
 
@@ -130,7 +130,7 @@ public class LocationService : MonoBehaviour
 
             // Update position of location object wrt map.
             Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
-            locationIndicator.transform.position = position;
+            //locationIndicator.transform.position =  new Vector3(position.x,locationIndicator.transform.position.y,position.z);
             camera.position = new Vector3(position.x,camera.position.y,position.z);
 
         }

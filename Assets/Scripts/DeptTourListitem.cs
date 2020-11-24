@@ -33,6 +33,7 @@ public class DeptTourListitem : MonoBehaviour
 
 
     }
+    
 
     public void deleteFromArrayList(string deleteLocation)
     {

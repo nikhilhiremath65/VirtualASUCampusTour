@@ -63,12 +63,12 @@ public class ShareLocation : MonoBehaviour
 
                 reference.GetValueAsync().ContinueWith(task =>
                 {
-                    if (task.IsFaulted)
-                    {
-                        ErrorPanel.transform.SetAsLastSibling();
-                        throw new Exception("ERROR while fetching data from database!!! Please refresh!");
-                    }
-                    else if (task.IsCompleted)
+                    // if (task.IsFaulted)
+                    // {
+                    //     ErrorPanel.transform.SetAsLastSibling();
+                    //     throw new Exception("ERROR while fetching data from database!!! Please refresh!");
+                    // }
+                    if (task.IsCompleted)
                     {
                         DataSnapshot snapshot = task.Result.Child(dbDetails.getBuildingDBname());
 
@@ -83,13 +83,12 @@ public class ShareLocation : MonoBehaviour
                 });
             }
 
-            if (lat == null || lon == null)
+            if (lat != null && lon != null)
             {
-                ErrorPanel.transform.SetAsLastSibling();
-                throw new Exception("Error fetching data, please try again!");
+            locationLink.text = lat + ":" + lon + ":" + Hours.text +":"+ Minutes.text;
+        
             }
 
-            locationLink.text = lat + ":" + lon + ":" + Hours.text +":"+ Minutes.text;
 
         }
 
@@ -148,5 +147,3 @@ public class ShareLocation : MonoBehaviour
         }
     }
 }
-
-

@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class DisplayTours : MonoBehaviour
 {
@@ -76,11 +77,13 @@ public class DisplayTours : MonoBehaviour
                 {
                     DataSnapshot snapshot = task.Result.Child(dbDetails.getTourDBName());
 
-                    Dictionary<string, object> tourData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
+                    string str = snapshot.GetRawJsonValue();
+                    JObject jsonLocation = JObject.Parse(str);
+                    IList<string> keys = jsonLocation.Properties().Select(p => p.Name).ToList();
 
-                    foreach (string tour in tourData.Keys)
+                    foreach (string key in keys)
                     {
-                        this.tours.Add(new Tour(tour));
+                        this.tours.Add(new Tour(key));
                     }
                 }
             });

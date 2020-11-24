@@ -72,6 +72,7 @@ public class DisplayScheduleLocations : MonoBehaviour
 
                 foreach (string schedule in keys)
                 {
+                    Debug.Log(schedule);
                     this.locations.Add(new ScheduleLocation(schedule, (string)jsonLocation[schedule]));
                 }
             }

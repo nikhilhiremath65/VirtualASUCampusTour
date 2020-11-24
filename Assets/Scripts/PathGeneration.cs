@@ -439,7 +439,6 @@
                         string str = snapshot.GetRawJsonValue();
                         JObject jsonLocation = JObject.Parse(str);
                         IList<string> keys = jsonLocation.Properties().Select(p => p.Name).ToList();
-                        var values = jsonLocation.ToObject<Dictionary<string, object>>();
 
                         int i = 0;
                         foreach (string location in keys)

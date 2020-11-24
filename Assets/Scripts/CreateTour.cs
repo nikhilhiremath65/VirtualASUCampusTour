@@ -27,6 +27,7 @@ public class CreateTour : MonoBehaviour
 
     public InputField TourNameText;
     public InputField AddLocationText;
+    Singleton singleton;
 
     // Start is called before the first frame update
     void Start()

@@ -155,4 +155,12 @@ public class CreateSchedule : MonoBehaviour
             i++;
         }
     }
+
+    public void onARClick()
+    {
+        Singleton singleton = Singleton.Instance();
+        singleton = Singleton.Instance();
+        singleton.setARType(null);
+        SceneManager.LoadScene("AR");
+    }
 }

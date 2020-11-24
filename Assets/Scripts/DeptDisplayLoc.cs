@@ -109,7 +109,6 @@ public class DeptDisplayLoc : MonoBehaviour
 
                 foreach (string key in keys)
                 {
-                    Debug.Log(key);
                     this.locations.Add(new DeptLocation(key));
                 }
                 
