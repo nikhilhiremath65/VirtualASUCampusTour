@@ -10,6 +10,7 @@ public class LocationService : MonoBehaviour
     AbstractMap _mapManager;
 
     public GameObject locationIndicator;
+    public Transform camera;
 
     private bool _isInitialized = true;
 
@@ -72,38 +73,54 @@ public class LocationService : MonoBehaviour
 
     void Update()
     {
-        // Start service before querying location
-        Input.location.Start();
+         float latitude;
+        float longitude;
 
-        float latitude = Input.location.lastData.latitude;
-        float longitude = Input.location.lastData.longitude;
+        if (!Input.location.isEnabledByUser)
+        {
+            latitude = 33.306964f;
+            longitude = -111.677283f;
+        }
+        else
+        {
+            Input.location.Start();
+
+            latitude = Input.location.lastData.latitude;
+            longitude = Input.location.lastData.longitude;
+
+            // Stop service if there is no need to query location updates continuously
+            Input.location.Stop();
+        }
 
         if (_isInitialized)
         {
             // Update position of location object wrt map.
             Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
             locationIndicator.transform.position = position;
-
         }
-        else
-        {
-            _mapManager.OnInitialized += () =>
-            {
-                _isInitialized = true;
-            };
-        }
-
-
-        // Stop service if there is no need to query location updates continuously
-        Input.location.Stop();
     }
 
     public void FocusLocationAndUpdatePointer()
     {
-        Input.location.Start();
 
-        float latitude = Input.location.lastData.latitude;
-        float longitude = Input.location.lastData.longitude;
+        float latitude;
+        float longitude;
+
+        if (!Input.location.isEnabledByUser)
+        {
+            latitude = 33.306964f;
+            longitude = -111.677283f;
+        }
+        else
+        {
+            Input.location.Start();
+
+            latitude = Input.location.lastData.latitude;
+            longitude = Input.location.lastData.longitude;
+
+            // Stop service if there is no need to query location updates continuously
+            Input.location.Stop();
+        }
 
         if (_isInitialized)
         {
@@ -114,10 +131,8 @@ public class LocationService : MonoBehaviour
             // Update position of location object wrt map.
             Vector3 position = Conversions.GeoToWorldPosition(latitude, longitude, _mapManager.CenterMercator, _mapManager.WorldRelativeScale).ToVector3xz();
             locationIndicator.transform.position = position;
+            camera.position = new Vector3(position.x,camera.position.y,position.z);
 
         }
-
-        // Stop service if there is no need to query location updates continuously
-        Input.location.Stop();
     }
 }

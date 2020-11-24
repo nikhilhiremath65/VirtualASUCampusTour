@@ -165,6 +165,7 @@ public class PSUpdateLocations : MonoBehaviour
         toursLocations[currentTourName] = locations;
         toursLocationsStatusUpdate[currentTourName] = 1;
 
+        if(sharedLocationName != null) 
         singleton.addSharedLocation(sharedLocationName, sharedLocationCoordinates);
         SceneManager.LoadScene("DeptTourLoc");
 
