@@ -1,6 +1,6 @@
 # VirtualASUCampusTour
 
-## Steps to run
+## Group Name: Narmada's Armada
 ### Steps to run our deliverable:
 
 - Clone the master branch and open in unity
