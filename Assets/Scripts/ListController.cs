@@ -7,6 +7,7 @@ using Firebase.Unity.Editor;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 
 public class ListController : MonoBehaviour
 {
@@ -18,8 +19,12 @@ public class ListController : MonoBehaviour
     DatabaseReference reference;
     bool schedulesDisplayed;
 
+    ArrayList gameObjectsList = new ArrayList();
+
     ArrayList schedules;
+
     // Start is called before the first frame update
+    [Obsolete]
     void Start()
     {
         schedules = new ArrayList();
@@ -33,6 +38,7 @@ public class ListController : MonoBehaviour
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
         getScheduleData();
+        createTempSchedules();
         schedulesDisplayed = false;
     }
 
@@ -41,7 +47,31 @@ public class ListController : MonoBehaviour
     {
         if (!schedulesDisplayed && schedules.Count > 0)
         {
+            foreach (GameObject g in gameObjectsList)
+            {
+
+                g.Destroy();
+            }
+            gameObjectsList.Clear();
             createScheduleList();
+        }
+    }
+
+    public void createTempSchedules()
+    {
+        ArrayList schedules1 = new ArrayList();
+        schedules1.Add("schedule 0");
+        schedules1.Add("schedules 1");
+        foreach (string s in schedules1)
+        {
+            ListItemPrefab.SetActive(true);
+            GameObject newSchedule = Instantiate(ListItemPrefab) as GameObject;
+            gameObjectsList.Add(newSchedule);
+            ListItemController controller = newSchedule.GetComponent<ListItemController>();
+            controller.Name.text = s;
+
+            newSchedule.transform.SetParent(ContentPanel.transform);
+            //newSchedule.transform.localScale = Vector3.one;
         }
     }
 
@@ -62,9 +92,12 @@ public class ListController : MonoBehaviour
                 // getting schedules for a particular user.
                 DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child(user);
 
-                Dictionary<string, object> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
+                string str = snapshot.GetRawJsonValue();
+                JObject jsonLocation = JObject.Parse(str);
+                IList<string> keys = jsonLocation.Properties().Select(p => p.Name).ToList();
+                //var values = jsonLocation.ToObject<Dictionary<string, object>>();
 
-                foreach (string schedule in scheduleData.Keys)
+                foreach (string schedule in keys)
                 {
                     this.schedules.Add(new Schedule(schedule));
                 }
@@ -82,8 +115,8 @@ public class ListController : MonoBehaviour
             ListItemController controller = newSchedule.GetComponent<ListItemController>();
             controller.Name.text = s.Name;
 
-            newSchedule.transform.parent = ContentPanel.transform;
-            newSchedule.transform.localScale = Vector3.one;
+            newSchedule.transform.SetParent(ContentPanel.transform);
+            //newSchedule.transform.localScale = Vector3.one;
         }
         schedulesDisplayed = true;
     }
