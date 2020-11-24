@@ -10,7 +10,7 @@ public class touchDrag : MonoBehaviour
     private static readonly float ZoomSpeedMouse = 1.5f;
     
 
-    private static readonly float[] ZoomBounds = new float[]{10f, 150f};
+    private static readonly float[] ZoomBounds = new float[]{10f, 95f};
     
     public GameObject cam;
     
