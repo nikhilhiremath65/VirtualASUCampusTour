@@ -7,7 +7,7 @@ public class touchDrag : MonoBehaviour
     // Start is called before the first frame update
     private static readonly float PanSpeed = 190f;
     private static readonly float ZoomSpeedTouch = 0.1f;
-    private static readonly float ZoomSpeedMouse = 1.5f;
+    private static readonly float ZoomSpeedMouse = 10f;
     
 
     private static readonly float[] ZoomBounds = new float[]{10f, 95f};
