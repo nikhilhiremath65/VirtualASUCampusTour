@@ -10,6 +10,7 @@ using System.Threading;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using System.Linq;
 
 public class DisplayLocations : MonoBehaviour
 {
@@ -77,11 +78,14 @@ public class DisplayLocations : MonoBehaviour
                 {
                     DataSnapshot snapshot = task.Result.Child(dbDetails.getTourDBName()).Child(TourName);
 
-                    Dictionary<string, object> tourData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot.GetRawJsonValue());
+                    string str = snapshot.GetRawJsonValue();
+                    JObject jsonLocation = JObject.Parse(str);
+                    IList<string> keys = jsonLocation.Properties().Select(p => p.Name).ToList();
 
-                    foreach (string tour in tourData.Keys)
+                    foreach (string key in keys)
                     {
-                        this.tours.Add(tour);
+                        Debug.Log(key);
+                        this.tours.Add(key);
                     }
                 }
             });

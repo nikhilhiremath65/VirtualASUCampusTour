@@ -7,14 +7,12 @@ using Firebase.Unity.Editor;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System;
-using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class DisplayScheduleLocations : MonoBehaviour
 {
     public GameObject ContentPanel;
     public GameObject ListItemPrefab;
-    private Singleton singleton;
-    private string role;
 
 
     DB_Details dbDetails;
@@ -67,11 +65,15 @@ public class DisplayScheduleLocations : MonoBehaviour
                 // getting schedules for a particular user.
                 DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child(user).Child(scheduleName);
 
-                Dictionary<string, string> scheduleData = JsonConvert.DeserializeObject<Dictionary<string, string>>(snapshot.GetRawJsonValue());
+                string str = snapshot.GetRawJsonValue();
+                JObject jsonLocation = JObject.Parse(str);
+                IList<string> keys = jsonLocation.Properties().Select(p => p.Name).ToList();
+                //var values = jsonLocation.ToObject<Dictionary<string, object>>();
 
-                foreach (KeyValuePair<string, string> schedule in scheduleData)
+                foreach (string schedule in keys)
                 {
-                    this.locations.Add(new ScheduleLocation(schedule.Key, schedule.Value));
+                    Debug.Log(schedule);
+                    this.locations.Add(new ScheduleLocation(schedule, (string)jsonLocation[schedule]));
                 }
             }
         });
@@ -93,33 +95,4 @@ public class DisplayScheduleLocations : MonoBehaviour
         }
         locationsDisplayed = true;
     }
-
-    public void onstartClick()
-    {
-        singleton = Singleton.Instance();
-        role = singleton.getUserRole();
-        Debug.Log("Role : " + role);
-        if (role == "Student")
-        {
-            singleton.setARType("schedule");
-        }
-
-        else if (role == "Guest")
-        {
-            singleton.setARType("tour");
-        }
-        SceneManager.LoadScene("AR");
-    }
-
-
-    public void onARClick()
-    {
-        singleton = Singleton.Instance();
-        singleton.setARType(null);
-        SceneManager.LoadScene("AR");
-    }
-
-
-
-
 }

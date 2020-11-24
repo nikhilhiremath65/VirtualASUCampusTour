@@ -56,7 +56,7 @@ public class DragTourWayPoint : MonoBehaviour
                     if (!location.Drag)
                     {
                         Drag.GetComponent<touchDrag>().enabled = false;
-                        Camera.GetComponent<ManualTouchCamera>().enabled = false;
+                        //Camera.GetComponent<ManualTouchCamera>().enabled = false;
                         Drag.GetComponent<MapDrag>().enabled = true;
                         Camera.transform.position = new Vector3(WayPoint.transform.position.x, Camera.transform.position.y, WayPoint.transform.position.z);
 
@@ -74,7 +74,7 @@ public class DragTourWayPoint : MonoBehaviour
                     {
                         Drag.GetComponent<MapDrag>().enabled = false;
                         Drag.GetComponent<touchDrag>().enabled = true;
-                         Camera.GetComponent<ManualTouchCamera>().enabled = true;
+                        //Camera.GetComponent<ManualTouchCamera>().enabled = true;
 
                         location.Drag = !location.Drag;
                         Vector2d latitudeLongitude = WayPoint.transform.GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
