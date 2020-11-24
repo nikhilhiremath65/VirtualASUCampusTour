@@ -4,6 +4,7 @@ using Mapbox.Unity.Map;
 using Mapbox.Utils;
 using Mapbox.Unity.Utilities;
 using Mapbox.Unity.MeshGeneration.Factories;
+using Mapbox.Examples;
 
 public class DragTourWayPoint : MonoBehaviour
 {
@@ -12,14 +13,16 @@ public class DragTourWayPoint : MonoBehaviour
 
     private float timePressed = 0.0f;
     private float timeLastPress = 0.0f;
-    public float timeDelayThreshold = 1.0f;
+    public float timeDelayThreshold = 0.5f;
 
     public GameObject WayPoint;
     public TourLocation location;
-    public GameObject Directions;
+    public GameObject Canvas;
     public GameObject DragInfoPanel;
+    public GameObject Drag;
+    public GameObject Camera;
 
-    private TourDirections tourDirections;
+    private PathGeneration tourDirections;
     private int clicked;
     private Singleton singleton;
 
@@ -27,7 +30,7 @@ public class DragTourWayPoint : MonoBehaviour
     void Start()
     {
         singleton = Singleton.Instance();
-        tourDirections = Directions.GetComponentInChildren<TourDirections>();
+        tourDirections = Canvas.GetComponentInChildren<PathGeneration>();
     }
 
     void Update()
@@ -52,21 +55,34 @@ public class DragTourWayPoint : MonoBehaviour
                 if (timePressed > tim ) {
                     if (!location.Drag)
                     {
+                        Drag.GetComponent<touchDrag>().enabled = false;
+                        Camera.GetComponent<ManualTouchCamera>().enabled = false;
+                        Drag.GetComponent<MapDrag>().enabled = true;
+                        Camera.transform.position = new Vector3(WayPoint.transform.position.x, Camera.transform.position.y, WayPoint.transform.position.z);
+
+
                         Vector2d latitudeLongitude = (WayPoint.transform.position - new Vector3(0, 5, 5)).GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
-                        _map.UpdateMap(latitudeLongitude, _map.Zoom);
+                        Debug.LogWarning(latitudeLongitude);
+                        //_map.UpdateMap(latitudeLongitude, _map.Zoom);
                         singleton.setISDrag(!IsDrag);
                         WayPoint.transform.position = Conversions.GeoToWorldPosition(latitudeLongitude.x, latitudeLongitude.y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz() + new Vector3(0, 5, 5);
                         location.Drag = !location.Drag;
                         DragInfoPanel.SetActive(true);
+                     
                     }
                     else
                     {
+                        Drag.GetComponent<MapDrag>().enabled = false;
+                        Drag.GetComponent<touchDrag>().enabled = true;
+                         Camera.GetComponent<ManualTouchCamera>().enabled = true;
+
                         location.Drag = !location.Drag;
                         Vector2d latitudeLongitude = WayPoint.transform.GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
                         tourDirections.setLocationCoOrdinates(latitudeLongitude, location.index);
                         singleton.setISDrag(!IsDrag);
                         DragInfoPanel.SetActive(false);
                         _map.updatePath = true;
+                        
                     }
                 }
             }

@@ -136,6 +136,7 @@ public class Singleton
     {
         return this.BuildingInfo;
     }
+
     public void setARType(string ARType)
     {
         this.ARType = ARType;
@@ -145,5 +146,4 @@ public class Singleton
     {
         return this.ARType;
     }
-
 }
