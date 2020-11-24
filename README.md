@@ -24,4 +24,5 @@ For some mobile versions, Camera does not get detected for the first time,when w
 
 # Links
 Firebase SDK: https://firebase.google.com/download/unity
+
 Mapbox SDK: https://www.mapbox.com/install/unity/
