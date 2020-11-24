@@ -1,11 +1,11 @@
 # VirtualASUCampusTour
 
 # Steps to run
-Steps to run our deliverable:
+## Steps to run our deliverable:
 
-Clone the master branch and open in unity
-Import Firebase Realtime Database SDK (Dotnet 4)
-Open Login Scene and run the scene.
+- Clone the master branch and open in unity
+- Import Firebase Realtime Database SDK (Dotnet 4)
+- Open Login Scene and run the scene.
 
 We have 3 user-role mappings to login:
 
