@@ -16,6 +16,7 @@
     using Firebase.Unity.Editor;
     using System;
     using Newtonsoft.Json.Linq;
+    using Models;
 
     public class PathGeneration : MonoBehaviour
     {
@@ -51,6 +52,16 @@
         public Transform Mapholder;
         public Text startButtonText;
 
+        public GameObject startButton;
+        public GameObject startBox;
+        public GameObject destBox;
+
+        private Singleton singleton;
+        private string TourName;
+        private Vector2d CurrentPosition;
+        private Dictionary<string, Coordinates> sharedLocations;
+
+
         public void Awake()
         {
             if (_map == null)
@@ -79,6 +90,9 @@
             // Get the root reference location of the database.
             reference = FirebaseDatabase.DefaultInstance.RootReference;
 
+            singleton = Singleton.Instance();
+            handleScene();
+
             InvokeRepeating("UpdatePath", 2.0f, 0.3f);
         }
 
@@ -93,25 +107,33 @@
             locations.Clear();
             coordinates.Clear();
 
-            if (pathGenerated){
+            if (pathGenerated)
+            {
                 pathGenerated = false;
                 startButtonText.text = "start";
                 _directionsGO.Destroy();
                 path = true;
             }
-            else{
-            path = false;
+            else
+            {
+                path = false;
 
-                coordinates.Add(locationIndicator.transform.GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale));
+                CurrentPosition = locationIndicator.transform.GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
+                coordinates.Add(CurrentPosition);
+                locations.Add(new TourLocation("CurrentLocation", 0));
 
+                int c = 1;
                 if (startLocation.text != "")
                 {
-                    locations.Add(new TourLocation(startLocation.text, 0));
+                    locations.Add(new TourLocation(startLocation.text, c));
+                    c++;
                 }
 
                 if (destLocation.text != "")
                 {
-                    locations.Add(new TourLocation(destLocation.text, 0));
+                    locations.Add(new TourLocation(destLocation.text, c));
+                    //coordinates.Add(new Vector2d(33.305976 -111.6764887));
+
                     getCoordinates();
                     startButtonText.text = "stop";
                     pathGenerated = true;
@@ -179,9 +201,10 @@
 
             _directionsGO.AddComponent<MeshRenderer>().material = _material;
             _directionsGO.transform.SetAsFirstSibling();
+            //_directionsGO.transform.SetParent(Mapholder);
             _directionsGO.transform.rotation = Mapholder.rotation;
-            _directionsGO.transform.localScale = new Vector3(1.0f,0.0f,1.0f);
-            _directionsGO.transform.position = new Vector3(_directionsGO.transform.position.x, 2.0f, _directionsGO.transform.position.y);
+            _directionsGO.transform.localScale = new Vector3(1.0f, 0.0f, 1.0f);
+            _directionsGO.transform.position = new Vector3(_directionsGO.transform.position.x, 1.0f, _directionsGO.transform.position.y);
             _directionsGO.layer = 9;
             return _directionsGO;
         }
@@ -190,106 +213,80 @@
         {
             if (coordinates.Count > 1 && (!path || _map.updatePath))
             {
-                coordinates[0] = locationIndicator.transform.GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
-                if (path)
-                {
-                    CheckLocation();
-                }
+                CurrentPosition = locationIndicator.transform.GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
+                coordinates[0] = CurrentPosition;
+                CheckLocation();
                 generatePath();
                 path = true;
                 _map.updatePath = false;
-
-                locationIndicator.transform.rotation = Mapholder.transform.rotation;
             }
-            if (!pathGenerated && _directionsGO!=null)
-            _directionsGO.Destroy();
+
+            if (!path && _directionsGO != null)
+                _directionsGO.Destroy();
         }
 
         private void generatePath()
         {
-            try
+            var count = coordinates.Count;
+            var wp = new Vector2d[count];
+
+            for (int i = 0; i < count; i++)
             {
-                var count = coordinates.Count;
-                var wp = new Vector2d[count];
+                wp[i] = (Vector2d)coordinates[i];
+            }
 
-                for (int i = 0; i < count; i++)
-                {
-                    wp[i] = (Vector2d)coordinates[i];
-                }
-
-                var _directionResource = new DirectionResource(wp, RoutingProfile.Driving);
+            if (coordinates.Count > 1)
+            {
+                var _directionResource = new DirectionResource(wp, RoutingProfile.Cycling);
                 _directionResource.Steps = true;
                 _directions.Query(_directionResource, HandleDirectionsResponse);
+            }
 
-                if (!path)
+            if (!path)
+            {
+                for (int i = 0; i < count; i++)
                 {
-                    for (int i = 0; i < count; i++)
-                    {
-                        var prefab = WayPoint;
-                        var instance = Instantiate(WayPoint) as GameObject;
-                        instance.layer = 9;
-                        _instances.Add(instance);
+                    var prefab = WayPoint;
+                    var instance = Instantiate(WayPoint) as GameObject;
+                    //Text wayPointNumber = instance.GetComponentInChildren<Text>();
+                    //wayPointNumber.text = (i).ToString();
+                    instance.layer = 9;
+                    _instances.Add(instance);
 
-                    }
+                    DragTourWayPoint dragWayPoint = instance.GetComponentInChildren<DragTourWayPoint>();
+                    dragWayPoint.location = (TourLocation)locations[i];
                 }
+            }
 
-                for (int i = 1; i < count; i++)
+            for (int i = 1; i < count; i++)
+            {
+                var instance = _instances[i];
+
+                DragTourWayPoint dragWayPoint = instance.GetComponentInChildren<DragTourWayPoint>();
+                TourLocation location = dragWayPoint.location;
+
+                if (!location.Drag)
                 {
-                    var instance = _instances[i];
-                    instance.transform.position = Conversions.GeoToWorldPosition(wp[i].x, wp[i].y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
-                    instance.transform.rotation = Mapholder.transform.rotation;
+                    //instance.transform.SetParent(Mapholder);
+                    //instance.transform.rotation = Mapholder.rotation;
+                    instance.transform.position = Conversions.GeoToWorldPosition(wp[i].x, wp[i].y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz() + new Vector3(0, 20, 0);
                     instance.SetActive(true);
                     instance.transform.SetAsLastSibling();
+                    
                 }
 
-                path = true;
             }
-            catch (Exception e)
-            {
-                //Do nothing
-            }
+
+            path = true;
 
         }
 
-        void getCoordinates()
+        public void setLocationCoOrdinates(Vector2d points, int index)
         {
-            try
+            coordinates[index - completedOffSet] = points;
+            for (int i = 0; i < coordinates.Count; i++)
             {
-                reference.GetValueAsync().ContinueWith(task =>
-                {
-                    if (task.IsFaulted)
-                    {
-                        throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
-                    }
-                    else if (task.IsCompleted)
-                    {
-                        DataSnapshot snapshot = task.Result.Child(dbDetails.getBuildingDBname());
-
-                        string str = snapshot.GetRawJsonValue();
-                        JObject jsonLocation = JObject.Parse(str);
-
-                        foreach (TourLocation location in this.locations)
-                        {
-                            location.Latitute = (string)jsonLocation[location.Name]["Coordinates"]["Latitude"];
-                            location.Longitude = (string)jsonLocation[location.Name]["Coordinates"]["Longitude"];
-                            double lat = double.Parse(location.Latitute);
-                            double lon = double.Parse(location.Longitude);
-                            coordinates.Add(new Vector2d(lat, lon));
-                        }
-                    }
-                });
-            }
-            catch (InvalidCastException e)
-            {
-                // Perform some action here, and then throw a new exception.
-                ErrorMessage.text = e.Message;
-                ErrorPanel.SetActive(true);
-            }
-            catch (Exception e)
-            {
-                // Perform some action here, and then throw a new exception.
-                ErrorMessage.text = e.Message;
-                ErrorPanel.SetActive(true);
+                Debug.LogWarning(coordinates[i]);
             }
         }
 
@@ -317,6 +314,156 @@
         {
             return Math.Sqrt(Math.Pow((x1 - x2), 2) + Math.Pow((y1 - y2), 2));
         }
-    }
 
+        private void handleScene()
+        {
+            switch(singleton.getARType()){
+                case "tour": loadTourScene();
+                    singleton.setARType(null);
+                    break;
+                case "schedule": loadScheduleScene();
+                    singleton.setARType(null);
+                    break;
+                case null:
+                    break;
+            }
+        }
+
+        private void loadTourScene()
+        {
+            startButton.SetActive(false);
+            startBox.SetActive(false);
+            destBox.SetActive(false);
+
+            TourName = singleton.getTourName();
+
+            CurrentPosition = locationIndicator.transform.GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
+            locations.Add(new TourLocation("CurrentLocation", 0));
+            coordinates.Add(CurrentPosition);
+
+            PSLocationArraySingleton pSLocationArraySingleton = PSLocationArraySingleton.Instance();
+            Dictionary<string, ArrayList> toursLocationsDictObject = pSLocationArraySingleton.getToursLocationDictionary();
+            sharedLocations = singleton.getSharedTourLocations();
+
+            int i = 1;
+            foreach (string location in toursLocationsDictObject[TourName])
+            {
+                locations.Add(new TourLocation(location, i));
+                i++;
+            }
+
+            getCoordinates();
+        }
+
+        private void loadScheduleScene()
+        {
+            startButton.SetActive(false);
+            startBox.SetActive(false);
+            destBox.SetActive(false);
+
+            CurrentPosition = locationIndicator.transform.GetGeoPosition(_map.CenterMercator, _map.WorldRelativeScale);
+            locations.Add(new TourLocation("CurrentLocation", 0));
+            coordinates.Add(CurrentPosition);
+
+            getScheduleData();
+        }
+
+        void getCoordinates()
+        {
+            try
+            {
+                reference.GetValueAsync().ContinueWith(task =>
+                {
+                    if (task.IsFaulted)
+                    {
+                        throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
+                    }
+                    else if (task.IsCompleted)
+                    {
+                        DataSnapshot snapshot = task.Result.Child(dbDetails.getBuildingDBname());
+                        
+                        string str = snapshot.GetRawJsonValue();
+                        JObject jsonLocation = JObject.Parse(str);
+                        for (int i = 1; i < locations.Count; i++)
+                        {
+                            TourLocation location = (TourLocation)locations[i];
+
+                            if (sharedLocations != null && sharedLocations.ContainsKey(location.Name))
+                            {
+                                location.Latitute = sharedLocations[location.Name].Latitude;
+                                location.Longitude = sharedLocations[location.Name].Longitude;
+                            }
+                            else
+                            {
+                                location.Latitute = (string)jsonLocation[location.Name]["Coordinates"]["Latitude"];
+                                location.Longitude = (string)jsonLocation[location.Name]["Coordinates"]["Longitude"];
+                            }
+                            double lat = double.Parse(location.Latitute);
+                            double lon = double.Parse(location.Longitude);
+                            coordinates.Add(new Vector2d(lat, lon));
+                        }
+                    }
+                });
+            }
+            catch (InvalidCastException e)
+            {
+                // Perform some action here, and then throw a new exception.
+                ErrorMessage.text = e.Message;
+                ErrorPanel.SetActive(true);
+            }
+            catch (Exception e)
+            {
+                // Perform some action here, and then throw a new exception.
+                ErrorMessage.text = e.Message;
+                ErrorPanel.SetActive(true);
+            }
+        }
+
+        void getScheduleData()
+        {
+            string UserName = singleton.getUserName();
+            string ScheduleName = singleton.getScheduleName();
+
+            try
+            {
+                reference.GetValueAsync().ContinueWith(task =>
+                {
+                    if (task.IsFaulted)
+                    {
+                        throw new Exception("ERROR while fetching data from database!!! Please refresh scene(Click Tours)");
+                    }
+                    else if (task.IsCompleted)
+                    {
+                        DataSnapshot snapshot = task.Result.Child(dbDetails.getScheduleDBName()).Child(UserName).Child(ScheduleName);
+
+                        string str = snapshot.GetRawJsonValue();
+                        JObject jsonLocation = JObject.Parse(str);
+                        IList<string> keys = jsonLocation.Properties().Select(p => p.Name).ToList();
+                        var values = jsonLocation.ToObject<Dictionary<string, object>>();
+
+                        int i = 0;
+                        foreach (string location in keys)
+                        {
+                            locations.Add(new TourLocation(location, i + 1));
+                            i++;
+                        }
+
+                        getCoordinates();
+                    }
+                });
+            }
+            catch (InvalidCastException e)
+            {
+                // Perform some action here, and then throw a new exception.
+                ErrorMessage.text = e.Message;
+                ErrorPanel.SetActive(true);
+            }
+            catch (Exception e)
+            {
+                // Perform some action here, and then throw a new exception.
+                ErrorMessage.text = e.Message;
+                ErrorPanel.SetActive(true);
+            }
+        }
+    }
 }
