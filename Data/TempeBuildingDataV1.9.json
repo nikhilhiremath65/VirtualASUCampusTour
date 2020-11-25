@@ -1,0 +1,319 @@
+{
+  "buildingDataBase" : {
+    "academic center":{
+        "BuildingName": "academic center",
+        "BuildingCode": "CNTR",
+        "Coordinates": {
+            "Latitude": "33.3071092",
+            "Longitude": "-111.6783254"
+        }
+    },
+    "administration":{
+        "BuildingName": "administration",
+        "BuildingCode": "ADMIN",
+        "Coordinates": {
+            "Latitude": "33.3071381",
+            "Longitude": "-111.6794067"
+        }
+    },
+    "agribusiness center":{
+        "BuildingName": "agribusiness center",
+        "BuildingCode": "AGBC",
+        "Coordinates": {
+            "Latitude": "33.3050908",
+            "Longitude": "-111.6783618"
+        }
+    },
+    "algae lab":{
+        "BuildingName": "algae lab",
+        "BuildingCode": "ISTB3",
+        "Coordinates": {
+            "Latitude": "33.3051338",
+            "Longitude": "-111.6750115"
+        }
+    },
+     "altitude chamber":{
+        "BuildingName": "altitude chamber",
+        "BuildingCode": "ALTCH",
+        "Coordinates": {
+            "Latitude": "33.3091437",
+            "Longitude": "-111.6804246"
+        }
+    },
+    "applied arts pavilion":{
+        "BuildingName": "applied arts pavilion",
+        "BuildingCode": "AAPAV",
+        "Coordinates": {
+            "Latitude": "33.30633",
+            "Longitude": "-111.6760516"
+        }
+    },
+    "aravaipa auditorium":{
+        "BuildingName": "aravaipa auditorium",
+        "BuildingCode": "ARAVA",
+        "Coordinates": {
+            "Latitude": "33.3064886",
+            "Longitude": "-111.6790796"
+        }
+    },
+    "arboretum date palms":{
+        "BuildingName": "arboretum date palms",
+        "BuildingCode": "L832",
+        "Coordinates": {
+            "Latitude": "33.302089",
+            "Longitude": "-111.6839906"
+        }
+    },
+    "asu preparatory academy":{
+        "BuildingName": "asu preparatory academy",
+        "BuildingCode": "UPSI",
+        "Coordinates": {
+            "Latitude": "33.3086372",
+            "Longitude": "-111.6842335"
+        }
+    },
+    "century hall":{
+        "BuildingName": "century hall",
+        "BuildingCode": "CNTRY",
+        "Coordinates": {
+            "Latitude": "33.3081659",
+            "Longitude": "-111.6775044"
+        }
+    },
+    "citrus dining pavilion":{
+        "BuildingName": "citrus dining pavilion",
+        "BuildingCode": "CITRS",
+        "Coordinates": {
+            "Latitude": "33.41985",
+            "Longitude": "-111.9371092"
+        }
+    },
+    "engineering design studio":{
+        "BuildingName": "engineering design studio",
+        "BuildingCode": "ENGR",
+        "Coordinates": {
+            "Latitude": "33.3046161",
+            "Longitude": "-111.6777549"
+        }
+    },
+    "facilities development and management":{
+        "BuildingName": "facilities development and management",
+        "BuildingCode": "FS",
+        "Coordinates": {
+            "Latitude": "33.3054835",
+            "Longitude": "-111.6816595"
+        }
+    },
+    "flight simulator":{
+        "BuildingName": "flight simulator",
+        "BuildingCode": "SIM",
+        "Coordinates": {
+            "Latitude": "33.3099558",
+            "Longitude": "-111.6743931"
+        }
+    },
+    "interdisciplinary science and technology iii":{
+        "BuildingName": "interdisciplinary science and technology iii",
+        "BuildingCode": "ISTB3",
+        "Coordinates": {
+            "Latitude": "33.3051509",
+            "Longitude": "-111.6732157"
+        }
+    },
+    "ironwood building":{
+        "BuildingName": "ironwood building",
+        "BuildingCode": "IRNWD",
+        "Coordinates": {
+            "Latitude": "33.3063037",
+            "Longitude": "-111.6811175"
+        }
+    },
+    "north residence halls: eagle and talon":{
+        "BuildingName": "north residence halls: eagle and talon",
+        "BuildingCode": "EAGLE",
+        "Coordinates": {
+            "Latitude": "33.3083237",
+            "Longitude": "-111.6791722"
+        }
+    },
+    "north residence halls: falcon, mustang & phantom":{
+        "BuildingName": "north residence halls: falcon, mustang & phantom",
+        "BuildingCode": "FALCO",
+        "Coordinates": {
+            "Latitude": "33.3103788",
+            "Longitude": "-111.6765798"
+        }
+    },
+    "parade grounds and flagpole":{
+        "BuildingName": "parade grounds and flagpole",
+        "BuildingCode": "L100",
+        "Coordinates": {
+            "Latitude": "33.3072533",
+            "Longitude": "-111.687249"
+        }
+    },
+    "peralta hall":{
+        "BuildingName": "peralta hall",
+        "BuildingCode": "PRLTA",
+        "Coordinates": {
+            "Latitude": "33.3059879",
+            "Longitude": "-111.6788988"
+        }
+    },
+    "picacho hall":{
+        "BuildingName": "picacho hall",
+        "BuildingCode": "PICHO",
+        "Coordinates": {
+            "Latitude": "33.3063508",
+            "Longitude": "-111.6793416"
+        }
+    },
+    "quads 2-4":{
+        "BuildingName": "quads 2-4",
+        "BuildingCode": "QUAD",
+        "Coordinates": {
+            "Latitude": "33.3086172",
+            "Longitude": "-111.6806417"
+        }
+    },
+    "santa catalina hall":{
+        "BuildingName": "santa catalina hall",
+        "BuildingCode": "SANCA",
+        "Coordinates": {
+            "Latitude": "33.305976",
+            "Longitude": "-111.6764887"
+        }
+    },
+    "santan hall":{
+        "BuildingName": "santan hall",
+        "BuildingCode": "SANTN",
+        "Coordinates": {
+            "Latitude": "33.306479",
+            "Longitude": "-111.6764763"
+        }
+    },
+    "simulator building":{
+        "BuildingName": "simulator building",
+        "BuildingCode": "SIM",
+        "Coordinates": {
+            "Latitude": "33.3098924",
+            "Longitude": "-111.6722012"
+        }
+    },
+    "startup labs":{
+        "BuildingName": "startup labs",
+        "BuildingCode": "TECH",
+        "Coordinates": {
+            "Latitude": "33.3051484",
+            "Longitude": "-111.6824081"
+        }
+    },
+    "student union":{
+        "BuildingName": "student union",
+        "BuildingCode": "UNION",
+        "Coordinates": {
+            "Latitude": "33.30716",
+            "Longitude": "-111.6770328"
+        }
+    },
+    "sun devil fitness complex":{
+        "BuildingName": "sun devil fitness complex",
+        "BuildingCode": "SDFCP",
+        "Coordinates": {
+            "Latitude": "33.3077565",
+            "Longitude": "-111.6754675"
+        }
+    },
+    "sunpower solar farm":{
+        "BuildingName": "sunpower solar farm",
+        "BuildingCode": "X66",
+        "Coordinates": {
+            "Latitude": "33.2927415",
+            "Longitude": "-111.6883434"
+        }
+    },
+     "sutton hall":{
+        "BuildingName": "sutton hall",
+        "BuildingCode": "SUTON",
+        "Coordinates": {
+            "Latitude": "33.306325",
+            "Longitude": "-111.6771996"
+        }
+    },
+    "technology center":{
+        "BuildingName": "technology center",
+        "BuildingCode": "TECH",
+        "Coordinates": {
+            "Latitude": "33.3053205",
+            "Longitude": "-111.6804836"
+        }
+    },
+    "wanner hall":{
+        "BuildingName": "wanner hall",
+        "BuildingCode": "WANER",
+        "Coordinates": {
+            "Latitude": "33.3058931",
+            "Longitude": "-111.677226"
+        }
+    }
+
+  },
+  "scheduleDataBase" : {
+    "nhiremat" : {
+      "Schedule B" : {
+        "Meet Suyog" : "02:05",
+        "adelphi commons" : "03:25",
+        "community services building" : "02:25"
+      },
+      "Schedule C" : {
+        "armstrong hall" : "02:15",
+        "best hall" : "02:25",
+        "creativity commons" : "02:10"
+      },
+      "Schedule G" : {
+        "a j matthews center" : "01:15",
+        "adelphi commons" : "01:25",
+        "alberta b farrington softball stadium" : "01:05",
+        "art building" : "01:05"
+      }
+    }
+  },
+  "sharedLocations" : {
+    "nhiremat" : {
+      "FridaySchedule" : {
+        "sha" : {
+          "latitude" : "33.11",
+          "longitude" : "-11.2121"
+        }
+      },
+      "Schedule B" : {
+        "Meet Suyog" : {
+          "latitude" : "33.4199292",
+          "longitude" : "-111.935502"
+        }
+      },
+      "WednesdaySchedule" : {
+        "shared" : {
+          "latitude" : "33",
+          "longitude" : "33"
+        }
+      },
+      "dummy" : {
+        "latitude" : 11,
+        "longitude" : 11
+      }
+    }
+  },
+  "tourDataBase" : {
+    "Tour A" : {
+      "a j matthews center" : "dummy",
+      "a mountain" : "dummy",
+      "art building" : "dummy"
+    },
+    "Tour B" : {
+      "bateman physical sciences center" : "dummy",
+      "best hall" : "dummy",
+      "business administration" : "dummy"
+    }
+  }
+}
