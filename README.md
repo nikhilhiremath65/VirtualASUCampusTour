@@ -20,7 +20,10 @@
 #### Role: Guest (Prospective Student)
 - Click on Guest button
 
-For some mobile versions, Camera does not get detected for the first time,when we open QR the code scanner. The solution is to just close the app and start it again. It happens only once in the lifetime of the application.
+### Issues
+- For some mobile versions, Camera does not get detected for the first time,when we open QR the code scanner. The solution is to just close the app and start it again. It happens only once in the lifetime of the application.
+- The device’s compass reading may not be accurately taken. So, while opening the map screen face north and then open for proper alignment.
+- In AR, the path generated is not laid out on the ground. But, It is still scaled and aligned correctly.
 
 ## Course Information
 - Instructor: Michael Findler
